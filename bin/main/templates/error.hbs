@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{i18n "html.lang"}}">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/vendors/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href=/css/minty_sensor_server.css rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <!-- page content -->
+        <div class="col-md-12">
+          <div class="col-middle">
+            <div class="text-center">
+              <h1 class="error-number">{{status}}</h1>
+              <h2>{{error}}</h2>
+              <p>We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing. <a href="#">Report this?</a>
+              </p>
+              <div class="mid_center">
+              Opps -Did that really happen!
+              </div>
+              <h2>Path : {{path}}</h2>
+              <p>Exception : {{exception}}</p>
+              <p>Trace : {{trace}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/vendors/fastclick/lib/fastclick.js"></script>
+    <script src="/vendors/nprogress/nprogress.js"></script>
+    <script src="/js/minty_sensor_server.js"></script>
+    <script src="/js/mss_error.js"></script>
+  </body>
+</html>

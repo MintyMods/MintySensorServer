@@ -1,0 +1,95 @@
+{{#partial "head_stylesheet_page"}}
+{{/partial}}
+{{#partial "content"}}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Configure Notifications <small> Messages and Alerts</small></h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go</button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+           
+        <div class="clearfix"></div>
+
+                <div class="mss-filter x_panel">
+                    <div class="x_title">
+                        <h2>Standard Notifications</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a>
+                                    </li>
+                                    <li><a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <a href="javascript:mss.popIn({title:'Primary Example',type:'notice'});"><button type="button" class="btn btn-round btn-primary"  data-toggle="tooltip" data-placement="bottom" title="Shows example Primary notification">Primary</button></a>
+                        <a href="javascript:mss.popIn({title:'Success Example',type:'success'});"><button type="button" class="btn btn-round btn-success"  data-toggle="tooltip" data-placement="bottom" title="Shows example Success Notification">Success</button></a>
+                        <a href="javascript:mss.popIn({title:'Information Example',type:'info'});"><button type="button" class="btn btn-round btn-info"  data-toggle="tooltip" data-placement="bottom" title="Shows example Information Notification">Information</button></a>
+                        <a href="javascript:mss.popIn({title:'Warning Example',type:'warning'});"><button type="button" class="btn btn-round btn-warning"  data-toggle="tooltip" data-placement="bottom" title="Shows example Warning Notification">Warning</button></a>
+                        <a href="javascript:mss.popIn({title:'Danger Example',type:'error'});"><button type="button" class="btn btn-round btn-danger"  data-toggle="tooltip" data-placement="bottom" title="Shows example Error Notification">Danger</button></a>
+                        <a href="javascript:mss.popSpam();"><button type="button" class="btn btn-round btn-default" data-toggle="tooltip" data-placement="bottom" title="Replays the current history of notifications">Notification History</button></a>
+                    </div>
+                </div>
+
+                <div class="mss-filter x_panel">
+                    <div class="x_title">
+                        <h2>Desktop Notifications</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a>
+                                    </li>
+                                    <li><a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <a href="javascript:mss.popOut({title:'Primary Example',type:'notice'});"><button type="button" class="btn btn-round btn-primary">Primary</button></a>
+                        <a href="javascript:mss.popOut({title:'Success Example',type:'success'});"><button type="button" class="btn btn-round btn-success">Success</button></a>
+                        <a href="javascript:mss.popOut({title:'Information Example',type:'info'});"><button type="button" class="btn btn-round btn-info">Information</button></a>
+                        <a href="javascript:mss.popOut({title:'Warning Example',type:'warning'});"><button type="button" class="btn btn-round btn-warning">Warning</button></a>
+                        <a href="javascript:mss.popOut({title:'Danger Example',type:'error'});"><button type="button" class="btn btn-round btn-danger">Danger</button></a>
+                        <a href="javascript:mss.popAuth();"><button type="button" class="btn btn-round btn-default" data-toggle="tooltip" data-placement="bottom" title="Explicitly asks for Notice permissions">Authorise Notifications</button></a>
+                    </div>
+                </div>
+		 	
+	
+            </div>
+        </div>
+    </div>
+</div>
+{{/partial}}
+{{#partial "scripts"}}
+<!-- Script imports -->
+{{/partial}}
+{{>layout/layout}}

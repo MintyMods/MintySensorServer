@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Phone Page</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/mss.css}" />
+</head>
+<body>
+	<h1>Phone Page</h1>
+	<p>
+		Welcome to <span th:text="${appName}"></span>
+	</p>
+	<p>
+		View <span th:text="${view}"></span>
+	</p>
+	<script type="text/javascript" th:src="@{/js/mss.js}"></script>
+</body>
+</html>
