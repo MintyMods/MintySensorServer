@@ -4,14 +4,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import info.mintymods.msm.MsmExceptionHint;
-import info.mintymods.mss.utils.MssJSONUtils;
+import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmExceptionHintTest {
 
 	@Test
 	public void testToStringReturnsValidJson() {
-		assertTrue(MssJSONUtils.isValidJSON(new MsmExceptionHint().toString()));
+		assertTrue(MintyJsonUtils.isValidJSON(new MsmExceptionHint().toString()));
 	}
 
 }

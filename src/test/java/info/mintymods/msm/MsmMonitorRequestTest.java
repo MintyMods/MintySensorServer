@@ -4,15 +4,14 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import info.mintymods.msm.MsmMonitorRequest;
-import info.mintymods.mss.utils.MssJSONUtils;
+import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmMonitorRequestTest {
 
 	@Test
 	public void testToStringReturnsValidJson() {
 		MsmMonitorRequest request = new MsmMonitorRequest();
-		assertTrue(MssJSONUtils.isValidJSON(request.toString()));
+		assertTrue(MintyJsonUtils.isValidJSON(request.toString()));
 	}
 
 }

@@ -10,7 +10,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import info.mintymods.mss.utils.MssJSONUtils;
+import info.mintymods.MintySensorMonitor;
+import info.mintymods.utils.MintyJsonUtils;
 
 public class MintySensorMonitorTest {
 
@@ -40,7 +41,7 @@ public class MintySensorMonitorTest {
 	@Test
 	public void getJsonRequestTest() {
 		String json = MintySensorMonitor.getJsonRequest(request);
-		assertTrue(MssJSONUtils.isValidJSON(json));
+		assertTrue(MintyJsonUtils.isValidJSON(json));
 	}
 
 	@Test
@@ -86,7 +87,7 @@ public class MintySensorMonitorTest {
 
 	@Test
 	public void MsmMonitorRequestToStringTest() {
-		assertTrue(MssJSONUtils.isValidJSON(request.toString()));
+		assertTrue(MintyJsonUtils.isValidJSON(request.toString()));
 	}
 
 }

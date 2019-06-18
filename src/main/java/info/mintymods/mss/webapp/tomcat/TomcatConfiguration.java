@@ -6,7 +6,7 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Configuration;
 
-import info.mintymods.mss.utils.ssl.CertificateUtils;
+import info.mintymods.utils.ssl.CertificateUtils;
 
 @Configuration
 public class TomcatConfiguration implements WebServerFactoryCustomizer<TomcatServletWebServerFactory> {

@@ -22,15 +22,13 @@ import org.springframework.security.access.expression.ExpressionUtils;
 import org.springframework.security.access.expression.SecurityExpressionHandler;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.FilterInvocation;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
-import com.github.jknack.handlebars.Options.Buffer;
 
-@Component
+//@Component
 public class SpringSecurityAuthorizeHelper implements Helper<Object> {
 
 	private static final Logger log = LoggerFactory.getLogger(SpringSecurityAuthorizeHelper.class);
@@ -46,20 +44,22 @@ public class SpringSecurityAuthorizeHelper implements Helper<Object> {
 		securityExpressionHandler = getExpressionHandler();
 	}
 
-	@Override
-	public Object apply(Object context, Options options) throws IOException {
-		log.warn("context : {}", context);
-		Buffer buffer = options.buffer();
-		if (evaluateAuthority(context.toString())) {
-			buffer.append(options.fn());
-		} else {
-			buffer.append(options.inverse());
-		}
-		return buffer;
-	}
+	// @Override
+	// public Object apply(Object context, Options options) throws IOException {
+	// log.warn("context : {}", context);
+	// Buffer buffer = options.buffer();
+	// if (evaluateAuthority(context.toString())) {
+	// buffer.append(options.fn());
+	// } else {
+	// buffer.append(options.inverse());
+	// }
+	// return buffer;
+	// }
 
 	private boolean evaluateAuthority(String access) throws IOException {
-		if (SecurityContextHolder.getContext().getAuthentication() == null) { return false; }
+		if (SecurityContextHolder.getContext().getAuthentication() == null) {
+			return false;
+		}
 		return ExpressionUtils.evaluateAsBoolean(getAccessExpression(access), createExpressionEvaluationContext());
 	}
 
@@ -98,5 +98,11 @@ public class SpringSecurityAuthorizeHelper implements Helper<Object> {
 			}
 		}
 		throw new IOException("No visible SecurityExpressionHandler instance could be found in the application");
+	}
+
+	@Override
+	public Object apply(Object context, Options options) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

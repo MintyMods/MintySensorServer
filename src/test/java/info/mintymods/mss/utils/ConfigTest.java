@@ -4,16 +4,16 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import info.mintymods.mss.Config;
-import info.mintymods.mss.Constants;
+import info.mintymods.mss.MintyConstants;
+import info.mintymods.utils.MintyProperties;
 
 public class ConfigTest {
 
-	private static Config config = Config.getInstance();
+	private static MintyProperties config = MintyProperties.getInstance();
 
 	@Test
 	public void testGettingDefaultStringPropertyFromConfig() {
-		assertEquals(config.getString("application.name"), Constants.APP_SHORT_NAME);
+		assertEquals(config.getString("application.name"), MintyConstants.APP_SHORT_NAME);
 	}
 
 	@Test

@@ -16,9 +16,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import info.mintymods.mss.Constants;
-import info.mintymods.mss.utils.MssFileUtils;
-import info.mintymods.mss.utils.ssl.CertificateUtils;
+import info.mintymods.mss.MintyConstants;
+import info.mintymods.utils.MintyFileUtils;
+import info.mintymods.utils.ssl.CertificateUtils;
 
 public class CertificateUtilsTest {
 
@@ -28,7 +28,7 @@ public class CertificateUtilsTest {
 	public void checkKeystoreExistsOrCreateTest() {
 		CertificateUtils.checkKeystoreExistsOrCreate();
 		try {
-			File file = MssFileUtils.getKeyStoreFile();
+			File file = MintyFileUtils.getKeyStoreFile();
 			assertTrue(file.exists());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -45,11 +45,11 @@ public class CertificateUtilsTest {
 			keyPair = CertificateUtils.createKeyPair(random);
 			X509Certificate[] certificate = CertificateUtils.getSelfSignedX509Certificate(keyPair, random);
 			CertificateUtils.createKeyStoreAndImportCertificate(keyPair.getPrivate(), certificate);
-			File file = MssFileUtils.getKeyStoreFile();
+			File file = MintyFileUtils.getKeyStoreFile();
 			assertTrue(file.exists());
 			KeyStore keyStore = KeyStore.getInstance("JKS");
-			keyStore.load(new FileInputStream(file), Constants.PASSWORD);
-			stored = keyStore.getCertificate(Constants.SSL_ALIAS);
+			keyStore.load(new FileInputStream(file), MintyConstants.PASSWORD);
+			stored = keyStore.getCertificate(MintyConstants.SSL_ALIAS);
 			assertNotNull(stored);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

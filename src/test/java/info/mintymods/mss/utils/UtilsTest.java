@@ -9,28 +9,30 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import info.mintymods.mss.utils.MssFileUtils;
-import info.mintymods.mss.utils.MssPathUtils;
+import info.mintymods.utils.MintyFileUtils;
+import info.mintymods.utils.MssPathUtils;
 
 public class UtilsTest {
 
 	@Test
 	public void getPathToMintySensorMonitor() {
-//		File file = new File(Utils.getPathToMintySensorMonitor());
-		File file = MssFileUtils.getFileFromLibPath(MssPathUtils.getMintySensorMonitorFilename());
+		// File file = new File(Utils.getPathToMintySensorMonitor());
+		File file = MintyFileUtils.getFileFromLibPath(MssPathUtils.getMintySensorMonitorFilename());
 		assertTrue(file.exists());
 		assertTrue(file.getName().endsWith(".exe"));
 	}
 
 	@Test
 	public void getAbsolutePath() {
-		String path = MssFileUtils.getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename()).getAbsolutePath();
+		String path = MintyFileUtils.getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename())
+				.getAbsolutePath();
 		assertNotNull(path);
 		File file = new File(path);
 		assertNotNull(file);
 		assertTrue(file.exists());
 		File realFile = new File(
-				MssPathUtils.getRuntimeClassesFolder() + File.separator + MssPathUtils.getApplicationPropertiesFilename());
+				MssPathUtils.getRuntimeClassesFolder() + File.separator
+						+ MssPathUtils.getApplicationPropertiesFilename());
 		assertNotNull(realFile);
 		assertTrue(realFile.exists());
 		assertEquals(realFile.getAbsoluteFile(), file.getAbsoluteFile());
@@ -40,7 +42,7 @@ public class UtilsTest {
 	public void getCanonicalPath() {
 
 		try {
-			String path = MssFileUtils.getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename())
+			String path = MintyFileUtils.getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename())
 					.getCanonicalPath();
 			assertNotNull(path);
 			File file = new File(path);
@@ -58,7 +60,7 @@ public class UtilsTest {
 
 	@Test
 	public void getFileFromClassPath() {
-		File fileFromClassPath = MssFileUtils.getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename());
+		File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename());
 		assertTrue(fileFromClassPath.exists());
 	}
 

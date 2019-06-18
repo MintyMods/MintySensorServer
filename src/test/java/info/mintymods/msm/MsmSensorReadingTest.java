@@ -4,14 +4,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import info.mintymods.msm.MsmSensorReading;
-import info.mintymods.mss.utils.MssJSONUtils;
+import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmSensorReadingTest {
 
 	@Test
 	public void testToStringReturnsValidJson() {
-		assertTrue(MssJSONUtils.isValidJSON(new MsmSensorReading().toString()));
+		assertTrue(MintyJsonUtils.isValidJSON(new MsmSensorReading().toString()));
 	}
 
 }

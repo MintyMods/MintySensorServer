@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import info.mintymods.mss.utils.MssFileUtils;
+import info.mintymods.utils.MintyFileUtils;
 
 @Controller
 public class DebugController {
@@ -21,7 +21,7 @@ public class DebugController {
 	public String debug(Map<String, Object> model, @PathVariable("page") String page) {
 		model.put("page", page);
 		model.put("title", "Debug : " + page);
-		String[] names = extractPageNames(FileUtils.listFiles(MssFileUtils.getFileFromClassPath("templates/debug"),
+		String[] names = extractPageNames(FileUtils.listFiles(MintyFileUtils.getFileFromClassPath("templates/debug"),
 				new String[]{"hbs"}, false));
 		model.put("names", names);
 		return "debug/" + page;

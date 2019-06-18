@@ -3,11 +3,11 @@ package info.mintymods.msm;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import info.mintymods.mss.utils.MssJSONUtils;
+import info.mintymods.utils.MintyJsonUtils;
 
 public enum MsmSensorType {
-	NONE(0, "None"), TEMP(1, "Temperatures"), VOLT(2, "Voltages"), FAN(3, "Fans"), CURRENT(4, "Currents"),
-	POWER(5, "Power"), CLOCK(6, "Clocks"), USAGE(7, "Usages"), OTHER(8, "Other");
+	NONE(0, "None"), TEMP(1, "Temperatures"), VOLT(2, "Voltages"), FAN(3, "Fans"), CURRENT(4, "Currents"), POWER(5,
+			"Power"), CLOCK(6, "Clocks"), USAGE(7, "Usages"), OTHER(8, "Other");
 
 	private int type = 8;
 	private String desc;
@@ -40,7 +40,7 @@ public enum MsmSensorType {
 	@Override
 	public String toString() {
 		try {
-			return MssJSONUtils.getMapper().writeValueAsString(this);
+			return MintyJsonUtils.getMapper().writeValueAsString(this);
 		} catch (JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}

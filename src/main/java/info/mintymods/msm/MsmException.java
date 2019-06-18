@@ -5,7 +5,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import info.mintymods.mss.utils.MssJSONUtils;
+import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmException {
 
@@ -57,7 +57,7 @@ public class MsmException {
 	@Override
 	public String toString() {
 		try {
-			return MssJSONUtils.getMapper().writeValueAsString(this);
+			return MintyJsonUtils.getMapper().writeValueAsString(this);
 		} catch (JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}

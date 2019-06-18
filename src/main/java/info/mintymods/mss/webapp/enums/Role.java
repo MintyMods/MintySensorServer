@@ -4,7 +4,6 @@ public enum Role {
 	// ADMIN
 	ROLE_ADMIN("ROLE_ADMIN");
 
-//    @Getter
 	private String name;
 
 	Role(String name) {

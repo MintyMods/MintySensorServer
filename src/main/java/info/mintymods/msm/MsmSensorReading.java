@@ -3,7 +3,7 @@ package info.mintymods.msm;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import info.mintymods.mss.utils.MssJSONUtils;
+import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmSensorReading {
 
@@ -110,7 +110,7 @@ public class MsmSensorReading {
 	@Override
 	public String toString() {
 		try {
-			return MssJSONUtils.getMapper().writeValueAsString(this);
+			return MintyJsonUtils.getMapper().writeValueAsString(this);
 		} catch (JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
