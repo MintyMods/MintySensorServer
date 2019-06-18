@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
 
- 	// Spring Boot Support
+	// Server Side Dependencies : Spring Boot & some good friends
 	implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
 	implementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
@@ -36,21 +36,15 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-devtools:${springBootVersion}") 
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}") 
 	//implementation("org.springframework.security:spring-security-test:${springBootVersion}")
-	
-	
-	// HandleBars Template Support	
 	implementation('com.github.jknack:handlebars:4.1.2')
 	implementation('com.github.jknack:handlebars-springmvc:4.1.2')
 	implementation('com.github.jknack:handlebars-helpers:4.1.0')
 	implementation('com.github.jknack:handlebars-jackson2:4.1.0')
 	implementation('com.github.jknack:handlebars-humanize:4.1.0')
-	//implementation('com.github.jknack:handlebars-markdown:4.1.0}')
 	implementation('pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.1')
-
   	implementation("com.h2database:h2:1.4.197")
   	implementation("org.codehaus.groovy:groovy:2.5.3")
 	implementation('org.modelmapper:modelmapper:0.7.5')
-	
   	implementation("org.bouncycastle:bcpkix-jdk15on:1.58")
   	compile group: 'org.jetbrains', name: 'annotations', version: '13.0'
 	compile group: 'commons-io', name: 'commons-io', version: '2.6'
@@ -63,5 +57,18 @@ dependencies {
   	implementation("org.bouncycastle:bcpkix-jdk15on:1.58")
   	implementation("junit:junit:4.12")
   
+  
+	// Client Side Dependencies : BootStrap and some good friends
+	compile 'org.webjars:jquery:3.4.1'
+    compile 'org.webjars:jquery-cookie:1.4.1-1'
+	compile 'org.webjars:jquery.sparkline:2.1.2'
+	compile 'org.webjars:jquery-knob:1.2.11'
+	compile 'org.webjars:handlebars:4.0.14'
+	compile 'org.webjars.bower:pnotify:4.0.0'
+	compile 'org.webjars:font-awesome:5.9.0'
+	
+	// Charts
+	compile 'org.webjars:chartjs:26962ce-1'
+	
 }
 
