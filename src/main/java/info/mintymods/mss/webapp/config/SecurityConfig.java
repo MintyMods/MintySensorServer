@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 				.antMatchers(
 						"/css/**",
 						"/font/**",
-						"/**", // REMOPVE TJHOS
+						"/**", // REMOVE THIS MAPPING = ALLOW ALL <-------------------------------------
 						"/images/**",
 						"/js/**",
 						"/vendors/**");

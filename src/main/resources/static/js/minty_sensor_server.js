@@ -1,6 +1,5 @@
-PNotify.defaults.delay = 4000;
+PNotify.defaults.delay = 2000;
 PNotify.defaults.styling = 'material';
-//PNotify.defaults.icons = 'material';
 
 /** Hook into the search box to provide some default behaviour */
 $(document).ready(function() {
@@ -25,17 +24,17 @@ $(document).ready(function() {
 
 var mss = new function() {
 
-    var sendNotification = function(msg) { // var PRIVATE 
-    	var wrapper = {
-    			text:msg.text?msg.text:'Pop In Notification Type',
-    			title: msg.title?msg.title:'Notification shown within the Browser', 
-    			type:msg.type?msg.type:'error',	
-				modules: {
-				    Desktop: {
-				    	desktop:msg.desktop?msg.desktop:true
-				    }
-				  }
+    var sendNotification = function(msg) { // var PRIVATE
+    	
+    	var core = {
+			text:msg.text?msg.text:'Pop In Notification Type',
+			title: msg.title?msg.title:'Notification shown within the Browser', 
+			type:msg.type?msg.type:'error'
     	};
+    	
+    	var modules = {'modules':{'Desktop':{'desktop':msg.desktop}}};
+    	wrapper = Object.assign({}, core, modules);
+    	
     	switch(wrapper.type) {
     	case 'notice':
     		PNotify.notice({
@@ -65,45 +64,48 @@ var mss = new function() {
     
     this.popIn = function(msg) { // this.PUBLIC
     	var wrapper = {
-    			text:msg.text?msg.text:'Pop In Notification Type',
-    			title: msg.title?msg.title:'Notification shown within the Browser', 
-    			type:msg.type?msg.type:'error',
-				modules: {
-				    Desktop: {
-				    	desktop:false
-				    }
-				  }
-    			
+			text:msg.text?msg.text:'Pop In Notification Type',
+			title: msg.title?msg.title:'Notification shown within the Browser', 
+			type:msg.type?msg.type:'error',
+			desktop:false
     	};
     	sendNotification(wrapper);
     };
     
     this.popOut = function(msg) { // this.PUBLIC
-//     	var wrapper = {
-//    			'text':msg.text?msg.text:'Pop Out Notification Type',
-//    			'title': msg.title?msg.title:'Notification shown outside the Browser', 
-//    			type:msg.type?msg.type:'error',
-//				modules: {
-//				    Desktop: {
-//				    	desktop:true
-//				    }
-//				  }
-//     	};
-//     	sendNotification(wrapper);
+     	var wrapper = {
+			'text':msg.text?msg.text:'Pop Out Notification Type',
+			'title': msg.title?msg.title:'Notification shown outside the Browser', 
+			type:msg.type?msg.type:'error',
+	    	desktop:true
+     	};
+     	sendNotification(wrapper);
+
      	
-     	
-     	PNotify.desktop.permission();
-     	(new PNotify({
-     	    title: 'Desktop Success',
-     	    text: 'If you\'ve given me permission, I\'ll appear as a desktop notification. If you haven\'t, I\'ll still appear as a regular PNotify notice.',
-     	    type: 'success',
-     	    desktop: {
-     	        desktop: true
-     	    }
-     	})).get().click(function(e) {
-     	    if ($('.ui-pnotify-closer, .ui-pnotify-sticker, .ui-pnotify-closer *, .ui-pnotify-sticker *').is(e.target)) return;
-     	    **alert('Hey! You clicked the desktop notification!');**
-     	});
+//    	new PNotify({
+//            title: 'Desktop Notice',
+//            text: 'If you\'ve given me permission, I\'ll appear as a desktop notification. If you haven\'t, I\'ll still appear as a regular PNotify notice.',
+//            desktop: {
+//                desktop: true
+//            },
+//            nonblock: {
+//                nonblock: true
+//            }
+//        });
+    	
+    	
+//     	(new PNotify({
+//     	    title: 'Desktop Success',
+//     	    text: 'If you\'ve given me permission, I\'ll appear as a desktop notification. If you haven\'t, I\'ll still appear as a regular PNotify notice.',
+//     	    type: 'success',
+//     	    desktop: {
+//     	        desktop: true
+//     	    }
+//     	})).get();
+//     	.click(function(e) {
+//     	    if ($('.ui-pnotify-closer, .ui-pnotify-sticker, .ui-pnotify-closer *, .ui-pnotify-sticker *').is(e.target)) return;
+//     	    alert('Hey! You clicked the desktop notification!');
+//     	});
      	
      	
     };
@@ -120,39 +122,20 @@ var mss = new function() {
     	PNotify.modules.History.showAll();
     };
     
-    document.addEventListener('DOMContentLoaded', function () {
-    	if (Notification.permission !== "granted")
-    		Notification.requestPermission();
-    });
-
-    
-	window.notifyMe = function() {
-		  if (!Notification) {
-		    //alert('Desktop notifications not available in your browser. Try Chromium.'); 
-		    return;
-		  }
-
-		  if (Notification.permission !== "granted")
-		    Notification.requestPermission();
-		  else {
-		    var notification = new Notification('Notification');
-
-		    notification.onclick = function () {
-		        window.focus();
-		    };
-
-		      setTimeout(function() {
-		          notification.close()
-		      }, 2000); 
-		  }
-	}
+//    document.addEventListener('DOMContentLoaded', function () {
+//    	if (Notification.permission !== "granted")
+//    		Notification.requestPermission();
+//    });
     
     this.popAuth = function() {
-    	try {
-    		PNotify.modules.Desktop.permission();
-    	} catch(e) {
-    		console.log("Auth Problem");
-    	}
+		try {
+	    	if (Notification.permission !== "granted") {
+	    		Notification.requestPermission();
+	    	}
+		} catch(e) {
+			console.log("Notification Permissions Auth Problem " + e);
+        }
+	
     };
     
 };

@@ -1,0 +1,34 @@
+{
+  "name": "info.mintymods.mss",
+  "version": "1.0.0",
+  "description": "Minty Sensor Server",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MintyMods/MintySensorServerGradle.git"
+  },
+  "keywords": [
+    "Sensor",
+    "Server",
+    "Minty",
+    "Sensor",
+    "Server",
+    "MSS",
+    "Hardware",
+    "Monitoring",
+    "Notifications",
+    "Dashboard"
+  ],
+  "author": "Rob Gregory [Minty]",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MintyMods/MintySensorServerGradle/issues"
+  },
+  "homepage": "https://github.com/MintyMods/MintySensorServerGradle#readme"
+}
