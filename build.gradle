@@ -29,8 +29,8 @@ dependencies {
 	// Server Side Dependencies : Spring Boot & some good friends
 	implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
 	implementation("org.springframework.boot:spring-boot-starter-test")
-	implementation("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
-	implementation("org.springframework.security:spring-security-config")
+	//implementation("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+	//implementation("org.springframework.security:spring-security-config")
 	implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
 	implementation("org.springframework.boot:spring-boot-devtools:${springBootVersion}") 

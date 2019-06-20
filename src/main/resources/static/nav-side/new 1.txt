@@ -1,0 +1,71 @@
+<!-- side menu -->
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+            <a id="logo-wrapper" href="/" class="site_title">
+            	<!-- i class="fas fa-sync-alt"></i-->
+                <img src="/images/MintyModsBannerLogo.png" alt="MSS - Minty Sensor Server" class="mss-logo">
+                <span id="msm-logo">M<small>inty</small> S<small>ensor</small> S<small>erver</small></span>
+            </a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+                <ul class="nav side-menu">
+                    <li>
+                        <a><i class="fas fa-code-branch"></i><span class="mss-section">Sensors</span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/sensors/none"><i class="far fa-times-circle"></i><span class="mss-option">None</span></a></li>
+                            <li><a href="/sensors/temp"><i class="fas fa-thermometer-half"></i><span class="mss-option">Temperature</span></a></li>
+                            <li><a href="/sensors/volt"><i class="fas fa-bolt"></i><span class="mss-option">Voltages</span></a></li>
+                            <li><a href="/sensors/current"><i class="fas fa-wave-square"></i><span class="mss-option">Currents</span></a></li>
+                            <li><a href="/sensors/power"><i class="fas fa-car-battery"></i><span class="mss-option">Power</span></a></li>
+                            <li><a href="/sensors/clock"><i class="far fa-clock"></i><span class="mss-option">Clocks</span></a></li>
+                            <li><a href="/sensors/fan"><i class="fas fa-fan"></i><span class="mss-option">Fans</span></a></li>
+                            <li><a href="/sensors/usage"><i class="fas fa-chart-pie"></i><span class="mss-option">Usages</span></a></li>
+                            <li><a href="/sensors/other"><i class="fas fa-share-alt"></i><span class="mss-option">Other</span></a></li>
+                            <div style="text-align:center;"><a href="/sensors/configure"><button type="button" class="mss-button btn btn-success btn-xs"><i class="fas fa-code-branch"></i>  Configure Sensors</button></a></div>                            
+                        </ul>
+                    </li>                
+                    <li>
+                        <a><i class="far fa-eye"></i><span class="mss-section">Views</span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/views/pc"><i class="fas fa-laptop"></i></i><span class="mss-option">PC</span></a></li>
+                            <li><a href="/views/tv"><i class="fas fa-tv"></i></i><span class="mss-option">TV</span></a></li>
+                            <li><a href="/views/phone"><i class="fas fa-mobile-alt"></i><span class="mss-option">Phone</span></a></li>
+                            <li><a href="/views/admin"><i class="fas fa-user-lock"></i><span class="mss-option">Administration View</span></a></li>
+                            <div style="text-align:center;"><a href="/views/configure"><button type="button" class="mss-button btn btn-success btn-xs"><i class="far fa-eye"></i> Configure Views</button></a></div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fas fa-server"></i><span class="mss-section">Services</span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/services/hwinfo"><i class="fas fa-globe"></i><span class="mss-option">HWiNFO</span></a></li>
+                            <li><a href="/services/ohm"><i class="fas fa-globe"></i><span class="mss-option">Open Hardware Monitor</span></a></li>
+                            <li><a href="/services/gpuz"><i class="fas fa-globe"></i><span class="mss-option">GPUz</span></a></li>
+                            <div style="text-align:center;"><a href="/services/configure"><button type="button" class="mss-button btn btn-success btn-xs"><i class="fas fa-server"></i> Configure Services</button></a></div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fas fa-network-wired"></i><span class="mss-section">Hosts</span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/hosts/remote"><i class="fas fa-project-diagram"></i><span class="mss-option">Jim's PC</span></a></li>
+                            <li><a href="/hosts/localhost"><i class="fas fa-home"></i><span class="mss-option">Localhost</span></a></li>
+                            <div style="text-align:center;"><a href="/hosts/configure"><button type="button" class="mss-button btn btn-success btn-xs"><i class="fas fa-network-wired"></i> Configure Hosts</button></a></div>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a><i class="fab fa-cloudscale"></i><span class="mss-section">Readings</span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/readings/chartjs"><i class="fas fa-chart-area"></i><span class="mss-option">Chart.js</span></a></li>
+                            <li><a href="/readings/chartjs2"><i class="far fa-chart-bar"></i><span class="mss-option">Chart2.js</span></a></li>
+                            <li><a href="/readings/morisjs"><i class="fas fa-chart-pie"></i><span class="mss-option">Moris.js</span></a></li>
+                            <li><a href="/readings/echarts"><i class="fas fa-chart-bar"></i><span class="mss-option">ECharts</span></a></li>
+                            <li><a href="/readings/d3"><i class="fas fa-chart-line"></i><span class="mss-option">D3.js</span></a></li>
+                            <div style="text-align:center;"><a href="/readings/configure"><button type="button" class="mss-button btn btn-success btn-xs"><i class="fab fa-cloudscale"></i> Configure Readings</button></a></div>
+                        </ul>
+                    </li>
+

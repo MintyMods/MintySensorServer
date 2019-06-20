@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Handlebars Helloworld</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+<link href=/css/minty_sensor_server.css rel="stylesheet">
+    <!-- handlebars from CDN -->
+    <script 
+    src='//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js'>
+    </script>
+
+	<script src="/webjars/jquery/jquery.min.js"></script>
+
+    <!-- Styling for rendered content -->
+    <style type='text/css'>
+        #renderedContent{
+            width: 50%;
+            margin: 0 auto;
+            background-color: #222;
+            color: #fff;    	
+            text-align: center;	
+        }    	
+    </style>
+</head>
+
+<body>
+    <!-- Handlebars rendered result placeholder -->
+    <section id='renderedContent'></section>
+
+    <!-- Handlebars template, title and body are placeholders for data -->
+    <script id='myTemplate' type='text/x-handlebars-template'>
+        <article>        	
+            <h1>{{title}}</h1>
+            <div>            	
+                {{body}}
+            </div>
+        </article>
+    </script>
+
+    <!-- Handlebars rendering -->
+    <script>
+    !function(d) {
+        // Prepare template
+        var templateSource = d.getElementById('myTemplate').innerHTML;
+        var template = Handlebars.compile(templateSource);
+        // Data in json
+        var data = {
+            title: 'Handlebars'
+            ,body: 'Helloworld'
+        };
+        // Generate html using template and data
+        var html = template(data);
+        // Add the result to the DOM
+        d.getElementById('renderedContent').innerHTML = html;
+    }(document);
+    </script>
+
+</body>
+
+</html>
