@@ -13,9 +13,6 @@ public class MsmSensorReading {
 	private MsmSensorLabel label;
 	private String unit;
 	private double value;
-	private double min;
-	private double max;
-	private double avg;
 
 	@JsonProperty("type")
 	public MsmSensorType getType() {
@@ -75,36 +72,6 @@ public class MsmSensorReading {
 	@JsonProperty("value")
 	public void setValue(double value) {
 		this.value = value;
-	}
-
-	@JsonProperty("min")
-	public double getMin() {
-		return min;
-	}
-
-	@JsonProperty("min")
-	public void setMin(double min) {
-		this.min = min;
-	}
-
-	@JsonProperty("max")
-	public double getMax() {
-		return max;
-	}
-
-	@JsonProperty("max")
-	public void setMax(double max) {
-		this.max = max;
-	}
-
-	@JsonProperty("avg")
-	public double getAvg() {
-		return avg;
-	}
-
-	@JsonProperty("avg")
-	public void setAvg(double avg) {
-		this.avg = avg;
 	}
 
 	@Override

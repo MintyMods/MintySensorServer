@@ -66,6 +66,9 @@ dependencies {
 	compile 'org.webjars:handlebars:4.0.14'
 	compile 'org.webjars.bower:pnotify:4.0.0'
 	compile 'org.webjars:font-awesome:5.9.0'
+	// https://mvnrepository.com/artifact/org.webjars.npm/axios
+	compile group: 'org.webjars.npm', name: 'axios', version: '0.19.0'
+	
 	
 	// Charts
 	compile 'org.webjars:chartjs:26962ce-1'
