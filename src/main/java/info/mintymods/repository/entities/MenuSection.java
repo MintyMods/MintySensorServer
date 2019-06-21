@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "menu_sections")
-public class MenuSection extends Audit {
+public class MenuSection {
 
 	private final static String ICON = "fas fa-ellipsis-v";
 

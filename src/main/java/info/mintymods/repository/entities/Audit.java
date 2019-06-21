@@ -4,10 +4,7 @@ import java.util.Date;
 
 public class Audit {
 
-	// @Temporal(TemporalType.DATE)
-	// @Column(name = "date_created", nullable = false)
 	private Date date_created;
-	// @Column(name = "date_updated", nullable = false)
 	private Date date_amended;
 	private String who_created;
 	private String who_amended;

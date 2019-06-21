@@ -21,8 +21,8 @@ public class HostController {
 	private HostService hostService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteHostById(@PathVariable Long id) {
-		hostService.removeHostById(id);
+	public void deleteHostById(@PathVariable String id) {
+		hostService.removeHostById(Long.valueOf(id));
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -31,8 +31,8 @@ public class HostController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Host getHostById(@PathVariable Long id) {
-		return hostService.getHostById(id);
+	public Host getHostById(@PathVariable String id) {
+		return hostService.getHostById(Long.valueOf(id));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

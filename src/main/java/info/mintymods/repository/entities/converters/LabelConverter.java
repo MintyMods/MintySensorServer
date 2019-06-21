@@ -13,8 +13,7 @@ public class LabelConverter implements AttributeConverter<Label, String> {
 	@Override
 	public String convertToDatabaseColumn(Label label) {
 		final StringBuilder value = new StringBuilder();
-		value.append(label.getId()).append(SEPARATOR)
-				.append(label.getName())
+		value.append(label.getName())
 				.append(SEPARATOR)
 				.append(label.getDescription())
 				.append(SEPARATOR)
@@ -25,6 +24,6 @@ public class LabelConverter implements AttributeConverter<Label, String> {
 	@Override
 	public Label convertToEntityAttribute(String labelString) {
 		final String[] parts = labelString.split(SEPARATOR);
-		return new Label(Long.valueOf(parts[1]), parts[1], parts[2], parts[3]);
+		return new Label(parts[1], parts[1], parts[2]);
 	}
 }

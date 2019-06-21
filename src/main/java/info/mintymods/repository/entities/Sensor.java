@@ -4,7 +4,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Sensor extends Audit {
+public class Sensor {
 
 	private final static String ICON = "fas fa-code-branch";
 

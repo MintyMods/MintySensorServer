@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 import info.mintymods.msm.MsmSensorType;
 
-public class Reading extends Audit {
+public class Reading {
 
 	private final static String ICON = "fab fa-cloudscale";
 

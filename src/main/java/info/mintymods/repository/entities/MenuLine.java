@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "menu_lines")
-public class MenuLine extends Audit {
+public class MenuLine {
 
 	private final static String ICON = "fas fa-ellipsis-h";
 
