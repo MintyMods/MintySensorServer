@@ -20,19 +20,19 @@ public class SensorService {
 		return sensorDoa.getAllSensors();
 	}
 
-	public Sensor getSensorById(int id) {
+	public Sensor getSensorById(Long id) {
 		return sensorDoa.getSensorById(id);
 	}
 
-	public void removeSensorById(int id) {
+	public void insertSensor(Sensor sensor) {
+		sensorDoa.addSensor(sensor);
+	}
+
+	public void removeSensorById(Long id) {
 		sensorDoa.removeSensorById(id);
 	}
 
 	public void updateSensor(Sensor sensor) {
 		sensorDoa.updateSensor(sensor);
-	}
-
-	public void insertSensor(Sensor sensor) {
-		sensorDoa.addSensor(sensor);
 	}
 }

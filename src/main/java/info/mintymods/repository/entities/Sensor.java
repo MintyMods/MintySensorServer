@@ -1,41 +1,62 @@
 package info.mintymods.repository.entities;
 
-public class Sensor {
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	private int id;
+public class Sensor extends Audit {
+
+	private final static String ICON = "fas fa-code-branch";
+
+	public static String getIcon() {
+		return ICON;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private boolean active = true;
 	private int instance;
 	private Label label;
 
-	public Sensor() { }
+	public Sensor() {
+	}
 
-	public Sensor(int id, int instance, Label label) {
+	public Sensor(Long id, int instance, Label label) {
 		this.id = id;
 		this.instance = instance;
 		this.label = label;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public int getInstance() {
 		return instance;
 	}
 
-	public void setInstance(int instance) {
-		this.instance = instance;
-	}
-
 	public Label getLabel() {
 		return label;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setInstance(int instance) {
+		this.instance = instance;
 	}
 
 	public void setLabel(Label label) {
 		this.label = label;
 	}
-
 }

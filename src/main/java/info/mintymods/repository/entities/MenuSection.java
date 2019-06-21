@@ -1,33 +1,46 @@
 package info.mintymods.repository.entities;
 
-public class MenuSection {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "menu_sections")
+public class MenuSection extends Audit {
+
+	private final static String ICON = "fas fa-ellipsis-v";
+
+	public static String getIcon() {
+		return ICON;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private boolean active = true;
 	private Label label;
 	private String section;
-	private boolean active;
 
-	public MenuSection() { }
+	public MenuSection() {
+	}
 
-	public MenuSection(Label label, String section, boolean active) {
+	public MenuSection(Label label, String section) {
 		this.label = label;
 		this.section = section;
-		this.active = active;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public Label getLabel() {
 		return label;
 	}
 
-	public void setLabel(Label label) {
-		this.label = label;
-	}
-
 	public String getSection() {
 		return section;
-	}
-
-	public void setSection(String section) {
-		this.section = section;
 	}
 
 	public boolean isActive() {
@@ -38,4 +51,15 @@ public class MenuSection {
 		this.active = active;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setLabel(Label label) {
+		this.label = label;
+	}
+
+	public void setSection(String section) {
+		this.section = section;
+	}
 }

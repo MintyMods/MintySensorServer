@@ -20,19 +20,19 @@ public class HostService {
 		return hostDao.getAllHosts();
 	}
 
-	public Host getHostById(int id) {
+	public Host getHostById(Long id) {
 		return hostDao.getHostById(id);
-	}
-	
-	public void removeHostById(int id) {
-		this.hostDao.removeHostById(id);
-	}
-
-	public void updateHost(Host host) {
-		hostDao.updateHost(host);
 	}
 
 	public void insertHost(Host host) {
 		hostDao.addHost(host);
+	}
+
+	public void removeHostById(Long id) {
+		hostDao.removeHostById(id);
+	}
+
+	public void updateHost(Host host) {
+		hostDao.updateHost(host);
 	}
 }

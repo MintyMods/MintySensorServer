@@ -1,33 +1,42 @@
 package info.mintymods.repository.entities;
 
-public class Module {
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+public class Module extends Audit {
+
+	private final static String ICON = "fas fa-solar-panel";
+
+	public static String getIcon() {
+		return ICON;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private boolean active = true;
 	private Label label;
 	private ModuleDependency[] dependencies;
-	private boolean active;
 
-	public Module() { }
+	public Module() {
+	}
 
-	public Module(Label label, ModuleDependency[] dependencies, boolean active) {
+	public Module(Label label, ModuleDependency[] dependencies) {
 		this.label = label;
 		this.dependencies = dependencies;
-		this.active = active;
-	}
-
-	public Label getLabel() {
-		return label;
-	}
-
-	public void setLabel(Label label) {
-		this.label = label;
 	}
 
 	public ModuleDependency[] getDependencies() {
 		return dependencies;
 	}
 
-	public void setDependencies(ModuleDependency[] dependencies) {
-		this.dependencies = dependencies;
+	public Long getId() {
+		return id;
+	}
+
+	public Label getLabel() {
+		return label;
 	}
 
 	public boolean isActive() {
@@ -38,4 +47,15 @@ public class Module {
 		this.active = active;
 	}
 
+	public void setDependencies(ModuleDependency[] dependencies) {
+		this.dependencies = dependencies;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setLabel(Label label) {
+		this.label = label;
+	}
 }

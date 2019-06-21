@@ -6,13 +6,13 @@ import info.mintymods.repository.entities.Provider;
 
 public interface ProviderDao {
 
+	void addProvider(Provider provider);
+
 	Collection<Provider> getAllProviders();
 
-	Provider getProviderById(int id);
+	Provider getProviderById(Long id);
 
-	void removeProviderById(int id);
+	void removeProviderById(Long id);
 
 	void updateProvider(Provider provider);
-
-	void addProvider(Provider provider);
 }

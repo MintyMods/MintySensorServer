@@ -20,28 +20,28 @@ public class HostController {
 	@Autowired
 	private HostService hostService;
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void deleteHostById(@PathVariable Long id) {
+		hostService.removeHostById(id);
+	}
+
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Host> getAllHosts() {
 		return hostService.getAllHosts();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Host getHostById(@PathVariable int id) {
+	public Host getHostById(@PathVariable Long id) {
 		return hostService.getHostById(id);
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteHostById(@PathVariable int id) {
-		hostService.removeHostById(id);
-	}
-
-	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void updateHost(@RequestBody Host host) {
-		hostService.updateHost(host);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void insertHost(@RequestBody Host host) {
 		hostService.insertHost(host);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void updateHost(@RequestBody Host host) {
+		hostService.updateHost(host);
 	}
 }

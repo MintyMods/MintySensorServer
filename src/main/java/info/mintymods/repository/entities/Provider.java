@@ -1,29 +1,45 @@
 package info.mintymods.repository.entities;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import info.mintymods.repository.entities.enums.ProviderType;
 
-public class Provider {
+public class Provider extends Audit {
 
-	private int id;
+	private final static String ICON = "fab fa-cloudscale";
+
+	public static String getIcon() {
+		return ICON;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private boolean active = true;
 	private ProviderType type;
 	private Label label;
-	private boolean active;
 
-	public Provider() { }
+	public Provider() {
+	}
 
-	public Provider(int id, ProviderType type, Label label) {
+	public Provider(Long id, ProviderType type, Label label) {
 		this.id = id;
 		this.type = type;
 		this.label = label;
-		this.active = true;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public Label getLabel() {
 		return label;
 	}
 
-	public void setLabel(Label label) {
-		this.label = label;
+	public ProviderType getType() {
+		return type;
 	}
 
 	public boolean isActive() {
@@ -34,12 +50,15 @@ public class Provider {
 		this.active = active;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
+	public void setLabel(Label label) {
+		this.label = label;
+	}
+
+	public void setType(ProviderType type) {
+		this.type = type;
+	}
 }

@@ -14,11 +14,16 @@ import info.mintymods.mss.webapp.services.ProviderService;
 import info.mintymods.repository.entities.Provider;
 
 @RestController
-@RequestMapping("hosts")
+@RequestMapping("providers")
 public class ProviderController {
 
 	@Autowired
 	private ProviderService providerService;
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void deleteProviderById(@PathVariable Long id) {
+		providerService.removeProviderById(id);
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Provider> getAllProviders() {
@@ -26,22 +31,17 @@ public class ProviderController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Provider getProviderById(@PathVariable int id) {
+	public Provider getProviderById(@PathVariable Long id) {
 		return providerService.getProviderById(id);
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteProviderById(@PathVariable int id) {
-		providerService.removeProviderById(id);
-	}
-
-	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void updateHost(@RequestBody Provider provider) {
-		providerService.updateProvider(provider);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void insertHost(@RequestBody Provider provider) {
 		providerService.insertProvider(provider);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void updateHost(@RequestBody Provider provider) {
+		providerService.updateProvider(provider);
 	}
 }

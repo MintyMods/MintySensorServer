@@ -20,28 +20,28 @@ public class ReadingController {
 	@Autowired
 	private ReadingService readingService;
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void deleteReadingById(@PathVariable Long id) {
+		readingService.removeReadingById(id);
+	}
+
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Reading> getAllSensors() {
 		return readingService.getAllReadings();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Reading getReadingById(@PathVariable int id) {
+	public Reading getReadingById(@PathVariable Long id) {
 		return readingService.getReadingById(id);
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteReadingById(@PathVariable int id) {
-		readingService.removeReadingById(id);
-	}
-
-	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void updateReading(@RequestBody Reading reading) {
-		readingService.updateReading(reading);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void insertReading(@RequestBody Reading reading) {
 		readingService.insertReading(reading);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void updateReading(@RequestBody Reading reading) {
+		readingService.updateReading(reading);
 	}
 }

@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class DefaultUrlController {
 
-	@GetMapping({"/{page}"})
-	public String processRequest(Map<String, Object> model, @PathVariable("page") String page) {
-		model.put("page", page);
-		model.put("title", "Debug : " + page);
-		return "/" + page;
+	@GetMapping({"/pages/{id}"})
+	public String processRequest(Map<String, Object> model, @PathVariable("id") String id) {
+		model.put("page", id);
+		model.put("title", "Debug : " + id);
+		return "/" + id;
 	}
 
 }

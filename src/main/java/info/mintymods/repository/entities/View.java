@@ -1,25 +1,37 @@
 package info.mintymods.repository.entities;
 
-public class View {
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	private int id;
+public class View extends Audit {
+
+	private final static String ICON = "far fa-eye";
+
+	public static String getIcon() {
+		return ICON;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private boolean active = true;
 	private Label label;
-	private boolean active;
 
-	public View() { }
+	public View() {
+	}
 
-	public View(int id, Label label) {
-		this.setId(id);
+	public View(Long id, Label label) {
+		this.id = id;
 		this.label = label;
-		this.active = true;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public Label getLabel() {
 		return label;
-	}
-
-	public void setLabel(Label label) {
-		this.label = label;
 	}
 
 	public boolean isActive() {
@@ -30,12 +42,11 @@ public class View {
 		this.active = active;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
+	public void setLabel(Label label) {
+		this.label = label;
+	}
 }

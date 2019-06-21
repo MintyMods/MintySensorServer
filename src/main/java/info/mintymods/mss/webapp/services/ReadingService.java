@@ -20,19 +20,19 @@ public class ReadingService {
 		return readingDoa.getAllReadings();
 	}
 
-	public Reading getReadingById(int id) {
+	public Reading getReadingById(Long id) {
 		return readingDoa.getReadingById(id);
-	}
-
-	public void removeReadingById(int id) {
-		this.readingDoa.removeReadingById(id);
-	}
-
-	public void updateReading(Reading reading) {
-		readingDoa.updateReading(reading);
 	}
 
 	public void insertReading(Reading reading) {
 		readingDoa.addReading(reading);
+	}
+
+	public void removeReadingById(Long id) {
+		readingDoa.removeReadingById(id);
+	}
+
+	public void updateReading(Reading reading) {
+		readingDoa.updateReading(reading);
 	}
 }

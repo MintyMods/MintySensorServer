@@ -20,19 +20,19 @@ public class ProviderService {
 		return providerDao.getAllProviders();
 	}
 
-	public Provider getProviderById(int id) {
+	public Provider getProviderById(Long id) {
 		return providerDao.getProviderById(id);
-	}
-	
-	public void removeProviderById(int id) {
-		this.providerDao.removeProviderById(id);
-	}
-
-	public void updateProvider(Provider provider) {
-		providerDao.updateProvider(provider);
 	}
 
 	public void insertProvider(Provider provider) {
 		providerDao.addProvider(provider);
+	}
+
+	public void removeProviderById(Long id) {
+		providerDao.removeProviderById(id);
+	}
+
+	public void updateProvider(Provider provider) {
+		providerDao.updateProvider(provider);
 	}
 }

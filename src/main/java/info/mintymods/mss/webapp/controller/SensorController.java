@@ -22,26 +22,25 @@ public class SensorController {
 	@Autowired
 	private SensorService sensorService;
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void deleteSensorById(@PathVariable Long id) {
+		sensorService.removeSensorById(id);
+	}
+
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Sensor> getAllSensors() {
 		return sensorService.getAllSensors();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Sensor getSensorById(@PathVariable int id) {
+	public Sensor getSensorById(@PathVariable Long id) {
 		return sensorService.getSensorById(id);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteSensorById(@PathVariable int id) {
-		sensorService.removeSensorById(id);
-	}
-
-	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> updateSensor(@RequestBody Sensor sensor) {
-		// checkSensorExists(sensor.getId());
-		sensorService.updateSensor(sensor);
-		return new ResponseEntity<>("Sensor " + sensor.getId() + " updated", HttpStatus.OK);
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> insertSensor(@RequestBody Sensor sensor) {
+		sensorService.insertSensor(sensor);
+		return new ResponseEntity<>("result successful result", HttpStatus.OK);
 	}
 
 	// private ResponseEntity<String> checkSensorExists(int id) {
@@ -49,10 +48,10 @@ public class SensorController {
 	// return new ResponseEntity<>("Sensor " + id + " was not found", HttpStatus.NOT_FOUND);
 	// } else return
 	// }
-
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> insertSensor(@RequestBody Sensor sensor) {
-		sensorService.insertSensor(sensor);
-		return new ResponseEntity<>("result successful result", HttpStatus.OK);
+	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> updateSensor(@RequestBody Sensor sensor) {
+		// checkSensorExists(sensor.getId());
+		sensorService.updateSensor(sensor);
+		return new ResponseEntity<>("Sensor " + sensor.getId() + " updated", HttpStatus.OK);
 	}
 }
