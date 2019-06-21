@@ -1,2 +1,18 @@
-1120292 [restartedMain] INFO  info.mintymods.MintySensorServer - Starting MintySensorServer on DESKTOP-GK1SKGG with PID 1168 (E:\Development\MintySensorServer\bin\main started by Minty in E:\Development\MintySensorServer) 
-1120294 [restartedMain] INFO  info.mintymods.MintySensorServer - No active profile set, falling back to default profiles: default 
+395  [restartedMain] INFO  info.mintymods.MintySensorServer - Starting MintySensorServer on DESKTOP-GK1SKGG with PID 7780 (E:\Development\MintySensorServer\bin\main started by Minty in E:\Development\MintySensorServer) 
+395  [restartedMain] INFO  info.mintymods.MintySensorServer - No active profile set, falling back to default profiles: default 
+1549 [restartedMain] INFO  i.m.utils.ssl.CertificateUtils - Creating Keystore 
+1551 [restartedMain] INFO  i.m.utils.ssl.CertificateUtils - Importing Certificate into Keystore 
+1745 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["https-jsse-nio-8080"] 
+1753 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat] 
+1753 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.19] 
+1881 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext 
+2059 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...] 
+2100 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.10.Final} 
+2101 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found 
+2187 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.4.Final} 
+2293 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+2748 [restartedMain] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@2b0953f0' 
+7325 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["https-jsse-nio-8080"] 
+8162 [restartedMain] INFO  info.mintymods.MintySensorServer - Started MintySensorServer in 7.961 seconds (JVM running for 8.849) 

@@ -20,7 +20,7 @@ public class HostController {
 	@Autowired
 	private HostService hostService;
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	public void deleteHostById(@PathVariable String id) {
 		hostService.removeHostById(Long.valueOf(id));
 	}
