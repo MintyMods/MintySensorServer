@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import info.mintymods.repository.dao.HostDao;
+import info.mintymods.repository.entities.Device;
 
 @Service
 public class DeviceService {
@@ -18,28 +19,25 @@ public class DeviceService {
 	@Qualifier("fakeData")
 	private HostDao readingsDao;
 
-	public Collection<Device> getAllDevice() {
+	public Collection<Device> getAllDevices() {
 		// @todo implement
 		return null;
 	}
 
-	public DevicegetDeviceById(Long id) {
-		//@todo implement
+	public Device getDeviceById(Long id) {
+		// @todo implement
 		return null;
 	}
 
 	public void insertDevice(Device device) {
 		// @todo implement
-		return null;
 	}
 
 	public void removeDeviceById(Long id) {
 		// @todo implement
-		return null;
 	}
 
 	public void updateDevice(Device device) {
 		// @todo implement
-		return null;
 	}
 }

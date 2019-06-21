@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import info.mintymods.repository.entities.Host;
+import info.mintymods.mss.webapp.services.DeviceService;
+import info.mintymods.repository.entities.Device;
 
 @RestController
 @RequestMapping("devices")
@@ -30,17 +31,17 @@ public class DeviceController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Host getDeviceById(@PathVariable String id) {
+	public Device getDeviceById(@PathVariable String id) {
 		return deviceService.getDeviceById(Long.valueOf(id));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void insertHost(@RequestBody Host device) {
+	public void insertHost(@RequestBody Device device) {
 		deviceService.insertDevice(device);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void updateDevice(@RequestBody Host device) {
+	public void updateDevice(@RequestBody Device device) {
 		deviceService.updateDevice(device);
 	}
 }
