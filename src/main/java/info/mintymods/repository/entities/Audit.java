@@ -2,16 +2,12 @@ package info.mintymods.repository.entities;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 public class Audit {
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "date_created", nullable = false)
+	// @Temporal(TemporalType.DATE)
+	// @Column(name = "date_created", nullable = false)
 	private Date date_created;
-	@Column(name = "date_updated", nullable = false)
+	// @Column(name = "date_updated", nullable = false)
 	private Date date_amended;
 	private String who_created;
 	private String who_amended;
