@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/2007ef201b.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <!--link href="fontawesome-pro/css/fontawesome.min.css" rel="stylesheet"-->
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -13,19 +13,18 @@
     <!--link href="css/bootstrap.min.css" rel="stylesheet"-->
     <link href="css/mdb.min.css" rel="stylesheet">
     <link href="css/mintymods.mss.css" rel="stylesheet">
+    <link href="css/mintymods-hamburger.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
         <!-- Push Wrapper -->
         <div class="mp-pusher" id="mp-pusher">
-
-
             <!-- mp-menu -->
             <nav id="mp-menu" class="mp-menu">
                 <div class="mp-level">
-                    <h2 class="mss-logo">
-                        <a class="sign-in">Sign In</a>
+                    <h2 class="menu-section mss-logo">
+                        <a class="sign-in" href="#"></a>
                         <div id="mss-logo-wrapper">
                             <div id="mss-logo-text"><span id="minty">Minty's</span><span id="sensor-server">Sensor Server</span></div>
                         </div>
@@ -34,7 +33,7 @@
 
                         <li class="menu-section">
                             <a class="fal fa-eye" href="#">Views</a>
-                            <div class="mp-level">
+                            <div class="mp-level mp-level-icon">
                                 <h2 class="fal fa-eye"><i class="fal fa-eye"></i>Views</h2>
                                 <a class="mp-back" href="#">BACK</a>
                                 <ul>
@@ -116,20 +115,61 @@
                             </div>
                         </li>
                         <li class="menu-option"><a class="fal fa-cog">Settings</a></li>
-                  
+
 
                         <!-- TESTING -->
                         <li class="menu-section">
-                            <a class="fal fa-eye" href="#">Test</a>
+                            <a class="fal fa-vial" href="#">Testing</a>
+
                             <div class="mp-level">
-                                <h2 class="fal fa-eye"><i class="fal fa-eye"></i>TEST</h2>
+                                <h2 class="fal fa-dice-one"><i class="fal fa-dice-one"></i> Level One</h2>
                                 <a class="mp-back" href="#">BACK</a>
                                 <ul>
-                                    <li class="menu-option"><a class="fal fa-desktop" href="#">PC</a></li>
+                                    <li class="icon icon-arrow-left">
+                                        <a class="fal fa-dice-two" href="#">Level 2</a>
 
+                                        <div class="mp-level">
+                                            <h2 class="fal fa-dice-two"><i class="fal fa-dice-two"></i>Level Two</h2>
+                                            <a class="mp-back" href="#">BACK</a>
+                                            <ul>
+                                                <li><a href="#"><i class="fal fa-dice-three"></i> Level 3</a>
+                                                    <div class="mp-level">
+                                                        <h2 class="fal fa-dice-three"><i class="fal fa-dice-three"></i>Level Three</h2>
+                                                        <a class="mp-back" href="#">BACK</a>
+                                                        <ul>
+                                                            <li class="icon icon-arrow-left">
+                                                                <a class="fal fa-dice-four" href="#">Phones</a>
+                                                                <div class="mp-level">
+                                                                    <h2 class="fal fa-dice-four"><i class="fal fa-dice-four"></i>Phones</h2>
+                                                                    <a class="mp-back" href="#">BACK</a>
+                                                                    <ul>
+                                                                        <li><a href="#"><i class="fal fa-mobile-android-alt"></i>Super Smart</a></li>
+                                                                        <li><a href="#"><i class="fal fa-mobile-alt"></i>Thin Magic</a></li>
+                                                                        <li><a href="#"><i class="fal fa-mobile"></i>Performance</a></li>
+                                                                        <li><a href="#"><i class="fal fa-phone-office"></i>Work</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li><a href="#"><i class="fal fa-mobile"></i>Empty</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </li>
+                                    <li class="icon icon-arrow-left">
+                                        <!-- ... -->
+                                    </li>
+                                    <li class="icon icon-arrow-left">
+                                        <!-- ... -->
+                                    </li>
                                 </ul>
                             </div>
                         </li>
+                        <!-- END TESTING  -->
+
 
 
                     </ul>
@@ -146,44 +186,69 @@
 
                         <p>Normally, we would have used fixed positioning for a menu of this kind but since there is quite an peculiar “problem” with that (transforms will make it behave like an absolute positioned element), we’ll have to use absolute positioning which will leave us with some unwanted behavior of the site (scrolling of menu and dependence of document height). So we’ve used a little trick to avoid the menu being scrollable or to be cut off if the site’s content is too short by using the following page structure:</p>
 
-                        <p>
-                            oday we want to share another menu experiment with you. For sure you are familiar with the off-canvas navigation on mobile apps and the implementations for responsive websites like the one by David Bushell. We tried to explore the possibility of creating a nested multi-level menu, something that could be quite useful for menus with lots of content (like navigations of online stores). The result is a “push” menu that can (theoretically) contain infinite nested sub-menus. When opening a sub-level, the whole navigation pushes the content more, allowing a slice of the parent menu to be visible. Optionally, this slice can be visible or not, in which case the sub-menu will simply cover its parent.
 
-                            Working with nested structures is quite tricky because when we, for example, move the parent then all children will of course move as well. So we are using a couple of tricks that will maintain the right 3D translates for the sub-menus and their children. The main idea is to increment the value for the translate so that we guarantee that the sub-levels are not shown once we push everything a bit more for showing the slices of the parents. This is of course not necessary in the case where the sub-menu is covering the parent menu.
-                        </p>
-
-                        <p>Normally, we would have used fixed positioning for a menu of this kind but since there is quite an peculiar “problem” with that (transforms will make it behave like an absolute positioned element), we’ll have to use absolute positioning which will leave us with some unwanted behavior of the site (scrolling of menu and dependence of document height). So we’ve used a little trick to avoid the menu being scrollable or to be cut off if the site’s content is too short by using the following page structure:</p>
-
-                        <p>
-                            oday we want to share another menu experiment with you. For sure you are familiar with the off-canvas navigation on mobile apps and the implementations for responsive websites like the one by David Bushell. We tried to explore the possibility of creating a nested multi-level menu, something that could be quite useful for menus with lots of content (like navigations of online stores). The result is a “push” menu that can (theoretically) contain infinite nested sub-menus. When opening a sub-level, the whole navigation pushes the content more, allowing a slice of the parent menu to be visible. Optionally, this slice can be visible or not, in which case the sub-menu will simply cover its parent.
-
-                            Working with nested structures is quite tricky because when we, for example, move the parent then all children will of course move as well. So we are using a couple of tricks that will maintain the right 3D translates for the sub-menus and their children. The main idea is to increment the value for the translate so that we guarantee that the sub-levels are not shown once we push everything a bit more for showing the slices of the parents. This is of course not necessary in the case where the sub-menu is covering the parent menu.
-                        </p>
-                        <p>Normally, we would have used fixed positioning for a menu of this kind but since there is quite an peculiar “problem” with that (transforms will make it behave like an absolute positioned element), we’ll have to use absolute positioning which will leave us with some unwanted behavior of the site (scrolling of menu and dependence of document height). So we’ve used a little trick to avoid the menu being scrollable or to be cut off if the site’s content is too short by using the following page structure:</p>
-
-                        <p>
-                            oday we want to share another menu experiment with you. For sure you are familiar with the off-canvas navigation on mobile apps and the implementations for responsive websites like the one by David Bushell. We tried to explore the possibility of creating a nested multi-level menu, something that could be quite useful for menus with lots of content (like navigations of online stores). The result is a “push” menu that can (theoretically) contain infinite nested sub-menus. When opening a sub-level, the whole navigation pushes the content more, allowing a slice of the parent menu to be visible. Optionally, this slice can be visible or not, in which case the sub-menu will simply cover its parent.
-
-                            Working with nested structures is quite tricky because when we, for example, move the parent then all children will of course move as well. So we are using a couple of tricks that will maintain the right 3D translates for the sub-menus and their children. The main idea is to increment the value for the translate so that we guarantee that the sub-levels are not shown once we push everything a bit more for showing the slices of the parents. This is of course not necessary in the case where the sub-menu is covering the parent menu.
-                        </p>
 
 
 
                     </div>
                     <div class="content clearfix">
                         <div class="block block-40 clearfix">
-                            <p><a href="#" id="menu-trigger" class="menu-trigger"></a></p>
+                            <!-- HAMBURGER -->
+                            <div id="hamburger" class="hamburglar is-closed">
+                                <div class="burger-icon">
+                                    <div class="burger-container">
+                                        <span class="burger-bun-top"></span>
+                                        <span class="burger-filling"></span>
+                                        <span class="burger-bun-bot"></span>
+                                    </div>
+                                </div>
+                                <!-- svg ring containter -->
+                                <div class="burger-ring">
+                                    <svg class="svg-ring">
+                                        <path class="path" fill="none" stroke="greenyellow" stroke-miterlimit="10" stroke-width="4" d="M 34 2 C 16.3 2 2 16.3 2 34 s 14.3 32 32 32 s 32 -14.3 32 -32 S 51.7 2 34 2" />
+                                    </svg>
+                                </div>
+                                <!-- the masked path that animates the fill to the ring -->
+                                <svg width="0" height="0">
+                                    <mask id="mask">
+                                        <path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff0000" stroke-miterlimit="10" stroke-width="4" d="M 34 2 c 11.6 0 21.8 6.2 27.4 15.5 c 2.9 4.8 5 16.5 -9.4 16.5 h -4" />
+                                    </mask>
+                                </svg>
+                                <div class="path-burger">
+                                    <div class="animate-path">
+                                        <div class="path-rotation"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END HAMBURGER -->
                         </div>
                     </div>
                 </div> <!-- /scroller-inner -->
             </div><!-- /scroller -->
         </div><!-- /pusher -->
     </div><!-- /container -->
+    <script src="https://kit.fontawesome.com/2007ef201b.js"></script>
+    <script src="js/modernizr.custom.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/mlpushmenu.js"></script>
-    <script src="js/modernizr.custom.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/mintymods.mss.js"></script>
+
+    <script src="js/jquery.knob.min.js"></script>
+    <script src="js/jquery.sparkline.min.js"></script>
+    <script src="js/pnotify/PNotify.js"></script>
+    <script src="js/pnotify/PNotifyAnimate.js"></script>
+    <script src="js/pnotify/PNotifyButtons.js"></script>
+    <script src="js/pnotify/PNotifyCallbacks.js"></script>
+    <script src="js/pnotify/PNotifyStyleMaterial.js"></script>
+    <script src="js/pnotify/PNotifyDesktop.js"></script>
+    <script src="js/pnotify/PNotifyHistory.js"></script>
+    <script src="js/pnotify/PNotifyNonBlock.js"></script>
+    <script src="js/pnotify/PNotifyReference.js"></script>
+    <script src="js/pnotify/PNotifyStyleMaterial.js"></script>
+
     <script>
-        new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('menu-trigger'));
+        initSensorServer();
     </script>
 </body></html>

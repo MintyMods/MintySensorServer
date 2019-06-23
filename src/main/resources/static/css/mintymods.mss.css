@@ -1,9 +1,13 @@
 /*
-primary-color
-#4285F4
-primary-color-dark
-#0d47a1
+primary-color       #4285F4     rgba(66, 133, 244)
+primary-color-dark  #0D47A1     rgba(13, 71, 161)
+greenyellow         #ADFF2F     rgba(173, 255, 47)
 */
+
+@font-face {
+    font-family: 'lightning-volt';
+    src: url('../fonts/LIGHRGS.TTF');
+}
 
 html,
 body,
@@ -19,17 +23,19 @@ body,
 .scroller,
 .scroller-inner {
     position: relative;
+    background: rgba(255, 255, 255);
+    color: rgba(0, 0, 0);
 }
 
 .container {
     position: relative;
     overflow: hidden;
-    background: #34495e;
+    background: rgba(173, 255, 47, 1);
+    color: rgba(0, 0, 0, 1);
 }
 
 body {
-    background: #34495e;
-    color: #fff;
+    background: rgba(0, 0, 0);
     font-weight: 300;
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -45,12 +51,12 @@ body {
 a {
     text-decoration: none;
     outline: none;
-    color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
 }
 
 a:hover,
 a:focus {
-    color: yellow;
+    color: rgba(255, 255, 255, 1);
     outline: none;
 }
 
@@ -70,6 +76,13 @@ a:focus {
     margin: 0 auto;
 }
 
+#hamburger {
+    cursor: pointer;
+    z-index: 4;
+    left: -10px;
+    top: -50px;
+}
+
 .fal::before {
     padding-right: 10px !important;
     vertical-align: middle;
@@ -79,42 +92,44 @@ a:focus {
     margin-top: 60px !important;
 }
 
-.sign-in::after {
+.sign-in::before {
     font-family: 'Font Awesome 5 Pro';
     content: '\f2f6';
     font-weight: 300;
-    padding-left: 5px !important;
+    position: absolute;
+    left: 12px;
 }
 
 .sign-in {
     text-align: right;
     font-size: 1em;
+    padding-right: -15px !important;
 }
 
 #mp-menu > div > h2 > a {
     width: 100%;
-    font-size: .5em;
-    top: 1px;
+    font-size: .6em;
+    top: 10px;
     position: absolute;
-    left: -40px;
-    top: 5px;
+    right: 10px;
+    letter-spacing: normal;
 }
 
 
 /* MAIN LOGO - font-weight: 900 (Solid), 400 (Regular or Brands), 300 (Light) */
 .mss-logo {
-    letter-spacing: .6px;
-    text-shadow: 0 0 5px rgba(255, 255, 0, 1);
+    letter-spacing: 3px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
     font-weight: 300;
 }
 
-#mss-logo-text::before {
+#mss-logo-text::after {
     font-family: 'Font Awesome 5 Pro';
     content: "\f126";
     transform: rotate(120deg);
     font-weight: 400;
     font-size: 2.4em;
-    color: rgba(255, 255, 0, .8);
+    color: rgba(255, 255, 47, 1);
     text-shadow: 0 0 5px rgba(0, 0, 0, 1);
     position: absolute;
     left: -4px;
@@ -128,53 +143,43 @@ a:focus {
     top: -64px;
     left: 55px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 1);
-    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, .3);
+    text-shadow: 0 0 15px rgba(0, 0, 0, 1);
     z-index: 3;
+    font-family: 'lightning-volt', 'Georgia', serif;
+
 }
 
 #sensor-server {
     position: absolute;
     font-weight: 500;
     color: rgba(255, 255, 255, 1);
-    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
-    z-index: 2;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+    z-index: 5;
     width: 100%;
-    top: -35px;
-    left: 20px;
-}
-
-/* HAMBURGER  */
-.menu-trigger:before {
-    color: rgba(255, 255, 0, 1);
-    font-size: 2em;
-    font-family: 'Font Awesome 5 Pro';
-    content: "\f0c9";
-    font-weight: 300;
-    position: fixed;
-    top: 5px;
-    left: 5px;
-    cursor: pointer !important;
+    top: -40px;
+    letter-spacing: .5px;
 }
 
 .menu-trigger {
     position: relative;
 }
 
-
-
 /* SHOW SUB MENUS */
 .menu-section::before {
     font-family: 'Font Awesome 5 Pro';
     font-weight: 600;
     content: "\f138";
-    padding-right: 10px !important;
     font-size: 1em;
+    color: rgba(0, 0, 0, .5);
 }
 
 .menu-section::after {
-    color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+}
 
+.menu-option {
+    color: rgba(0, 0, 0, 1);
 }
 
 .mp-back::after {
@@ -182,9 +187,8 @@ a:focus {
     position: absolute;
     content: "\f137";
     right: 10px;
-    padding-right: 10px !important;
     font-size: 1.3em;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(0, 0, 0, 0.3);
 }
 
 
