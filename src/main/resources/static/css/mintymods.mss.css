@@ -14,6 +14,7 @@ body,
 .container,
 .scroller {
     height: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 
 .scroller {
@@ -32,6 +33,7 @@ body,
     overflow: hidden;
     background: rgba(173, 255, 47, 1);
     color: rgba(0, 0, 0, 1);
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -46,6 +48,8 @@ body {
     margin: 5px;
     overflow: auto;
     padding: 20px;
+    height: 100%;
+
 }
 
 a {
@@ -189,22 +193,4 @@ a:focus {
     right: 10px;
     font-size: 1.3em;
     color: rgba(0, 0, 0, 0.3);
-}
-
-
-
-@media screen and (max-width: 69em) {
-    .block {
-        float: none;
-        width: 100% !important;
-        padding: 1em;
-    }
-}
-
-@media screen and (max-width: 25em) {
-
-    body {
-        font-size: 80%;
-    }
-
 }

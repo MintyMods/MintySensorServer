@@ -185,7 +185,7 @@
 .svg-ring {
     width: 68px;
     height: 68px;
-    color: rgba(173, 255, 47, .5);
+    color: rgba(173, 255, 47, 0);
 }
 
 .hamburglar.is-open .burger-bun-top {

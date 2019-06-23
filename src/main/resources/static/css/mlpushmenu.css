@@ -134,7 +134,7 @@
 .mp-menu h2 {
     margin: 0;
     padding: 0.5em;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(0, 0, 0, 1);
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.6);
     font-weight: 300;
     font-size: 2em;
