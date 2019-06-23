@@ -1,7 +1,7 @@
 package info.mintymods.repository.entities.enums;
 
 public enum ViewType {
-	ADMIN("Admin", "fas fa-user-lock"), SETTINGS("Settings", "fas fa-user-lock"), TV("T.V.", "fas fa-tv"), PC("P.C.", "fas fa-laptopv"), PHONE("Phone", "fas fa-mobile-alt");
+	ADMIN("Admin", "fal fa-user-lock"), SETTINGS("Settings", "fal fa-user-lock"), TV("T.V.", "fal fa-tv"), PC("P.C.", "fal fa-laptopv"), PHONE("Phone", "fal fa-mobile-alt");
 
 	private String desc;
 	private String icon;

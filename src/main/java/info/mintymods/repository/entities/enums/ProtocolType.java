@@ -1,7 +1,7 @@
 package info.mintymods.repository.entities.enums;
 
 public enum ProtocolType {
-	HTTP("http://", "fas fa-user-times"), HTTPS("https://", "fas fa-user-shield");
+	HTTP("http://", "fal fa-user-times"), HTTPS("https://", "fal fa-user-shield");
 
 	private String desc;
 	private String icon;

@@ -59,8 +59,8 @@ dependencies {
   
   
 	// Client Side Dependencies : BootStrap and some good friends
-	compile 'org.webjars:jquery:3.4.1'
-    compile 'org.webjars:jquery-cookie:1.4.1-1'
+	//compile 'org.webjars:jquery:3.4.1'
+    //compile 'org.webjars:jquery-cookie:1.4.1-1'
 	compile 'org.webjars:jquery.sparkline:2.1.2'
 	compile 'org.webjars:jquery-knob:1.2.11'
 	compile 'org.webjars:handlebars:4.0.14'

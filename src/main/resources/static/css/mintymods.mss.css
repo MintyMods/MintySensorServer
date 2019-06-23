@@ -1,0 +1,206 @@
+/*
+primary-color
+#4285F4
+primary-color-dark
+#0d47a1
+*/
+
+html,
+body,
+.container,
+.scroller {
+    height: 100%;
+}
+
+.scroller {
+    overflow-y: scroll;
+}
+
+.scroller,
+.scroller-inner {
+    position: relative;
+}
+
+.container {
+    position: relative;
+    overflow: hidden;
+    background: #34495e;
+}
+
+body {
+    background: #34495e;
+    color: #fff;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0px;
+}
+
+#main-content {
+    margin: 5px;
+    overflow: auto;
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    color: rgba(255, 255, 255, 1);
+}
+
+a:hover,
+a:focus {
+    color: yellow;
+    outline: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.content {
+    padding: 4em 2em;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.fal::before {
+    padding-right: 10px !important;
+    vertical-align: middle;
+}
+
+.mp-menu {
+    margin-top: 60px !important;
+}
+
+.sign-in::after {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f2f6';
+    font-weight: 300;
+    padding-left: 5px !important;
+}
+
+.sign-in {
+    text-align: right;
+    font-size: 1em;
+}
+
+#mp-menu > div > h2 > a {
+    width: 100%;
+    font-size: .5em;
+    top: 1px;
+    position: absolute;
+    left: -40px;
+    top: 5px;
+}
+
+
+/* MAIN LOGO - font-weight: 900 (Solid), 400 (Regular or Brands), 300 (Light) */
+.mss-logo {
+    letter-spacing: .6px;
+    text-shadow: 0 0 5px rgba(255, 255, 0, 1);
+    font-weight: 300;
+}
+
+#mss-logo-text::before {
+    font-family: 'Font Awesome 5 Pro';
+    content: "\f126";
+    transform: rotate(120deg);
+    font-weight: 400;
+    font-size: 2.4em;
+    color: rgba(255, 255, 0, .8);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    position: absolute;
+    left: -4px;
+    top: -65px;
+    z-index: 1;
+}
+
+#minty {
+    clear: both;
+    position: absolute;
+    top: -64px;
+    left: 55px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    z-index: 3;
+}
+
+#sensor-server {
+    position: absolute;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    z-index: 2;
+    width: 100%;
+    top: -35px;
+    left: 20px;
+}
+
+/* HAMBURGER  */
+.menu-trigger:before {
+    color: rgba(255, 255, 0, 1);
+    font-size: 2em;
+    font-family: 'Font Awesome 5 Pro';
+    content: "\f0c9";
+    font-weight: 300;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    cursor: pointer !important;
+}
+
+.menu-trigger {
+    position: relative;
+}
+
+
+
+/* SHOW SUB MENUS */
+.menu-section::before {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 600;
+    content: "\f138";
+    padding-right: 10px !important;
+    font-size: 1em;
+}
+
+.menu-section::after {
+    color: rgba(255, 255, 255, 1);
+
+}
+
+.mp-back::after {
+    font-family: 'Font Awesome 5 Pro';
+    position: absolute;
+    content: "\f137";
+    right: 10px;
+    padding-right: 10px !important;
+    font-size: 1.3em;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+
+
+@media screen and (max-width: 69em) {
+    .block {
+        float: none;
+        width: 100% !important;
+        padding: 1em;
+    }
+}
+
+@media screen and (max-width: 25em) {
+
+    body {
+        font-size: 80%;
+    }
+
+}

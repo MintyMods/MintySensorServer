@@ -1,7 +1,7 @@
 package info.mintymods.repository.entities.enums;
 
 public enum HostType {
-	LOCALHOST("Local Host", "fas fa-home"), REMOTEHOST("Remote Host", "fas fa-project-diagram");
+	LOCALHOST("Local Host", "fal fa-home"), REMOTEHOST("Remote Host", "fal fa-project-diagram");
 
 	private String desc;
 	private String icon;

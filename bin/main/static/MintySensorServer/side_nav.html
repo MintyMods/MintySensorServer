@@ -5,20 +5,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/mlpushmenu.css" />
-    <link rel="stylesheet" type="text/css" href="css/mintymods.mss.css" />
-    <link rel="stylesheet" type="text/css" href="css/mintymods.burger.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
+    <!--link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mdb.min.css" rel="stylesheet"-->
+    <link href="css/mintymods.mss.css" rel="stylesheet">
 </head>
 
 <body>
+    <div id="hamburger"><i class="fas fa-bars"></i></div>
     <div class="container">
         <!-- Push Wrapper -->
         <div class="mp-pusher" id="mp-pusher">
             <!-- mp-menu -->
-            <nav id="mp-menu" class="mp-menu navbar, navbar-inverse navbar-fixed-top">
+            <nav id="mp-menu" class="mp-menu">
                 <div class="mp-level">
                     <h1 class="logo"><i class="fas fa-code-branch"></i>Minty Sensor Server</h1>
                     <ul>
@@ -85,7 +88,7 @@
                             <a class="fas fa-network-wired" href="#">Hosts</a>
                             <div class="mp-level">
                                 <h2 class="menu-icon">
-                                    <h2 class="menu-icon icon-shop"><i class="fas fa-network-wired"></i>Hosts</h2>
+                                    <h2 class="menu-icon icon-shop"><i class="fas fa-broadcast-tower"></i>Hosts</h2>
                                     <a class="mp-back" href="#">BACK<i class="fas fa-chevron-circle-right"></i></a>
                                     <ul>
                                         <li class="menu-option"><a class="fas fa-home" href="#">Local Host</a></li>
@@ -102,7 +105,7 @@
                                 <ul>
                                     <li class="menu-option"><a class="fas fa-info" href="#">HWiNFO</a></li>
                                     <li class="menu-option"><a class="fas fa-user-shield" href="#">GPU-Z</a></li>
-                                    <li class="menu-option"><a class="fas fa-microchip" href="#">OpenHM</a></li>
+                                    <li class="menu-option"><a class="fas fa-microchip" href="#">Open Hardware Monitor</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -119,49 +122,8 @@
                 <div class="scroller-inner">
                     <div class="content clearfix">
                         <div class="block block-40 clearfix">
-
-
-
-
-                            <div id="hamburger" class="hamburglar is-open">
-
-                                <div class="burger-icon">
-                                    <div class="burger-container">
-                                        <span class="burger-bun-top"></span>
-                                        <span class="burger-filling"></span>
-                                        <span class="burger-bun-bot"></span>
-                                    </div>
-                                </div>
-
-                                <!-- svg ring containter -->
-                                <div class="burger-ring">
-                                    <svg class="svg-ring">
-                                        <path class="path" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="4" d="M 34 2 C 16.3 2 2 16.3 2 34 s 14.3 32 32 32 s 32 -14.3 32 -32 S 51.7 2 34 2" />
-                                    </svg>
-                                </div>
-                                <!-- the masked path that animates the fill to the ring -->
-
-                                <svg width="0" height="0">
-                                    <mask id="mask">
-                                        <path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff0000" stroke-miterlimit="10" stroke-width="4" d="M 34 2 c 11.6 0 21.8 6.2 27.4 15.5 c 2.9 4.8 5 16.5 -9.4 16.5 h -4" />
-                                    </mask>
-                                </svg>
-                                <div class="path-burger">
-                                    <div class="animate-path">
-                                        <div class="path-rotation"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!--
-                            <p><a href="#" id="trigger" class="menu-trigger">TRIGGER</a></p>
-                            <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
-                                <span class="hamb-top"></span>
-                                <span class="hamb-middle"></span>
-                                <span class="hamb-bottom"></span>
-                            </button>
-                            -->
+                            <p><a href="#" id="trigger" class="menu-trigger">
+                                </a> </p>
                         </div>
                     </div>
                 </div> <!-- /scroller-inner -->
@@ -170,15 +132,11 @@
     </div><!-- /container -->
     <script src="js/classie.js"></script>
     <script src="js/mlpushmenu.js"></script>
-    <script src="https://kit.fontawesome.com/2007ef201b.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/modernizr.custom.js"></script>
-    <script src="js/minty.mss.js"></script>
+    <script src="js/mintymods.mss.js"></script>
+    <script src="https://kit.fontawesome.com/2007ef201b.js"></script>
+    <!--script src="js/minty.mss.js"></script-->
     <script>
         new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'));
-
     </script>
-</body>
-
-</html>
+</body></html>

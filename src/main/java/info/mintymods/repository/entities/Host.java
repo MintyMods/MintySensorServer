@@ -15,7 +15,7 @@ import info.mintymods.repository.entities.enums.ProtocolType;
 @Table(name = "hosts")
 public class Host extends Audit {
 
-	private final static String ICON = "fas fa-network-wired";
+	private final static String ICON = "fal fa-network-wired";
 
 	public static String getIcon() {
 		return ICON;
