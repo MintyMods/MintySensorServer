@@ -1,8 +1,8 @@
 package info.mintymods.repository.entities.enums;
 
 public enum ProviderType {
-	HWINFO("HWiNFO", ProtocolType.HTTPS, "www.hwinfo.com", "fas fa-info"), GPUZ("GPU-Z", ProtocolType.HTTPS, "www.techpowerup.com/gpuz/",
-			"fas fa-user-shield"), OHM("Open Hardware Monitor", ProtocolType.HTTPS, "openhardwaremonitor.org", "fas fa-microchip");
+	HWINFO("HWiNFO", ProtocolType.HTTPS, "www.hwinfo.com", "fal fa-info"), GPUZ("GPU-Z", ProtocolType.HTTPS, "www.techpowerup.com/gpuz/",
+			"fal fa-user-shield"), OHM("Open Hardware Monitor", ProtocolType.HTTPS, "openhardwaremonitor.org", "fal fa-microchip");
 
 	private String desc;
 	private String url;

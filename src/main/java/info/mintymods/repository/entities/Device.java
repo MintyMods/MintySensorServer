@@ -2,7 +2,7 @@ package info.mintymods.repository.entities;
 
 public class Device {
 
-	private final static String ICON = "fas fa-memory";
+	private final static String ICON = "fal fa-memory";
 
 	public static String getIcon() {
 		return ICON;

@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 public class View extends Audit {
 
-	private final static String ICON = "far fa-eye";
+	private final static String ICON = "fal fa-eye";
 
 	public static String getIcon() {
 		return ICON;

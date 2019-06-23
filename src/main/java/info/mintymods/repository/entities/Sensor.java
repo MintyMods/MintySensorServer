@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 public class Sensor {
 
-	private final static String ICON = "fas fa-code-branch";
+	private final static String ICON = "fal fa-code-branch";
 
 	public static String getIcon() {
 		return ICON;

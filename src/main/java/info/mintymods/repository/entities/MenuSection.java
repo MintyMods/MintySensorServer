@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "menu_sections")
 public class MenuSection {
 
-	private final static String ICON = "fas fa-ellipsis-v";
+	private final static String ICON = "fal fa-ellipsis-v";
 
 	public static String getIcon() {
 		return ICON;

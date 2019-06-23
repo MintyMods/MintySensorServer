@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 public class Module extends Audit {
 
-	private final static String ICON = "fas fa-solar-panel";
+	private final static String ICON = "fal fa-solar-panel";
 
 	public static String getIcon() {
 		return ICON;
