@@ -1,60 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset='utf-8'>
-    <title>Handlebars Helloworld</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-
-    <!-- handlebars from CDN -->
-    <script 
-    src='//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js'>
-    </script>
-
-    <!-- Styling for rendered content -->
-    <style type='text/css'>
-        #renderedContent{
-            width: 50%;
-            margin: 0 auto;
-            background-color: #222;
-            color: #fff;    	
-            text-align: center;	
-        }    	
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <script src="https://kit.fontawesome.com/2007ef201b.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <link href="css/mintymods.mss.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Handlebars rendered result placeholder -->
-    <section id='renderedContent'></section>
 
-    <!-- Handlebars template, title and body are placeholders for data -->
-    <script id='myTemplate' type='text/x-handlebars-template'>
-        <article>        	
-            <h1>{{title}}</h1>
-            <div>            	
-                {{body}}
-            </div>
-        </article>
-    </script>
+    <!-- Start your project here-->
+    <div style="height: 100vh">
+        <div class="flex-center flex-column">
 
-    <!-- Handlebars rendering -->
-    <script>
-    !function(d) {
-        // Prepare template
-        var templateSource = d.getElementById('myTemplate').innerHTML;
-        var template = Handlebars.compile(templateSource);
-        // Data in json
-        var data = {
-            title: 'Handlebars'
-            ,body: 'Helloworld'
-        };
-        // Generate html using template and data
-        var html = template(data);
-        // Add the result to the DOM
-        d.getElementById('renderedContent').innerHTML = html;
-    }(document);
-    </script>
+            <h1 class="animated fadeIn mb-40">Minty Sensor Server</h1>
+            <h5 class="animated fadeIn mb-3">Coming Soon so be Cool <i class="fal fa-sunglasses"></i></h5>
 
-</body>
+            <p class="animated fadeIn text-muted">MintyMods</p>
+        </div>
+    </div>
 
-</html>
+    <!-- Start your project here-->
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="js/mintymods.mss.js"></script>
+</body></html>

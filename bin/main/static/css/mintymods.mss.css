@@ -1,0 +1,196 @@
+/*
+primary-color       #4285F4     rgba(66, 133, 244)
+primary-color-dark  #0D47A1     rgba(13, 71, 161)
+greenyellow         #ADFF2F     rgba(173, 255, 47)
+*/
+
+@font-face {
+    font-family: 'lightning-volt';
+    src: url('../fonts/LIGHRGS.TTF');
+}
+
+html,
+body,
+.container,
+.scroller {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.scroller {
+    overflow-y: scroll;
+}
+
+.scroller,
+.scroller-inner {
+    position: relative;
+    background: rgba(255, 255, 255);
+    color: rgba(0, 0, 0);
+}
+
+.container {
+    position: relative;
+    overflow: hidden;
+    background: rgba(173, 255, 47, 1);
+    color: rgba(0, 0, 0, 1);
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: rgba(0, 0, 0);
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0px;
+}
+
+#main-content {
+    margin: 5px;
+    overflow: auto;
+    padding: 20px;
+    height: 100%;
+
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    color: rgba(0, 0, 0, 1);
+}
+
+a:hover,
+a:focus {
+    color: rgba(255, 255, 255, 1);
+    outline: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.content {
+    padding: 4em 2em;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#hamburger {
+    cursor: pointer;
+    z-index: 4;
+    left: -10px;
+    top: -50px;
+}
+
+.fal::before {
+    padding-right: 10px !important;
+    vertical-align: middle;
+}
+
+.mp-menu {
+    margin-top: 60px !important;
+}
+
+.sign-in::before {
+    font-family: 'Font Awesome 5 Pro';
+    content: '\f2f6';
+    font-weight: 300;
+    position: absolute;
+    left: 12px;
+}
+
+.sign-in {
+    text-align: right;
+    font-size: 1em;
+    padding-right: -15px !important;
+}
+
+#mp-menu > div > h2 > a {
+    width: 100%;
+    font-size: .6em;
+    top: 10px;
+    position: absolute;
+    right: 10px;
+    letter-spacing: normal;
+}
+
+
+/* MAIN LOGO - font-weight: 900 (Solid), 400 (Regular or Brands), 300 (Light) */
+.mss-logo {
+    letter-spacing: 3px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    font-weight: 300;
+}
+
+#mss-logo-text::after {
+    font-family: 'Font Awesome 5 Pro';
+    content: "\f126";
+    transform: rotate(120deg);
+    font-weight: 400;
+    font-size: 2.4em;
+    color: rgba(255, 255, 47, 1);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    position: absolute;
+    left: -4px;
+    top: -65px;
+    z-index: 1;
+}
+
+#minty {
+    clear: both;
+    position: absolute;
+    top: -64px;
+    left: 55px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .3);
+    text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+    z-index: 3;
+    font-family: 'lightning-volt', 'Georgia', serif;
+
+}
+
+#sensor-server {
+    position: absolute;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+    z-index: 5;
+    width: 100%;
+    top: -40px;
+    letter-spacing: .5px;
+}
+
+.menu-trigger {
+    position: relative;
+}
+
+/* SHOW SUB MENUS */
+.menu-section::before {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 600;
+    content: "\f138";
+    font-size: 1em;
+    color: rgba(0, 0, 0, .5);
+}
+
+.menu-section::after {
+    color: rgba(0, 0, 0, 1);
+}
+
+.menu-option {
+    color: rgba(0, 0, 0, 1);
+}
+
+.mp-back::after {
+    font-family: 'Font Awesome 5 Pro';
+    position: absolute;
+    content: "\f137";
+    right: 10px;
+    font-size: 1.3em;
+    color: rgba(0, 0, 0, 0.3);
+}

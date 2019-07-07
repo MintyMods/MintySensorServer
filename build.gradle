@@ -12,6 +12,8 @@ buildscript {
 }
 
 apply plugin: "groovy"
+apply plugin: "java"
+apply plugin: "eclipse"
 apply plugin: "org.springframework.boot"
 apply plugin: "io.spring.dependency-management"
 
@@ -72,6 +74,13 @@ dependencies {
 	
 	// Charts
 	compile 'org.webjars:chartjs:26962ce-1'
+	
+	eclipse {
+	  classpath {
+    downloadSources = true
+    downloadJavadoc = false
+  }	
+  }
 	
 }
 
