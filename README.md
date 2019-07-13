@@ -15,6 +15,8 @@ MSS - Minty Sensor Server is an attempt to create a RESTful web service exposing
    * Configurable Alerts in the form of Push Notifications
    * Remote sensor monitoring
    
+## Current Stack
+SENSORS <-?-> HWiNFO <-SHM-> MSM[C#:JSON] <--> MSM2MSS[C++:JSON] <--> MSS[JNI:JSON] <--> API[JAVA:REST/JSON/HTML]
    
 ## Getting Started
 
