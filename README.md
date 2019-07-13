@@ -13,9 +13,15 @@ MSS - Minty Sensor Server is an attempt to create a RESTful web service exposing
    * Runs as a Windows Service (via Apache ProcRun)
    * Configurable Alerts in the form of Push Notifications
    * Remote sensor monitoring
+
+## For more information see the following projects:-
+
+	* Minty Sensor Server : [MSS](https://github.com/MintyMods/MintySensorServer)
+	* Minty Sensor Monitor : [MSM](https://github.com/MintyMods/MintySensorMonitor)
+	* Minty Sensor Monitor 2 Minty Sensor Server JNI Wrapper : [MSM2MSS](https://github.com/MintyMods/MSM2MSS)
    
 ## Current Stack
-SENSORS <-?-> HWiNFO <-SHM-> MSM[C#:JSON] <--> MSM2MSS[C++:JSON] <--> MSS[JNI:JSON] <--> API[JAVA:REST/JSON/HTML]
+SENSORS <-?-> HWiNFO <-SHM-> MSM[C#] <-JSON-> MSM2MSS[C++] <-JSON-> MSS[JNI] <-JSON-> API[JAVA:REST/JSON/HTML]
    
 ## Getting Started
 
@@ -183,14 +189,14 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [Gradle](https://gradle.org/) - Dependency Management
 * [HandleBars](https://handlebarsjs.com/) - Template Engine
 * [Spring Boot](https://start.spring.io/) The right stack for the right job
 * [Chart.js](https://www.chartjs.org/) Simple yet flexible JavaScript charting
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](doc/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](doc/CONTRIBUTING.md) for details on the code of conduct, and the process for submitting pull requests.
 
 
 ## Authors
@@ -199,16 +205,12 @@ Please read [CONTRIBUTING.md](doc/CONTRIBUTING.md) for details on our code of co
 
 See also the list of [contributors](doc/CONTRIBUTORS.md) who participated in this project.
 
-## License
-
-This project is licensed under the [Apache License](doc/LICENSE.md)
-
 ## Acknowledgments
 
   * HWiNFO - Martin Malik for his help with the sensor integration [HWiNFO](http://hwinfo.com)
   * PurpleBooth - Billie Thompson for the GitHub documentation templates (the thing you are reading now) [PurpleBooth](https://gist.github.com/PurpleBooth)
   
-## License
+### License
 MSS is licensed under The [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.en.html).
   
   
