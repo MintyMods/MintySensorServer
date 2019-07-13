@@ -13,8 +13,8 @@ import info.mintymods.msm.MsmMonitorRequest;
 public class MsmJniWrapper {
 
 	private static final boolean DEBUG = true;
-	// private static final String SOURCE = "MSM[JSON]EXAMPLE";
-	private static final String SOURCE = "MSM[JSON]HWiNFO";
+	private static final String SOURCE = "MSM[JSON]EXAMPLE";
+	// private static final String SOURCE = "MSM[JSON]HWiNFO";
 	private static final Logger log = LoggerFactory.getLogger(MsmJniWrapper.class);
 	private static final String JAVA_HOME = System.getProperty("java.home");
 	private static final String[] libraries = {"log4net", "Newtonsoft.Json", "MintyServiceHWiNFO", "MintySensorMonitor", "MintySm2MintySsJniWrapper"};
@@ -51,7 +51,7 @@ public class MsmJniWrapper {
 
 	private static File getRuntimeLibDirectory() {
 		// TODO Auto-generated method stub
-		return new File("E:\\Development\\MintySensorServerGradle\\bin\\main\\lib");
+		return new File("E:\\Development\\MintySensorServer\\bin\\main\\lib");
 	}
 
 	private static void loadRuntimeDependencies() throws Exception {

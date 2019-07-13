@@ -14,11 +14,11 @@ MSS - Minty Sensor Server is an attempt to create a RESTful web service exposing
    * Configurable Alerts in the form of Push Notifications
    * Remote sensor monitoring
 
-## For more information see the following projects:-
-MSS : [Minty Sensor Server](https://github.com/MintyMods/MintySensorServer)
-MSM : [Minty Sensor Monitor](https://github.com/MintyMods/MintySensorMonitor)
-MSM2MSS : [Minty Sensor Monitor 2 Minty Sensor Server JNI Wrapper](https://github.com/MintyMods/MSM2MSS)
 
+## For more information see the following projects:-
+* MSS : [Minty Sensor Server](https://github.com/MintyMods/MintySensorServer)
+* MSM : [Minty Sensor Monitor](https://github.com/MintyMods/MintySensorMonitor)
+* MSM2MSS : [Minty Sensor Monitor 2 Minty Sensor Server JNI Wrapper](https://github.com/MintyMods/MintySm2MintySsJniWrapper)
    
 ## Current Stack
 SENSORS <-?-> HWiNFO <-SHM-> MSM[C#] <-JSON-> MSM2MSS[C++] <-JSON-> MSS[JNI] <-JSON-> API[JAVA:REST/JSON/HTML]
@@ -33,7 +33,6 @@ For runtime installation and requirements see [MintySS.md](doc/MintySS.md)
 
   * <b>HWiNFO64</b> is required to be installed and running with the sensor window minimised or open.
   * <b>JAVA 1.8+ JDK</b> is required to be installed. Only a JRE is required for running MintySS but a JDK is required for building from source code.<br/>
-  * <b>MAVEN</b> is required for testing, dependency management & building (Note: a Maven wrapper is included so you do not have to install Maven).
   * <b>Optional : </b>An Java IDE of choice for source code modification/GIT/Maven integration.<br/>
 
 See [Prerequisites.md](doc/PREREQUISITES.md) for more information on installing and testing these pre-requisites.
