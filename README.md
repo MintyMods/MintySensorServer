@@ -15,10 +15,10 @@ MSS - Minty Sensor Server is an attempt to create a RESTful web service exposing
    * Remote sensor monitoring
 
 ## For more information see the following projects:-
+MSS : [Minty Sensor Server](https://github.com/MintyMods/MintySensorServer)
+MSM : [Minty Sensor Monitor](https://github.com/MintyMods/MintySensorMonitor)
+MSM2MSS : [Minty Sensor Monitor 2 Minty Sensor Server JNI Wrapper](https://github.com/MintyMods/MSM2MSS)
 
-	* Minty Sensor Server : [MSS](https://github.com/MintyMods/MintySensorServer)
-	* Minty Sensor Monitor : [MSM](https://github.com/MintyMods/MintySensorMonitor)
-	* Minty Sensor Monitor 2 Minty Sensor Server JNI Wrapper : [MSM2MSS](https://github.com/MintyMods/MSM2MSS)
    
 ## Current Stack
 SENSORS <-?-> HWiNFO <-SHM-> MSM[C#] <-JSON-> MSM2MSS[C++] <-JSON-> MSS[JNI] <-JSON-> API[JAVA:REST/JSON/HTML]
