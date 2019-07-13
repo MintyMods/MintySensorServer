@@ -19,9 +19,7 @@ SENSORS <-?-> HWiNFO <-SHM-> MSM[C#:JSON] <--> MSM2MSS[C++:JSON] <--> MSS[JNI:JS
    
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-<br/>
-The following prerequisites are required for building the project from source on a Windows OS. If your OS of choice is not Windows then you probably don't need my help anyway :) 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. The following prerequisites are required for building the project from source on a Windows OS. If your OS of choice is not Windows then you probably don't need my help anyway :) 
 
 For runtime installation and requirements see [MintySS.md](doc/MintySS.md) 
 
@@ -186,7 +184,7 @@ Add additional notes about how to deploy this on a live system
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
-* [Thymeleaf](https://www.thymeleaf.org/) - Server-side Java template engine
+* [HandleBars](https://handlebarsjs.com/) - Template Engine
 * [Spring Boot](https://start.spring.io/) The right stack for the right job
 * [Chart.js](https://www.chartjs.org/) Simple yet flexible JavaScript charting
 
