@@ -1,9 +1,8 @@
 # MSS Minty's Sensor Server
 MSS - Minty Sensor Server is an attempt to create a RESTful web service exposing the various hardware sensor information provided by 3rd party software components:-
-
-	* [HWiNFO](https://www.hwinfo.com) 
-	* [GPU-Z](https://www.techpowerup.com/gpuz/) 
-	* [Open Hardware Monitor](https://openhardwaremonitor.org/) 
+   * [HWiNFO](https://www.hwinfo.com) 
+   * [GPU-Z](https://www.techpowerup.com/gpuz/) 
+   * [Open Hardware Monitor](https://openhardwaremonitor.org/) 
 
 ## Features
    * Create Views showing selected sensor information
