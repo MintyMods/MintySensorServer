@@ -22,9 +22,23 @@ MSS - Minty Sensor Server is an attempt to create a RESTful web service exposing
    
 ## Current Stack
 SENSORS <-?-> HWiNFO <-SHM-> MSM[C#] <-JSON-> MSM2MSS[C++] <-JSON-> MSS[JNI] <-JSON-> API[JAVA:REST/JSON/HTML]
+
+ - **Full Project Stack:-**
+	- Raw Sensor Information 
+	- <--?:Sensor Information Providers:?-->
+	- <--*SHM::DLL*--> 
+	- **MsmServiceInterface** 
+	- <--*MSMRequest::MSMResponse*--> 
+	- **MSM**[C#] 
+	- <--*MSMRequest::MSMResponse*--> 
+	- **MSM2MSS**[C++] 
+	- <--*MSMRequest::MSMResponse*--> 
+	- **MSS**[JNI] 
+	- <--*MSMRequest::MSMResponse*--> 
+	- **API**[JAVA:REST/JSON]
+	- <--HTTP::HTML-->
    
 ## Getting Started
-
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. The following prerequisites are required for building the project from source on a Windows OS. If your OS of choice is not Windows then you probably don't need my help anyway :) 
 
 For runtime installation and requirements see [MintySS.md](doc/MintySS.md) 
