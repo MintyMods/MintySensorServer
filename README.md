@@ -207,9 +207,9 @@ This project is licensed under the [Apache License](doc/LICENSE.md)
 
   * HWiNFO - Martin Malik for his help with the sensor integration [HWiNFO](http://hwinfo.com)
   * PurpleBooth - Billie Thompson for the GitHub documentation templates (the thing you are reading now) [PurpleBooth](https://gist.github.com/PurpleBooth)
-
   
-  
+## License
+MSS is licensed under The [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.en.html).
   
   
   
