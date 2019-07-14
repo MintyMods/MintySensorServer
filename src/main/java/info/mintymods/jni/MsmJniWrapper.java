@@ -13,8 +13,8 @@ import info.mintymods.msm.MsmMonitorRequest;
 public class MsmJniWrapper {
 
 	private static final boolean DEBUG = true;
-	private static final String SOURCE = "MSM[JSON]EXAMPLE";
-	// private static final String SOURCE = "MSM[JSON]HWiNFO";
+	// private static final String SOURCE = "MSM[JSON]EXAMPLE";
+	private static final String SOURCE = "MSM[JSON]HWiNFO";
 	private static final Logger log = LoggerFactory.getLogger(MsmJniWrapper.class);
 	private static final String JAVA_HOME = System.getProperty("java.home");
 	private static final String[] libraries = {"log4net", "Newtonsoft.Json", "MintyServiceHWiNFO", "MintySensorMonitor", "MintySm2MintySsJniWrapper"};
@@ -69,7 +69,7 @@ public class MsmJniWrapper {
 		request.setSource(SOURCE);
 		request.setDebug(DEBUG);
 		log.info("@request#" + request.toString());
-		for (int i = 0; i < 150; i++) {
+		for (int i = 0; i < 6500; i++) {
 			final String response = msm.processRequest(request.toString());
 			log.info("Response :: " + response);
 		}

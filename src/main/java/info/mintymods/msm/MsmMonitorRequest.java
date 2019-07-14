@@ -7,7 +7,7 @@ import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmMonitorRequest {
 
-	private String source = "MSM[JSON]HWiNFO";
+	private String source = "MSM[JSON]EXAMPLE";
 	private String type;
 	private boolean debug = false;
 
@@ -15,19 +15,14 @@ public class MsmMonitorRequest {
 		type = getClass().getName();
 	}
 
-	@JsonProperty("type")
-	public String getType() {
-		return type;
-	}
-
 	@JsonProperty("source")
 	public String getSource() {
 		return source;
 	}
 
-	@JsonProperty("source")
-	public void setSource(String source) {
-		this.source = source;
+	@JsonProperty("type")
+	public String getType() {
+		return type;
 	}
 
 	@JsonProperty("debug")
@@ -40,6 +35,11 @@ public class MsmMonitorRequest {
 		this.debug = debug;
 	}
 
+	@JsonProperty("source")
+	public void setSource(String source) {
+		this.source = source;
+	}
+
 	@JsonProperty("type")
 	public void setType(String type) {
 		this.type = type;
@@ -49,9 +49,8 @@ public class MsmMonitorRequest {
 	public String toString() {
 		try {
 			return MintyJsonUtils.getMapper().writeValueAsString(this);
-		} catch (JsonProcessingException e) {
+		} catch (final JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
-
 }
