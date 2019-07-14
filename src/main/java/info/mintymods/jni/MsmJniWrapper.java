@@ -51,7 +51,7 @@ public class MsmJniWrapper {
 
 	private static File getRuntimeLibDirectory() {
 		// TODO Auto-generated method stub
-		return new File("E:\\Development\\MintySensorServer\\bin\\main\\lib");
+		return new File("E:\\Development\\MintySensorServer\\src\\main\\resources\\lib");
 	}
 
 	private static void loadRuntimeDependencies() throws Exception {
@@ -69,7 +69,7 @@ public class MsmJniWrapper {
 		request.setSource(SOURCE);
 		request.setDebug(DEBUG);
 		log.info("@request#" + request.toString());
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 150; i++) {
 			final String response = msm.processRequest(request.toString());
 			log.info("Response :: " + response);
 		}
