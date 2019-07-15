@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>MintySensorServerGradle</name>
+	<name>MintySensorServer</name>
 	<comment></comment>
-	<projects/>
-	<natures>
-		<nature>org.eclipse.jdt.groovy.core.groovyNature</nature>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
+	<projects>
+	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments/>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
+			<arguments>
+			</arguments>
 		</buildCommand>
 	</buildSpec>
-<<<<<<< HEAD
-	<linkedResources/>
-	<filteredResources/>
-=======
 	<natures>
-		<nature>org.springsource.ide.eclipse.gradle.core.nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
-		<nature>org.eclipse.jdt.groovy.core.groovyNature</nature>
 	</natures>
->>>>>>> e0f0f91915437a36683573cb29af0dcc26649572
 </projectDescription>

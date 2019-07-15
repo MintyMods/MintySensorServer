@@ -14,14 +14,14 @@ public class PathUtilsTest {
 
 	@Test
 	public void FileExistsApplicationPropertiesTest() {
-		File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename());
+		final File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename());
 		assertNotNull(fileFromClassPath);
 		assertTrue(fileFromClassPath.exists());
 	}
 
 	@Test
 	public void FileExistsCrossDomainXmlTest() {
-		File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MssPathUtils.getCrossDomainXmlFilename());
+		final File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MssPathUtils.getCrossDomainXmlFilename());
 		assertNotNull(fileFromClassPath);
 		assertTrue(fileFromClassPath.exists());
 	}
@@ -34,53 +34,38 @@ public class PathUtilsTest {
 	}
 
 	@Test
-	public void FileExistsLog4jSpringXmlTest() {
-		File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MssPathUtils.getLog4jSpringXmlFilename());
-		assertNotNull(fileFromClassPath);
-		assertTrue(fileFromClassPath.exists());
+	public void FileExistsLog4NetDllTest() {
+		final File fileFromBinPath = MintyFileUtils.getFileFromLibPath(MssPathUtils.getLog4NetDllFilename());
+		assertNotNull(fileFromBinPath);
+		assertTrue(fileFromBinPath.exists());
 	}
 
 	@Test
 	public void FileExistsLogBackXmlTest() {
-		File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MssPathUtils.getLogBackXmlFilename());
+		final File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MssPathUtils.getLogBackXmlFilename());
 		assertNotNull(fileFromClassPath);
 		assertTrue(fileFromClassPath.exists());
 	}
 
 	@Test
-	public void FileExistsLog4NetDllTest() {
-		File fileFromBinPath = MintyFileUtils.getFileFromLibPath(MssPathUtils.getLog4NetDllFilename());
+	public void FileExistsMavenWrapperDownloaderTest() {
+		final File fileFromBinPath = MintyFileUtils.getFileFromBinPath(MssPathUtils.getMavenWrapperDownloaderFilename());
 		assertNotNull(fileFromBinPath);
 		assertTrue(fileFromBinPath.exists());
 	}
 
 	@Test
 	public void FileExistsMavenWrapperTest() {
-		File fileFromBinPath = MintyFileUtils.getFileFromBinPath(MssPathUtils.getMavenWrapperFilename());
-		assertNotNull(fileFromBinPath);
-		assertTrue(fileFromBinPath.exists());
-	}
-
-	@Test
-	public void FileExistsMavenWrapperDownloaderTest() {
-		File fileFromBinPath = MintyFileUtils.getFileFromBinPath(MssPathUtils.getMavenWrapperDownloaderFilename());
-		assertNotNull(fileFromBinPath);
-		assertTrue(fileFromBinPath.exists());
-	}
-
-	@Test
-	public void FileExistsMintySensorMonitorTest() {
-		File fileFromBinPath = MintyFileUtils.getFileFromLibPath(MssPathUtils.getMintySensorMonitorFilename());
+		final File fileFromBinPath = MintyFileUtils.getFileFromBinPath(MssPathUtils.getMavenWrapperFilename());
 		assertNotNull(fileFromBinPath);
 		assertTrue(fileFromBinPath.exists());
 	}
 
 	@Test
 	public void FileExistsMintyServiceHwinfoTest() {
-		String mintyServiceHWiNFODLLFilename = MssPathUtils.getMintyServiceHWiNFODLLFilename();
-		File fileFromBinPath = MintyFileUtils.getFileFromLibPath(mintyServiceHWiNFODLLFilename);
+		final String mintyServiceHWiNFODLLFilename = MssPathUtils.getMintyServiceHWiNFODLLFilename();
+		final File fileFromBinPath = MintyFileUtils.getFileFromLibPath(mintyServiceHWiNFODLLFilename);
 		assertNotNull(fileFromBinPath);
 		assertTrue(fileFromBinPath.exists());
 	}
-
 }
