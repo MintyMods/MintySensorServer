@@ -10,7 +10,7 @@ import org.junit.Test;
 import info.mintymods.utils.MintyFileUtils;
 import info.mintymods.utils.MssPathUtils;
 
-public class PathUtilsUtils {
+public class PathUtilsTest {
 
 	@Test
 	public void FileExistsApplicationPropertiesTest() {

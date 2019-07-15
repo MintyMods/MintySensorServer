@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 public class MssPathUtils {
 
 	private static final Logger log = LoggerFactory.getLogger(MssPathUtils.class);
-	private static final String FILENAME_LOG4J2_SPRING_XML = "log4j2-spring.xml";
+	private static final String FILENAME_LOGGING_XML = "log4j2-spring.xml";
 	private static final String FILENAME_LOG4BACK_XML = "logback.xml";
 	private static final String FILENAME_CROSSDOMAIN_XML = "crossdomain.xml";
 	private static final String FILENAME_DATA_SQL = "data.sql";
@@ -56,7 +56,7 @@ public class MssPathUtils {
 	}
 
 	public static String getLog4jSpringXmlFilename() {
-		return FILENAME_LOG4J2_SPRING_XML;
+		return FILENAME_LOGGING_XML;
 	}
 
 	public static String getMavenWrapperFilename() {

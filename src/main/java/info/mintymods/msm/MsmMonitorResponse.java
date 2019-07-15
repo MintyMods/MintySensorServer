@@ -25,14 +25,9 @@ public class MsmMonitorResponse {
 		type = getClass().getName();
 	}
 
-	@JsonProperty("source")
-	public String getSource() {
-		return source;
-	}
-
-	@JsonProperty("request")
-	public MsmMonitorRequest getRequest() {
-		return request;
+	@JsonProperty("exception")
+	public MsmException getException() {
+		return exception;
 	}
 
 	@JsonProperty("labels")
@@ -40,24 +35,24 @@ public class MsmMonitorResponse {
 		return labels;
 	}
 
+	@JsonProperty("readings")
+	public List<MsmSensorReading> getReadings() {
+		return readings;
+	}
+
+	@JsonProperty("request")
+	public MsmMonitorRequest getRequest() {
+		return request;
+	}
+
 	@JsonProperty("sensors")
 	public List<MsmSensor> getSensors() {
 		return sensors;
 	}
 
-	@JsonProperty("exception")
-	public MsmException getException() {
-		return exception;
-	}
-
-	@JsonProperty("version")
-	public String getVersion() {
-		return version;
-	}
-
-	@JsonProperty("debug")
-	public boolean isDebug() {
-		return debug;
+	@JsonProperty("source")
+	public String getSource() {
+		return source;
 	}
 
 	@JsonProperty("time_taken_ms")
@@ -70,49 +65,14 @@ public class MsmMonitorResponse {
 		return type;
 	}
 
-	@JsonProperty("readings")
-	public List<MsmSensorReading> getReadings() {
-		return readings;
-	}
-
-	@JsonProperty("readings")
-	public void setReadings(List<MsmSensorReading> readings) {
-		this.readings = readings;
-	}
-
-	@JsonProperty("source")
-	public void setSource(String source) {
-		this.source = source;
-	}
-
-	@JsonProperty("request")
-	public void setRequest(MsmMonitorRequest request) {
-		this.request = request;
-	}
-
-	@JsonProperty("labels")
-	public void setNames(List<String> labels) {
-		this.labels = labels;
-	}
-
-	@JsonProperty("sensors")
-	public void setSensors(List<MsmSensor> sensors) {
-		this.sensors = sensors;
-	}
-
-	@JsonProperty("exception")
-	public void setException(MsmException exception) {
-		this.exception = exception;
-	}
-
 	@JsonProperty("version")
-	public void setVersion(String version) {
-		this.version = version;
+	public String getVersion() {
+		return version;
 	}
 
-	@JsonProperty("type")
-	public void setType(String type) {
-		this.type = type;
+	@JsonProperty("debug")
+	public boolean isDebug() {
+		return debug;
 	}
 
 	@JsonProperty("debug")
@@ -120,18 +80,57 @@ public class MsmMonitorResponse {
 		this.debug = debug;
 	}
 
+	@JsonProperty("exception")
+	public void setException(MsmException exception) {
+		this.exception = exception;
+	}
+
+	@JsonProperty("labels")
+	public void setNames(List<String> labels) {
+		this.labels = labels;
+	}
+
+	@JsonProperty("readings")
+	public void setReadings(List<MsmSensorReading> readings) {
+		this.readings = readings;
+	}
+
+	@JsonProperty("request")
+	public void setRequest(MsmMonitorRequest request) {
+		this.request = request;
+	}
+
+	@JsonProperty("sensors")
+	public void setSensors(List<MsmSensor> sensors) {
+		this.sensors = sensors;
+	}
+
+	@JsonProperty("source")
+	public void setSource(String source) {
+		this.source = source;
+	}
+
 	@JsonProperty("time_taken_ms")
 	public void setTime_taken_ms(long time_taken_ms) {
 		this.time_taken_ms = time_taken_ms;
+	}
+
+	@JsonProperty("type")
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	@JsonProperty("version")
+	public void setVersion(String version) {
+		this.version = version;
 	}
 
 	@Override
 	public String toString() {
 		try {
 			return MintyJsonUtils.getMapper().writeValueAsString(this);
-		} catch (JsonProcessingException e) {
+		} catch (final JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
-
 }
