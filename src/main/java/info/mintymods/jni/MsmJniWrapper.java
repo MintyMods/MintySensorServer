@@ -50,7 +50,7 @@ public class MsmJniWrapper {
 	}
 
 	private static File getRuntimeLibDirectory() {
-		// TODO Auto-generated method stub
+		// TODO resolve this path dynamically at runtime
 		return new File("E:\\Development\\MintySensorServer\\src\\main\\resources\\lib");
 	}
 
