@@ -1,4 +1,4 @@
-package info.mintymods.jni;
+package info.mintymods.utils;
 
 import info.mintymods.msm.MsmMonitorRequest;
 import info.mintymods.repository.entities.enums.ProviderType;

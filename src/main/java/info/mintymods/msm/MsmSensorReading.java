@@ -13,20 +13,58 @@ public class MsmSensorReading {
 	private MsmSensorLabel label;
 	private String unit;
 	private double value;
+	private double min;
+	private double max;
+	private double avg;
+
+	@JsonProperty("avg")
+	public double getAvg() {
+		return avg;
+	}
+
+	@JsonProperty("id")
+	public int getId() {
+		return id;
+	}
+
+	@JsonProperty("sensor_index")
+	public int getIndex() {
+		return sensor_index;
+	}
+
+	@JsonProperty("label")
+	public MsmSensorLabel getLabel() {
+		return label;
+	}
+
+	@JsonProperty("max")
+	public double getMax() {
+		return max;
+	}
+
+	@JsonProperty("min")
+	public double getMin() {
+		return min;
+	}
 
 	@JsonProperty("type")
 	public MsmSensorType getType() {
 		return type;
 	}
 
-	@JsonProperty("type")
-	public void setType(MsmSensorType type) {
-		this.type = type;
+	@JsonProperty("unit")
+	public String getUnit() {
+		return unit;
 	}
 
-	@JsonProperty("id")
-	public int getId() {
-		return id;
+	@JsonProperty("value")
+	public double getValue() {
+		return value;
+	}
+
+	@JsonProperty("avg")
+	public void setAvg(double avg) {
+		this.avg = avg;
 	}
 
 	@JsonProperty("id")
@@ -35,18 +73,8 @@ public class MsmSensorReading {
 	}
 
 	@JsonProperty("sensor_index")
-	public int getIndex() {
-		return sensor_index;
-	}
-
-	@JsonProperty("sensor_index")
 	public void setIndex(int index) {
-		this.sensor_index = index;
-	}
-
-	@JsonProperty("label")
-	public MsmSensorLabel getLabel() {
-		return label;
+		sensor_index = index;
 	}
 
 	@JsonProperty("label")
@@ -54,19 +82,24 @@ public class MsmSensorReading {
 		this.label = label;
 	}
 
-	@JsonProperty("unit")
-	public String getUnit() {
-		return unit;
+	@JsonProperty("max")
+	public void setMax(double max) {
+		this.max = max;
+	}
+
+	@JsonProperty("min")
+	public void setMin(double min) {
+		this.min = min;
+	}
+
+	@JsonProperty("type")
+	public void setType(MsmSensorType type) {
+		this.type = type;
 	}
 
 	@JsonProperty("unit")
 	public void setUnit(String unit) {
 		this.unit = unit;
-	}
-
-	@JsonProperty("value")
-	public double getValue() {
-		return value;
 	}
 
 	@JsonProperty("value")
@@ -78,7 +111,7 @@ public class MsmSensorReading {
 	public String toString() {
 		try {
 			return MintyJsonUtils.getMapper().writeValueAsString(this);
-		} catch (JsonProcessingException e) {
+		} catch (final JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 	}

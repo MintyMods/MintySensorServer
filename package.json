@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MintyMods/MintySensorServerGradle.git"
+    "url": "git+https://github.com/MintyMods/MintySensorServer.git"
   },
   "keywords": [
     "Sensor",
@@ -28,9 +28,9 @@
   "author": "Rob Gregory [Minty]",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MintyMods/MintySensorServerGradle/issues"
+    "url": "https://github.com/MintyMods/MintySensorServer/issues"
   },
-  "homepage": "https://github.com/MintyMods/MintySensorServerGradle#readme",
+  "homepage": "https://github.com/MintyMods/MintySensorServer#readme",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.9.0",
     "@fortawesome/fontawesome-pro": "^5.9.0"

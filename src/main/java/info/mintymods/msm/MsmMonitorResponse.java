@@ -19,7 +19,7 @@ public class MsmMonitorResponse {
 	private String version;
 	private String type;
 	private boolean debug;
-	private long time_taken_ms;
+	private String time_taken;
 
 	public MsmMonitorResponse() {
 		type = getClass().getName();
@@ -55,9 +55,9 @@ public class MsmMonitorResponse {
 		return source;
 	}
 
-	@JsonProperty("time_taken_ms")
-	public long getTime_taken_ms() {
-		return time_taken_ms;
+	@JsonProperty("time_taken")
+	public String getTime_taken() {
+		return time_taken;
 	}
 
 	@JsonProperty("type")
@@ -110,9 +110,9 @@ public class MsmMonitorResponse {
 		this.source = source;
 	}
 
-	@JsonProperty("time_taken_ms")
-	public void setTime_taken_ms(long time_taken_ms) {
-		this.time_taken_ms = time_taken_ms;
+	@JsonProperty("time_taken")
+	public void setTime_taken_ms(String time_taken) {
+		this.time_taken = time_taken;
 	}
 
 	@JsonProperty("type")

@@ -5,9 +5,8 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ MintySensorMonitorTest.class, MsmExceptionHintTest.class, MsmExceptionTest.class,
+@SuiteClasses({MsmExceptionHintTest.class, MsmExceptionTest.class,
 		MsmMonitorRequestTest.class, MsmMonitorResponseTest.class, MsmSensorLabelTest.class, MsmSensorReadingTest.class,
-		MsmSensorTest.class, MsmSensorTypeTest.class })
+		MsmSensorTest.class, MsmSensorTypeTest.class})
 public class AllTests {
-
 }

@@ -18,7 +18,6 @@ public class MssPathUtils {
 	private static final String DLL_FILENAME_LOG4NET = "log4net.dll";
 	private static final String DLL_FILENAME_MINTY_SERVICE_HWINFO = "MintyServiceHWiNFO.dll";
 	private static final String FILENAME_MAVEN_WRAPPER = "maven-wrapper.jar";
-	private static final String FILENAME_MAVEN_WRAPPER_DOWNLOADER = "MavenWrapperDownloader.class";
 	private static final String RUNTIME_KEYSTORE_FOLDER_PATH = ROOT_FOLDER_PATH + "/target/classes/keystore/";
 
 	public static String getApplicationPropertiesFilename() {
@@ -47,10 +46,6 @@ public class MssPathUtils {
 
 	public static String getLogBackXmlFilename() {
 		return FILENAME_LOG4BACK_XML;
-	}
-
-	public static String getMavenWrapperDownloaderFilename() {
-		return FILENAME_MAVEN_WRAPPER_DOWNLOADER;
 	}
 
 	public static String getMavenWrapperFilename() {

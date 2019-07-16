@@ -47,20 +47,12 @@ public class PathUtilsTest {
 		assertTrue(fileFromClassPath.exists());
 	}
 
-	@Test
-	public void FileExistsMavenWrapperDownloaderTest() {
-		final File fileFromBinPath = MintyFileUtils.getFileFromBinPath(MssPathUtils.getMavenWrapperDownloaderFilename());
-		assertNotNull(fileFromBinPath);
-		assertTrue(fileFromBinPath.exists());
-	}
-
-	@Test
-	public void FileExistsMavenWrapperTest() {
-		final File fileFromBinPath = MintyFileUtils.getFileFromBinPath(MssPathUtils.getMavenWrapperFilename());
-		assertNotNull(fileFromBinPath);
-		assertTrue(fileFromBinPath.exists());
-	}
-
+	// @Test
+	// public void FileExistsMavenWrapperTest() {
+	// final File fileFromBinPath = MintyFileUtils.getFileFromBinPath(MssPathUtils.getMavenWrapperFilename());
+	// assertNotNull(fileFromBinPath);
+	// assertTrue(fileFromBinPath.exists());
+	// }
 	@Test
 	public void FileExistsMintyServiceHwinfoTest() {
 		final String mintyServiceHWiNFODLLFilename = MssPathUtils.getMintyServiceHWiNFODLLFilename();

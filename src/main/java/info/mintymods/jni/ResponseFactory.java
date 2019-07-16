@@ -7,6 +7,7 @@ import info.mintymods.msm.MsmMonitorRequest;
 import info.mintymods.msm.MsmMonitorResponse;
 import info.mintymods.repository.entities.enums.ProviderType;
 import info.mintymods.utils.MintyJsonUtils;
+import info.mintymods.utils.RequestBuilder;
 
 public class ResponseFactory {
 
