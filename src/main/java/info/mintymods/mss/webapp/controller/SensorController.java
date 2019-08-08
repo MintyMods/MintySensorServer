@@ -1,6 +1,7 @@
 package info.mintymods.mss.webapp.controller;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class SensorController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void deleteSensorById(@PathVariable Long id) {
-		sensorService.removeSensorById(id);
+		sensorService.deleteSensor(id);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -33,24 +34,18 @@ public class SensorController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Sensor getSensorById(@PathVariable Long id) {
-		return sensorService.getSensorById(id);
+	public Optional<Sensor> getSensorById(@PathVariable Long id) {
+		return sensorService.getSensor(id);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> insertSensor(@RequestBody Sensor sensor) {
-		sensorService.insertSensor(sensor);
+		sensorService.addSensor(sensor);
 		return new ResponseEntity<>("result successful result", HttpStatus.OK);
 	}
 
-	// private ResponseEntity<String> checkSensorExists(int id) {
-	// if (sensorService.getSensorById(id) == null) {
-	// return new ResponseEntity<>("Sensor " + id + " was not found", HttpStatus.NOT_FOUND);
-	// } else return
-	// }
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateSensor(@RequestBody Sensor sensor) {
-		// checkSensorExists(sensor.getId());
 		sensorService.updateSensor(sensor);
 		return new ResponseEntity<>("Sensor " + sensor.getId() + " updated", HttpStatus.OK);
 	}

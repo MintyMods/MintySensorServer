@@ -1,9 +1,10 @@
 package info.mintymods.mss.webapp.services;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import info.mintymods.repository.dao.HostDao;
@@ -13,26 +14,27 @@ import info.mintymods.repository.entities.Host;
 public class HostService {
 
 	@Autowired
-	@Qualifier("fakeData")
 	private HostDao hostDao;
 
-	public Collection<Host> getAllHosts() {
-		return hostDao.getAllHosts();
+	public List<Host> getAllHosts() {
+		final List<Host> hosts = new ArrayList<>();
+		hostDao.findAll().forEach(hosts::add);
+		return hosts;
 	}
 
-	public Host getHostById(Long id) {
-		return hostDao.getHostById(id);
+	public Optional<Host> getHost(Long id) {
+		return hostDao.findById(id);
 	}
 
-	public void insertHost(Host host) {
-		hostDao.addHost(host);
+	public void addHost(Host host) {
+		hostDao.save(host);
 	}
 
-	public void removeHostById(Long id) {
-		hostDao.removeHostById(id);
+	public void deleteHost(Long id) {
+		hostDao.deleteById(id);
 	}
 
 	public void updateHost(Host host) {
-		hostDao.updateHost(host);
+		hostDao.save(host);
 	}
 }

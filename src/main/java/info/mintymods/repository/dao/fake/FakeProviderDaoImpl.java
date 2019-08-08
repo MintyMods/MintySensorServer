@@ -3,6 +3,7 @@ package info.mintymods.repository.dao.fake;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -29,30 +30,87 @@ public class FakeProviderDaoImpl implements ProviderDao {
 		};
 	}
 
-	@Override
 	public void addProvider(Provider provider) {
 		providers.put(provider.getId(), provider);
 	}
 
-	@Override
 	public Collection<Provider> getAllProviders() {
 		return providers.values();
 	}
 
-	@Override
 	public Provider getProviderById(Long id) {
 		return providers.get(id);
 	}
 
-	@Override
 	public void removeProviderById(Long id) {
 		providers.remove(id);
 	}
 
-	@Override
 	public void updateProvider(Provider provider) {
 		final Provider original = providers.get(provider.getId());
 		original.setLabel(provider.getLabel());
 		providers.put(provider.getId(), original);
+	}
+
+	@Override
+	public <S extends Provider> S save(S entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <S extends Provider> Iterable<S> saveAll(Iterable<S> entities) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<Provider> findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean existsById(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Iterable<Provider> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterable<Provider> findAllById(Iterable<Long> ids) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void delete(Provider entity) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void deleteAll(Iterable<? extends Provider> entities) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void deleteAll() {
+		// TODO Auto-generated method stub
 	}
 }

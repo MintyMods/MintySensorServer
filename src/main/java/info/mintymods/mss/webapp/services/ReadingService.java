@@ -1,9 +1,10 @@
 package info.mintymods.mss.webapp.services;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import info.mintymods.repository.dao.ReadingDoa;
@@ -13,26 +14,27 @@ import info.mintymods.repository.entities.Reading;
 public class ReadingService {
 
 	@Autowired
-	@Qualifier("fakeData")
 	private ReadingDoa readingDoa;
 
-	public Collection<Reading> getAllReadings() {
-		return readingDoa.getAllReadings();
+	public List<Reading> getAllReadings() {
+		final List<Reading> readings = new ArrayList<>();
+		readingDoa.findAll().forEach(readings::add);
+		return readings;
 	}
 
-	public Reading getReadingById(Long id) {
-		return readingDoa.getReadingById(id);
+	public Optional<Reading> getReading(Long id) {
+		return readingDoa.findById(id);
 	}
 
-	public void insertReading(Reading reading) {
-		readingDoa.addReading(reading);
+	public void addReading(Reading reading) {
+		readingDoa.save(reading);
 	}
 
-	public void removeReadingById(Long id) {
-		readingDoa.removeReadingById(id);
+	public void deleteReading(Long id) {
+		readingDoa.deleteById(id);
 	}
 
 	public void updateReading(Reading reading) {
-		readingDoa.updateReading(reading);
+		readingDoa.save(reading);
 	}
 }

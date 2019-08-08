@@ -1,26 +1,23 @@
 package info.mintymods.repository.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import info.mintymods.msm.MsmSensorType;
 
-public class Reading {
+@Entity
+@Table(name = "minty_provider")
+public class Reading extends BaseEntity {
 
 	private final static String ICON = "fab fa-cloudscale";
-
-	public static String getIcon() {
-		return ICON;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private boolean active = true;
 	private MsmSensorType type;
-	private int sensor_index;
-	private Label label;
+	private int sensorIndex;
 	private String unit;
 	private double value;
 
@@ -30,46 +27,27 @@ public class Reading {
 	public Reading(Long id, MsmSensorType type, Label label, int sensor_index, String unit, double value) {
 		this.type = type;
 		this.label = label;
-		this.sensor_index = sensor_index;
+		sensorIndex = sensor_index;
 		this.unit = unit;
 		this.value = value;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) { return true; }
-		if (obj == null) { return false; }
-		if (getClass() != obj.getClass()) { return false; }
-		final Reading other = (Reading) obj;
-		if (active != other.active) { return false; }
-		if (id == null) {
-			if (other.id != null) { return false; }
-		} else
-			if (!id.equals(other.id)) { return false; }
-		if (label == null) {
-			if (other.label != null) { return false; }
-		} else
-			if (!label.equals(other.label)) { return false; }
-		if (sensor_index != other.sensor_index) { return false; }
-		if (type != other.type) { return false; }
-		if (unit == null) {
-			if (other.unit != null) { return false; }
-		} else
-			if (!unit.equals(other.unit)) { return false; }
-		if (Double.doubleToLongBits(value) != Double.doubleToLongBits(other.value)) { return false; }
-		return true;
+	public String getIcon() {
+		return ICON;
 	}
 
+	@Override
 	public Long getId() {
 		return id;
 	}
 
+	@Override
 	public Label getLabel() {
 		return label;
 	}
 
 	public int getSensor_index() {
-		return sensor_index;
+		return sensorIndex;
 	}
 
 	public MsmSensorType getType() {
@@ -85,25 +63,11 @@ public class Reading {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = (prime * result) + (active ? 1231 : 1237);
-		result = (prime * result) + ((id == null) ? 0 : id.hashCode());
-		result = (prime * result) + ((label == null) ? 0 : label.hashCode());
-		result = (prime * result) + sensor_index;
-		result = (prime * result) + ((type == null) ? 0 : type.hashCode());
-		result = (prime * result) + ((unit == null) ? 0 : unit.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(value);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
-		return result;
-	}
-
 	public boolean isActive() {
 		return active;
 	}
 
+	@Override
 	public void setActive(boolean active) {
 		this.active = active;
 	}
@@ -112,12 +76,13 @@ public class Reading {
 		this.id = id;
 	}
 
+	@Override
 	public void setLabel(Label label) {
 		this.label = label;
 	}
 
 	public void setSensor_index(int sensor_index) {
-		this.sensor_index = sensor_index;
+		sensorIndex = sensor_index;
 	}
 
 	public void setType(MsmSensorType type) {

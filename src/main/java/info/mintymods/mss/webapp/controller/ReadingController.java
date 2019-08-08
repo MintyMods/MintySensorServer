@@ -1,6 +1,7 @@
 package info.mintymods.mss.webapp.controller;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,7 +23,7 @@ public class ReadingController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void deleteReadingById(@PathVariable Long id) {
-		readingService.removeReadingById(id);
+		readingService.deleteReading(id);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -31,13 +32,13 @@ public class ReadingController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Reading getReadingById(@PathVariable Long id) {
-		return readingService.getReadingById(id);
+	public Optional<Reading> getReadingById(@PathVariable Long id) {
+		return readingService.getReading(id);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void insertReading(@RequestBody Reading reading) {
-		readingService.insertReading(reading);
+		readingService.addReading(reading);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

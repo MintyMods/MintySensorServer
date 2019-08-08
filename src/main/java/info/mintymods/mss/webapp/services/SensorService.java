@@ -1,9 +1,10 @@
 package info.mintymods.mss.webapp.services;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import info.mintymods.repository.dao.SensorDoa;
@@ -13,26 +14,27 @@ import info.mintymods.repository.entities.Sensor;
 public class SensorService {
 
 	@Autowired
-	@Qualifier("fakeData")
 	private SensorDoa sensorDoa;
 
-	public Collection<Sensor> getAllSensors() {
-		return sensorDoa.getAllSensors();
+	public List<Sensor> getAllSensors() {
+		final List<Sensor> sensors = new ArrayList<>();
+		sensorDoa.findAll().forEach(sensors::add);
+		return sensors;
 	}
 
-	public Sensor getSensorById(Long id) {
-		return sensorDoa.getSensorById(id);
+	public Optional<Sensor> getSensor(Long id) {
+		return sensorDoa.findById(id);
 	}
 
-	public void insertSensor(Sensor sensor) {
-		sensorDoa.addSensor(sensor);
+	public void addSensor(Sensor sensor) {
+		sensorDoa.save(sensor);
 	}
 
-	public void removeSensorById(Long id) {
-		sensorDoa.removeSensorById(id);
+	public void deleteSensor(Long id) {
+		sensorDoa.deleteById(id);
 	}
 
 	public void updateSensor(Sensor sensor) {
-		sensorDoa.updateSensor(sensor);
+		sensorDoa.save(sensor);
 	}
 }

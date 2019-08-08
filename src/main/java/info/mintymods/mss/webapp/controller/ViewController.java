@@ -1,6 +1,7 @@
 package info.mintymods.mss.webapp.controller;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,12 +18,18 @@ import info.mintymods.repository.entities.View;
 @RequestMapping("views")
 public class ViewController {
 
+	// https://github.com/eugenp/tutorials/blob/master/spring-boot-crud/src/main/java/com/baeldung/crud/controllers/UserController.java
 	@Autowired
-	private ViewService viewService;
+	private final ViewService viewService;
+
+	@Autowired
+	public ViewController(ViewService viewService) {
+		this.viewService = viewService;
+	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void deleteViewById(@PathVariable Long id) {
-		viewService.removeViewById(id);
+		viewService.deleteView(id);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -31,13 +38,13 @@ public class ViewController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public View getViewById(@PathVariable Long id) {
-		return viewService.getViewById(id);
+	public Optional<View> getViewById(@PathVariable Long id) {
+		return viewService.getView(id);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void insertView(@RequestBody View view) {
-		viewService.insertView(view);
+		viewService.addView(view);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

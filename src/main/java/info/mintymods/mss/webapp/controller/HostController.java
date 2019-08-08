@@ -1,6 +1,7 @@
 package info.mintymods.mss.webapp.controller;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,7 +23,7 @@ public class HostController {
 
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	public void deleteHostById(@PathVariable String id) {
-		hostService.removeHostById(Long.valueOf(id));
+		hostService.deleteHost(Long.valueOf(id));
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -31,13 +32,13 @@ public class HostController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Host getHostById(@PathVariable String id) {
-		return hostService.getHostById(Long.valueOf(id));
+	public Optional<Host> getHostById(@PathVariable String id) {
+		return hostService.getHost(Long.valueOf(id));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void insertHost(@RequestBody Host host) {
-		hostService.insertHost(host);
+		hostService.addHost(host);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

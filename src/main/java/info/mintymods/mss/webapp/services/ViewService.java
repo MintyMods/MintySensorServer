@@ -1,9 +1,10 @@
 package info.mintymods.mss.webapp.services;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import info.mintymods.repository.dao.ViewDao;
@@ -13,26 +14,27 @@ import info.mintymods.repository.entities.View;
 public class ViewService {
 
 	@Autowired
-	@Qualifier("fakeData")
 	private ViewDao viewDao;
 
-	public Collection<View> getAllViews() {
-		return viewDao.getAllViews();
+	public List<View> getAllViews() {
+		final List<View> views = new ArrayList<>();
+		viewDao.findAll().forEach(views::add);
+		return views;
 	}
 
-	public View getViewById(Long id) {
-		return viewDao.getViewById(id);
+	public Optional<View> getView(Long id) {
+		return viewDao.findById(id);
 	}
 
-	public void insertView(View view) {
-		viewDao.addView(view);
+	public void addView(View view) {
+		viewDao.save(view);
 	}
 
-	public void removeViewById(Long id) {
-		viewDao.removeViewById(id);
+	public void deleteView(Long id) {
+		viewDao.deleteById(id);
 	}
 
 	public void updateView(View view) {
-		viewDao.updateView(view);
+		viewDao.save(view);
 	}
 }

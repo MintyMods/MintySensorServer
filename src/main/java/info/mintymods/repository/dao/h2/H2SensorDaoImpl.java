@@ -1,6 +1,6 @@
 package info.mintymods.repository.dao.h2;
 
-import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -13,29 +13,64 @@ import info.mintymods.repository.entities.Sensor;
 public class H2SensorDaoImpl implements SensorDoa {
 
 	@Override
-	public void addSensor(Sensor sensor) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public Collection<Sensor> getAllSensors() {
+	public <S extends Sensor> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Sensor getSensorById(Long id) {
+	public <S extends Sensor> Iterable<S> saveAll(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void removeSensorById(Long id) {
+	public Optional<Sensor> findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean existsById(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Iterable<Sensor> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterable<Sensor> findAllById(Iterable<Long> ids) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void updateSensor(Sensor newSensor) {
+	public void delete(Sensor entity) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void deleteAll(Iterable<? extends Sensor> entities) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void deleteAll() {
 		// TODO Auto-generated method stub
 	}
 }
