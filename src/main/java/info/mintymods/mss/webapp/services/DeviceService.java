@@ -1,43 +1,40 @@
 package info.mintymods.mss.webapp.services;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import info.mintymods.repository.dao.HostDao;
+import info.mintymods.repository.dao.DeviceDao;
 import info.mintymods.repository.entities.Device;
 
 @Service
 public class DeviceService {
 
 	@Autowired
-	@Qualifier("fakeData")
-	private HostDao sensorsDao;
-	@Autowired
-	@Qualifier("fakeData")
-	private HostDao readingsDao;
+	private DeviceDao deviceDao;
 
-	public Collection<Device> getAllDevices() {
-		// @todo implement
-		return null;
+	public List<Device> getAllDevices() {
+		final List<Device> devices = new ArrayList<>();
+		deviceDao.findAll().forEach(devices::add);
+		return devices;
 	}
 
-	public Device getDeviceById(Long id) {
-		// @todo implement
-		return null;
+	public Optional<Device> getDevice(Long id) {
+		return deviceDao.findById(id);
 	}
 
-	public void insertDevice(Device device) {
-		// @todo implement
+	public void addDevice(Device device) {
+		deviceDao.save(device);
 	}
 
-	public void removeDeviceById(Long id) {
-		// @todo implement
+	public void deleteDevice(Long id) {
+		deviceDao.deleteById(id);
 	}
 
 	public void updateDevice(Device device) {
-		// @todo implement
+		deviceDao.save(device);
 	}
 }

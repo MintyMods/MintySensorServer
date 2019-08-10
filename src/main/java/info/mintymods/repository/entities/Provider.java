@@ -1,9 +1,11 @@
 package info.mintymods.repository.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import info.mintymods.repository.entities.enums.ProviderType;
@@ -12,9 +14,10 @@ import info.mintymods.repository.entities.enums.ProviderType;
 @Table(name = "minty_provider")
 public class Provider extends BaseEntity {
 
-	private final static String ICON = "fab fa-cloudscale";
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_provider_gen")
+	@SequenceGenerator(name = "minty_provider_gen", sequenceName = "MINTY_PROVIDER_SEQ")
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	private ProviderType type;
 
@@ -25,43 +28,11 @@ public class Provider extends BaseEntity {
 		this.id = id;
 		this.type = type;
 		this.label = label;
-	}
-
-	public String getIcon() {
-		return ICON;
-	}
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public Label getLabel() {
-		return label;
+		icon = "fab fa-cloudscale";
 	}
 
 	public ProviderType getType() {
 		return type;
-	}
-
-	@Override
-	public boolean isActive() {
-		return active;
-	}
-
-	@Override
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@Override
-	public void setLabel(Label label) {
-		this.label = label;
 	}
 
 	public void setType(ProviderType type) {

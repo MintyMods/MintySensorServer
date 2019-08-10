@@ -1,18 +1,21 @@
 package info.mintymods.repository.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "minty_module")
 public class Module extends BaseEntity {
 
-	private final static String ICON = "fal fa-solar-panel";
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_module_gen")
+	@SequenceGenerator(name = "minty_module_gen", sequenceName = "MINTY_MODULE_SEQ")
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	private ModuleDependency[] dependencies;
 
@@ -22,46 +25,14 @@ public class Module extends BaseEntity {
 	public Module(Label label, ModuleDependency[] dependencies) {
 		this.label = label;
 		this.dependencies = dependencies;
-	}
-
-	public String getIcon() {
-		return ICON;
+		icon = "fal fa-solar-panel";
 	}
 
 	public ModuleDependency[] getDependencies() {
 		return dependencies;
 	}
 
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public Label getLabel() {
-		return label;
-	}
-
-	@Override
-	public boolean isActive() {
-		return active;
-	}
-
-	@Override
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
 	public void setDependencies(ModuleDependency[] dependencies) {
 		this.dependencies = dependencies;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@Override
-	public void setLabel(Label label) {
-		this.label = label;
 	}
 }

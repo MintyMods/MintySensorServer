@@ -8,7 +8,6 @@ import static info.mintymods.msm.MsmSensorType.USAGE;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -19,7 +18,7 @@ import info.mintymods.repository.entities.Reading;
 
 @Repository
 @Qualifier("fakeData")
-public class FakeReadingDaoImpl implements ReadingDoa {
+public abstract class FakeReadingDaoImpl implements ReadingDoa {
 
 	private static Map<Long, Reading> readings;
 	static {
@@ -59,67 +58,5 @@ public class FakeReadingDaoImpl implements ReadingDoa {
 		final Reading original = readings.get(reading.getId());
 		original.setLabel(reading.getLabel());
 		readings.put(reading.getId(), original);
-	}
-
-	@Override
-	public <S extends Reading> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends Reading> Iterable<S> saveAll(Iterable<S> entities) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Optional<Reading> findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean existsById(Long id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Iterable<Reading> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterable<Reading> findAllById(Iterable<Long> ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void delete(Reading entity) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void deleteAll(Iterable<? extends Reading> entities) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void deleteAll() {
-		// TODO Auto-generated method stub
 	}
 }

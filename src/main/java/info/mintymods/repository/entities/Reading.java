@@ -1,20 +1,23 @@
 package info.mintymods.repository.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import info.mintymods.msm.MsmSensorType;
 
 @Entity
-@Table(name = "minty_provider")
+@Table(name = "minty_reading")
 public class Reading extends BaseEntity {
 
-	private final static String ICON = "fab fa-cloudscale";
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_reading_gen")
+	@SequenceGenerator(name = "minty_reading_gen", sequenceName = "MINTY_READING_SEQ")
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	private MsmSensorType type;
 	private int sensorIndex;
@@ -24,29 +27,16 @@ public class Reading extends BaseEntity {
 	public Reading() {
 	}
 
-	public Reading(Long id, MsmSensorType type, Label label, int sensor_index, String unit, double value) {
+	public Reading(Long id, MsmSensorType type, Label label, int sensorIndex, String unit, double value) {
 		this.type = type;
 		this.label = label;
-		sensorIndex = sensor_index;
 		this.unit = unit;
 		this.value = value;
+		this.sensorIndex = sensorIndex;
+		icon = "fab fa-cloudscale";
 	}
 
-	public String getIcon() {
-		return ICON;
-	}
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public Label getLabel() {
-		return label;
-	}
-
-	public int getSensor_index() {
+	public int getSensorIndex() {
 		return sensorIndex;
 	}
 
@@ -62,26 +52,7 @@ public class Reading extends BaseEntity {
 		return value;
 	}
 
-	@Override
-	public boolean isActive() {
-		return active;
-	}
-
-	@Override
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@Override
-	public void setLabel(Label label) {
-		this.label = label;
-	}
-
-	public void setSensor_index(int sensor_index) {
+	public void setSensorIndex(int sensor_index) {
 		sensorIndex = sensor_index;
 	}
 

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -15,10 +16,10 @@ import info.mintymods.repository.entities.enums.ProtocolType;
 @Table(name = "minty_host")
 public class Host extends BaseEntity {
 
-	private final static String ICON = "fal fa-network-wired";
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_host_gen")
+	@SequenceGenerator(name = "minty_host_gen", sequenceName = "MINTY_HOST_SEQ")
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	@NotBlank(message = "HostType is mandatory")
 	private HostType type;
@@ -36,20 +37,7 @@ public class Host extends BaseEntity {
 		this.protocol = protocol;
 		this.port = port;
 		this.label = label;
-	}
-
-	public String getIcon() {
-		return ICON;
-	}
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public Label getLabel() {
-		return label;
+		icon = "fal fa-network-wired";
 	}
 
 	public int getPort() {
@@ -64,27 +52,8 @@ public class Host extends BaseEntity {
 		return type;
 	}
 
-	@Override
-	public boolean isActive() {
-		return active;
-	}
-
-	@Override
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
 	public void setHostType(HostType type) {
 		this.type = type;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@Override
-	public void setLabel(Label label) {
-		this.label = label;
 	}
 
 	public void setPort(int port) {

@@ -1,20 +1,19 @@
 package info.mintymods.repository.entities;
 
-import java.util.List;
-
-import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
 
-@Entity
-@Table(name = "minty_module_dependency")
-public class ModuleDependency extends Audit {
+// @Entity
+// @Table(name = "minty_module_dependency")
+public class ModuleDependency extends BaseEntity {
 
-	private final static String ICON = "fab fa-git-alt";
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_module_dependency_gen")
+	@SequenceGenerator(name = "minty_module_dependency_gen", sequenceName = "MINTY_MODULE_DEPENDENCY_SEQ")
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	private Label dependency;
 
@@ -23,31 +22,19 @@ public class ModuleDependency extends Audit {
 	public ModuleDependency() {
 	}
 
-	public ModuleDependency(Long id, Label dependency, List<String> script, List<String> css) {
+	public ModuleDependency(Long id, Label dependency) {
 		this.id = id;
 		this.dependency = dependency;
+		icon = "fab fa-git-alt";
 		// this.script = script;
 		// this.css = css;
-	}
-
-	public String getIcon() {
-		return ICON;
 	}
 
 	public Label getDependency() {
 		return dependency;
 	}
 
-	@Override
-	public Long getId() {
-		return id;
-	}
-
 	public void setDependency(Label dependency) {
 		this.dependency = dependency;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 }

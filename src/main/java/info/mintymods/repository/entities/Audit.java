@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,47 +15,44 @@ import javax.persistence.Table;
 public class Audit {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_audit_gen")
+	@SequenceGenerator(name = "minty_audit_gen", sequenceName = "MINTY_AUDIT_SEQ")
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
-	private Date dateCreated = new Date();
-	private Date dateAmended;
-	private String whoCreated;
-	private String whoAmended;
+	private Date createdDate;
+	private String createdUser;
+	private Date amendedDate;
+	private String amendedUser;
 
-	public Long getId() {
-		return id;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public Date getDate_amended() {
-		return dateAmended;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
-	public Date getDate_created() {
-		return dateCreated;
+	public String getCreatedUser() {
+		return createdUser;
 	}
 
-	public String getWho_amended() {
-		return whoAmended;
+	public void setCreatedUser(String createdUser) {
+		this.createdUser = createdUser;
 	}
 
-	public String getWho_created() {
-		return whoCreated;
+	public String getAmendedUser() {
+		return amendedUser;
 	}
 
-	public void setDate_amended(Date date_amended) {
-		dateAmended = date_amended;
+	public void setAmendedUser(String amendedUser) {
+		this.amendedUser = amendedUser;
 	}
 
-	public void setDate_created(Date date_created) {
-		dateCreated = date_created;
+	public Date getAmendedDate() {
+		return amendedDate;
 	}
 
-	public void setWho_amended(String who_amended) {
-		whoAmended = who_amended;
-	}
-
-	public void setWho_created(String who_created) {
-		whoCreated = who_created;
+	public void setAmendedDate(Date amendedDate) {
+		this.amendedDate = amendedDate;
 	}
 }

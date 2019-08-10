@@ -1,18 +1,21 @@
 package info.mintymods.repository.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "minty_menu_section")
 public class MenuSection extends BaseEntity {
 
-	private final static String ICON = "fal fa-ellipsis-v";
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_menu_section_gen")
+	@SequenceGenerator(name = "minty_menu_section_gen", sequenceName = "MINTY_MENU_SECTION_SEQ")
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	private String section;
 
@@ -22,43 +25,11 @@ public class MenuSection extends BaseEntity {
 	public MenuSection(Label label, String section) {
 		this.label = label;
 		this.section = section;
-	}
-
-	public String getIcon() {
-		return ICON;
-	}
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public Label getLabel() {
-		return label;
+		icon = "fal fa-ellipsis-v";
 	}
 
 	public String getSection() {
 		return section;
-	}
-
-	@Override
-	public boolean isActive() {
-		return active;
-	}
-
-	@Override
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@Override
-	public void setLabel(Label label) {
-		this.label = label;
 	}
 
 	public void setSection(String section) {

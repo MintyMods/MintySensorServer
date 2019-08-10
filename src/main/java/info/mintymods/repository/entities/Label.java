@@ -1,5 +1,11 @@
 package info.mintymods.repository.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import info.mintymods.msm.MsmSensorType;
@@ -7,9 +13,15 @@ import info.mintymods.repository.entities.enums.HostType;
 import info.mintymods.repository.entities.enums.ProviderType;
 import info.mintymods.repository.entities.enums.ViewType;
 
+@Entity
 @Table(name = "minty_label")
 public class Label {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_label_gen")
+	@SequenceGenerator(name = "minty_label_gen", sequenceName = "MINTY_LABEL_SEQ")
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
 	private String name;
 	private String desc;
 	private String icon;
@@ -58,7 +70,7 @@ public class Label {
 		icon = type.getIcon();
 	}
 
-	public String getDescription() {
+	public String getDesc() {
 		return desc;
 	}
 
@@ -70,8 +82,8 @@ public class Label {
 		return name;
 	}
 
-	public void setDescription(String description) {
-		desc = description;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 	public void setIcon(String icon) {

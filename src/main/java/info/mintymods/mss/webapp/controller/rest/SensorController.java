@@ -1,4 +1,4 @@
-package info.mintymods.mss.webapp.controller;
+package info.mintymods.mss.webapp.controller.rest;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -41,12 +41,12 @@ public class SensorController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> insertSensor(@RequestBody Sensor sensor) {
 		sensorService.addSensor(sensor);
-		return new ResponseEntity<>("result successful result", HttpStatus.OK);
+		return new ResponseEntity<String>("Sensor " + sensor.getId() + " added", HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateSensor(@RequestBody Sensor sensor) {
 		sensorService.updateSensor(sensor);
-		return new ResponseEntity<>("Sensor " + sensor.getId() + " updated", HttpStatus.OK);
+		return new ResponseEntity<String>("Sensor " + sensor.getId() + " updated", HttpStatus.OK);
 	}
 }

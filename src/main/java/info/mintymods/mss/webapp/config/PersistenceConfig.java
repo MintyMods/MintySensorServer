@@ -23,6 +23,7 @@ public class PersistenceConfig {
 		final EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 		final EmbeddedDatabase db = builder
 				.setType(EmbeddedDatabaseType.H2)
+				.setName("MintySensorServerDatabase")
 				// .addScript("sql/data.sql")
 				.build();
 		return db;

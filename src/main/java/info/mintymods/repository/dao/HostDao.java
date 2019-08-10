@@ -1,8 +1,8 @@
 package info.mintymods.repository.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import info.mintymods.repository.entities.Host;
 
-public interface HostDao extends CrudRepository<Host, Long> {
+public interface HostDao extends PagingAndSortingRepository<Host, Long> {
 }
