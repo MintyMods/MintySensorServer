@@ -1,26 +1,19 @@
 package info.mintymods.repository.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import org.hibernate.envers.Audited;
 
 import info.mintymods.repository.entities.enums.HostType;
 import info.mintymods.repository.entities.enums.ProtocolType;
 
+@Audited
 @Entity
 @Table(name = "minty_host")
 public class Host extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_host_gen")
-	@SequenceGenerator(name = "minty_host_gen", sequenceName = "MINTY_HOST_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
 	@NotBlank(message = "HostType is mandatory")
 	private HostType type;
 	@NotBlank(message = "Protocol is mandatory")

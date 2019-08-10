@@ -1,24 +1,17 @@
 package info.mintymods.repository.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.envers.Audited;
 
 import info.mintymods.repository.entities.enums.ProviderType;
 
+@Audited
 @Entity
 @Table(name = "minty_provider")
 public class Provider extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_provider_gen")
-	@SequenceGenerator(name = "minty_provider_gen", sequenceName = "MINTY_PROVIDER_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
 	private ProviderType type;
 
 	public Provider() {

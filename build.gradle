@@ -38,6 +38,7 @@ dependencies {
 
   	implementation("com.h2database:h2:1.4.197")
     compile group: 'org.hibernate', name: 'hibernate-envers', version: '5.4.4.Final'
+	compile group: 'org.javassist', name: 'javassist', version: '3.25.0-GA'
   	implementation("org.codehaus.groovy:groovy:2.5.3")
 	implementation('org.modelmapper:modelmapper:0.7.5')
   	implementation("org.bouncycastle:bcpkix-jdk15on:1.58")

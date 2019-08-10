@@ -10,11 +10,6 @@ import org.hibernate.envers.Audited;
 @Table(name = "minty_view")
 public class View extends BaseEntity {
 
-	// @Id
-	// @GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_view_gen")
-	// @SequenceGenerator(name = "minty_view_gen", sequenceName = "MINTY_VIEW_SEQ")
-	// @Column(name = "id", updatable = false, nullable = false)
-	// private Long id;
 	public View() {
 	}
 

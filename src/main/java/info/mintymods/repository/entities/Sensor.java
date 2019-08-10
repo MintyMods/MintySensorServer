@@ -10,11 +10,6 @@ import org.hibernate.envers.Audited;
 @Table(name = "minty_sensor")
 public class Sensor extends BaseEntity {
 
-	// @Id
-	// @GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_sensor_gen")
-	// @SequenceGenerator(name = "minty_sensor_gen", sequenceName = "MINTY_SENSOR_SEQ")
-	// @Column(name = "id", updatable = false, nullable = false)
-	// private Long id;
 	private int instance;
 
 	public Sensor() {

@@ -1,24 +1,17 @@
 package info.mintymods.repository.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.envers.Audited;
 
 import info.mintymods.msm.MsmSensorType;
 
+@Audited
 @Entity
 @Table(name = "minty_reading")
 public class Reading extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_reading_gen")
-	@SequenceGenerator(name = "minty_reading_gen", sequenceName = "MINTY_READING_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
 	private MsmSensorType type;
 	private int sensorIndex;
 	private String unit;

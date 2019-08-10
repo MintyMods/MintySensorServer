@@ -12,8 +12,6 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-// @Entity
-// @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
 public class BaseEntity {
 
@@ -22,8 +20,6 @@ public class BaseEntity {
 	@SequenceGenerator(name = "minty_base_gen", sequenceName = "MINTY_BASE_SEQ")
 	@Column(name = "id", updatable = false, nullable = false)
 	protected Long id;
-	@OneToOne(cascade = {CascadeType.ALL})
-	protected Audit audit = new Audit();
 	@OneToOne(cascade = {CascadeType.ALL})
 	protected Label label;
 	protected boolean active = true;
@@ -55,14 +51,6 @@ public class BaseEntity {
 
 	public void setActive(boolean active) {
 		this.active = active;
-	}
-
-	public Audit getAudit() {
-		return audit;
-	}
-
-	public void setAudit(Audit audit) {
-		this.audit = audit;
 	}
 
 	@Override
