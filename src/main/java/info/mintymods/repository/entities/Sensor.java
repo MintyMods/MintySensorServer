@@ -3,11 +3,8 @@ package info.mintymods.repository.entities;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 import info.mintymods.msm.MsmSensor;
 
-@Audited
 @Entity
 @Table(name = "minty_sensor")
 public class Sensor extends BaseEntity {

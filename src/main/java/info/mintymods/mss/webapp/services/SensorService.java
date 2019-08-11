@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import info.mintymods.msm.MsmSensor;
 import info.mintymods.repository.dao.SensorDoa;
 import info.mintymods.repository.entities.Sensor;
 
@@ -37,9 +36,5 @@ public class SensorService {
 
 	public void updateSensor(Sensor sensor) {
 		sensorDoa.save(sensor);
-	}
-
-	public void addSensor(MsmSensor sensor) {
-		sensorDoa.save(new Sensor(sensor));
 	}
 }

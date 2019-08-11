@@ -1,23 +1,8 @@
 package info.mintymods.repository.entities.enums;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "minty_host_type")
 public enum HostType {
 	LOCALHOST("Local Host", "fal fa-home"), REMOTEHOST("Remote Host", "fal fa-project-diagram");
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_host_type_gen")
-	@SequenceGenerator(name = "minty_host_type_gen", sequenceName = "MINTY_HOST_TYPE_SEQ")
-	@Column(name = "recordId", updatable = false, nullable = false)
-	private Long recordId;
 	private String desc;
 	private String icon;
 

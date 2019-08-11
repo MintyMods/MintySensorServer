@@ -3,9 +3,9 @@ package info.mintymods.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MssPathUtils {
+public class MintyPathUtils {
 
-	private static final Logger log = LoggerFactory.getLogger(MssPathUtils.class);
+	private static final Logger log = LoggerFactory.getLogger(MintyPathUtils.class);
 	private static final String FILENAME_LOG4BACK_XML = "logback.xml";
 	private static final String FILENAME_CROSSDOMAIN_XML = "crossdomain.xml";
 	private static final String FILENAME_DATA_SQL = "data.sql";

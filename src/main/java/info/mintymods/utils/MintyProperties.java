@@ -30,7 +30,7 @@ public class MintyProperties {
 
 	public Properties load() {
 		properties = MintyFileUtils.getApplicationProperties();
-		log.debug("properties loaded @" + MssPathUtils.getApplicationPropertiesFilename() + " #" + properties);
+		log.debug("properties loaded @" + MintyPathUtils.getApplicationPropertiesFilename() + " #" + properties);
 		return properties;
 	}
 

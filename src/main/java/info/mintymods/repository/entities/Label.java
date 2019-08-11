@@ -8,15 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 import info.mintymods.msm.MsmSensorLabel;
 import info.mintymods.msm.MsmSensorType;
 import info.mintymods.repository.entities.enums.HostType;
 import info.mintymods.repository.entities.enums.ProviderType;
 import info.mintymods.repository.entities.enums.ViewType;
 
-@Audited
 @Entity
 @Table(name = "minty_label")
 public class Label {

@@ -24,7 +24,7 @@ public class MintyFileUtils {
 	public static Properties getApplicationProperties() {
 		final Properties properties = new Properties();
 		try {
-			final File file = getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename());
+			final File file = getFileFromClassPath(MintyPathUtils.getApplicationPropertiesFilename());
 			final InputStream in = new FileInputStream(file);
 			properties.load(in);
 		} catch (final IOException e) {
@@ -54,7 +54,7 @@ public class MintyFileUtils {
 
 	public static File getFileFromBinPath(String filename) {
 		try {
-			return ResourceUtils.getFile(MssPathUtils.getBinFolder() + filename);
+			return ResourceUtils.getFile(MintyPathUtils.getBinFolder() + filename);
 		} catch (final IOException e) {
 			log.error(e.getMessage(), e);
 			throw new RuntimeException(e.getMessage(), e);
@@ -80,7 +80,7 @@ public class MintyFileUtils {
 	}
 
 	public static File getKeyStoreFile() throws FileNotFoundException {
-		final String runtimeKeyStoreFolder = MssPathUtils.getRuntimeKeyStoreFolder();
+		final String runtimeKeyStoreFolder = MintyPathUtils.getRuntimeKeyStoreFolder();
 		final File dir = new File(runtimeKeyStoreFolder);
 		if (!dir.exists()) {
 			dir.mkdirs();

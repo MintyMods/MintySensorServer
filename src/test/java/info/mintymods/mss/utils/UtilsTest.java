@@ -7,7 +7,7 @@ import java.io.File;
 import org.junit.Test;
 
 import info.mintymods.utils.MintyFileUtils;
-import info.mintymods.utils.MssPathUtils;
+import info.mintymods.utils.MintyPathUtils;
 
 public class UtilsTest {
 
@@ -47,7 +47,7 @@ public class UtilsTest {
 	// }
 	@Test
 	public void getFileFromClassPath() {
-		final File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename());
+		final File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MintyPathUtils.getApplicationPropertiesFilename());
 		assertTrue(fileFromClassPath.exists());
 	}
 }

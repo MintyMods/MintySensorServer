@@ -12,7 +12,7 @@ import info.mintymods.msm.MsmMonitorRequest;
 
 public class MsmJniWrapper {
 
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	// private static final String SOURCE = "MSM[JSON]EXAMPLE";
 	public static final String SOURCE = "MSM[JSON]HWiNFO";
 	private static final Logger log = LoggerFactory.getLogger(MsmJniWrapper.class);
@@ -75,5 +75,5 @@ public class MsmJniWrapper {
 		}
 	}
 
-	public native String processRequest(String json);
+	protected native String processRequest(String json);
 }

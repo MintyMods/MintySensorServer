@@ -17,6 +17,7 @@ import org.hibernate.envers.Audited;
 @Table(name = "minty_menu_line")
 public class MenuLine extends BaseEntity {
 
+	private static final String ICON = "fal fa-ellipsis-h";
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_menu_line_gen")
 	@SequenceGenerator(name = "minty_menu_line_gen", sequenceName = "MINTY_MENU_LINE_SEQ")
@@ -30,10 +31,10 @@ public class MenuLine extends BaseEntity {
 	}
 
 	public MenuLine(MenuSection parent, Label label, String url) {
-		section = parent;
-		this.label = label;
-		this.url = url;
-		icon = "fal fa-ellipsis-h";
+		setMenuSection(parent);
+		setLabel(label);
+		setUrl(url);
+		setIcon(ICON);
 	}
 
 	public MenuSection getParentId() {

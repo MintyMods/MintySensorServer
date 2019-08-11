@@ -26,6 +26,7 @@ public class BaseEntity {
 	protected Label label;
 	protected boolean active = true;
 	protected String id;
+	// @Column(name = "icon", updatable = false, nullable = false)
 	protected String icon;
 
 	public String getIcon() {

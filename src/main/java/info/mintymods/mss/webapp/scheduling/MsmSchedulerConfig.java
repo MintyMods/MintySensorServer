@@ -9,6 +9,7 @@ import org.quartz.Trigger;
 import org.quartz.spi.JobFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
@@ -20,10 +21,14 @@ import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 
+import info.mintymods.mss.webapp.config.MintyConfig;
+
 @Configuration
 public class MsmSchedulerConfig {
 
 	private static final Logger log = LoggerFactory.getLogger(MsmSchedulerConfig.class);
+	@Autowired
+	MintyConfig config;
 
 	@Bean
 	public JobFactory jobFactory(ApplicationContext applicationContext) {
@@ -45,12 +50,12 @@ public class MsmSchedulerConfig {
 
 	@Bean
 	public SimpleTriggerFactoryBean msmSchedulerJobTrigger(@Qualifier("msmSchedulerJobDetail") JobDetail jobDetail,
-			@Value("${msm.scheduler.job.frequency}") long frequency) {
-		log.info("msmSchedulerJobTrigger msm.scheduler.job.frequency:" + frequency);
+			@Value("${minty.scheduler.frequency}") long frequency) {
 		final SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();
 		factoryBean.setJobDetail(jobDetail);
-		factoryBean.setStartDelay(10000L);
-		factoryBean.setRepeatInterval(frequency);
+		log.debug("minty.scheduler.delay@" + config.getScheduler().getDelay());
+		factoryBean.setStartDelay(config.getScheduler().getDelay());
+		factoryBean.setRepeatInterval(config.getScheduler().getFrequency());
 		factoryBean.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
 		return factoryBean;
 	}
@@ -58,7 +63,7 @@ public class MsmSchedulerConfig {
 	@Bean
 	public Properties quartzProperties() throws IOException {
 		final PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-		propertiesFactoryBean.setLocation(new ClassPathResource("/config/quartz.properties"));
+		propertiesFactoryBean.setLocation(new ClassPathResource(config.getScheduler().getPropertiesFile()));
 		propertiesFactoryBean.afterPropertiesSet();
 		return propertiesFactoryBean.getObject();
 	}

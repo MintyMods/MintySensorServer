@@ -3,15 +3,14 @@ package info.mintymods.repository.entities;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
+import info.mintymods.msm.MsmSensorReading;
 import info.mintymods.msm.MsmSensorType;
 
-@Audited
 @Entity
 @Table(name = "minty_reading")
 public class Reading extends BaseEntity {
 
+	private static final String ICON = "fab fa-cloudscale";
 	private MsmSensorType type;
 	private int sensorIndex;
 	private String unit;
@@ -21,12 +20,21 @@ public class Reading extends BaseEntity {
 	}
 
 	public Reading(Long recordId, MsmSensorType type, Label label, int sensorIndex, String unit, double value) {
-		this.type = type;
-		this.label = label;
-		this.unit = unit;
-		this.value = value;
-		this.sensorIndex = sensorIndex;
-		icon = "fab fa-cloudscale";
+		setType(type);
+		setLabel(label);
+		setUnit(unit);
+		setValue(value);
+		setSensorIndex(sensorIndex);
+		setIcon(ICON);
+	}
+
+	public Reading(MsmSensorReading reading) {
+		setType(reading.getType());
+		setLabel(reading.getLabel());
+		setUnit(reading.getUnit());
+		setValue(reading.getValue());
+		setSensorIndex(reading.getIndex());
+		setIcon(ICON);
 	}
 
 	public int getSensorIndex() {

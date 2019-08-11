@@ -1,24 +1,9 @@
 package info.mintymods.repository.entities.enums;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "minty_provider_type")
 public enum ProviderType {
 	HWINFO("HWiNFO", ProtocolType.HTTPS, "www.hwinfo.com", "fal fa-info"), GPUZ("GPU-Z", ProtocolType.HTTPS, "www.techpowerup.com/gpuz/",
 			"fal fa-user-shield"), OHM("Open Hardware Monitor", ProtocolType.HTTPS, "openhardwaremonitor.org", "fal fa-microchip");
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_provider_type_gen")
-	@SequenceGenerator(name = "minty_provider_type_gen", sequenceName = "MINTY_PROVIDER_TYPE_SEQ")
-	@Column(name = "recordId", updatable = false, nullable = false)
-	private Long recordId;
 	private String desc;
 	private String url;
 	private ProtocolType protocol;

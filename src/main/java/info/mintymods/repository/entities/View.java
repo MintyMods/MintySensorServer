@@ -10,12 +10,14 @@ import org.hibernate.envers.Audited;
 @Table(name = "minty_view")
 public class View extends BaseEntity {
 
+	final static String ICON = "fal fa-eye";
+
 	public View() {
 	}
 
 	public View(Long recordId, Label label) {
 		this.recordId = recordId;
 		this.label = label;
-		icon = "fal fa-eye";
+		// icon =
 	}
 }
