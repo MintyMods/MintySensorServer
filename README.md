@@ -203,7 +203,6 @@ Add additional notes about how to deploy this on a live system
 ## Built With
 
 * [Gradle](https://gradle.org/) - Dependency Management
-* [HandleBars](https://handlebarsjs.com/) - Template Engine
 * [Spring Boot](https://start.spring.io/) The right stack for the right job
 * [Chart.js](https://www.chartjs.org/) Simple yet flexible JavaScript charting
 

@@ -20,8 +20,6 @@
 		<jpda.suspend>n</jpda.suspend>
 		<jpda.address>8889</jpda.address>
         <commons.lang3.version>3.7</commons.lang3.version>
-        <handlebars.spring.boot.starter.version>0.3.1</handlebars.spring.boot.starter.version>
-        <handlebars.helpers.version>4.1.0</handlebars.helpers.version>
         <junit.version>4.12</junit.version>
         <logback.version>1.2.3</logback.version>
         <lombok.version>1.16.18</lombok.version>
@@ -57,11 +55,6 @@
             <artifactId>spring-boot-starter-mustache</artifactId>
         </dependency-->
         <dependency>
-            <groupId>pl.allegro.tech.boot</groupId>
-            <artifactId>handlebars-spring-boot-starter</artifactId>
-            <version>${handlebars.spring.boot.starter.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
@@ -93,27 +86,6 @@
             <artifactId>spring-security-test</artifactId>
         </dependency>
 
-        <!-- Handlebar Helpers -->
-        <dependency>
-            <groupId>com.github.jknack</groupId>
-            <artifactId>handlebars-helpers</artifactId>
-            <version>${handlebars.helpers.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.jknack</groupId>
-            <artifactId>handlebars-jackson2</artifactId>
-            <version>${handlebars.helpers.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.jknack</groupId>
-            <artifactId>handlebars-humanize</artifactId>
-            <version>${handlebars.helpers.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.jknack</groupId>
-            <artifactId>handlebars-markdown</artifactId>
-            <version>${handlebars.helpers.version}</version>
-        </dependency>
 
         <!-- Database -->
         <dependency>
@@ -153,27 +125,6 @@
    		<version>1.58</version>
 	</dependency>	
 <!-- End Imports -->
-
-<!-- 
-
-<dependency>
-		    <groupId>javax.validation</groupId>
-		    <artifactId>validation-api</artifactId>
-		    <version>2.0.1.Final</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.github.jknack</groupId>
-		    <artifactId>handlebars-springmvc</artifactId>
-		    <version>4.1.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.parboiled</groupId>
-		    <artifactId>parboiled-core</artifactId>
-		    <version>1.0.0</version>
-		</dependency>
- -->
-
-
 
     </dependencies>
     

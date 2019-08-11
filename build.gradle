@@ -70,7 +70,6 @@ dependencies {
     //compile 'org.webjars:jquery-cookie:1.4.1-1'
 	compile 'org.webjars:jquery.sparkline:2.1.2'
 	compile 'org.webjars:jquery-knob:1.2.11'
-	compile 'org.webjars:handlebars:4.0.14'
 	compile 'org.webjars.bower:pnotify:4.0.0'
 	compile 'org.webjars:font-awesome:5.9.0'
 	// https://mvnrepository.com/artifact/org.webjars.npm/axios

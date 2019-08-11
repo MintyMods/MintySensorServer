@@ -20,8 +20,6 @@
 		<jpda.suspend>n</jpda.suspend>
 		<jpda.address>8889</jpda.address>
         <commons.lang3.version>3.7</commons.lang3.version>
-        <handlebars.spring.boot.starter.version>0.3.1</handlebars.spring.boot.starter.version>
-        <handlebars.helpers.version>4.1.0</handlebars.helpers.version>
         <junit.version>4.12</junit.version>
         <logback.version>1.2.3</logback.version>
         <lombok.version>1.16.18</lombok.version>
@@ -91,28 +89,6 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
-        </dependency>
-
-        <!-- Handlebar Helpers -->
-        <dependency>
-            <groupId>com.github.jknack</groupId>
-            <artifactId>handlebars-helpers</artifactId>
-            <version>${handlebars.helpers.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.jknack</groupId>
-            <artifactId>handlebars-jackson2</artifactId>
-            <version>${handlebars.helpers.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.jknack</groupId>
-            <artifactId>handlebars-humanize</artifactId>
-            <version>${handlebars.helpers.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.jknack</groupId>
-            <artifactId>handlebars-markdown</artifactId>
-            <version>${handlebars.helpers.version}</version>
         </dependency>
 
         <!-- Database -->
