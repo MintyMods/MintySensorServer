@@ -9,9 +9,9 @@ public class MsmSensorLabel {
 
 	private String value;
 	private String description;
+	private String icon;
 
 	public MsmSensorLabel() {
-
 	}
 
 	public MsmSensorLabel(String value, String description) {
@@ -43,9 +43,16 @@ public class MsmSensorLabel {
 	public String toString() {
 		try {
 			return MintyJsonUtils.getMapper().writeValueAsString(this);
-		} catch (JsonProcessingException e) {
+		} catch (final JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
 
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 }

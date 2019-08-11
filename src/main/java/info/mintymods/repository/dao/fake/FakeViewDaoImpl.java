@@ -32,7 +32,7 @@ public abstract class FakeViewDaoImpl implements ViewDao {
 	}
 
 	public void addView(View view) {
-		views.put(view.getId(), view);
+		views.put(view.getRecordId(), view);
 	}
 
 	public Collection<View> getAllViews() {
@@ -48,8 +48,8 @@ public abstract class FakeViewDaoImpl implements ViewDao {
 	}
 
 	public void updateView(View view) {
-		final View original = views.get(view.getId());
+		final View original = views.get(view.getRecordId());
 		original.setLabel(view.getLabel());
-		views.put(view.getId(), original);
+		views.put(view.getRecordId(), original);
 	}
 }

@@ -11,8 +11,8 @@ public class ModuleDependency extends BaseEntity {
 	public ModuleDependency() {
 	}
 
-	public ModuleDependency(Long id, Label dependency) {
-		this.id = id;
+	public ModuleDependency(Long recordId, Label dependency) {
+		this.setRecordId(recordId);
 		this.dependency = dependency;
 		icon = "fab fa-git-alt";
 		// this.script = script;

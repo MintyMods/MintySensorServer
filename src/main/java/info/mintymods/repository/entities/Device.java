@@ -12,9 +12,10 @@ public class Device extends BaseEntity {
 
 	// private Sensor[] sensors;
 	// private Reading[] readings;
-	public Device(Long id, Label label) {
+	public Device(Long recordId, Label label) {
+		this.setRecordId(recordId);
 		icon = "fal fa-memory";
-		this.id = id;
+		this.setRecordId(recordId);
 		this.label = label;
 	}
 }

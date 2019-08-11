@@ -17,8 +17,8 @@ public enum ProviderType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_provider_type_gen")
 	@SequenceGenerator(name = "minty_provider_type_gen", sequenceName = "MINTY_PROVIDER_TYPE_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
+	@Column(name = "recordId", updatable = false, nullable = false)
+	private Long recordId;
 	private String desc;
 	private String url;
 	private ProtocolType protocol;

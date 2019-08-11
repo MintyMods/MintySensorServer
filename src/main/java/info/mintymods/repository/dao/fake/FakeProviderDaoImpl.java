@@ -30,7 +30,7 @@ public abstract class FakeProviderDaoImpl implements ProviderDao {
 	}
 
 	public void addProvider(Provider provider) {
-		providers.put(provider.getId(), provider);
+		providers.put(provider.getRecordId(), provider);
 	}
 
 	public Collection<Provider> getAllProviders() {
@@ -46,8 +46,8 @@ public abstract class FakeProviderDaoImpl implements ProviderDao {
 	}
 
 	public void updateProvider(Provider provider) {
-		final Provider original = providers.get(provider.getId());
+		final Provider original = providers.get(provider.getRecordId());
 		original.setLabel(provider.getLabel());
-		providers.put(provider.getId(), original);
+		providers.put(provider.getRecordId(), original);
 	}
 }

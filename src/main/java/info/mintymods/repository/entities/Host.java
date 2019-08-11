@@ -24,8 +24,8 @@ public class Host extends BaseEntity {
 	public Host() {
 	}
 
-	public Host(Long id, HostType type, ProtocolType protocol, int port, Label label) {
-		this.id = id;
+	public Host(Long recordId, HostType type, ProtocolType protocol, int port, Label label) {
+		this.setRecordId(recordId);
 		this.type = type;
 		this.protocol = protocol;
 		this.port = port;

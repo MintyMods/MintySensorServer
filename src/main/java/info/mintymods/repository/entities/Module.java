@@ -18,8 +18,8 @@ public class Module extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_module_gen")
 	@SequenceGenerator(name = "minty_module_gen", sequenceName = "MINTY_MODULE_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
+	@Column(name = "recordId", updatable = false, nullable = false)
+	private Long recordId;
 	private ModuleDependency[] dependencies;
 
 	public Module() {

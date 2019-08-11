@@ -41,12 +41,12 @@ public class ProviderController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> insertHost(@RequestBody Provider provider) {
 		providerService.addProvider(provider);
-		return new ResponseEntity<String>("Provider " + provider.getId() + " added", HttpStatus.OK);
+		return new ResponseEntity<String>("Provider " + provider.getRecordId() + " added", HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateHost(@RequestBody Provider provider) {
 		providerService.updateProvider(provider);
-		return new ResponseEntity<String>("Provider " + provider.getId() + " updated", HttpStatus.OK);
+		return new ResponseEntity<String>("Provider " + provider.getRecordId() + " updated", HttpStatus.OK);
 	}
 }

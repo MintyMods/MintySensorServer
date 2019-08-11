@@ -20,8 +20,8 @@ public class MenuLine extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_menu_line_gen")
 	@SequenceGenerator(name = "minty_menu_line_gen", sequenceName = "MINTY_MENU_LINE_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
+	@Column(name = "recordId", updatable = false, nullable = false)
+	private Long recordId;
 	@OneToOne(cascade = {CascadeType.ALL})
 	private MenuSection section;
 	private String url;

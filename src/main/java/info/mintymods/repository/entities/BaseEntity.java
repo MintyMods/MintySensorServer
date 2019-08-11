@@ -12,22 +12,21 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import info.mintymods.msm.MsmSensorLabel;
+
 @MappedSuperclass
 public class BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_base_gen")
 	@SequenceGenerator(name = "minty_base_gen", sequenceName = "MINTY_BASE_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	protected Long id;
+	@Column(name = "recordId", updatable = false, nullable = false)
+	protected Long recordId;
 	@OneToOne(cascade = {CascadeType.ALL})
 	protected Label label;
 	protected boolean active = true;
+	protected String id;
 	protected String icon;
-
-	public Long getId() {
-		return id;
-	}
 
 	public String getIcon() {
 		return icon;
@@ -45,6 +44,10 @@ public class BaseEntity {
 		this.label = label;
 	}
 
+	public void setLabel(MsmSensorLabel label) {
+		this.label = new Label(label);
+	}
+
 	public boolean isActive() {
 		return active;
 	}
@@ -60,5 +63,21 @@ public class BaseEntity {
 		} catch (final JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Long getRecordId() {
+		return recordId;
+	}
+
+	public void setRecordId(Long recordId) {
+		this.recordId = recordId;
 	}
 }

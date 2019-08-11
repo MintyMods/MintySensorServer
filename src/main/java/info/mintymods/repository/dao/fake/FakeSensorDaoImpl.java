@@ -45,7 +45,7 @@ public abstract class FakeSensorDaoImpl implements SensorDoa {
 	}
 
 	public void addSensor(Sensor sensor) {
-		sensors.put(sensor.getId(), sensor);
+		sensors.put(sensor.getRecordId(), sensor);
 	}
 
 	public Collection<Sensor> getAllSensors() {
@@ -61,8 +61,8 @@ public abstract class FakeSensorDaoImpl implements SensorDoa {
 	}
 
 	public void updateSensor(Sensor newSensor) {
-		final Sensor oldSensor = sensors.get(newSensor.getId());
+		final Sensor oldSensor = sensors.get(newSensor.getRecordId());
 		oldSensor.setLabel(newSensor.getLabel());
-		sensors.put(newSensor.getId(), oldSensor);
+		sensors.put(newSensor.getRecordId(), oldSensor);
 	}
 }

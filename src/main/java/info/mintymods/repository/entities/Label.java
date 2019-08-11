@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 import org.hibernate.envers.Audited;
 
+import info.mintymods.msm.MsmSensorLabel;
 import info.mintymods.msm.MsmSensorType;
 import info.mintymods.repository.entities.enums.HostType;
 import info.mintymods.repository.entities.enums.ProviderType;
@@ -23,8 +24,8 @@ public class Label {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_label_gen")
 	@SequenceGenerator(name = "minty_label_gen", sequenceName = "MINTY_LABEL_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
+	@Column(name = "recordId", updatable = false, nullable = false)
+	private Long recordId;
 	private String name;
 	private String desc;
 	private String icon;
@@ -71,6 +72,12 @@ public class Label {
 		name = type.getName();
 		desc = type.getDesc();
 		icon = type.getIcon();
+	}
+
+	public Label(MsmSensorLabel label) {
+		name = label.getValue();
+		desc = label.getDescription();
+		icon = label.getIcon();
 	}
 
 	public String getDesc() {

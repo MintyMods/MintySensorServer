@@ -1,6 +1,6 @@
 buildscript {
   ext {
-    springBootVersion = "2.1.5.RELEASE"
+    springBootVersion = "2.1.7.RELEASE"
     
   }
   repositories {
@@ -11,7 +11,7 @@ buildscript {
   }
 }
 
-apply plugin: "groovy"
+//apply plugin: "groovy"
 apply plugin: "java"
 apply plugin: "eclipse"
 apply plugin: "org.springframework.boot"
@@ -26,20 +26,30 @@ repositories {
   mavenCentral()
 }
 
-dependencies {
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
 
+dependencies {
 	// Server Side Dependencies : Spring Boot & some good friends
+//	implementation("org.springframework.boot:spring-boot-devtools:${springBootVersion}") 
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	compile("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter:${springBootVersion}")
 	implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
 	implementation("org.springframework.boot:spring-boot-starter-test")
 	//implementation("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
 	//implementation("org.springframework.security:spring-security-config")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-	implementation("org.springframework.boot:spring-boot-devtools:${springBootVersion}") 
-
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.1.7.RELEASE'
   	implementation("com.h2database:h2:1.4.197")
     compile group: 'org.hibernate', name: 'hibernate-envers', version: '5.4.4.Final'
+	compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.1'
 	compile group: 'org.javassist', name: 'javassist', version: '3.25.0-GA'
-  	implementation("org.codehaus.groovy:groovy:2.5.3")
+  	//implementation("org.codehaus.groovy:groovy:2.5.3")
 	implementation('org.modelmapper:modelmapper:0.7.5')
   	implementation("org.bouncycastle:bcpkix-jdk15on:1.58")
   	compile group: 'org.jetbrains', name: 'annotations', version: '13.0'
@@ -52,7 +62,7 @@ dependencies {
   	implementation("javax.validation:validation-api:2.0.1.Final")
   	implementation("org.bouncycastle:bcpkix-jdk15on:1.58")
   	implementation("junit:junit:4.12")
-	compile group: 'org.freemarker', name: 'freemarker', version: '2.3.28'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: '1.1.7.RELEASE'
 	  
   
 	// Client Side Dependencies : BootStrap and some good friends

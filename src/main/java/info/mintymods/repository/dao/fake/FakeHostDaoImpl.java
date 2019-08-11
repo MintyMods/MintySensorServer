@@ -32,7 +32,7 @@ public abstract class FakeHostDaoImpl implements HostDao {
 	}
 
 	public void addHost(Host host) {
-		hosts.put(host.getId(), host);
+		hosts.put(host.getRecordId(), host);
 	}
 
 	public Collection<Host> getAllHosts() {
@@ -48,8 +48,8 @@ public abstract class FakeHostDaoImpl implements HostDao {
 	}
 
 	public void updateHost(Host host) {
-		final Host original = hosts.get(host.getId());
+		final Host original = hosts.get(host.getRecordId());
 		original.setLabel(host.getLabel());
-		hosts.put(host.getId(), original);
+		hosts.put(host.getRecordId(), original);
 	}
 }

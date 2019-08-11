@@ -39,7 +39,7 @@ public abstract class FakeReadingDaoImpl implements ReadingDoa {
 	}
 
 	public void addReading(Reading reading) {
-		readings.put(reading.getId(), reading);
+		readings.put(reading.getRecordId(), reading);
 	}
 
 	public Collection<Reading> getAllReadings() {
@@ -55,8 +55,8 @@ public abstract class FakeReadingDaoImpl implements ReadingDoa {
 	}
 
 	public void updateReading(Reading reading) {
-		final Reading original = readings.get(reading.getId());
+		final Reading original = readings.get(reading.getRecordId());
 		original.setLabel(reading.getLabel());
-		readings.put(reading.getId(), original);
+		readings.put(reading.getRecordId(), original);
 	}
 }

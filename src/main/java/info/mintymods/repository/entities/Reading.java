@@ -20,7 +20,7 @@ public class Reading extends BaseEntity {
 	public Reading() {
 	}
 
-	public Reading(Long id, MsmSensorType type, Label label, int sensorIndex, String unit, double value) {
+	public Reading(Long recordId, MsmSensorType type, Label label, int sensorIndex, String unit, double value) {
 		this.type = type;
 		this.label = label;
 		this.unit = unit;

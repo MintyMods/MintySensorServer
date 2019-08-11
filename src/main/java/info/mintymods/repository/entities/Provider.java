@@ -17,8 +17,8 @@ public class Provider extends BaseEntity {
 	public Provider() {
 	}
 
-	public Provider(Long id, ProviderType type, Label label) {
-		this.id = id;
+	public Provider(Long recordId, ProviderType type, Label label) {
+		this.setRecordId(recordId);
 		this.type = type;
 		this.label = label;
 		icon = "fab fa-cloudscale";

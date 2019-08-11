@@ -41,12 +41,12 @@ public class DeviceController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> insertHost(@RequestBody Device device) {
 		deviceService.addDevice(device);
-		return new ResponseEntity<String>("Device " + device.getId() + " added", HttpStatus.OK);
+		return new ResponseEntity<String>("Device " + device.getRecordId() + " added", HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateDevice(@RequestBody Device device) {
 		deviceService.updateDevice(device);
-		return new ResponseEntity<String>("Device " + device.getId() + " updated", HttpStatus.OK);
+		return new ResponseEntity<String>("Device " + device.getRecordId() + " updated", HttpStatus.OK);
 	}
 }

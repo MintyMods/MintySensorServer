@@ -47,12 +47,12 @@ public class ViewController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> insertView(@RequestBody View view) {
 		viewService.addView(view);
-		return new ResponseEntity<String>("View " + view.getId() + " added", HttpStatus.OK);
+		return new ResponseEntity<String>("View " + view.getRecordId() + " added", HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateView(@RequestBody View view) {
 		viewService.updateView(view);
-		return new ResponseEntity<String>("View " + view.getId() + " updated", HttpStatus.OK);
+		return new ResponseEntity<String>("View " + view.getRecordId() + " updated", HttpStatus.OK);
 	}
 }

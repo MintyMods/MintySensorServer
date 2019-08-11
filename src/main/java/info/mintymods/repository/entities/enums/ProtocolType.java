@@ -16,8 +16,8 @@ public enum ProtocolType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_protocol_type_gen")
 	@SequenceGenerator(name = "minty_protocol_type_gen", sequenceName = "MINTY_PROTOCOL_TYPE_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
+	@Column(name = "recordId", updatable = false, nullable = false)
+	private Long recordId;
 	private String desc;
 	private String icon;
 

@@ -16,8 +16,8 @@ public enum HostType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_host_type_gen")
 	@SequenceGenerator(name = "minty_host_type_gen", sequenceName = "MINTY_HOST_TYPE_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
+	@Column(name = "recordId", updatable = false, nullable = false)
+	private Long recordId;
 	private String desc;
 	private String icon;
 

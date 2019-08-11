@@ -41,12 +41,12 @@ public class HostController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> insertHost(@RequestBody Host host) {
 		hostService.addHost(host);
-		return new ResponseEntity<String>("Host " + host.getId() + " added", HttpStatus.OK);
+		return new ResponseEntity<String>("Host " + host.getRecordId() + " added", HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateHost(@RequestBody Host host) {
 		hostService.updateHost(host);
-		return new ResponseEntity<String>("Host " + host.getId() + " updated", HttpStatus.OK);
+		return new ResponseEntity<String>("Host " + host.getRecordId() + " updated", HttpStatus.OK);
 	}
 }

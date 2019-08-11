@@ -18,8 +18,8 @@ public class MenuSection extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_menu_section_gen")
 	@SequenceGenerator(name = "minty_menu_section_gen", sequenceName = "MINTY_MENU_SECTION_SEQ")
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
+	@Column(name = "recordId", updatable = false, nullable = false)
+	private Long recordId;
 	private String section;
 
 	public MenuSection() {
