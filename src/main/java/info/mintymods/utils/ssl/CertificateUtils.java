@@ -46,107 +46,112 @@ public class CertificateUtils {
 
 	private static final Logger log = LoggerFactory.getLogger(CertificateUtils.class);
 
-	public static KeyPair createKeyPair(SecureRandom random) throws NoSuchAlgorithmException {
-		KeyPairGenerator keypairGen = KeyPairGenerator.getInstance("EC");
+	public static KeyPair createKeyPair(final SecureRandom random) throws NoSuchAlgorithmException {
+		final KeyPairGenerator keypairGen = KeyPairGenerator.getInstance("EC");
 		keypairGen.initialize(256, random);
-		KeyPair keypair = keypairGen.generateKeyPair();
+		final KeyPair keypair = keypairGen.generateKeyPair();
 		return keypair;
 	}
 
 	public static void checkKeystoreExistsOrCreate() {
 		try {
-			KeyStore keyStore = KeyStore.getInstance("JKS");
-			File file = MintyFileUtils.getKeyStoreFile();
+			final KeyStore keyStore = KeyStore.getInstance("JKS");
+			final File file = MintyFileUtils.getKeyStoreFile();
 			if (file.exists()) {
-				keyStore.load(new FileInputStream(file), MintyConstants.PASSWORD);
-				if (!keyStore.containsAlias(MintyConstants.SSL_ALIAS)) {
-					createKeyStoreAndImportCertificate();
+				try (FileInputStream stream = new FileInputStream(file)) {
+					keyStore.load(stream, MintyConstants.PASSWORD);
+					if (!keyStore.containsAlias(MintyConstants.SSL_ALIAS)) {
+						createKeyStoreAndImportCertificate();
+					}
 				}
 			} else {
 				createKeyStoreAndImportCertificate();
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.error(e.getMessage(), e);
 			throw new RuntimeException(e.getMessage(), e);
 		}
-
 	}
 
 	public static void createKeyStoreAndImportCertificate() throws Exception {
-		SecureRandom random = new SecureRandom();
-		KeyPair keypair = createKeyPair(random);
-		X509Certificate[] certificates = getSelfSignedX509Certificate(keypair, random);
+		final SecureRandom random = new SecureRandom();
+		final KeyPair keypair = createKeyPair(random);
+		final X509Certificate[] certificates = getSelfSignedX509Certificate(keypair, random);
 		log.info("Creating Keystore");
 		createKeyStoreAndImportCertificate(keypair.getPrivate(), certificates);
 	}
 
-	public static void createKeyStoreAndImportCertificate(Key key, X509Certificate[] certificate) throws Exception {
-		KeyStore keyStore = KeyStore.getInstance("JKS");
-		File file = MintyFileUtils.getKeyStoreFile();
+	public static void createKeyStoreAndImportCertificate(final Key key, final X509Certificate[] certificate) throws Exception {
+		final KeyStore keyStore = KeyStore.getInstance("JKS");
+		final File file = MintyFileUtils.getKeyStoreFile();
 		if (file.exists()) {
 			log.debug("Certificate .keystore found @" + file.getAbsolutePath());
-			keyStore.load(new FileInputStream(file), MintyConstants.PASSWORD);
+			try (FileInputStream stream = new FileInputStream(file)) {
+				keyStore.load(stream, MintyConstants.PASSWORD);
+			}
 		} else {
 			log.debug("Certificate .keystore Not found, creating @" + file.getAbsolutePath());
-			keyStore.load(null, null);
-			keyStore.store(new FileOutputStream(file), MintyConstants.PASSWORD);
+			try (FileOutputStream stream = new FileOutputStream(file)) {
+				keyStore.load(null, null);
+				keyStore.store(stream, MintyConstants.PASSWORD);
+			}
 		}
 		log.info("Importing Certificate into Keystore");
 		importCertificateInKeyStore(key, certificate, keyStore, file);
 	}
 
-	private static void importCertificateInKeyStore(Key key, X509Certificate[] certificate, KeyStore keyStore,
-			File file) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException,
+	private static void importCertificateInKeyStore(final Key key, final X509Certificate[] certificate, final KeyStore keyStore,
+			final File file) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException,
 			FileNotFoundException {
-		keyStore.setKeyEntry(MintyConstants.SSL_ALIAS, key, MintyConstants.PASSWORD, certificate);
-		keyStore.store(new FileOutputStream(file), MintyConstants.PASSWORD);
+		try (FileOutputStream stream = new FileOutputStream(file)) {
+			keyStore.setKeyEntry(MintyConstants.SSL_ALIAS, key, MintyConstants.PASSWORD, certificate);
+			keyStore.store(stream, MintyConstants.PASSWORD);
+		}
 	}
 
-	public static X509Certificate[] getSelfSignedX509Certificate(KeyPair keypair, SecureRandom random)
+	public static X509Certificate[] getSelfSignedX509Certificate(final KeyPair keypair, final SecureRandom random)
 			throws Exception {
-		X509v3CertificateBuilder certificate = populateCertificateFields(random, keypair);
-		X509CertificateHolder holder = createBouncyCastleCertificate(keypair, certificate);
-		X509Certificate x509 = convertToJreCompatibleCertificate(holder);
-		X509Certificate[] certificates = {x509};
+		final X509v3CertificateBuilder certificate = populateCertificateFields(random, keypair);
+		final X509CertificateHolder holder = createBouncyCastleCertificate(keypair, certificate);
+		final X509Certificate x509 = convertToJreCompatibleCertificate(holder);
+		final X509Certificate[] certificates = {x509};
 		return certificates;
-
 	}
 
-	private static X509Certificate convertToJreCompatibleCertificate(X509CertificateHolder holder)
+	private static X509Certificate convertToJreCompatibleCertificate(final X509CertificateHolder holder)
 			throws CertificateException {
-		JcaX509CertificateConverter converter = new JcaX509CertificateConverter();
+		final JcaX509CertificateConverter converter = new JcaX509CertificateConverter();
 		converter.setProvider(new BouncyCastleProvider());
-		X509Certificate x509 = converter.getCertificate(holder);
+		final X509Certificate x509 = converter.getCertificate(holder);
 		return x509;
 	}
 
-	private static X509CertificateHolder createBouncyCastleCertificate(KeyPair keypair,
-			X509v3CertificateBuilder certificate) throws OperatorCreationException {
-		ContentSigner signer = new JcaContentSignerBuilder("SHA256withECDSA").build(keypair.getPrivate());
-		X509CertificateHolder holder = certificate.build(signer);
+	private static X509CertificateHolder createBouncyCastleCertificate(final KeyPair keypair,
+			final X509v3CertificateBuilder certificate) throws OperatorCreationException {
+		final ContentSigner signer = new JcaContentSignerBuilder("SHA256withECDSA").build(keypair.getPrivate());
+		final X509CertificateHolder holder = certificate.build(signer);
 		return holder;
 	}
 
-	private static X509v3CertificateBuilder populateCertificateFields(SecureRandom random, KeyPair keypair)
+	private static X509v3CertificateBuilder populateCertificateFields(final SecureRandom random, final KeyPair keypair)
 			throws CertIOException, IOException {
-		X500Name subject = new X500NameBuilder(BCStyle.INSTANCE).addRDN(BCStyle.CN, MintyConstants.DOMAIN_NAME).build();
-		byte[] id = new byte[20];
+		final X500Name subject = new X500NameBuilder(BCStyle.INSTANCE).addRDN(BCStyle.CN, MintyConstants.DOMAIN_NAME).build();
+		final byte[] id = new byte[20];
 		random.nextBytes(id);
-		BigInteger serial = new BigInteger(160, random);
-		X509v3CertificateBuilder certificate = new JcaX509v3CertificateBuilder(subject, serial,
+		final BigInteger serial = new BigInteger(160, random);
+		final X509v3CertificateBuilder certificate = new JcaX509v3CertificateBuilder(subject, serial,
 				Date.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneOffset.UTC).toInstant()),
 				Date.from(LocalDate.of(2035, 1, 1).atStartOfDay(ZoneOffset.UTC).toInstant()), subject,
 				keypair.getPublic());
 		certificate.addExtension(Extension.subjectKeyIdentifier, false, id);
 		certificate.addExtension(Extension.authorityKeyIdentifier, false, id);
-		BasicConstraints constraints = new BasicConstraints(true);
+		final BasicConstraints constraints = new BasicConstraints(true);
 		certificate.addExtension(Extension.basicConstraints, true, constraints.getEncoded());
-		KeyUsage usage = new KeyUsage(KeyUsage.keyCertSign | KeyUsage.digitalSignature);
+		final KeyUsage usage = new KeyUsage(KeyUsage.keyCertSign | KeyUsage.digitalSignature);
 		certificate.addExtension(Extension.keyUsage, false, usage.getEncoded());
-		ExtendedKeyUsage usageEx = new ExtendedKeyUsage(
+		final ExtendedKeyUsage usageEx = new ExtendedKeyUsage(
 				new KeyPurposeId[]{KeyPurposeId.id_kp_serverAuth, KeyPurposeId.id_kp_clientAuth});
 		certificate.addExtension(Extension.extendedKeyUsage, false, usageEx.getEncoded());
 		return certificate;
 	}
-
 }

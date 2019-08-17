@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -25,8 +24,9 @@ import info.mintymods.utils.ssl.CertificateUtils;
 public class MintySensorServer extends SpringBootServletInitializer {
 
 	private static final Logger log = LoggerFactory.getLogger(MintySensorServer.class);
+	public static MintyConfig config;
 
-	static void addFrameworkInitialisationHooks(SpringApplication application) {
+	static void addFrameworkInitialisationHooks(final SpringApplication application) {
 		log.info("Adding application init hooks listeners");
 		application.addListeners((ApplicationListener<ApplicationEnvironmentPreparedEvent>) event -> {
 			final String version = event.getEnvironment().getProperty("java.runtime.version");
@@ -40,13 +40,10 @@ public class MintySensorServer extends SpringBootServletInitializer {
 		});
 	}
 
-	public static void main(String[] args) {
-		// final SpringApplication application = new SpringApplication(MintySensorServer.class);
-		final ApplicationContext ctx = SpringApplication.run(MintySensorServer.class, args);
-		final MintyConfig config = ctx.getBean(MintyConfig.class);
-		final String url = config.getDatabase().getUrl();
-		final String alias = config.getDatabase().getAlias();
-		System.out.println(url + alias);
+	public static void main(final String[] args) {
+		config = SpringApplication.run(MintySensorServer.class, args).getBean(MintyConfig.class);
+		log.info("Database URL:" + config.getDatabase().getUrl());
+		log.info("Database Alias:" + config.getDatabase().getAlias());
 	}
 
 	public static ProviderType getProviderType() {

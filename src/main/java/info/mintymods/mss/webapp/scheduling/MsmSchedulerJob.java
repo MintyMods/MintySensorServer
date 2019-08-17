@@ -10,7 +10,6 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import info.mintymods.MintySensorServer;
 import info.mintymods.jni.MsmResponseFactory;
-import info.mintymods.mss.webapp.config.MintyConfig;
 import info.mintymods.mss.webapp.exception.MsmServiceProviderUnavailableException;
 import info.mintymods.mss.webapp.services.MsmResponseService;
 
@@ -19,12 +18,10 @@ public class MsmSchedulerJob extends QuartzJobBean {
 	private static final Logger log = LoggerFactory.getLogger(MsmSchedulerJob.class);
 	@Autowired
 	private MsmResponseService service;
-	@Autowired
-	MintyConfig config;
 
 	@Override
 	protected void executeInternal(final JobExecutionContext context) throws JobExecutionException {
-		final MsmResponseFactory factory = new MsmResponseFactory(config);
+		final MsmResponseFactory factory = new MsmResponseFactory();
 		try {
 			service.processResponse(factory.getResponse(MintySensorServer.getProviderType()));
 		} catch (final MsmServiceProviderUnavailableException unavailableException) {

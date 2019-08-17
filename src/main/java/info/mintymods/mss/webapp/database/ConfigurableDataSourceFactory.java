@@ -14,10 +14,10 @@ import info.mintymods.mss.webapp.config.MintyConfig;
 @Configuration
 public class ConfigurableDataSourceFactory implements DataSourceFactory {
 
-	MintyConfig config;
+	private final MintyConfig config;
 	private final SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
 
-	public ConfigurableDataSourceFactory(MintyConfig config) {
+	public ConfigurableDataSourceFactory(final MintyConfig config) {
 		this.config = config;
 	}
 
@@ -26,22 +26,22 @@ public class ConfigurableDataSourceFactory implements DataSourceFactory {
 		return new ConnectionProperties() {
 
 			@Override
-			public void setDriverClass(Class<? extends Driver> driverClass) {
+			public void setDriverClass(final Class<? extends Driver> driverClass) {
 				dataSource.setDriverClass(driverClass);
 			}
 
 			@Override
-			public void setUrl(String url) {
+			public void setUrl(final String url) {
 				dataSource.setUrl(config.getDatabase().getUrl());
 			}
 
 			@Override
-			public void setUsername(String username) {
+			public void setUsername(final String username) {
 				dataSource.setUsername(config.getDatabase().getUsername());
 			}
 
 			@Override
-			public void setPassword(String password) {
+			public void setPassword(final String password) {
 				dataSource.setPassword(config.getDatabase().getPassword());
 			}
 		};

@@ -17,15 +17,14 @@ public class MintyFileUtils {
 
 	private static final Logger log = LoggerFactory.getLogger(MintyFileUtils.class);
 
-	public static String getAbsolutePath(String filename) {
+	public static String getAbsolutePath(final String filename) {
 		return getFileFromClassPath(filename).getAbsolutePath();
 	}
 
 	public static Properties getApplicationProperties() {
 		final Properties properties = new Properties();
-		try {
-			final File file = getFileFromClassPath(MintyPathUtils.getApplicationPropertiesFilename());
-			final InputStream in = new FileInputStream(file);
+		final File file = getFileFromClassPath(MintyPathUtils.getApplicationPropertiesFilename());
+		try (InputStream in = new FileInputStream(file)) {
 			properties.load(in);
 		} catch (final IOException e) {
 			log.error(e.getMessage(), e);
@@ -43,7 +42,7 @@ public class MintyFileUtils {
 		}
 	}
 
-	public static String getCanonicalPath(String filename) {
+	public static String getCanonicalPath(final String filename) {
 		try {
 			return getFileFromClassPath(filename).getCanonicalPath();
 		} catch (final IOException e) {
@@ -52,7 +51,7 @@ public class MintyFileUtils {
 		}
 	}
 
-	public static File getFileFromBinPath(String filename) {
+	public static File getFileFromBinPath(final String filename) {
 		try {
 			return ResourceUtils.getFile(MintyPathUtils.getBinFolder() + filename);
 		} catch (final IOException e) {
@@ -61,7 +60,7 @@ public class MintyFileUtils {
 		}
 	}
 
-	public static File getFileFromClassPath(String filename) {
+	public static File getFileFromClassPath(final String filename) {
 		try {
 			return ResourceUtils.getFile("classpath:" + filename);
 		} catch (final IOException e) {
@@ -70,7 +69,7 @@ public class MintyFileUtils {
 		}
 	}
 
-	public static File getFileFromLibPath(String filename) {
+	public static File getFileFromLibPath(final String filename) {
 		try {
 			return ResourceUtils.getFile("classpath:lib/" + filename);
 		} catch (final IOException e) {

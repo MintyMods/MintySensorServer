@@ -2,6 +2,8 @@ package info.mintymods.mss.webapp.database;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,13 +17,14 @@ import info.mintymods.mss.webapp.config.MintyConfig;
 @Configuration
 public class PersistenceConfig {
 
+	private static final Logger log = LoggerFactory.getLogger(PersistenceConfig.class);
 	@Autowired
 	MintyConfig config;
 
 	@Bean
 	public DataSource dataSource() {
 		final EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		configLoaded(config);
+		logConfig();
 		final EmbeddedDatabase database = builder
 				.setDataSourceFactory(new ConfigurableDataSourceFactory(config))
 				.setType(EmbeddedDatabaseType.H2)
@@ -31,14 +34,14 @@ public class PersistenceConfig {
 		return database;
 	}
 
-	private void configLoaded(MintyConfig config2) {
-		System.out.println("debug" + config.isDebug());
-		System.out.println("alias" + config.getDatabase().getAlias());
-		System.out.println("url" + config.getDatabase().getUrl());
-		System.out.println("username" + config.getDatabase().getUsername());
-		System.out.println("password" + config.getDatabase().getPassword());
-		System.out.println("delay" + config.getScheduler().getDelay());
-		System.out.println("freq" + config.getScheduler().getFrequency());
+	private void logConfig() {
+		log.debug("debug" + config.isDebug());
+		log.debug("alias" + config.getDatabase().getAlias());
+		log.debug("url" + config.getDatabase().getUrl());
+		log.debug("username" + config.getDatabase().getUsername());
+		log.debug("password" + config.getDatabase().getPassword());
+		log.debug("delay" + config.getScheduler().getDelay());
+		log.debug("freq" + config.getScheduler().getFrequency());
 	}
 
 	@Bean

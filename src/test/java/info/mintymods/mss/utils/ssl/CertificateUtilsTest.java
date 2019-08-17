@@ -28,9 +28,9 @@ public class CertificateUtilsTest {
 	public void checkKeystoreExistsOrCreateTest() {
 		CertificateUtils.checkKeystoreExistsOrCreate();
 		try {
-			File file = MintyFileUtils.getKeyStoreFile();
+			final File file = MintyFileUtils.getKeyStoreFile();
 			assertTrue(file.exists());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.error(e.getMessage(), e);
 			throw new RuntimeException(e.getMessage(), e);
 		}
@@ -38,20 +38,22 @@ public class CertificateUtilsTest {
 
 	@Test
 	public void createKeyStoreAndImportCertificateTest() {
-		SecureRandom random = new SecureRandom();
+		final SecureRandom random = new SecureRandom();
 		KeyPair keyPair;
 		Certificate stored;
 		try {
 			keyPair = CertificateUtils.createKeyPair(random);
-			X509Certificate[] certificate = CertificateUtils.getSelfSignedX509Certificate(keyPair, random);
+			final X509Certificate[] certificate = CertificateUtils.getSelfSignedX509Certificate(keyPair, random);
 			CertificateUtils.createKeyStoreAndImportCertificate(keyPair.getPrivate(), certificate);
-			File file = MintyFileUtils.getKeyStoreFile();
+			final File file = MintyFileUtils.getKeyStoreFile();
 			assertTrue(file.exists());
-			KeyStore keyStore = KeyStore.getInstance("JKS");
-			keyStore.load(new FileInputStream(file), MintyConstants.PASSWORD);
+			final KeyStore keyStore = KeyStore.getInstance("JKS");
+			try (FileInputStream stream = new FileInputStream(file)) {
+				keyStore.load(stream, MintyConstants.PASSWORD);
+			}
 			stored = keyStore.getCertificate(MintyConstants.SSL_ALIAS);
 			assertNotNull(stored);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.error(e.getMessage(), e);
 			throw new RuntimeException(e.getMessage(), e);
 		}
@@ -60,13 +62,13 @@ public class CertificateUtilsTest {
 	@Test
 	public void generateSelfSignedX509CertificateTest() {
 		KeyPair keyPair;
-		SecureRandom random = new SecureRandom();
+		final SecureRandom random = new SecureRandom();
 		try {
 			keyPair = CertificateUtils.createKeyPair(random);
 			assertNotNull(keyPair);
-			X509Certificate[] certificate = CertificateUtils.getSelfSignedX509Certificate(keyPair, random);
+			final X509Certificate[] certificate = CertificateUtils.getSelfSignedX509Certificate(keyPair, random);
 			assertNotNull(certificate);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.error(e.getMessage(), e);
 			throw new RuntimeException(e.getMessage(), e);
 		}
@@ -77,7 +79,7 @@ public class CertificateUtilsTest {
 		KeyPair keyPair;
 		try {
 			keyPair = CertificateUtils.createKeyPair(new SecureRandom());
-		} catch (NoSuchAlgorithmException e) {
+		} catch (final NoSuchAlgorithmException e) {
 			log.error(e.getMessage(), e);
 			throw new RuntimeException(e.getMessage(), e);
 		}
@@ -85,5 +87,4 @@ public class CertificateUtilsTest {
 		assertNotNull(keyPair.getPrivate());
 		assertNotNull(keyPair.getPublic());
 	}
-
 }

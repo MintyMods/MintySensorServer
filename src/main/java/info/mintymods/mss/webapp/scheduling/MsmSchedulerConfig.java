@@ -31,14 +31,14 @@ public class MsmSchedulerConfig {
 	MintyConfig config;
 
 	@Bean
-	public JobFactory jobFactory(ApplicationContext applicationContext) {
+	public JobFactory jobFactory(final ApplicationContext applicationContext) {
 		final MsmSchedulerJobFactory jobFactory = new MsmSchedulerJobFactory();
 		jobFactory.setApplicationContext(applicationContext);
 		return jobFactory;
 	}
 
 	@Bean
-	public SchedulerFactoryBean schedulerFactoryBean(JobFactory jobFactory, Trigger msmSchedulerJobTrigger)
+	public SchedulerFactoryBean schedulerFactoryBean(final JobFactory jobFactory, final Trigger msmSchedulerJobTrigger)
 			throws IOException {
 		final SchedulerFactoryBean factory = new SchedulerFactoryBean();
 		factory.setJobFactory(jobFactory);
@@ -49,8 +49,8 @@ public class MsmSchedulerConfig {
 	}
 
 	@Bean
-	public SimpleTriggerFactoryBean msmSchedulerJobTrigger(@Qualifier("msmSchedulerJobDetail") JobDetail jobDetail,
-			@Value("${minty.scheduler.frequency}") long frequency) {
+	public SimpleTriggerFactoryBean msmSchedulerJobTrigger(@Qualifier("msmSchedulerJobDetail") final JobDetail jobDetail,
+			@Value("${minty.scheduler.frequency}") final long frequency) {
 		final SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();
 		factoryBean.setJobDetail(jobDetail);
 		log.debug("minty.scheduler.delay@" + config.getScheduler().getDelay());

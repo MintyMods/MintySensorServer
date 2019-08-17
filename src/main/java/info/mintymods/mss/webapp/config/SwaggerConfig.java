@@ -17,7 +17,7 @@ public class SwaggerConfig {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.any())
+				.apis(RequestHandlerSelectors.basePackage("info.mintymods.mss.webapp.controller.rest"))
 				.paths(PathSelectors.any())
 				.build();
 	}
