@@ -4,6 +4,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "minty")
 public class MintyConfig {
+	// Set hibernate.listeners.envers.autoRegister to false, unless it's
+	// deliberately set to true (reverse the regular behavior), so folks
+	// have to enable it deliberately.
+	// UPDATE THE properties file ato add a new property
+	// Properties configurationProps = getHibernateSettings();
+	// if (configurationProps.getProperty("hibernate.listeners.envers.autoRegister") == null) {
+	// configurationProps.setProperty("hibernate.listeners.envers.autoRegister", "false");
+	// }
+	// configuration.setProperties(getHibernateSettings());
 
 	boolean debug;
 	private Database database;

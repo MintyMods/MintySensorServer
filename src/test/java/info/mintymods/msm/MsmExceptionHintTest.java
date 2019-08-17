@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import info.mintymods.msm.exception.MsmExceptionHint;
 import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmExceptionHintTest {

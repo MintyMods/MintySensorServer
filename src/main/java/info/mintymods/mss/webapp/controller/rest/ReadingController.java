@@ -41,12 +41,12 @@ public class ReadingController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> insertReading(@RequestBody Reading reading) {
 		readingService.addReading(reading);
-		return new ResponseEntity<String>("Reading " + reading.getRecordId() + " added", HttpStatus.OK);
+		return new ResponseEntity<String>("Reading " + reading.getId() + " added", HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> updateReading(@RequestBody Reading reading) {
 		readingService.updateReading(reading);
-		return new ResponseEntity<String>("Reading " + reading.getRecordId() + " updated", HttpStatus.OK);
+		return new ResponseEntity<String>("Reading " + reading.getId() + " updated", HttpStatus.OK);
 	}
 }

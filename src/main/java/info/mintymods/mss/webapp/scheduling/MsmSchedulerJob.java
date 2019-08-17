@@ -1,28 +1,44 @@
 package info.mintymods.mss.webapp.scheduling;
 
-import org.quartz.Job;
 import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.quartz.SchedulerException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.quartz.QuartzJobBean;
 
+import info.mintymods.MintySensorServer;
 import info.mintymods.jni.MsmResponseFactory;
 import info.mintymods.mss.webapp.config.MintyConfig;
+import info.mintymods.mss.webapp.exception.MsmServiceProviderUnavailableException;
 import info.mintymods.mss.webapp.services.MsmResponseService;
-import info.mintymods.repository.entities.enums.ProviderType;
 
-public class MsmSchedulerJob implements Job {
+public class MsmSchedulerJob extends QuartzJobBean {
 
+	private static final Logger log = LoggerFactory.getLogger(MsmSchedulerJob.class);
 	@Autowired
 	private MsmResponseService service;
 	@Autowired
 	MintyConfig config;
 
 	@Override
-	public void execute(JobExecutionContext jobExecutionContext) {
+	protected void executeInternal(final JobExecutionContext context) throws JobExecutionException {
 		final MsmResponseFactory factory = new MsmResponseFactory(config);
-		service.processResponse(factory.getResponse(getProviderType()));
+		try {
+			service.processResponse(factory.getResponse(MintySensorServer.getProviderType()));
+		} catch (final MsmServiceProviderUnavailableException unavailableException) {
+			log.warn(unavailableException.getMessage());
+			log.info("Service Provider Unavaliable - shutting down scheduler...");
+			shutDownScheduler(context);
+		}
 	}
 
-	private ProviderType getProviderType() {
-		return ProviderType.HWINFO; // @todo Move this somewhere central
+	private void shutDownScheduler(final JobExecutionContext context) {
+		try {
+			context.getScheduler().shutdown();
+		} catch (final SchedulerException schedulerException) {
+			log.error(schedulerException.getMessage(), schedulerException);
+		}
 	}
 }

@@ -7,26 +7,25 @@ import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmSensorLabel {
 
-	private String value;
+	private String name;
 	private String description;
-	private String icon;
 
 	public MsmSensorLabel() {
 	}
 
-	public MsmSensorLabel(String value, String description) {
-		this.value = value;
+	public MsmSensorLabel(String name, String description) {
+		this.name = name;
 		this.description = description;
 	}
 
 	@JsonProperty("value")
-	public String getValue() {
-		return value;
+	public String getName() {
+		return name;
 	}
 
 	@JsonProperty("value")
-	public void setValue(String value) {
-		this.value = value;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@JsonProperty("description")
@@ -46,13 +45,5 @@ public class MsmSensorLabel {
 		} catch (final JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
-	}
-
-	public String getIcon() {
-		return icon;
-	}
-
-	public void setIcon(String icon) {
-		this.icon = icon;
 	}
 }

@@ -13,22 +13,23 @@ import org.hibernate.envers.Audited;
 @Audited
 @Entity
 @Table(name = "minty_module")
-public class Module extends BaseEntity {
+public class Module {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "minty_module_gen")
 	@SequenceGenerator(name = "minty_module_gen", sequenceName = "MINTY_MODULE_SEQ")
 	@Column(name = "recordId", updatable = false, nullable = false)
 	private Long recordId;
+	public static final String ICON = "fal fa-solar-panel";
 	private ModuleDependency[] dependencies;
+	private String name;
+	private String desc;
 
 	public Module() {
 	}
 
-	public Module(Label label, ModuleDependency[] dependencies) {
-		this.label = label;
+	public Module(ModuleDependency[] dependencies) {
 		this.dependencies = dependencies;
-		icon = "fal fa-solar-panel";
 	}
 
 	public ModuleDependency[] getDependencies() {
@@ -37,5 +38,29 @@ public class Module extends BaseEntity {
 
 	public void setDependencies(ModuleDependency[] dependencies) {
 		this.dependencies = dependencies;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public Long getRecordId() {
+		return recordId;
+	}
+
+	public void setRecordId(Long recordId) {
+		this.recordId = recordId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

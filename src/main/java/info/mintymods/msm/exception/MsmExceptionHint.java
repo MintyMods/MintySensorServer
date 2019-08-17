@@ -1,4 +1,4 @@
-package info.mintymods.msm;
+package info.mintymods.msm.exception;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -12,7 +12,6 @@ public class MsmExceptionHint {
 	private String output;
 	private String result;
 
-	@JsonProperty("message")
 	public String getMessage() {
 		return message;
 	}
@@ -22,7 +21,6 @@ public class MsmExceptionHint {
 		this.message = message;
 	}
 
-	@JsonProperty("input")
 	public String getInput() {
 		return input;
 	}
@@ -32,7 +30,6 @@ public class MsmExceptionHint {
 		this.input = input;
 	}
 
-	@JsonProperty("output")
 	public String getOutput() {
 		return output;
 	}
@@ -42,7 +39,6 @@ public class MsmExceptionHint {
 		this.output = output;
 	}
 
-	@JsonProperty("result")
 	public String getResult() {
 		return result;
 	}
@@ -56,9 +52,8 @@ public class MsmExceptionHint {
 	public String toString() {
 		try {
 			return MintyJsonUtils.getMapper().writeValueAsString(this);
-		} catch (JsonProcessingException e) {
+		} catch (final JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
-
 }

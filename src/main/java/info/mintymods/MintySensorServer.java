@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import info.mintymods.mss.webapp.config.MintyConfig;
+import info.mintymods.repository.entities.enums.ProviderType;
 import info.mintymods.utils.ssl.CertificateUtils;
 
 @SpringBootApplication
@@ -46,5 +47,9 @@ public class MintySensorServer extends SpringBootServletInitializer {
 		final String url = config.getDatabase().getUrl();
 		final String alias = config.getDatabase().getAlias();
 		System.out.println(url + alias);
+	}
+
+	public static ProviderType getProviderType() {
+		return ProviderType.HWINFO;
 	}
 }

@@ -41,12 +41,12 @@ public class SensorController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> insertSensor(@RequestBody Sensor sensor) {
 		sensorService.addSensor(sensor);
-		return new ResponseEntity<String>("Sensor " + sensor.getRecordId() + " added", HttpStatus.OK);
+		return new ResponseEntity<String>("Sensor " + sensor.getId() + " added", HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateSensor(@RequestBody Sensor sensor) {
 		sensorService.updateSensor(sensor);
-		return new ResponseEntity<String>("Sensor " + sensor.getRecordId() + " updated", HttpStatus.OK);
+		return new ResponseEntity<String>("Sensor " + sensor.getId() + " updated", HttpStatus.OK);
 	}
 }

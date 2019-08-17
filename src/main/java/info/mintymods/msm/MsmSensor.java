@@ -7,18 +7,17 @@ import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmSensor {
 
-	private String id;
+	private Long id;
 	private int instance;
-	private String name;
 	private MsmSensorLabel label;
 
 	@JsonProperty("id")
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@JsonProperty("id")
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -30,16 +29,6 @@ public class MsmSensor {
 	@JsonProperty("instance")
 	public void setInstance(int instance) {
 		this.instance = instance;
-	}
-
-	@JsonProperty("name")
-	public String getName() {
-		return name;
-	}
-
-	@JsonProperty("name")
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	@JsonProperty("label")
@@ -56,9 +45,8 @@ public class MsmSensor {
 	public String toString() {
 		try {
 			return MintyJsonUtils.getMapper().writeValueAsString(this);
-		} catch (JsonProcessingException e) {
+		} catch (final JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
-
 }

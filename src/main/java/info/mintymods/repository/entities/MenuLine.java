@@ -2,20 +2,16 @@ package info.mintymods.repository.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
-@Audited
-@Entity
-@Table(name = "minty_menu_line")
-public class MenuLine extends BaseEntity {
+// @Audited
+// @Entity
+// @Table(name = "minty_menu_line")
+public class MenuLine {
 
 	private static final String ICON = "fal fa-ellipsis-h";
 	@Id
@@ -30,11 +26,9 @@ public class MenuLine extends BaseEntity {
 	public MenuLine() {
 	}
 
-	public MenuLine(MenuSection parent, Label label, String url) {
+	public MenuLine(MenuSection parent, String url) {
 		setMenuSection(parent);
-		setLabel(label);
 		setUrl(url);
-		setIcon(ICON);
 	}
 
 	public MenuSection getParentId() {

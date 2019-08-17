@@ -1,40 +1,51 @@
 package info.mintymods.repository.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import info.mintymods.msm.MsmSensorReading;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
+
 import info.mintymods.msm.MsmSensorType;
 
 @Entity
 @Table(name = "minty_reading")
-public class Reading extends BaseEntity {
+public class Reading {
 
-	private static final String ICON = "fab fa-cloudscale";
+	// @GeneratedName(strategy = GenerationType.AUTO, generator = "minty_sensor_gen")
+	// @SequenceGenerator(name = "minty_sensor_gen", sequenceName = "MINTY_SENSOR_SEQ")
+	@Id
+	@Column(name = "id", updatable = true, nullable = false)
+	protected Long id;
+	public static final String ICON = "fab fa-cloudscale";
+	@NotAudited
 	private MsmSensorType type;
+	@NotAudited
+	private String name;
+	@Audited
+	private String desc;
+	@Audited
 	private int sensorIndex;
+	@Audited
 	private String unit;
+	@Audited
 	private double value;
+	@NotAudited
+	private Long parentId;
+	@Audited
+	private double min;
+	@Audited
+	private double max;
+	@Audited
+	private double avg;
+	@NotAudited
+	private String parentName;
+	@Audited
+	private int instance;
 
 	public Reading() {
-	}
-
-	public Reading(Long recordId, MsmSensorType type, Label label, int sensorIndex, String unit, double value) {
-		setType(type);
-		setLabel(label);
-		setUnit(unit);
-		setValue(value);
-		setSensorIndex(sensorIndex);
-		setIcon(ICON);
-	}
-
-	public Reading(MsmSensorReading reading) {
-		setType(reading.getType());
-		setLabel(reading.getLabel());
-		setUnit(reading.getUnit());
-		setValue(reading.getValue());
-		setSensorIndex(reading.getIndex());
-		setIcon(ICON);
 	}
 
 	public int getSensorIndex() {
@@ -67,5 +78,77 @@ public class Reading extends BaseEntity {
 
 	public void setValue(double value) {
 		this.value = value;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public double getMin() {
+		return min;
+	}
+
+	public void setMin(double min) {
+		this.min = min;
+	}
+
+	public double getMax() {
+		return max;
+	}
+
+	public void setMax(double max) {
+		this.max = max;
+	}
+
+	public double getAvg() {
+		return avg;
+	}
+
+	public void setAvg(double avg) {
+		this.avg = avg;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String name) {
+		parentName = name;
+	}
+
+	public void setInstance(int instance) {
+		this.instance = instance;
+	}
+
+	public int getInstance() {
+		return instance;
 	}
 }

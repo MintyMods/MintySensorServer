@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import info.mintymods.msm.exception.MsmException;
 import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmMonitorResponse {

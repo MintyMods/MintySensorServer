@@ -5,12 +5,17 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import info.mintymods.msm.MsmMonitorRequest;
 import info.mintymods.msm.MsmMonitorResponse;
+import info.mintymods.mss.webapp.exception.MsmServiceProviderUnavailableException;
 import info.mintymods.utils.MintyJsonUtils;
 
 public class JSONUtilsTest {
+
+	private static final Logger log = LoggerFactory.getLogger(JSONUtilsTest.class);
 
 	@Test
 	public void getMapperTest() {
@@ -19,27 +24,30 @@ public class JSONUtilsTest {
 
 	@Test
 	public void getMsmMonitorResponseTest() {
-		MsmMonitorRequest request = new MsmMonitorRequest();
-		String json = MintyJsonUtils.getJsonString(request);
+		final MsmMonitorRequest request = new MsmMonitorRequest();
+		final String json = MintyJsonUtils.getJsonString(request);
 		assertTrue(MintyJsonUtils.isValidJSON(json));
-		MsmMonitorResponse response = MintyJsonUtils.getMsmMonitorResponse(json);
+		MsmMonitorResponse response;
+		try {
+			response = MintyJsonUtils.getMsmMonitorResponse(json);
+		} catch (final MsmServiceProviderUnavailableException e) {
+			log.error(e.getMessage(), e);
+			throw new RuntimeException(e.getMessage(), e);
+		}
 		assertNotNull(response);
 	}
 
 	@Test
 	public void getJsonStringTest() {
-		MsmMonitorRequest request = new MsmMonitorRequest();
-		String json = MintyJsonUtils.getJsonString(request);
+		final MsmMonitorRequest request = new MsmMonitorRequest();
+		final String json = MintyJsonUtils.getJsonString(request);
 		assertTrue(MintyJsonUtils.isValidJSON(json));
 	}
 
 	@Test
 	public void isValidJSONTest() {
-
 		assertTrue(MintyJsonUtils.isValidJSON("{}")); // {"source":"MSM[JSON]HWiNFO",
 		assertTrue(MintyJsonUtils.isValidJSON("{ \"source\":\"MSM[JSON]HWiNFO\", \"debug\":\"true\" }"));
 		assertFalse(MintyJsonUtils.isValidJSON("{"));
-
 	}
-
 }
