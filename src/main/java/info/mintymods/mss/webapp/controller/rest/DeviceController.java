@@ -24,7 +24,7 @@ public class DeviceController {
 	private DeviceService deviceService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteDeviceById(@PathVariable String id) {
+	public void deleteDeviceById(@PathVariable final String id) {
 		deviceService.deleteDevice(Long.valueOf(id));
 	}
 
@@ -34,19 +34,19 @@ public class DeviceController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Optional<Device> getDeviceById(@PathVariable String id) {
+	public Optional<Device> getDeviceById(@PathVariable final String id) {
 		return deviceService.getDevice(Long.valueOf(id));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> insertHost(@RequestBody Device device) {
+	public ResponseEntity<String> insertDevice(@RequestBody final Device device) {
 		deviceService.addDevice(device);
-		return new ResponseEntity<String>("Device " + device.getId() + " added", HttpStatus.OK);
+		return new ResponseEntity<>("Device " + device.getId() + " added", HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> updateDevice(@RequestBody Device device) {
+	public ResponseEntity<String> updateDevice(@RequestBody final Device device) {
 		deviceService.updateDevice(device);
-		return new ResponseEntity<String>("Device " + device.getId() + " updated", HttpStatus.OK);
+		return new ResponseEntity<>("Device " + device.getId() + " updated", HttpStatus.OK);
 	}
 }

@@ -9,7 +9,7 @@ import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.jdbc.datasource.embedded.ConnectionProperties;
 import org.springframework.jdbc.datasource.embedded.DataSourceFactory;
 
-import info.mintymods.mss.webapp.config.MintyConfig;
+import info.mintymods.mss.webapp.config.properties.MintyConfig;
 
 @Configuration
 public class ConfigurableDataSourceFactory implements DataSourceFactory {

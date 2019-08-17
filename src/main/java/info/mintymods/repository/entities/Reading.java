@@ -5,9 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-import org.hibernate.envers.NotAudited;
-
 import info.mintymods.msm.MsmSensorType;
 
 @Entity
@@ -20,29 +17,17 @@ public class Reading {
 	@Column(name = "id", updatable = true, nullable = false)
 	protected Long id;
 	public static final String ICON = "fab fa-cloudscale";
-	@NotAudited
 	private MsmSensorType type;
-	@NotAudited
 	private String name;
-	@Audited
 	private String desc;
-	@Audited
 	private int sensorIndex;
-	@Audited
 	private String unit;
-	@Audited
 	private double value;
-	@NotAudited
 	private Long parentId;
-	@Audited
 	private double min;
-	@Audited
 	private double max;
-	@Audited
 	private double avg;
-	@NotAudited
 	private String parentName;
-	@Audited
 	private int instance;
 
 	public Reading() {
@@ -64,19 +49,19 @@ public class Reading {
 		return value;
 	}
 
-	public void setSensorIndex(int sensor_index) {
+	public void setSensorIndex(final int sensor_index) {
 		sensorIndex = sensor_index;
 	}
 
-	public void setType(MsmSensorType type) {
+	public void setType(final MsmSensorType type) {
 		this.type = type;
 	}
 
-	public void setUnit(String unit) {
+	public void setUnit(final String unit) {
 		this.unit = unit;
 	}
 
-	public void setValue(double value) {
+	public void setValue(final double value) {
 		this.value = value;
 	}
 
@@ -88,7 +73,7 @@ public class Reading {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -96,15 +81,15 @@ public class Reading {
 		return desc;
 	}
 
-	public void setDesc(String desc) {
+	public void setDesc(final String desc) {
 		this.desc = desc;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
-	public void setParentId(Long parentId) {
+	public void setParentId(final Long parentId) {
 		this.parentId = parentId;
 	}
 
@@ -116,7 +101,7 @@ public class Reading {
 		return min;
 	}
 
-	public void setMin(double min) {
+	public void setMin(final double min) {
 		this.min = min;
 	}
 
@@ -124,7 +109,7 @@ public class Reading {
 		return max;
 	}
 
-	public void setMax(double max) {
+	public void setMax(final double max) {
 		this.max = max;
 	}
 
@@ -132,7 +117,7 @@ public class Reading {
 		return avg;
 	}
 
-	public void setAvg(double avg) {
+	public void setAvg(final double avg) {
 		this.avg = avg;
 	}
 
@@ -140,11 +125,11 @@ public class Reading {
 		return parentName;
 	}
 
-	public void setParentName(String name) {
+	public void setParentName(final String name) {
 		parentName = name;
 	}
 
-	public void setInstance(int instance) {
+	public void setInstance(final int instance) {
 		this.instance = instance;
 	}
 

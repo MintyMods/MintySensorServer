@@ -1,10 +1,16 @@
 package info.mintymods.jni;
 
-import info.mintymods.MintySensorServer;
 import info.mintymods.msm.MsmMonitorRequest;
+import info.mintymods.mss.webapp.config.properties.MintyConfig;
 import info.mintymods.repository.entities.enums.ProviderType;
 
 public class MsmRequestBuilder {
+
+	MintyConfig config;
+
+	public MsmRequestBuilder(final MintyConfig config) {
+		this.config = config;
+	}
 
 	public MsmMonitorRequest buildRequest(final ProviderType type) {
 		final MsmMonitorRequest request = new MsmMonitorRequest();
@@ -21,7 +27,7 @@ public class MsmRequestBuilder {
 			default :
 				request.setSource("MSM[JSON]EXAMPLE");
 		}
-		request.setDebug(MintySensorServer.config.isDebug());
+		request.setDebug(config.isDebug());
 		return request;
 	}
 }

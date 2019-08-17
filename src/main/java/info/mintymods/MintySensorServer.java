@@ -7,12 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import info.mintymods.mss.webapp.config.MintyConfig;
+import info.mintymods.mss.webapp.config.properties.MintyConfig;
 import info.mintymods.repository.entities.enums.ProviderType;
 import info.mintymods.utils.ssl.CertificateUtils;
 
@@ -20,6 +21,7 @@ import info.mintymods.utils.ssl.CertificateUtils;
 @EnableJpaRepositories("info.mintymods.repository.dao")
 @EntityScan("info.mintymods.repository.entities")
 @ComponentScan(basePackages = {"info.mintymods.mss.webapp"})
+@ServletComponentScan
 @EnableConfigurationProperties(MintyConfig.class)
 public class MintySensorServer extends SpringBootServletInitializer {
 
@@ -29,8 +31,7 @@ public class MintySensorServer extends SpringBootServletInitializer {
 	static void addFrameworkInitialisationHooks(final SpringApplication application) {
 		log.info("Adding application init hooks listeners");
 		application.addListeners((ApplicationListener<ApplicationEnvironmentPreparedEvent>) event -> {
-			final String version = event.getEnvironment().getProperty("java.runtime.version");
-			log.info("Running with Java {}", version);
+			log.info("@JavaVersion#" + event.getEnvironment().getProperty("java.runtime.version"));
 			try {
 				CertificateUtils.createKeyStoreAndImportCertificate();
 			} catch (final Exception e) {
@@ -46,6 +47,10 @@ public class MintySensorServer extends SpringBootServletInitializer {
 		log.info("Database Alias:" + config.getDatabase().getAlias());
 	}
 
+	// @Bean
+	// public BasicErrorController basicErrorController() {
+	// return new MintyErrorController(new MintyErrorAttributes(), new MintyErrorProperties());
+	// }
 	public static ProviderType getProviderType() {
 		return ProviderType.HWINFO;
 	}

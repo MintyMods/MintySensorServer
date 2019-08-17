@@ -1,9 +1,9 @@
-package info.mintymods.mss.webapp.config;
+package info.mintymods.mss.webapp.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "minty.database")
-public class Database {
+public class DatabaseConfig {
 
 	private String alias;
 	private String url;
@@ -14,7 +14,7 @@ public class Database {
 		return alias;
 	}
 
-	public void setAlias(String alias) {
+	public void setAlias(final String alias) {
 		this.alias = alias;
 	}
 
@@ -22,7 +22,7 @@ public class Database {
 		return url;
 	}
 
-	public void setUrl(String url) {
+	public void setUrl(final String url) {
 		this.url = url;
 	}
 
@@ -30,7 +30,7 @@ public class Database {
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public void setUsername(final String username) {
 		this.username = username;
 	}
 
@@ -38,7 +38,7 @@ public class Database {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(final String password) {
 		this.password = password;
 	}
 }

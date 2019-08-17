@@ -21,7 +21,7 @@ import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 
-import info.mintymods.mss.webapp.config.MintyConfig;
+import info.mintymods.mss.webapp.config.properties.MintyConfig;
 
 @Configuration
 public class MsmSchedulerConfig {

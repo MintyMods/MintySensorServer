@@ -9,9 +9,9 @@ import org.springframework.context.event.ContextRefreshedEvent;
 
 import info.mintymods.mss.MintyConstants;
 
-public class ConsoleBanner {
+public class MintyConsoleBanner {
 
-	private static final Logger log = LoggerFactory.getLogger(ConsoleBanner.class);
+	private static final Logger log = LoggerFactory.getLogger(MintyConsoleBanner.class);
 
 	public void writeBannerToLogs(ContextRefreshedEvent event) {
 		StringBuilder banner = new StringBuilder();

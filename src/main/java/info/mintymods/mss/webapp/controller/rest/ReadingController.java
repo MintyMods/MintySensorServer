@@ -24,29 +24,29 @@ public class ReadingController {
 	private ReadingService readingService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteReadingById(@PathVariable Long id) {
+	public void deleteReadingById(@PathVariable final Long id) {
 		readingService.deleteReading(id);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Collection<Reading> getAllSensors() {
+	public Collection<Reading> getAllReadings() {
 		return readingService.getAllReadings();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Optional<Reading> getReadingById(@PathVariable Long id) {
+	public Optional<Reading> getReadingById(@PathVariable final Long id) {
 		return readingService.getReading(id);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> insertReading(@RequestBody Reading reading) {
+	public ResponseEntity<?> insertReading(@RequestBody final Reading reading) {
 		readingService.addReading(reading);
-		return new ResponseEntity<String>("Reading " + reading.getId() + " added", HttpStatus.OK);
+		return new ResponseEntity<>("Reading " + reading.getId() + " added", HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> updateReading(@RequestBody Reading reading) {
+	public ResponseEntity<?> updateReading(@RequestBody final Reading reading) {
 		readingService.updateReading(reading);
-		return new ResponseEntity<String>("Reading " + reading.getId() + " updated", HttpStatus.OK);
+		return new ResponseEntity<>("Reading " + reading.getId() + " updated", HttpStatus.OK);
 	}
 }

@@ -1,9 +1,9 @@
-package info.mintymods.mss.webapp.config;
+package info.mintymods.mss.webapp.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "minty.scheduler")
-public class Scheduler {
+public class SchedulerConfig {
 
 	private Long delay;
 	private Long frequency;
@@ -12,7 +12,7 @@ public class Scheduler {
 		return delay;
 	}
 
-	public void setDelay(Long delay) {
+	public void setDelay(final Long delay) {
 		this.delay = delay;
 	}
 
@@ -20,7 +20,7 @@ public class Scheduler {
 		return frequency;
 	}
 
-	public void setFrequency(Long frequency) {
+	public void setFrequency(final Long frequency) {
 		this.frequency = frequency;
 	}
 

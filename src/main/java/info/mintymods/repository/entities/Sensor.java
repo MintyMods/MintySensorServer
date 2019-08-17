@@ -5,9 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-import org.hibernate.envers.NotAudited;
-
 @Entity
 @Table(name = "minty_sensor")
 public class Sensor {
@@ -18,11 +15,8 @@ public class Sensor {
 	@Column(name = "id", updatable = true, nullable = false)
 	protected Long id;
 	public static final String ICON = "fal fa-code-branch";
-	@NotAudited
 	private String name;
-	@Audited
 	private String desc;
-	@Audited
 	private int instance;
 
 	public Sensor() {
@@ -32,7 +26,7 @@ public class Sensor {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -40,7 +34,7 @@ public class Sensor {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -48,7 +42,7 @@ public class Sensor {
 		return desc;
 	}
 
-	public void setDesc(String desc) {
+	public void setDesc(final String desc) {
 		this.desc = desc;
 	}
 
@@ -56,7 +50,7 @@ public class Sensor {
 		return instance;
 	}
 
-	public void setInstance(int instance) {
+	public void setInstance(final int instance) {
 		this.instance = instance;
 	}
 }
