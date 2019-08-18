@@ -11,9 +11,9 @@ import info.mintymods.utils.MintyJsonUtils;
 
 public class MsmMonitorResponse {
 
-	private List<MsmSensor> sensors = new ArrayList<MsmSensor>();
-	private List<MsmSensorReading> readings = new ArrayList<MsmSensorReading>();
-	private List<String> labels = new ArrayList<String>();
+	private List<MsmSensor> sensors = new ArrayList<>();
+	private List<MsmSensorReading> readings = new ArrayList<>();
+	private List<String> labels = new ArrayList<>();
 	private String source;
 	private MsmMonitorRequest request;
 	private MsmException exception;
@@ -26,103 +26,93 @@ public class MsmMonitorResponse {
 		type = getClass().getName();
 	}
 
-	@JsonProperty("exception")
 	public MsmException getException() {
 		return exception;
 	}
 
-	@JsonProperty("labels")
 	public List<String> getLabels() {
 		return labels;
 	}
 
-	@JsonProperty("readings")
 	public List<MsmSensorReading> getReadings() {
 		return readings;
 	}
 
-	@JsonProperty("request")
 	public MsmMonitorRequest getRequest() {
 		return request;
 	}
 
-	@JsonProperty("sensors")
 	public List<MsmSensor> getSensors() {
 		return sensors;
 	}
 
-	@JsonProperty("source")
 	public String getSource() {
 		return source;
 	}
 
-	@JsonProperty("time_taken")
 	public String getTime_taken() {
 		return time_taken;
 	}
 
-	@JsonProperty("type")
 	public String getType() {
 		return type;
 	}
 
-	@JsonProperty("version")
 	public String getVersion() {
 		return version;
 	}
 
-	@JsonProperty("debug")
 	public boolean isDebug() {
 		return debug;
 	}
 
 	@JsonProperty("debug")
-	public void setDebug(boolean debug) {
+	public void setDebug(final boolean debug) {
 		this.debug = debug;
 	}
 
 	@JsonProperty("exception")
-	public void setException(MsmException exception) {
+	public void setException(final MsmException exception) {
 		this.exception = exception;
 	}
 
 	@JsonProperty("labels")
-	public void setNames(List<String> labels) {
+	public void setNames(final List<String> labels) {
 		this.labels = labels;
 	}
 
 	@JsonProperty("readings")
-	public void setReadings(List<MsmSensorReading> readings) {
+	public void setReadings(final List<MsmSensorReading> readings) {
 		this.readings = readings;
 	}
 
 	@JsonProperty("request")
-	public void setRequest(MsmMonitorRequest request) {
+	public void setRequest(final MsmMonitorRequest request) {
 		this.request = request;
 	}
 
 	@JsonProperty("sensors")
-	public void setSensors(List<MsmSensor> sensors) {
+	public void setSensors(final List<MsmSensor> sensors) {
 		this.sensors = sensors;
 	}
 
 	@JsonProperty("source")
-	public void setSource(String source) {
+	public void setSource(final String source) {
 		this.source = source;
 	}
 
 	@JsonProperty("time_taken")
-	public void setTime_taken_ms(String time_taken) {
+	public void setTime_taken_ms(final String time_taken) {
 		this.time_taken = time_taken;
 	}
 
 	@JsonProperty("type")
-	public void setType(String type) {
+	public void setType(final String type) {
 		this.type = type;
 	}
 
 	@JsonProperty("version")
-	public void setVersion(String version) {
+	public void setVersion(final String version) {
 		this.version = version;
 	}
 

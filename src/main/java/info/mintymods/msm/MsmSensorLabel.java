@@ -13,28 +13,26 @@ public class MsmSensorLabel {
 	public MsmSensorLabel() {
 	}
 
-	public MsmSensorLabel(String name, String description) {
+	public MsmSensorLabel(final String name, final String description) {
 		this.name = name;
 		this.description = description;
 	}
 
-	@JsonProperty("value")
 	public String getName() {
 		return name;
 	}
 
 	@JsonProperty("value")
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
-	@JsonProperty("description")
 	public String getDescription() {
 		return description;
 	}
 
 	@JsonProperty("description")
-	public void setDescription(String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
 

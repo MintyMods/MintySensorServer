@@ -9,6 +9,7 @@ public class MintyConfig {
 	private DatabaseConfig database;
 	private SchedulerConfig scheduler;
 	private ApplicationConfig application;
+	private ErrorConfig error;
 
 	public boolean isDebug() {
 		return debug;
@@ -38,7 +39,15 @@ public class MintyConfig {
 		return application;
 	}
 
-	public void setApplication(ApplicationConfig application) {
+	public void setApplication(final ApplicationConfig application) {
 		this.application = application;
+	}
+
+	public ErrorConfig getError() {
+		return error;
+	}
+
+	public void setError(ErrorConfig error) {
+		this.error = error;
 	}
 }

@@ -11,33 +11,30 @@ public class MsmSensor {
 	private int instance;
 	private MsmSensorLabel label;
 
-	@JsonProperty("id")
 	public Long getId() {
 		return id;
 	}
 
 	@JsonProperty("id")
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
-	@JsonProperty("instance")
 	public int getInstance() {
 		return instance;
 	}
 
 	@JsonProperty("instance")
-	public void setInstance(int instance) {
+	public void setInstance(final int instance) {
 		this.instance = instance;
 	}
 
-	@JsonProperty("label")
 	public MsmSensorLabel getLabel() {
 		return label;
 	}
 
 	@JsonProperty("label")
-	public void setLabel(MsmSensorLabel label) {
+	public void setLabel(final MsmSensorLabel label) {
 		this.label = label;
 	}
 

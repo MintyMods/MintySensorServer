@@ -15,33 +15,30 @@ public class MsmMonitorRequest {
 		type = getClass().getName();
 	}
 
-	@JsonProperty("source")
 	public String getSource() {
 		return source;
 	}
 
-	@JsonProperty("type")
 	public String getType() {
 		return type;
 	}
 
-	@JsonProperty("debug")
 	public boolean isDebug() {
 		return debug;
 	}
 
 	@JsonProperty("debug")
-	public void setDebug(boolean debug) {
+	public void setDebug(final boolean debug) {
 		this.debug = debug;
 	}
 
 	@JsonProperty("source")
-	public void setSource(String source) {
+	public void setSource(final String source) {
 		this.source = source;
 	}
 
 	@JsonProperty("type")
-	public void setType(String type) {
+	public void setType(final String type) {
 		this.type = type;
 	}
 

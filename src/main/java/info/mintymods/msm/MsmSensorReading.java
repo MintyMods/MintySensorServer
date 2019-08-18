@@ -22,88 +22,80 @@ public class MsmSensorReading {
 		return avg;
 	}
 
-	@JsonProperty("id")
 	public int getId() {
 		return id;
 	}
 
-	@JsonProperty("sensor_index")
 	public int getIndex() {
 		return sensor_index;
 	}
 
-	@JsonProperty("label")
 	public MsmSensorLabel getLabel() {
 		return label;
 	}
 
-	@JsonProperty("max")
 	public double getMax() {
 		return max;
 	}
 
-	@JsonProperty("min")
 	public double getMin() {
 		return min;
 	}
 
-	@JsonProperty("type")
 	public MsmSensorType getType() {
 		return type;
 	}
 
-	@JsonProperty("unit")
 	public String getUnit() {
 		return unit;
 	}
 
-	@JsonProperty("value")
 	public double getValue() {
 		return value;
 	}
 
 	@JsonProperty("avg")
-	public void setAvg(double avg) {
+	public void setAvg(final double avg) {
 		this.avg = avg;
 	}
 
 	@JsonProperty("id")
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
 	@JsonProperty("sensor_index")
-	public void setIndex(int index) {
+	public void setIndex(final int index) {
 		sensor_index = index;
 	}
 
 	@JsonProperty("label")
-	public void setLabel(MsmSensorLabel label) {
+	public void setLabel(final MsmSensorLabel label) {
 		this.label = label;
 	}
 
 	@JsonProperty("max")
-	public void setMax(double max) {
+	public void setMax(final double max) {
 		this.max = max;
 	}
 
 	@JsonProperty("min")
-	public void setMin(double min) {
+	public void setMin(final double min) {
 		this.min = min;
 	}
 
 	@JsonProperty("type")
-	public void setType(MsmSensorType type) {
+	public void setType(final MsmSensorType type) {
 		this.type = type;
 	}
 
 	@JsonProperty("unit")
-	public void setUnit(String unit) {
+	public void setUnit(final String unit) {
 		this.unit = unit;
 	}
 
 	@JsonProperty("value")
-	public void setValue(double value) {
+	public void setValue(final double value) {
 		this.value = value;
 	}
 

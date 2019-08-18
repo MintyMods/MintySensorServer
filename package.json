@@ -1,19 +1,19 @@
 {
-  "name": "info.mintymods.mss",
-  "version": "1.0.0",
-  "description": "Minty Sensor Server",
-  "main": "index.js",
-  "directories": {
-    "doc": "doc"
-  },
-  "scripts": {
-    "test": "test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MintyMods/MintySensorServer.git"
-  },
-  "keywords": [
+    "name": "info.mintymods.mss",
+    "version": "1.0.0",
+    "description": "Minty Sensor Server",
+    "main": "index.js",
+    "directories": {
+        "doc": "doc"
+    },
+    "scripts": {
+        "test": "test.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MintyMods/MintySensorServer.git"
+    },
+    "keywords": [
     "Sensor",
     "Server",
     "Minty",
@@ -25,26 +25,23 @@
     "Notifications",
     "Dashboard"
   ],
-  "author": "Rob Gregory [Minty]",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/MintyMods/MintySensorServer/issues"
-  },
-  "homepage": "https://github.com/MintyMods/MintySensorServer#readme",
-  "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.9.0",
-    "@fortawesome/fontawesome-pro": "^5.9.0"
-  },
-  "dependencies": {
-    "@simonwep/pickr": "^1.2.6",
-    "axios": "^0.19.0",
-    "date-fns": "^1.30.1",
-    "handlebars": "^4.1.2",
-    "highcharts": "^7.1.2",
-    "jquery": "^3.4.1",
-    "jquery-knob": "^1.2.11",
-    "js-cookie": "^2.2.0",
-    "masonry-layout": "^4.2.2",
-    "pnotify": "^4.0.0"
-  }
+    "author": "Rob Gregory [Minty]",
+    "license": "GNU v3.0",
+    "bugs": {
+        "url": "https://github.com/MintyMods/MintySensorServer/issues"
+    },
+    "homepage": "https://github.com/MintyMods/MintySensorServer#readme",
+    "devDependencies": {
+        "@fortawesome/fontawesome-pro": "^5.9.0"
+    },
+    "dependencies": {
+        "@simonwep/pickr": "^1.2.6",
+        "axios": "^0.19.0",
+        "date-fns": "^1.30.1",
+        "highcharts": "^7.1.2",
+        "jquery": "^3.4.1",
+        "jquery-knob": "^1.2.11",
+        "masonry-layout": "^4.2.2",
+        "pnotify": "^4.0.0"
+    }
 }

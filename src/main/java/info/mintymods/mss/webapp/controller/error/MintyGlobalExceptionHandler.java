@@ -14,7 +14,7 @@ import info.mintymods.mss.webapp.exception.MsmServiceProviderUnavailableExceptio
 public class MintyGlobalExceptionHandler {
 
 	@ExceptionHandler(MsmServiceProviderUnavailableException.class)
-	public ResponseEntity<MintyErrorResponse> customHandleNotFound(final Exception ex, final WebRequest request) {
+	public ResponseEntity<MintyErrorResponse> serviceProviderNotAvailable(final Exception ex, final WebRequest request) {
 		final MintyErrorResponse errors = new MintyErrorResponse();
 		errors.setTimestamp(LocalDateTime.now());
 		errors.setError(ex.getMessage());
