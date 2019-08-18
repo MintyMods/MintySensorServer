@@ -40,7 +40,9 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter:${springBootVersion}")
 	implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-	implementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("org.springframework.boot:spring-boot-starter-test")	
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.1.7.RELEASE'
+
 	//implementation("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
 	//implementation("org.springframework.security:spring-security-config")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
@@ -49,10 +51,8 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-envers', version: '5.4.4.Final'
 	compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.1'
 	compile group: 'org.javassist', name: 'javassist', version: '3.25.0-GA'
-
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-	
   	//implementation("org.codehaus.groovy:groovy:2.5.3")
 	implementation('org.modelmapper:modelmapper:0.7.5')
   	compile group: 'org.jetbrains', name: 'annotations', version: '13.0'
@@ -67,17 +67,20 @@ dependencies {
   	implementation("junit:junit:4.12")
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: '1.1.7.RELEASE'
 	  
-  
 	// Client Side Dependencies : BootStrap and some good friends
-	//compile 'org.webjars:jquery:3.4.1'
-    //compile 'org.webjars:jquery-cookie:1.4.1-1'
-	compile 'org.webjars:jquery.sparkline:2.1.2'
-	compile 'org.webjars:jquery-knob:1.2.11'
-	compile 'org.webjars.bower:pnotify:4.0.0'
-	compile 'org.webjars:font-awesome:5.9.0'
-	// https://mvnrepository.com/artifact/org.webjars.npm/axios
-	compile group: 'org.webjars.npm', name: 'axios', version: '0.19.0'
-	
+//	compile 'org.webjars:jquery:3.4.1'
+//    compile 'org.webjars:jquery-cookie:1.4.1-1'
+//	compile("org.webjars:webjars-locator-core")
+//	compile("org.webjars:sockjs-client:1.0.2")
+//	compile("org.webjars:stomp-websocket:2.3.3")
+//	compile("org.webjars:bootstrap:3.3.7")
+//	compile 'org.webjars:jquery.sparkline:2.1.2'
+//	compile 'org.webjars:jquery-knob:1.2.11'
+//	compile 'org.webjars.bower:pnotify:4.0.0'
+//	compile group: 'org.webjars', name: 'font-awesome', version: '5.10.1'
+//	compile group: 'org.webjars', name: 'masonry', version: '4.2.0'
+//	compile group: 'org.webjars', name: 'packery', version: '2.1.1'
+//	
 	
 	// Charts
 	compile 'org.webjars:chartjs:26962ce-1'

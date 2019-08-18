@@ -5,7 +5,6 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ConfigTest.class, DBUtilsTest.class, UtilsTest.class })
+@SuiteClasses({ConfigTest.class, DBUtilsTest.class})
 public class AllTests {
-
 }

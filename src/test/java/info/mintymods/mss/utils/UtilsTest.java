@@ -1,16 +1,6 @@
 package info.mintymods.mss.utils;
 
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-
-import org.junit.Test;
-
-import info.mintymods.utils.MintyFileUtils;
-import info.mintymods.utils.MintyPathUtils;
-
 public class UtilsTest {
-
 	// @Test
 	// public void getAbsolutePath() {
 	// final String path = MintyFileUtils.getFileFromClassPath(MssPathUtils.getApplicationPropertiesFilename())
@@ -45,9 +35,9 @@ public class UtilsTest {
 	// throw new RuntimeException(e.getMessage(), e);
 	// }
 	// }
-	@Test
-	public void getFileFromClassPath() {
-		final File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MintyPathUtils.getApplicationPropertiesFilename());
-		assertTrue(fileFromClassPath.exists());
-	}
+	// @Test
+	// public void getFileFromClassPath() {
+	// final File fileFromClassPath = MintyFileUtils.getFileFromClassPath(MintyPathUtils.getApplicationPropertiesFilename());
+	// assertTrue(fileFromClassPath.exists());
+	// }
 }

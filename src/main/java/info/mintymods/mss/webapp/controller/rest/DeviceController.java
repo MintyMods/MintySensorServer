@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import info.mintymods.mss.webapp.services.DeviceService;
+import info.mintymods.mss.webapp.service.DeviceService;
 import info.mintymods.repository.entities.Device;
 
 @RestController

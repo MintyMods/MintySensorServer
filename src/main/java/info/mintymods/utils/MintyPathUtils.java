@@ -1,9 +1,11 @@
 package info.mintymods.utils;
 
+import info.mintymods.mss.webapp.config.properties.MintyConfig;
+
 public class MintyPathUtils {
 
 	private static final String FILENAME_CROSSDOMAIN_XML = "crossdomain.xml";
-	private static final String FILENAME_PROPERTIES = MintyProperties.MSS_PROPERTIES;
+	private static final String FILENAME_PROPERTIES = MintyConfig.MSS_PROPERTIES;
 	private static final String ROOT_FOLDER_PATH = "E:/Development/MintySS";
 	private static final String BIN_FOLDER_PATH = ROOT_FOLDER_PATH + "/bin/";
 	private static final String CLASSES_FOLDER_PATH = ROOT_FOLDER_PATH + "/src/main/resources";

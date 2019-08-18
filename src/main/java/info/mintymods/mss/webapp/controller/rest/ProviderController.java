@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import info.mintymods.mss.webapp.services.ProviderService;
+import info.mintymods.mss.webapp.service.ProviderService;
 import info.mintymods.repository.entities.Provider;
 
 @RestController

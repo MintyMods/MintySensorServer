@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import info.mintymods.mss.webapp.services.ReadingService;
+import info.mintymods.mss.webapp.service.ReadingService;
 import info.mintymods.repository.entities.Reading;
 
 @RestController

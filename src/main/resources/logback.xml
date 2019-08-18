@@ -23,7 +23,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework" level="INFO" additivity="false">
+    <logger name="org.springframework" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
     <logger name="info.mintymods" level="INFO" additivity="false">

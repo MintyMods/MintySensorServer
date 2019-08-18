@@ -54,4 +54,11 @@ public class MintySensorServer extends SpringBootServletInitializer {
 	public static ProviderType getProviderType() {
 		return ProviderType.HWINFO;
 	}
+	// @Bean
+	// public SecurityWebFilterChain sseServerSpringSecurityFilterChain(ServerHttpSecurity http) {
+	// http.authorizeExchange()
+	// .anyExchange()
+	// .permitAll();
+	// return http.build();
+	// }
 }

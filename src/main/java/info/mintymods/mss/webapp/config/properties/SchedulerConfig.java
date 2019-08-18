@@ -7,6 +7,7 @@ public class SchedulerConfig {
 
 	private Long delay;
 	private Long frequency;
+	private Long polling;
 
 	public Long getDelay() {
 		return delay;
@@ -26,5 +27,13 @@ public class SchedulerConfig {
 
 	public String getPropertiesFile() {
 		return "/config/scheduler.properties";
+	}
+
+	public Long getPolling() {
+		return polling;
+	}
+
+	public void setPolling(final Long polling) {
+		this.polling = polling;
 	}
 }

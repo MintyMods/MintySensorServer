@@ -5,11 +5,20 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "minty")
 public class MintyConfig {
 
+	public static final String MSS_PROPERTIES = "application.properties";
 	boolean debug;
 	private DatabaseConfig database;
 	private SchedulerConfig scheduler;
 	private ApplicationConfig application;
 	private ErrorConfig error;
+	private static MintyConfig instance = null;
+
+	public static MintyConfig getInstance() {
+		if (instance == null) {
+			instance = new MintyConfig();
+		}
+		return instance;
+	}
 
 	public boolean isDebug() {
 		return debug;
@@ -47,7 +56,7 @@ public class MintyConfig {
 		return error;
 	}
 
-	public void setError(ErrorConfig error) {
+	public void setError(final ErrorConfig error) {
 		this.error = error;
 	}
 }

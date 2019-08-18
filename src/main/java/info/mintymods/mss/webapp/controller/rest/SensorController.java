@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import info.mintymods.mss.webapp.services.SensorService;
+import info.mintymods.mss.webapp.service.SensorService;
 import info.mintymods.repository.entities.Sensor;
 
 @RestController
