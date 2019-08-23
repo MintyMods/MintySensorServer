@@ -47,18 +47,7 @@ public class MintySensorServer extends SpringBootServletInitializer {
 		log.info("Database Alias:" + config.getDatabase().getAlias());
 	}
 
-	// @Bean
-	// public BasicErrorController basicErrorController() {
-	// return new MintyErrorController(new MintyErrorAttributes(), new MintyErrorProperties());
-	// }
 	public static ProviderType getProviderType() {
 		return ProviderType.HWINFO;
 	}
-	// @Bean
-	// public SecurityWebFilterChain sseServerSpringSecurityFilterChain(ServerHttpSecurity http) {
-	// http.authorizeExchange()
-	// .anyExchange()
-	// .permitAll();
-	// return http.build();
-	// }
 }

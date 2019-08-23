@@ -1,60 +1,43 @@
 package info.mintymods.utils;
 
-import info.mintymods.mss.webapp.config.properties.MintyConfig;
+import java.io.File;
+import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.system.ApplicationHome;
+
+import info.mintymods.MintySensorServer;
 
 public class MintyPathUtils {
 
-	private static final String ROOT_FOLDER_PATH = "E:/Development/MintySensorServer";
+	private static final Logger log = LoggerFactory.getLogger(MintyPathUtils.class);
 	private static final String JAVA_HOME = System.getProperty("java.home");
-	private static final String FILENAME_CROSSDOMAIN_XML = "crossdomain.xml";
-	private static final String FILENAME_PROPERTIES = MintyConfig.MSS_PROPERTIES;
-	private static final String BIN_FOLDER_PATH = ROOT_FOLDER_PATH + "/bin/";
+	private static final String ROOT_FOLDER_PATH = getRootPath();
 	private static final String LIB_FOLDER_PATH = ROOT_FOLDER_PATH + "/lib/";
-	private static final String CLASSES_FOLDER_PATH = ROOT_FOLDER_PATH + "/src/main/resources";
-	private static final String RUNTIME_CLASSES_FOLDER_PATH = ROOT_FOLDER_PATH + "/target/classes/";
-	private static final String RUNTIME_BIN_FOLDER_PATH = ROOT_FOLDER_PATH + "/target/classes/";
-	private static final String DLL_FILENAME_LOG4NET = "log4net.dll";
-	private static final String DLL_FILENAME_MINTY_SERVICE_HWINFO = "MintyServiceHWiNFO.dll";
 	private static final String RUNTIME_KEYSTORE_FOLDER_PATH = ROOT_FOLDER_PATH + "/target/classes/keystore/";
 
-	public static String getApplicationPropertiesFilename() {
-		return FILENAME_PROPERTIES;
+	public static String getApplicationHomeDirectory() {
+		final ApplicationHome home = new ApplicationHome(MintySensorServer.class);
+		try {
+			return home.getDir().getCanonicalPath();
+		} catch (final IOException e) {
+			log.error(e.getMessage(), e);
+			throw new RuntimeException(e.getMessage(), e);
+		}
 	}
 
-	public static String getBinFolder() {
-		return BIN_FOLDER_PATH;
+	public static String getRootPath() {
+		final File home = new File(getApplicationHomeDirectory());
+		return home.getParentFile().getParent();
 	}
 
 	public static String getRuntimeLibDirectory() {
 		return LIB_FOLDER_PATH;
 	}
 
-	public static String getClassesFolder() {
-		return CLASSES_FOLDER_PATH;
-	}
-
-	public static String getCrossDomainXmlFilename() {
-		return FILENAME_CROSSDOMAIN_XML;
-	}
-
-	public static String getLog4NetDllFilename() {
-		return DLL_FILENAME_LOG4NET;
-	}
-
-	public static String getMintyServiceHWiNFODLLFilename() {
-		return DLL_FILENAME_MINTY_SERVICE_HWINFO;
-	}
-
 	public static String getRootFolder() {
 		return ROOT_FOLDER_PATH;
-	}
-
-	public static String getRuntimeBinFolderPath() {
-		return RUNTIME_BIN_FOLDER_PATH;
-	}
-
-	public static String getRuntimeClassesFolder() {
-		return RUNTIME_CLASSES_FOLDER_PATH;
 	}
 
 	public static String getRuntimeKeyStoreFolder() {
