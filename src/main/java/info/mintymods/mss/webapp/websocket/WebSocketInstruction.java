@@ -1,6 +1,6 @@
 package info.mintymods.mss.webapp.websocket;
 
-public class ChatMessage {
+public class WebSocketInstruction {
 
 	private MessageType type;
 	private String content;

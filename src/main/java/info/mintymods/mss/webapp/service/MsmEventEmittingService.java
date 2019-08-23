@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import info.mintymods.msm.MsmMonitorResponse;
 import info.mintymods.msm.MsmSensor;
 import info.mintymods.msm.MsmSensorReading;
-import info.mintymods.mss.webapp.websocket.ChatMessage;
+import info.mintymods.mss.webapp.websocket.WebSocketInstruction;
 import info.mintymods.mss.webapp.websocket.WebSocketConfiguration;
 import info.mintymods.repository.entities.Reading;
 import info.mintymods.utils.MintyJsonUtils;
@@ -39,8 +39,8 @@ public class MsmEventEmittingService {
 	}
 
 	public void sendMessage(final String channel, final String content) {
-		final ChatMessage message = new ChatMessage();
-		message.setType(ChatMessage.MessageType.CHAT);
+		final WebSocketInstruction message = new WebSocketInstruction();
+		message.setType(WebSocketInstruction.MessageType.CHAT);
 		message.setSender("SERVER");
 		message.setContent(content);
 		messagingTemplate.convertAndSend(channel, message);
