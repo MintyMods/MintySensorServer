@@ -59,4 +59,16 @@ public class MintyConfig {
 	public void setError(final ErrorConfig error) {
 		this.error = error;
 	}
+
+	public char[] getPassword() {
+		return getApplication().getPassword().toCharArray();
+	}
+
+	public String getAlias() {
+		return getApplication().getAlias();
+	}
+
+	public String getDomainName() {
+		return getApplication().getDomainName();
+	}
 }

@@ -47,6 +47,10 @@ public class MintySensorServer extends SpringBootServletInitializer {
 		log.info("Database Alias:" + config.getDatabase().getAlias());
 	}
 
+	public static MintyConfig getConfig() {
+		return config;
+	}
+
 	public static ProviderType getProviderType() {
 		return ProviderType.HWINFO;
 	}

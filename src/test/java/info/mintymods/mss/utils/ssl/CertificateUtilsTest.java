@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import info.mintymods.mss.MintyConstants;
+import info.mintymods.MintySensorServer;
 import info.mintymods.utils.MintyFileUtils;
 import info.mintymods.utils.ssl.CertificateUtils;
 
@@ -49,9 +49,9 @@ public class CertificateUtilsTest {
 			assertTrue(file.exists());
 			final KeyStore keyStore = KeyStore.getInstance("JKS");
 			try (FileInputStream stream = new FileInputStream(file)) {
-				keyStore.load(stream, MintyConstants.PASSWORD);
+				keyStore.load(stream, MintySensorServer.getConfig().getPassword());
 			}
-			stored = keyStore.getCertificate(MintyConstants.SSL_ALIAS);
+			stored = keyStore.getCertificate(MintySensorServer.getConfig().getAlias());
 			assertNotNull(stored);
 		} catch (final Exception e) {
 			log.error(e.getMessage(), e);

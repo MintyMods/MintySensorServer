@@ -47,4 +47,12 @@ public class MintyPathUtils {
 	public static String getJavaHomeDirectory() {
 		return JAVA_HOME;
 	}
+
+	public static String getKeyStore() {
+		return getRuntimeKeyStoreFolder() + getAppName() + ".keystore";
+	}
+
+	private static String getAppName() {
+		return MintySensorServer.getConfig().getApplication().getName();
+	}
 }

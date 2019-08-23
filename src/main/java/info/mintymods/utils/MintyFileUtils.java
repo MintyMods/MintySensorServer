@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ResourceUtils;
 
-import info.mintymods.mss.MintyConstants;
-
 public class MintyFileUtils {
 
 	private static final Logger log = LoggerFactory.getLogger(MintyFileUtils.class);
@@ -46,12 +44,11 @@ public class MintyFileUtils {
 	}
 
 	public static File getKeyStoreFile() throws FileNotFoundException {
-		final String runtimeKeyStoreFolder = MintyPathUtils.getRuntimeKeyStoreFolder();
-		final File dir = new File(runtimeKeyStoreFolder);
+		final File dir = new File(MintyPathUtils.getRuntimeKeyStoreFolder());
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
-		final File file = new File(runtimeKeyStoreFolder + MintyConstants.APP_SHORT_NAME + ".keystore");
+		final File file = new File(MintyPathUtils.getKeyStore());
 		return file;
 	}
 }

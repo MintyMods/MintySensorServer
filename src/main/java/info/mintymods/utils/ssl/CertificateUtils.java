@@ -38,13 +38,17 @@ import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import info.mintymods.mss.MintyConstants;
+import info.mintymods.MintySensorServer;
+import info.mintymods.mss.webapp.config.properties.MintyConfig;
 import info.mintymods.utils.MintyFileUtils;
 
 public class CertificateUtils {
 
 	private static final Logger log = LoggerFactory.getLogger(CertificateUtils.class);
+	@Autowired
+	MintyConfig config;
 
 	public static KeyPair createKeyPair(final SecureRandom random) throws NoSuchAlgorithmException {
 		final KeyPairGenerator keypairGen = KeyPairGenerator.getInstance("EC");
@@ -59,8 +63,9 @@ public class CertificateUtils {
 			final File file = MintyFileUtils.getKeyStoreFile();
 			if (file.exists()) {
 				try (FileInputStream stream = new FileInputStream(file)) {
-					keyStore.load(stream, MintyConstants.PASSWORD);
-					if (!keyStore.containsAlias(MintyConstants.SSL_ALIAS)) {
+					// keyStore.load(stream, MintyConstants.PASSWORD);
+					keyStore.load(stream, MintySensorServer.getConfig().getPassword());
+					if (!keyStore.containsAlias(MintySensorServer.getConfig().getAlias())) {
 						createKeyStoreAndImportCertificate();
 					}
 				}
@@ -87,13 +92,13 @@ public class CertificateUtils {
 		if (file.exists()) {
 			log.debug("Certificate .keystore found @" + file.getAbsolutePath());
 			try (FileInputStream stream = new FileInputStream(file)) {
-				keyStore.load(stream, MintyConstants.PASSWORD);
+				keyStore.load(stream, MintySensorServer.getConfig().getPassword());
 			}
 		} else {
 			log.debug("Certificate .keystore Not found, creating @" + file.getAbsolutePath());
 			try (FileOutputStream stream = new FileOutputStream(file)) {
 				keyStore.load(null, null);
-				keyStore.store(stream, MintyConstants.PASSWORD);
+				keyStore.store(stream, MintySensorServer.getConfig().getPassword());
 			}
 		}
 		log.info("Importing Certificate into Keystore");
@@ -104,8 +109,8 @@ public class CertificateUtils {
 			final File file) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException,
 			FileNotFoundException {
 		try (FileOutputStream stream = new FileOutputStream(file)) {
-			keyStore.setKeyEntry(MintyConstants.SSL_ALIAS, key, MintyConstants.PASSWORD, certificate);
-			keyStore.store(stream, MintyConstants.PASSWORD);
+			keyStore.setKeyEntry(MintySensorServer.getConfig().getAlias(), key, MintySensorServer.getConfig().getPassword(), certificate);
+			keyStore.store(stream, MintySensorServer.getConfig().getPassword());
 		}
 	}
 
@@ -135,7 +140,7 @@ public class CertificateUtils {
 
 	private static X509v3CertificateBuilder populateCertificateFields(final SecureRandom random, final KeyPair keypair)
 			throws CertIOException, IOException {
-		final X500Name subject = new X500NameBuilder(BCStyle.INSTANCE).addRDN(BCStyle.CN, MintyConstants.DOMAIN_NAME).build();
+		final X500Name subject = new X500NameBuilder(BCStyle.INSTANCE).addRDN(BCStyle.CN, MintySensorServer.getConfig().getDomainName()).build();
 		final byte[] id = new byte[20];
 		random.nextBytes(id);
 		final BigInteger serial = new BigInteger(160, random);

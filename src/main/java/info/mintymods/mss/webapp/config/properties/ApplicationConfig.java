@@ -11,6 +11,9 @@ public class ApplicationConfig {
 	private String email;
 	private String author;
 	private String version;
+	private String password;
+	private String alias;
+	private String domainName;
 
 	public String getName() {
 		return name;
@@ -58,5 +61,29 @@ public class ApplicationConfig {
 
 	public void setAuthor(final String author) {
 		this.author = author;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(final String password) {
+		this.password = password;
+	}
+
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(final String alias) {
+		this.alias = alias;
+	}
+
+	public String getDomainName() {
+		return domainName;
+	}
+
+	public void setDomainName(final String domainName) {
+		this.domainName = domainName;
 	}
 }
