@@ -5,8 +5,6 @@ import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Service;
@@ -14,15 +12,14 @@ import org.springframework.stereotype.Service;
 import info.mintymods.msm.MsmMonitorResponse;
 import info.mintymods.msm.MsmSensor;
 import info.mintymods.msm.MsmSensorReading;
-import info.mintymods.mss.webapp.websocket.WebSocketInstruction;
 import info.mintymods.mss.webapp.websocket.WebSocketConfiguration;
+import info.mintymods.mss.webapp.websocket.WebSocketInstruction;
 import info.mintymods.repository.entities.Reading;
 import info.mintymods.utils.MintyJsonUtils;
 
 @Service
 public class MsmEventEmittingService {
 
-	private static final Logger log = LoggerFactory.getLogger(MsmEventEmittingService.class);
 	@Autowired
 	private SimpMessageSendingOperations messagingTemplate;
 	List<MsmSensor> sensors;

@@ -1,9 +1,5 @@
 package info.mintymods.jni;
 
-import java.io.File;
-
-import org.aspectj.util.FileUtil;
-
 import info.mintymods.msm.MsmMonitorRequest;
 import info.mintymods.msm.MsmMonitorResponse;
 import info.mintymods.mss.webapp.config.properties.MintyConfig;
@@ -22,7 +18,7 @@ public class MsmResponseFactory {
 	public MsmMonitorResponse getResponse(final MsmMonitorRequest request) throws MsmServiceProviderUnavailableException {
 		final MsmJniWrapper msm = new MsmJniWrapper();
 		final String json = msm.processRequest(request.toString());
-		FileUtil.writeAsString(new File("C:\\Users\\Minty\\minty.json"), json);
+		// FileUtil.writeAsString(new File("C:\\Users\\Minty\\minty.json"), json);
 		final MsmMonitorResponse response = MintyJsonUtils.getMsmMonitorResponse(json);
 		return response;
 	}

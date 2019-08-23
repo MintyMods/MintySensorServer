@@ -29,6 +29,7 @@ public class MsmAuditService {
 				// query.add(AuditEntity.property("name").eq("GPU Temperature"));
 				// final Number revision = (Number) query.getResultList();
 				start = System.currentTimeMillis();
+				@SuppressWarnings("unchecked")
 				final List<Object[]> entities = query.getResultList();
 				end = System.currentTimeMillis();
 				System.out.println("Enityt COunt::" + entities.size() + " @ " + (end - start));
@@ -41,6 +42,7 @@ public class MsmAuditService {
 					}
 				}
 				final Reading oldReading = reader.findRevision(Reading.class, 1);
+				@SuppressWarnings("unused")
 				final double value = oldReading.getValue();
 			}
 		} catch (final Throwable t) {

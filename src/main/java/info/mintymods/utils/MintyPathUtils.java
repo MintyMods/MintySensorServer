@@ -4,10 +4,12 @@ import info.mintymods.mss.webapp.config.properties.MintyConfig;
 
 public class MintyPathUtils {
 
+	private static final String ROOT_FOLDER_PATH = "E:/Development/MintySensorServer";
+	private static final String JAVA_HOME = System.getProperty("java.home");
 	private static final String FILENAME_CROSSDOMAIN_XML = "crossdomain.xml";
 	private static final String FILENAME_PROPERTIES = MintyConfig.MSS_PROPERTIES;
-	private static final String ROOT_FOLDER_PATH = "E:/Development/MintySS";
 	private static final String BIN_FOLDER_PATH = ROOT_FOLDER_PATH + "/bin/";
+	private static final String LIB_FOLDER_PATH = ROOT_FOLDER_PATH + "/lib/";
 	private static final String CLASSES_FOLDER_PATH = ROOT_FOLDER_PATH + "/src/main/resources";
 	private static final String RUNTIME_CLASSES_FOLDER_PATH = ROOT_FOLDER_PATH + "/target/classes/";
 	private static final String RUNTIME_BIN_FOLDER_PATH = ROOT_FOLDER_PATH + "/target/classes/";
@@ -21,6 +23,10 @@ public class MintyPathUtils {
 
 	public static String getBinFolder() {
 		return BIN_FOLDER_PATH;
+	}
+
+	public static String getRuntimeLibDirectory() {
+		return LIB_FOLDER_PATH;
 	}
 
 	public static String getClassesFolder() {
@@ -53,5 +59,9 @@ public class MintyPathUtils {
 
 	public static String getRuntimeKeyStoreFolder() {
 		return RUNTIME_KEYSTORE_FOLDER_PATH;
+	}
+
+	public static String getJavaHomeDirectory() {
+		return JAVA_HOME;
 	}
 }
