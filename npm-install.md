@@ -11,3 +11,4 @@ npm install node-sass --save-dev
 npm install mini-css-extract-plugin --save-dev
 npm install css-loader --save-dev
 npm install cross-env --save-dev
+npm install svelte-spa-router --save-dev

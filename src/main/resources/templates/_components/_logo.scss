@@ -1,0 +1,49 @@
+  @import "@material/theme/variables";
+
+  .logo {
+      text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+      font-weight: 600;
+      color: $mdc-theme-primary;
+      height: auto;
+  }
+
+  .logo::before {
+      position: absolute;
+      font-family: 'Font Awesome 5 Pro';
+      content: "\f126";
+      color: $mdc-theme-secondary;
+      transform: rotate(130deg);
+      font-weight: 400;
+      font-size: 2.5em;
+      //      text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+      z-index: -1;
+      //      left: -10px;
+      //      top: 5px;
+  }
+
+  .logo-text {
+      position: absolute;
+      color: $mdc-theme-primary;
+  }
+
+  .logo-alt {
+      position: absolute;
+      color: $mdc-theme-on-primary;
+  }
+
+  .fa-times-circle {
+      font-size: 2em;
+  }
+
+  .logo:after {
+      content: "";
+      display: inline-block;
+      width: 100%;
+  }
+
+  .logo-wrapper {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+      cursor: pointer;
+  }

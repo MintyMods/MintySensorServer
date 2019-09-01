@@ -5,5 +5,5 @@ import {
     readable
 } from 'svelte/store';
 
-export const navigationIsOpen = writable(false);
+export const storeIsNavigationOpen = writable(false);
 export const selectedThemeColor = writable('#ff0000');

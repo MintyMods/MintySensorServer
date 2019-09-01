@@ -4,8 +4,12 @@
 
 @import "@material/theme/color-palette";
 
-$mdc-theme-primary: $material-color-pink-500;
-$mdc-theme-secondary: $material-color-indigo-600;
-$mdc-theme-background: #0ff;
-$mdc-theme-surface: #fff;
-$mdc-theme-error: $material-color-red-a100;
+$mdc-theme-primary: #4285f4;
+$mdc-theme-on-primary: yellow;
+$mdc-theme-secondary: greenyellow;
+$mdc-theme-on-secondary: black;
+$mdc-theme-error: #b00020;
+$mdc-theme-on-error: yellow;
+$mdc-theme-surface: rgba(70, 150, 229, 1);
+$mdc-theme-on-surface: white;
+$mdc-theme-background: #00ff00;

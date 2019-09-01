@@ -1,39 +1,51 @@
 <script>
-      import '../_scss/Elevation.scss';
+    import './_hamburger.scss';
     import {
         onMount
     } from 'svelte';
-    //import Navigation from '../_components/Navigation.svelte';    
-    const timeout = 10000;
+    import Fab, {
+        Label,
+        Icon
+    } from '@smui/fab';
+    import {
+        storeIsNavigationOpen
+    } from './_stores.js';
+    const timeout = 1000;
     let snoozing = false;
     let sleeping = false;
     let snoozeInterval;
     let sleepInterval;
     let hamburger;
-    let pulse;
+    let sideNavOpen;
+    let pulse = false;
 
-    onMount(() => {
-        // var hamburger = document.getElementById('hamburger');
-        // var options = {
-        // direction: 'top',
-        // hoverEnabled: true,
-        // toolbarEnabled: false
-        // };
-        // hamburger = M.FloatingActionButton.init(hamburger, options)[0];
-        // snoozeInterval = setTimeout(() => {
-        // Snoozing();
-        // }, timeout);
+    const unsubscribe = storeIsNavigationOpen.subscribe(value => {
+        sideNavOpen = value;
     });
 
-    function Snoozing() {
-        snoozing = true;
-        sleepInterval = setTimeout(() => {
-            Sleeping();
+    onMount(() => {
+        snoozeInterval = setTimeout(() => {
+            Snoozing();
         }, timeout);
+    });
+
+    function toggleNavigation() {
+        storeIsNavigationOpen.set(!sideNavOpen);
+    }
+
+    function Snoozing() {
+        if (!sideNavOpen) {
+            snoozing = true;
+            sleepInterval = setTimeout(() => {
+                Sleeping();
+            }, timeout);
+        }
     }
 
     function Sleeping() {
-        sleeping = true;
+        if (!sideNavOpen) {
+            sleeping = true;
+        }
     }
 
     function ResetTimeout() {
@@ -46,70 +58,13 @@
         }, timeout);
     }
 
-
-    import Fab, {
-        Label,
-        Icon
-    } from '@smui/fab';
-
-    function doSomething() {
-        alert('something');
-    }
-
 </script>
 
-<style>
-    .fa-bars {
-        font-size: 2em;
-    }
-
-    .fixed-action-btn {
-        -webkit-transition: all 1s ease !important;
-        -moz-transition: all 1s ease !important;
-        -o-transition: all 1s ease !important;
-        transition: all 1s ease !important;
-        filter: alpha(opacity=1);
-        opacity: 1;
-        position: fixed !important;
-        left: 10px !important;
-        top: 0px !important;
-        right: auto;
-    }
-
-    .snoozing {
-        -webkit-transition: all 1s ease !important;
-        -moz-transition: all 1s ease !important;
-        -o-transition: all 1s ease !important;
-        transition: all 1s ease !important;
-        filter: alpha(opacity=0.5);
-        opacity: 0.5;
-    }
-
-    .sleeping {
-        -webkit-transition: all 1s ease !important;
-        -moz-transition: all 1s ease !important;
-        -o-transition: all 1s ease !important;
-        transition: all 1s ease !important;
-        filter: alpha(opacity=0);
-        opacity: 0;
-    }
-
-</style>
-
 <svelte:body on:mousemove={ResetTimeout} />
-
-<Fab id="hamburger">
-    <div class='fixed-action-btn' class:sleeping class:snoozing>
-        <a class:z-depth-4="{!snoozing}" class:pulse on:mouseover="{()=>pulse=true}" on:mouseout="{()=>pulse=false}" href="#!" data-target="slide-out" class="sidenav-trigger btn-large btn-floating waves-effect">
-            <i class="fad fa-bars"></i>
-        </a>
+<div class="hamburger-container" on:mouseover="{()=>pulse=true}" on:mouseout="{()=>pulse=false}" class:sleeping class:snoozing>
+    <div id='hamburger' on:click={()=>toggleNavigation()} class:nav-open={sideNavOpen} class:pulse>
+        <Fab color="primary" variant='outlined' class="mdc-button--outlined">
+            <i class="fal fa-bars"></i>
+        </Fab>
     </div>
-</Fab>
-
-
-
-
-
-<Fab on:click={doSomething}>
-    <Icon class="material-icons">favorite</Icon>
-</Fab>
+</div>

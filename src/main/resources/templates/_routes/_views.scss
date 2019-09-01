@@ -1,0 +1,43 @@
+@import "@material/image-list/mixins";
+
+.my-image-list-masonry {
+    @include mdc-image-list-masonry-columns(3);
+    @include mdc-image-list-shape-radius(10px);
+
+}
+
+@media (max-width: 599px) {
+    .my-image-list-masonry {
+        @include mdc-image-list-masonry-columns(3);
+    }
+}
+
+@media (max-width: 1599px) {
+    .my-image-list-masonry {
+        @include mdc-image-list-masonry-columns(6);
+    }
+}
+
+//@media only screen and (max-width: 80em) {
+//    .my-image-list-masonry {
+//        @include mdc-image-list-masonry-columns(24);
+//    }
+//}
+//
+//@media only screen and (max-width: 60em) {
+//    .my-image-list-masonry {
+//        @include mdc-image-list-masonry-columns(12);
+//    }
+//}
+//
+//@media only screen and (max-width: 40em) {
+//    .my-image-list-masonry {
+//        @include mdc-image-list-masonry-columns(6);
+//    }
+//}
+//
+//@media only screen and (max-width: 20em) {
+//    .my-image-list-masonry {
+//        @include mdc-image-list-masonry-columns(2);
+//    }
+//}
