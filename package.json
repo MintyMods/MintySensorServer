@@ -1,39 +1,37 @@
 {
-    "name": "info.mintymods.mss",
-    "version": "1.0.0",
-    "description": "Minty Sensor Server",
-    "main": "index.js",
-    "directories": {
-        "doc": "doc"
-    },
-    "scripts": {
-        "test": "test.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/MintyMods/MintySensorServer.git"
-    },
-    "keywords": [
-        "Sensor",
-        "Server",
-        "Minty",
-        "Sensor",
-        "Server",
-        "MSS",
-        "Hardware",
-        "Monitoring",
-        "Notifications",
-        "Dashboard"
-    ],
-    "author": "Rob Gregory [Minty]",
-    "license": "AGPL-3.0-or-later",
-    "bugs": {
-        "url": "https://github.com/MintyMods/MintySensorServer/issues"
-    },
-    "homepage": "https://github.com/MintyMods/MintySensorServer#readme",
-    "devDependencies": {
-        "@fortawesome/fontawesome-pro": "^5.10.1"
-    },
+  "name": "info.mintymods.mss",
+  "version": "1.0.0",
+  "description": "Minty Sensor Server",
+  "author": "Rob Gregory [Minty]",
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MintyMods/MintySensorServer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MintyMods/MintySensorServer/issues"
+  },
+  "homepage": "https://github.com/MintyMods/MintySensorServer#readme",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "webpack-dev-server --color true --content-base src/main/resources/templates/public --content-base src/main/resources/public --content-base src/main/resources/static"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.1",
+    "css-loader": "^2.1.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.3.1",
+    "serve": "^11.1.0",
+    "style-loader": "^0.23.1",
+    "svelte": "^3.9.1",
+    "svelte-loader": "^2.13.3",
+    "svelte-material-ui": "^1.0.0-beta.9",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
+    "@fortawesome/fontawesome-pro": "^5.10.1"
+  },
     "dependencies": {
         "@simonwep/pickr": "^1.2.6",
         "@stomp/stompjs": "^5.4.2",
