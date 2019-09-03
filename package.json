@@ -14,7 +14,7 @@
   "homepage": "https://github.com/MintyMods/MintySensorServer#readme",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack-dev-server --color true --content-base src/main/resources/templates/public --content-base src/main/resources/public --content-base src/main/resources/static"
+    "dev": "webpack-dev-server --https --color true --content-base src/main/resources/templates/public --content-base src/main/resources/public --content-base src/main/resources/static"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-pro": "^5.10.1",

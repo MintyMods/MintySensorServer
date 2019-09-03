@@ -45,5 +45,6 @@
         <Item href="#/settings" on:click={()=>setActive('settings')} activated={active==='settings'}><Graphic class="fa-fw fad fa-user-cog fa-2x"></Graphic><Text>Settings</Text></Item>
         <Item href="#/notifications" on:click={()=>setActive('notifications')} activated={active==='notifications'}><Graphic class="fa-fw fad fa-bell fa-2x"></Graphic><Text>Notifications</Text></Item>
         <Item href="#/testing" on:click={()=>setActive('testing')} activated={active==='testing'}><Graphic class="fa-fw fad fa-vial fa-2x"></Graphic><Text>Testing</Text></Item>
+        <Item href="#/chat" on:click={()=>setActive('testing')} activated={active==='client'}><Graphic class="fad fa-comments-alt fa-2x"></Graphic><Text>Chat</Text></Item>
     </List>
 </Content>

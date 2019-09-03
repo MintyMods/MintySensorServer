@@ -29,6 +29,7 @@
     import Hosts from './_routes/Hosts.svelte';
     import Devices from './_routes/Devices.svelte';
     import About from './_routes/About.svelte';
+    import Chat from './_routes/Client.svelte';
     import NotFound from './_routes/_error.svelte';
 
     let sideNavOpen;
@@ -66,6 +67,7 @@
         '/devices': Devices,
         '/about': About,
         '/index': Home,
+        '/chat': Chat,
         '/': Home,
         '*': NotFound,
     };
@@ -76,10 +78,10 @@
 
 </style>
 <Hamburger />
-
+<!--variant="modal"-->
 <aside>
     <div class="drawer-container">
-        <Drawer variant="modal" bind:this={sideNav} bind:open={sideNavOpen}>
+        <Drawer variant="dismissible" bind:this={sideNav} bind:open={sideNavOpen}>
             <Navigation />
         </Drawer>
         <Scrim />
