@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.system.ApplicationHome;
 
 import info.mintymods.MintySensorServer;
+import info.mintymods.mss.webapp.ssl.SslConfig;
 
 public class MintyPathUtils {
 
@@ -15,6 +16,7 @@ public class MintyPathUtils {
 	private static final String JAVA_HOME = System.getProperty("java.home");
 	private static final String ROOT_FOLDER_PATH = getRootPath();
 	private static final String LIB_FOLDER_PATH = ROOT_FOLDER_PATH + "/lib/";
+	private static final String LOG_FOLDER_PATH = ROOT_FOLDER_PATH + "/logs/";
 	private static final String RUNTIME_KEYSTORE_FOLDER_PATH = ROOT_FOLDER_PATH + "/target/classes/keystore/";
 
 	public static String getApplicationHomeDirectory() {
@@ -49,10 +51,10 @@ public class MintyPathUtils {
 	}
 
 	public static String getKeyStore() {
-		return getRuntimeKeyStoreFolder() + getAppName() + ".keystore";
+		return getRuntimeKeyStoreFolder() + SslConfig.getName() + ".keystore";
 	}
 
-	private static String getAppName() {
-		return MintySensorServer.getConfig().getApplication().getName();
+	public static String getLogFolderPath() {
+		return LOG_FOLDER_PATH;
 	}
 }

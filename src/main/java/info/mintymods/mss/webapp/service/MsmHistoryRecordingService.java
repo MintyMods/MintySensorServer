@@ -30,10 +30,17 @@ public class MsmHistoryRecordingService {
 		storeSensors(response);
 		storeReadings(response);
 		getGarbageCollectionStats();
-		if (MintySensorServer.config.isDebug()) {
+		if (isDebug()) {
 			log.info(String.format("@HistoryRecordingPolled# %d Sensors, %d Readings - %s", response.getSensors().size(), response.getReadings().size(),
 					getGarbageCollectionStats()));
 		}
+	}
+
+	private boolean isDebug() {
+		if (MintySensorServer.config != null) {
+			return MintySensorServer.config.isDebug();
+		}
+		return false;
 	}
 
 	private String getGarbageCollectionStats() {

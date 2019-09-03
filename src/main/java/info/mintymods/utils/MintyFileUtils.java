@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ResourceUtils;
+
+import info.mintymods.mss.MintyConstants;
 
 public class MintyFileUtils {
 
@@ -48,7 +51,15 @@ public class MintyFileUtils {
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
-		final File file = new File(MintyPathUtils.getKeyStore());
-		return file;
+		return new File(MintyPathUtils.getKeyStore());
+	}
+
+	public static void writeAsString(final File file, final String json) {
+		try {
+			FileUtils.writeStringToFile(file, json, MintyConstants.CONTENT_ENCODING);
+		} catch (final IOException e) {
+			log.error(e.getMessage(), e);
+			throw new RuntimeException(e.getMessage(), e);
+		}
 	}
 }

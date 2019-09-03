@@ -17,8 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import info.mintymods.MintySensorServer;
+import info.mintymods.mss.webapp.ssl.CertificateStoreUtils;
+import info.mintymods.mss.webapp.ssl.X509CertificateUtils;
 import info.mintymods.utils.MintyFileUtils;
-import info.mintymods.utils.ssl.CertificateUtils;
 
 public class CertificateUtilsTest {
 
@@ -26,7 +27,7 @@ public class CertificateUtilsTest {
 
 	@Test
 	public void checkKeystoreExistsOrCreateTest() {
-		CertificateUtils.checkKeystoreExistsOrCreate();
+		CertificateStoreUtils.checkKeystoreExistsOrCreate();
 		try {
 			final File file = MintyFileUtils.getKeyStoreFile();
 			assertTrue(file.exists());
@@ -42,9 +43,9 @@ public class CertificateUtilsTest {
 		KeyPair keyPair;
 		Certificate stored;
 		try {
-			keyPair = CertificateUtils.createKeyPair(random);
-			final X509Certificate[] certificate = CertificateUtils.getSelfSignedX509Certificate(keyPair, random);
-			CertificateUtils.createKeyStoreAndImportCertificate(keyPair.getPrivate(), certificate);
+			keyPair = CertificateStoreUtils.createKeyPair(random);
+			final X509Certificate[] certificate = X509CertificateUtils.getSelfSignedX509Certificate(keyPair, random);
+			CertificateStoreUtils.createKeyStoreAndImportCertificate(keyPair.getPrivate(), certificate);
 			final File file = MintyFileUtils.getKeyStoreFile();
 			assertTrue(file.exists());
 			final KeyStore keyStore = KeyStore.getInstance("JKS");
@@ -64,9 +65,9 @@ public class CertificateUtilsTest {
 		KeyPair keyPair;
 		final SecureRandom random = new SecureRandom();
 		try {
-			keyPair = CertificateUtils.createKeyPair(random);
+			keyPair = CertificateStoreUtils.createKeyPair(random);
 			assertNotNull(keyPair);
-			final X509Certificate[] certificate = CertificateUtils.getSelfSignedX509Certificate(keyPair, random);
+			final X509Certificate[] certificate = X509CertificateUtils.getSelfSignedX509Certificate(keyPair, random);
 			assertNotNull(certificate);
 		} catch (final Exception e) {
 			log.error(e.getMessage(), e);
@@ -78,7 +79,7 @@ public class CertificateUtilsTest {
 	public void createKeyPairTest() {
 		KeyPair keyPair;
 		try {
-			keyPair = CertificateUtils.createKeyPair(new SecureRandom());
+			keyPair = CertificateStoreUtils.createKeyPair(new SecureRandom());
 		} catch (final NoSuchAlgorithmException e) {
 			log.error(e.getMessage(), e);
 			throw new RuntimeException(e.getMessage(), e);
