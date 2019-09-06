@@ -36,6 +36,8 @@
   "dependencies": {
     "@simonwep/pickr": "^1.2.6",
     "@stomp/stompjs": "^5.4.2",
+    "canvas-gauges": "^2.1.5",
+    "chart.js": "^2.8.0",
     "highcharts": "^7.1.2",
     "jquery": "^3.4.1",
     "jquery-knob": "^1.2.11",

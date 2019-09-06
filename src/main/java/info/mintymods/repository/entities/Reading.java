@@ -21,6 +21,7 @@ public class Reading {
 	private String name;
 	private String desc;
 	private int sensorIndex;
+	private String sensorIndexName;
 	private String unit;
 	private double value;
 	private Long parentId;
@@ -135,5 +136,13 @@ public class Reading {
 
 	public int getInstance() {
 		return instance;
+	}
+
+	public String getSensorIndexName() {
+		return sensorIndexName;
+	}
+
+	public void setSensorIndexName(final String sensorIndexName) {
+		this.sensorIndexName = sensorIndexName;
 	}
 }

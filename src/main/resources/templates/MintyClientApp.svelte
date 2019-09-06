@@ -73,10 +73,8 @@
     };
 
 </script>
-<style>
 
-
-</style>
+<div id="minty-sensor-server" />
 <Hamburger />
 <!--variant="modal"-->
 <aside>

@@ -11,6 +11,8 @@ import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
 
+import info.mintymods.msm.MsmSensorType;
+
 @Component
 public class WebSocketEventListener {
 
@@ -37,7 +39,7 @@ public class WebSocketEventListener {
 		if (username != null) {
 			log.info("User Disconnected : " + username);
 			final WebSocketInstruction chatMessage = new WebSocketInstruction();
-			chatMessage.setType(WebSocketInstruction.MessageType.LEAVE);
+			chatMessage.setType(MsmSensorType.OTHER);
 			chatMessage.setSender(username);
 			messagingTemplate.convertAndSend(WebSocketConfiguration.API_CHANNEL, chatMessage);
 		}

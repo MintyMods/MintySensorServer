@@ -13,8 +13,10 @@
 </head>
 
 <body>
-    <script src='bundle.js'></script>
+
     <script src='assets/pace/pace.min.js'></script>
+    <script src='assets/chartjs/Chart.min.js'></script>
+    <script src='assets/liquid-fill-gauge/liquidFillGauge.js'></script>
     <!--script src='assets/jquery/jquery.min.js'></script-->
     <!--script src='assets/masonry-layout/masonry.pkgd.min.js'></script>
     <script src='assets/packery/packery.pkgd.min.js'></script-->
@@ -34,6 +36,12 @@
     <!--script src='js/mintymods.mss.js'></script-->
     <!--script src='js/jquery.sparkline.min.js'></script-->
 
+    <script src='js/minty.sensor.server.js'></script>
+    <script src='bundle.js'></script>
+    <script>
+        Pace.options.ajax.trackWebSockets = false;
+
+    </script>
 </body>
 
 </html>

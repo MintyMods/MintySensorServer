@@ -1,20 +1,18 @@
 package info.mintymods.mss.webapp.websocket;
 
+import info.mintymods.msm.MsmSensorType;
+
 public class WebSocketInstruction {
 
-	private MessageType type;
+	private MsmSensorType type;
 	private String content;
 	private String sender;
 
-	public enum MessageType {
-		CHAT, JOIN, LEAVE
-	}
-
-	public MessageType getType() {
+	public MsmSensorType getType() {
 		return type;
 	}
 
-	public void setType(final MessageType type) {
+	public void setType(final MsmSensorType type) {
 		this.type = type;
 	}
 
