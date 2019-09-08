@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import info.mintymods.msm.MsmMonitorResponse;
+import info.mintymods.msm.MsmSensor;
 import info.mintymods.msm.exception.MsmException;
 import info.mintymods.mss.webapp.exception.MsmServiceProviderProcessingException;
 import info.mintymods.mss.webapp.exception.MsmServiceProviderUnavailableException;
@@ -61,5 +62,13 @@ public class MintyJsonUtils {
 			return false;
 		}
 		return true;
+	}
+
+	public static MsmSensor getMsmSensor(final String json) {
+		try {
+			return MintyJsonUtils.getMapper().readValue(json, MsmSensor.class);
+		} catch (final Exception e) {
+			throw new MsmServiceProviderUnavailableException(e.getMessage(), e);
+		}
 	}
 }

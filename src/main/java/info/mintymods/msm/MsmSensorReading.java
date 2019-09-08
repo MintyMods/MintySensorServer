@@ -16,6 +16,7 @@ public class MsmSensorReading {
 	private double min;
 	private double max;
 	private double avg;
+	private String name;
 
 	@JsonProperty("avg")
 	public double getAvg() {
@@ -106,5 +107,14 @@ public class MsmSensorReading {
 		} catch (final JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
+	}
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
+	public String getIcon() {
+		return type.getIcon();
 	}
 }

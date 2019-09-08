@@ -13,13 +13,30 @@
 
 <script>
     import Chart from '../_charts/chartjs/BarChart.svelte';
-    let data = [1, 2, 3, 4, 5, 6]
+    import HalfDial from '../_charts/chartjs/HalfDial.svelte';
+    import Sensors from '../_components/SensorList.svelte';
+    import Notification from '../_components/Notification.svelte';
+    let data = [1, 2, 3, 4, 5, 6];
 
 </script>
-d
+
 <div class="chart">
     <Chart {data} />
+    <HalfDial />
+    <Sensors />
 </div>
+
+
+
+<Notification type="notice" text="notice message" title="Notice Message" />
+<Notification type="info" text="info message" title="Info Message" />
+<Notification type="warning" text="warning message" title="Warning Message" />
+<Notification type="error" text="error message" title="Error Message" />
+<Notification type="success" text="success message" title="Success Message" />
+
+
+
+
 
 <div class="row ">
     <div class="col s2 m2">

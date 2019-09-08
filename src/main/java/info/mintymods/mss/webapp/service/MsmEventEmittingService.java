@@ -2,6 +2,7 @@ package info.mintymods.mss.webapp.service;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import info.mintymods.msm.MsmSensorReading;
 import info.mintymods.msm.MsmSensorType;
 import info.mintymods.mss.webapp.websocket.WebSocketConfiguration;
 import info.mintymods.mss.webapp.websocket.WebSocketInstruction;
-import info.mintymods.mss.webapp.websocket.WebSocketResponse;
 import info.mintymods.utils.MintyJsonUtils;
 
 @Service
@@ -22,9 +22,11 @@ public class MsmEventEmittingService {
 
 	@Autowired
 	private SimpMessageSendingOperations messagingTemplate;
-	private boolean debug = false;
+	private final boolean debug = false;
+	MsmMonitorResponse lastResponse;
 
 	public void processResponse(final MsmMonitorResponse response) {
+		lastResponse = response;
 		emitReadings(response);
 		if (debug) {
 			getGarbageCollectionStats();
@@ -33,12 +35,13 @@ public class MsmEventEmittingService {
 		}
 	}
 
-	public void sendMessage(final String channel, final String sender, final WebSocketResponse result) {
-		final WebSocketInstruction message = new WebSocketInstruction();
-		message.setType(result.getType());
-		message.setSender(sender);
-		message.setContent(MintyJsonUtils.getJsonString(result));
-		messagingTemplate.convertAndSend(channel, message);
+	public void sendSensors(final WebSocketInstruction message) {
+		message.setJson(lastResponse.getSensors());
+		sendMessage(message);
+	}
+
+	public void sendMessage(final WebSocketInstruction message) {
+		messagingTemplate.convertAndSend(message.getChannel(), message);
 	}
 
 	private String getGarbageCollectionStats() {
@@ -57,35 +60,64 @@ public class MsmEventEmittingService {
 		return "Garbage Collections: " + totalGarbageCollections + " : " + garbageCollectionTime + " (ms)";
 	}
 
-	public void sendSensors() {
-		// sensors.forEach((sensor) -> {
-		// sendMessage(WebSocketConfiguration.API_CHANNEL, "Sensor:" + sensor.getLabel().getName());
-		// });
-	}
-
 	private void emitReadings(final MsmMonitorResponse response) {
-		final List<MsmSensor> sensors = response.getSensors();
 		final List<MsmSensorReading> readings = response.getReadings();
 		readings.forEach((reading) -> {
-			final WebSocketResponse result = new WebSocketResponse();
-			final MsmSensor sensor = sensors.get(reading.getIndex());
-			result.setName(reading.getLabel().getName());
-			result.setUnit(reading.getUnit());
-			result.setValue(reading.getValue());
-			result.setType(reading.getType());
-			result.setParentName(sensor.getLabel().getName());
-			if ((result.getType() == MsmSensorType.FAN) || (result.getType() == MsmSensorType.TEMP)) {
-				final String channel = WebSocketConfiguration.API_CHANNEL;
-				sendMessage(channel, result.getParentName(), result);
+			if ((reading.getType() == MsmSensorType.FAN) || (reading.getType() == MsmSensorType.TEMP)) {
+				final WebSocketInstruction message = new WebSocketInstruction(reading);
+				message.setChannel(WebSocketConfiguration.READING_CHANNEL);
+				sendMessage(message);
 			}
 		});
 	}
 
-	public boolean isDebug() {
-		return debug;
+	public void sendReadingsBySensor(final WebSocketInstruction message) {
+		final String json = MintyJsonUtils.getJsonString(message.getParameters());
+		final MsmSensor sensor = MintyJsonUtils.getMsmSensor(json);
+		final int index = getIndexOfSensor(sensor);
+		final List<MsmSensorReading> results = new ArrayList<>();
+		final List<MsmSensorReading> readings = lastResponse.getReadings();
+		for (final MsmSensorReading reading : readings) {
+			if (reading.getIndex() == index) {
+				results.add(reading);
+			}
+		}
+		message.setJson(results);
+		sendMessage(message);
 	}
 
-	public void setDebug(final boolean debug) {
-		this.debug = debug;
+	public void sendReadingsByType(final WebSocketInstruction message) {
+		final MsmSensorType type = message.getType();
+		final List<MsmSensorReading> results = new ArrayList<>();
+		final List<MsmSensorReading> readings = lastResponse.getReadings();
+		for (final MsmSensorReading reading : readings) {
+			if (reading.getType() == type) {
+				results.add(reading);
+			}
+		}
+		message.setJson(results);
+		sendMessage(message);
+	}
+
+	private int getIndexOfSensor(final MsmSensor sensor) {
+		final List<MsmSensor> sensors = lastResponse.getSensors();
+		for (int i = 0; i < sensors.size(); i++) {
+			final MsmSensor temp = sensors.get(i);
+			if (temp.getLabel().getName().equals(sensor.getLabel().getName()) &&
+					(temp.getInstance() == sensor.getInstance())) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public void sendPong(final WebSocketInstruction message) {
+		sendMessage(message);
+	}
+
+	public void sendTypes(final WebSocketInstruction message) {
+		final MsmSensorType[] types = MsmSensorType.values();
+		message.setJson(types);
+		sendMessage(message);
 	}
 }

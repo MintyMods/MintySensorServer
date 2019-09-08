@@ -15,25 +15,28 @@ public class WebSocketController {
 	@Autowired
 	private MsmEventEmittingService service;
 
-	@MessageMapping("/chat.sendMessage")
+	@MessageMapping("/api.command")
 	@SendTo(WebSocketConfiguration.API_CHANNEL)
 	public WebSocketInstruction sendMessage(@Payload final WebSocketInstruction message) {
-		if ("sensors".equalsIgnoreCase(message.getContent())) {
-			service.sendSensors();
-		} else if ("debug=true".equalsIgnoreCase(message.getContent())) {
-			service.setDebug(true);
-		} else if ("debug=true".equalsIgnoreCase(message.getContent())) {
-			service.setDebug(false);
+		if (WebSocketCommand.SENSORS == message.getCommand()) {
+			service.sendSensors(message);
+		} else if (WebSocketCommand.SENSOR_READINGS == message.getCommand()) {
+			service.sendReadingsBySensor(message);
+		} else if (WebSocketCommand.TYPE_READINGS == message.getCommand()) {
+			service.sendReadingsByType(message);
+		} else if (WebSocketCommand.TYPES == message.getCommand()) {
+			service.sendTypes(message);
+		} else if (WebSocketCommand.PING == message.getCommand()) {
+			service.sendPong(message);
 		}
 		return message;
 	}
 
-	@MessageMapping("/chat.addUser")
+	@MessageMapping("/api.register")
 	@SendTo(WebSocketConfiguration.API_CHANNEL)
-	public WebSocketInstruction addUser(@Payload final WebSocketInstruction chatMessage,
+	public WebSocketInstruction addUser(@Payload final WebSocketInstruction message,
 			final SimpMessageHeaderAccessor headerAccessor) {
-		// Add username in web socket session
-		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-		return chatMessage;
+		// headerAccessor.getSessionAttributes().put("client", message.getParameter("client"));
+		return message;
 	}
 }

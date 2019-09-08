@@ -11,8 +11,6 @@ import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
 
-import info.mintymods.msm.MsmSensorType;
-
 @Component
 public class WebSocketEventListener {
 
@@ -22,26 +20,24 @@ public class WebSocketEventListener {
 
 	@EventListener
 	public void handleWebSocketConnectListener(final SessionConnectedEvent event) {
-		log.info("Received a new web socket connection");
+		log.debug("Received a new web socket connection " + event.getSource());
 	}
 
 	@EventListener
 	public void handleSessionSubscribeEvent(final SessionSubscribeEvent event) {
 		final StompHeaderAccessor headers = StompHeaderAccessor.wrap(event.getMessage());
-		headers.getSessionId();
-		headers.getSessionAttributes();
+		WebSocketSessionManager.registerSession(headers);
 	}
 
 	@EventListener
 	public void handleWebSocketDisconnectListener(final SessionDisconnectEvent event) {
 		final StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-		final String username = (String) headerAccessor.getSessionAttributes().get("username");
-		if (username != null) {
-			log.info("User Disconnected : " + username);
-			final WebSocketInstruction chatMessage = new WebSocketInstruction();
-			chatMessage.setType(MsmSensorType.OTHER);
-			chatMessage.setSender(username);
-			messagingTemplate.convertAndSend(WebSocketConfiguration.API_CHANNEL, chatMessage);
+		final String session = headerAccessor.getSessionId();
+		if (session != null) {
+			WebSocketSessionManager.closeSession(session);
+			log.debug("Session Disconnected : " + session);
+			// final WebSocketInstruction response = new WebSocketInstruction(session);
+			// messagingTemplate.convertAndSend(WebSocketConfiguration.API_CHANNEL, response);
 		}
 	}
 }

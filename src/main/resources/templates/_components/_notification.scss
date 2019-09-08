@@ -1,0 +1,126 @@
+[ui-pnotify].ui-pnotify.translucent.ui-pnotify-fade-in {
+    opacity: 0.8;
+}
+
+.minty-notification {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.minty-notifications li {
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+}
+
+.minty-notifications li:hover {
+    text-shadow: 0px 0px 50px greenyellow, 5px 5px 50px #4696e5, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: #4696e5 !important;
+}
+
+.minty-notification-icons {
+    position: relative;
+    font-size: 1.5em;
+    display: inline-block;
+    width: 100%;
+    height: 0;
+}
+
+.minty-notification-icons a:hover {
+    text-shadow: 0px 0px 50px greenyellow, 5px 5px 50px #4696e5, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    cursor: pointer;
+}
+
+#minty-notice:hover {
+    color: #66BB6A;
+    text-shadow: 0px 0px 50px #76ff03, 5px 5px 50px #32cb00, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    cursor: pointer;
+}
+
+#minty-info:hover {
+    color: rgb(70, 150, 229);
+    text-shadow: 0px 0px 50px #0d47a1, 5px 5px 50px #4285f4, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black !important;
+    cursor: pointer;
+}
+
+#minty-warn:hover {
+    color: #FFEE58;
+    text-shadow: 0px 0px 50px #c7cc00, 5px 5px 50px #ffff00, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black !important;
+    cursor: pointer;
+}
+
+#minty-critical:hover {
+    color: #EF5350;
+    text-shadow: 0px 0px 50px #ff3d00, 5px 5px 50px #c30000, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black !important;
+    cursor: pointer;
+}
+
+#minty-fatal:hover {
+    color: yellow;
+    text-shadow: 0px 0px 50px red, 5px 5px 50px red, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black !important;
+    cursor: pointer;
+}
+
+/* Align icons for mobile views */
+@media screen and (max-width: 980px) {
+    .minty-notification-icons > i {
+        text-align: center;
+        display: inline;
+        border: 1px dashed red !important;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    ul.icons.labeled.minty-notification-icons i {
+        text-align: center;
+        border: 1px dashed blue !important;
+    }
+}
+
+
+@media screen and (max-width: 736px) and (orientation: landscape) {
+
+    ul.icons.labeled.minty-notification-icons i {
+        text-align: center;
+        display: inline;
+        border: 1px dashed green !important;
+    }
+}
+
+@media screen and (max-width: 736px) and (orientation: portrait) {
+
+    ul.icons.labeled {
+        text-align: center;
+        display: inline;
+    }
+
+    ul.icons.labeled.minty-notification-icons i {
+        border: 1px dashed yellow !important;
+        color: red;
+    }
+
+}
+
+.notice-icons {
+    list-style: none;
+    vertical-align: middle;
+    font-size: 1.5em;
+    margin: 2px;
+}
+
+ul.notice-icons > li * {
+    font-size: 1em;
+    margin: 5px;
+}
+
+.ui-pnotify-icon {
+    padding: 0 15px 0 5px;
+}
+
+.ui-pnotify-title {
+    text-shadow: 0px 0px 1px white, 1px 1px 20px white;
+}
+
+.ui-pnotify-text {}

@@ -1,11 +1,12 @@
-<canvas id="myChart" width="2" height="1"></canvas>
+<canvas id="chart" width="2" height="1"></canvas>
 <style>
-    #myChart {
+    #chart {
         pointer-events: none;
     }
 
 </style>
 <script>
+    import WebSocket from '../_components/WebSocket.svelte';    
     import {
         onMount
     } from 'svelte';
@@ -13,11 +14,11 @@
     var stompClient = null;
     export let data;
     var ctx;
-    var myChart;
+    var chart;
 
     function createChart() {
-        ctx = document.getElementById('myChart').getContext('2d');
-        myChart = new Chart(ctx, {
+        ctx = document.getElementById('chart').getContext('2d');
+        chart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: ['Core #0', 'Core #1', 'Core #2', 'Core #3', 'Core Max', 'CPU Package'],
@@ -61,12 +62,13 @@
     onMount(() => {
         var socket = new SockJS('https://localhost:8080/ws');
         stompClient = Stomp.over(socket);
+        stompClient.debug = () => {};
         stompClient.connect({}, onConnected, onError);
         createChart();
     });
 
     function onConnected() {
-        stompClient.subscribe('/api', onMessageReceived);
+        stompClient.subscribe('/readings', onMessageReceived);
     }
 
     function onError(error) {
@@ -77,7 +79,7 @@
         var message = JSON.parse(payload.body);
 
         if (message.type == 'TEMP') {
-            var content = JSON.parse(message.content);
+            var content = JSON.parse(message.response);
             if (content.name == "Core #0") {
                 data[0] = content.value;
             } else if (content.name == "Core #1") {
@@ -92,8 +94,8 @@
                 data[5] = content.value;
             }
         }
-        myChart.data.datasets.data = data;
-        myChart.update();
+        chart.data.datasets.data = data;
+        chart.update();
     }
 
 </script>
