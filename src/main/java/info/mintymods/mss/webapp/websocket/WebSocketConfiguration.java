@@ -10,15 +10,10 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
-	public static final String API_CHANNEL = "/api/";
-	public static final String SENSOR_CHANNEL = "/sensors/";
-	public static final String READING_CHANNEL = "/readings/";
-
 	@Override
 	public void configureMessageBroker(final MessageBrokerRegistry config) {
-		config.enableSimpleBroker(API_CHANNEL, SENSOR_CHANNEL, READING_CHANNEL);
+		config.enableSimpleBroker(WebSocketChannel.CHANNEL_API, WebSocketChannel.CHANNEL_EVENTS, WebSocketChannel.CHANNEL_NOTIFICATION);
 		config.setApplicationDestinationPrefixes("/app");
-		// config.setUserDestinationPrefix(API_CHANNEL)
 	}
 
 	@Override

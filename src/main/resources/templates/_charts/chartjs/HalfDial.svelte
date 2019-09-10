@@ -46,25 +46,25 @@
         });
     }
 
-    onMount(() => {
-        var socket = new SockJS('https://localhost:8080/ws');        
-        stompClient = Stomp.over(socket);
-        stompClient.connect({}, onConnected, onError);
-        createChart();
-    });
-
-    function onConnected() {
-        stompClient.subscribe('/readings', onMessageReceived);
-        stompClient.debug = () => {};
-    }
-
-
-    function onMessageReceived(payload) {
-        var message = JSON.parse(payload.body);
-
-
-        //        chart.data.datasets.data = data;
-        //chart.update();
-    }
+    // onMount(() => {
+    // var socket = new SockJS('https://localhost:8080/ws');
+    // stompClient = Stomp.over(socket);
+    // stompClient.connect({}, onConnected, onError);
+    // createChart();
+    // });
+    //
+    // function onConnected() {
+    // stompClient.subscribe('/readings', onMessageReceived);
+    // //stompClient.debug = () => {};
+    // }
+    //
+    //
+    // function onMessageReceived(payload) {
+    // var message = JSON.parse(payload.body);
+    //
+    //
+    // // chart.data.datasets.data = data;
+    // //chart.update();
+    // }
 
 </script>

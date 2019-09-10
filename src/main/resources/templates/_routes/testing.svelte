@@ -3,7 +3,7 @@
 </svelte:head>
 <script>
     import {
-        selectedThemeColor
+        storeSelectedThemeColor
     } from '../_components/_stores.js';
 
 
@@ -17,7 +17,7 @@
     }
     let themeColor;
 
-    const unsubscribe = selectedThemeColor.subscribe(value => {
+    const unsubscribe = storeSelectedThemeColor.subscribe(value => {
         themeColor = value;
     });
 

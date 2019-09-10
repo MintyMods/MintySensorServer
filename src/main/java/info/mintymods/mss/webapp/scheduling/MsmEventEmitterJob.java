@@ -13,6 +13,7 @@ import info.mintymods.jni.MsmResponseFactory;
 import info.mintymods.mss.webapp.config.properties.MintyConfig;
 import info.mintymods.mss.webapp.exception.MsmServiceProviderUnavailableException;
 import info.mintymods.mss.webapp.service.MsmEventEmittingService;
+import info.mintymods.mss.webapp.service.Notification;
 
 public class MsmEventEmitterJob extends QuartzJobBean {
 
@@ -28,8 +29,9 @@ public class MsmEventEmitterJob extends QuartzJobBean {
 		try {
 			service.processResponse(factory.getResponse(MintySensorServer.getProviderType()));
 		} catch (final MsmServiceProviderUnavailableException unavailableException) {
-			log.warn(unavailableException.getMessage());
-			log.info("Service Provider Unavaliable - shutting down scheduler...");
+			Notification.sendError(unavailableException.getMessage());
+			log.error(unavailableException.getMessage());
+			log.warn("Service Provider Unavaliable - shutting down scheduler...");
 			shutDownScheduler(context);
 		}
 	}

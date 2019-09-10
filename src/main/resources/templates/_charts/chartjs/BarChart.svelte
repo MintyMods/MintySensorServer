@@ -1,4 +1,3 @@
-<canvas id="chart" width="2" height="1"></canvas>
 <style>
     #chart {
         pointer-events: none;
@@ -6,12 +5,11 @@
 
 </style>
 <script>
-    import WebSocket from '../_components/WebSocket.svelte';    
+    import WebSocket from '../../_components/WebSocket.svelte';
     import {
         onMount
     } from 'svelte';
 
-    var stompClient = null;
     export let data;
     var ctx;
     var chart;
@@ -60,38 +58,30 @@
     }
 
     onMount(() => {
-        var socket = new SockJS('https://localhost:8080/ws');
-        stompClient = Stomp.over(socket);
-        stompClient.debug = () => {};
-        stompClient.connect({}, onConnected, onError);
         createChart();
     });
 
-    function onConnected() {
-        stompClient.subscribe('/readings', onMessageReceived);
-    }
 
-    function onError(error) {
-        alert('Could not connect to WebSocket server. Please refresh this page to try again!');
-    }
+    function onMessageReceived(event) {
+        let readings = event.detail.content;
+        //debugger
+        for (let i = 0; i < readings.length; i++) {
+            let reading = readings[i];
+            let name = reading.label.value;
+            let value = reading.value;
 
-    function onMessageReceived(payload) {
-        var message = JSON.parse(payload.body);
-
-        if (message.type == 'TEMP') {
-            var content = JSON.parse(message.response);
-            if (content.name == "Core #0") {
-                data[0] = content.value;
-            } else if (content.name == "Core #1") {
-                data[1] = content.value;
-            } else if (content.name == "Core #2") {
-                data[2] = content.value;
-            } else if (content.name == "Core #3") {
-                data[3] = content.value;
-            } else if (content.name == "Core Max") {
-                data[4] = content.value;
-            } else if (content.name == "CPU Package") {
-                data[5] = content.value;
+            if (name == "Core #0") {
+                data[0] = value;
+            } else if (name == "Core #1") {
+                data[1] = value;
+            } else if (name == "Core #2") {
+                data[2] = value;
+            } else if (name == "Core #3") {
+                data[3] = value;
+            } else if (name == "Core Max") {
+                data[4] = value;
+            } else if (name == "CPU Package") {
+                data[5] = value;
             }
         }
         chart.data.datasets.data = data;
@@ -99,3 +89,6 @@
     }
 
 </script>
+
+<canvas id="chart" width="2" height="1"></canvas>
+<WebSocket on:event={onMessageReceived} channel='/events/' command='EVENTS' />

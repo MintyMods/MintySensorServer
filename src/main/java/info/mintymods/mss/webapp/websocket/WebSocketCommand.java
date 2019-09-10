@@ -1,10 +1,13 @@
 package info.mintymods.mss.webapp.websocket;
 
+import java.beans.ConstructorProperties;
+
 public enum WebSocketCommand {
-	PING("ping"), SENSORS("sensors"), SENSOR_READINGS("sensor_readings"), TYPES("types"), TYPE_READINGS("type_readings");
+	EVENTS("EVENTS"), PING("PING"), SENSORS("SENSORS"), READINGS_BY_SENSOR("READINGS_BY_SENSOR"), TYPES("TYPES"), READINGS_BY_TYPE("TYPE_READINGS");
 
 	private String command;
 
+	@ConstructorProperties({"command"})
 	private WebSocketCommand(final String command) {
 		this.command = command;
 	}

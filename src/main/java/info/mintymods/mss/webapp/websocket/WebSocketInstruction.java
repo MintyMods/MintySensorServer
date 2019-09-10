@@ -1,6 +1,5 @@
 package info.mintymods.mss.webapp.websocket;
 
-import info.mintymods.msm.MsmSensor;
 import info.mintymods.msm.MsmSensorType;
 import info.mintymods.utils.MintyJsonUtils;
 
@@ -9,9 +8,6 @@ public class WebSocketInstruction {
 	WebSocketCommand command = WebSocketCommand.PING;
 	private String channel = "";
 	private String json = "";
-	private MsmSensor sensor;
-	// @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-	// private List<String> parameters = new ArrayList<>();
 	private Object parameters;
 	private MsmSensorType type;
 
@@ -46,21 +42,14 @@ public class WebSocketInstruction {
 		this.parameters = parameters;
 	}
 
-	// public String getParameter(final String name) {
-	// final int index = parameters.indexOf(name);
-	// if (index > -1) {
-	// return parameters.get(index);
+	// public MsmSensor getSensor() {
+	// return sensor;
 	// }
-	// return null;
+	//
+	// public void setSensor(final MsmSensor sensor) {
+	// this.sensor = sensor;
 	// }
-	public MsmSensor getSensor() {
-		return sensor;
-	}
-
-	public void setSensor(final MsmSensor sensor) {
-		this.sensor = sensor;
-	}
-
+	//
 	public MsmSensorType getType() {
 		return type;
 	}

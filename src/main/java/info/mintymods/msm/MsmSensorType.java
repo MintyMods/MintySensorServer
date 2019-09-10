@@ -1,5 +1,6 @@
 package info.mintymods.msm;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -42,6 +43,7 @@ public enum MsmSensorType {
 		this.desc = desc;
 	}
 
+	@JsonProperty("icon")
 	public void setIcon(final String icon) {
 		this.icon = icon;
 	}
@@ -49,6 +51,22 @@ public enum MsmSensorType {
 	@JsonProperty("type")
 	public void setType(final int type) {
 		this.type = type;
+	}
+
+	@JsonCreator
+	public static MsmSensorType fromJson(@JsonProperty("name") final String name) {
+		MsmSensorType sensorType;
+		try {
+			sensorType = MsmSensorType.values()[Integer.parseInt(name)];
+		} catch (final NumberFormatException nfe) {
+			sensorType = MsmSensorType.valueOf(name);
+		}
+		return sensorType;
+	}
+
+	@JsonProperty
+	public String getName() {
+		return super.name();
 	}
 
 	@Override

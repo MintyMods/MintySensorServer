@@ -13,7 +13,7 @@ import info.mintymods.msm.MsmMonitorResponse;
 import info.mintymods.msm.MsmSensor;
 import info.mintymods.msm.MsmSensorReading;
 import info.mintymods.msm.MsmSensorType;
-import info.mintymods.mss.webapp.websocket.WebSocketConfiguration;
+import info.mintymods.mss.webapp.websocket.WebSocketChannel;
 import info.mintymods.mss.webapp.websocket.WebSocketInstruction;
 import info.mintymods.utils.MintyJsonUtils;
 
@@ -65,21 +65,22 @@ public class MsmEventEmittingService {
 		readings.forEach((reading) -> {
 			if ((reading.getType() == MsmSensorType.FAN) || (reading.getType() == MsmSensorType.TEMP)) {
 				final WebSocketInstruction message = new WebSocketInstruction(reading);
-				message.setChannel(WebSocketConfiguration.READING_CHANNEL);
+				message.setChannel(WebSocketChannel.CHANNEL_EVENTS);
 				sendMessage(message);
 			}
 		});
 	}
 
 	public void sendReadingsBySensor(final WebSocketInstruction message) {
-		final String json = MintyJsonUtils.getJsonString(message.getParameters());
-		final MsmSensor sensor = MintyJsonUtils.getMsmSensor(json);
+		final MsmSensor sensor = MintyJsonUtils.getMsmSensor(message.getParameters());
 		final int index = getIndexOfSensor(sensor);
 		final List<MsmSensorReading> results = new ArrayList<>();
-		final List<MsmSensorReading> readings = lastResponse.getReadings();
-		for (final MsmSensorReading reading : readings) {
-			if (reading.getIndex() == index) {
-				results.add(reading);
+		if (hasResponse()) {
+			final List<MsmSensorReading> readings = lastResponse.getReadings();
+			for (final MsmSensorReading reading : readings) {
+				if (reading.getIndex() == index) {
+					results.add(reading);
+				}
 			}
 		}
 		message.setJson(results);
@@ -87,16 +88,25 @@ public class MsmEventEmittingService {
 	}
 
 	public void sendReadingsByType(final WebSocketInstruction message) {
-		final MsmSensorType type = message.getType();
+		final MsmSensorType type = MintyJsonUtils.getMsmSensorType(message.getParameters());
 		final List<MsmSensorReading> results = new ArrayList<>();
-		final List<MsmSensorReading> readings = lastResponse.getReadings();
-		for (final MsmSensorReading reading : readings) {
-			if (reading.getType() == type) {
-				results.add(reading);
+		if (hasResponse()) {
+			final List<MsmSensorReading> readings = lastResponse.getReadings();
+			for (final MsmSensorReading reading : readings) {
+				if (reading.getType() == type) {
+					results.add(reading);
+				}
 			}
 		}
 		message.setJson(results);
 		sendMessage(message);
+	}
+
+	private boolean hasResponse() {
+		if (lastResponse == null) {
+			return false;
+		}
+		return true;
 	}
 
 	private int getIndexOfSensor(final MsmSensor sensor) {
@@ -119,5 +129,16 @@ public class MsmEventEmittingService {
 		final MsmSensorType[] types = MsmSensorType.values();
 		message.setJson(types);
 		sendMessage(message);
+	}
+
+	public void sendReadings(final WebSocketInstruction message) {
+		final List<MsmSensorReading> readings = lastResponse.getReadings();
+		readings.forEach((reading) -> {
+			if ((reading.getType() == MsmSensorType.FAN) || (reading.getType() == MsmSensorType.TEMP)) {
+				message.setChannel(WebSocketChannel.CHANNEL_EVENTS);
+				message.setJson(readings);
+				sendMessage(message);
+			}
+		});
 	}
 }

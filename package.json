@@ -14,7 +14,7 @@
   "homepage": "https://github.com/MintyMods/MintySensorServer#readme",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack-dev-server --https --color true --content-base src/main/resources/templates/public --content-base src/main/resources/public --content-base src/main/resources/static"
+    "dev": "webpack-dev-server --https --port 8081 --color true --content-base src/main/resources/templates/public --content-base src/main/resources/public --content-base src/main/resources/static"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-pro": "^5.10.1",
@@ -42,8 +42,10 @@
     "jquery": "^3.4.1",
     "jquery-knob": "^1.2.11",
     "masonry-layout": "^4.2.2",
+    "moment": "^2.24.0",
     "packery": "^2.1.2",
     "pnotify": "^4.0.0",
-    "sockjs": "^0.3.19"
+    "sockjs": "^0.3.19",
+    "svelte-awesome": "^2.2.0"
   }
 }

@@ -16,13 +16,13 @@ public class WebSocketController {
 	private MsmEventEmittingService service;
 
 	@MessageMapping("/api.command")
-	@SendTo(WebSocketConfiguration.API_CHANNEL)
+	@SendTo(WebSocketChannel.CHANNEL_API)
 	public WebSocketInstruction sendMessage(@Payload final WebSocketInstruction message) {
 		if (WebSocketCommand.SENSORS == message.getCommand()) {
 			service.sendSensors(message);
-		} else if (WebSocketCommand.SENSOR_READINGS == message.getCommand()) {
+		} else if (WebSocketCommand.READINGS_BY_SENSOR == message.getCommand()) {
 			service.sendReadingsBySensor(message);
-		} else if (WebSocketCommand.TYPE_READINGS == message.getCommand()) {
+		} else if (WebSocketCommand.READINGS_BY_TYPE == message.getCommand()) {
 			service.sendReadingsByType(message);
 		} else if (WebSocketCommand.TYPES == message.getCommand()) {
 			service.sendTypes(message);
@@ -32,11 +32,19 @@ public class WebSocketController {
 		return message;
 	}
 
-	@MessageMapping("/api.register")
-	@SendTo(WebSocketConfiguration.API_CHANNEL)
-	public WebSocketInstruction addUser(@Payload final WebSocketInstruction message,
+	@MessageMapping("/api.events")
+	@SendTo(WebSocketChannel.CHANNEL_EVENTS)
+	public WebSocketInstruction addListener(@Payload final WebSocketInstruction message,
 			final SimpMessageHeaderAccessor headerAccessor) {
-		// headerAccessor.getSessionAttributes().put("client", message.getParameter("client"));
+		service.sendReadings(message);
+		return message;
+	}
+
+	@MessageMapping("/api.notification")
+	@SendTo(WebSocketChannel.CHANNEL_NOTIFICATION)
+	public WebSocketInstruction addNotificationEndPoint(@Payload final WebSocketInstruction message,
+			final SimpMessageHeaderAccessor headerAccessor) {
+		// @todo
 		return message;
 	}
 }

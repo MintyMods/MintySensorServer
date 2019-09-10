@@ -17,31 +17,34 @@
     let types = [];
     let readings = [];
     let selectedType;
+    let sendSocket = false;
 
-    function typesCallBack(content) {
-        types = content;
+    function typesCallBack(event) {
+        types = event.detail.content;
     }
 
-    function readingsCallBack(content) {
-        readings = content;
+    function readingsCallBack(event) {
+        readings = event.detail.content;
+        sendSocket = false;
     }
 
     function getReadings(type) {
         selectedType = type;
+        sendSocket = true;
     }
 
 </script>
 
-<WebSocket bind:callback={typesCallBack} command="TYPES" />
-{#if selectedType }
-    <WebSocket bind:callback={readingsCallBack} parameters={selectedType} command="SENSOR_READINGS" />
+<WebSocket on:event={typesCallBack} command="TYPES" />
+{#if sendSocket }
+    <WebSocket on:event={readingsCallBack} parameters={selectedType} command="READINGS_BY_TYPE" />
 {/if}
 
 <div class="wrapper">
     
-<List class="sensors">
+<List class="types">
     {#each types as type, i}
-        <Item on:SMUI:action={getReadings(type)}>
+        <Item on:SMUI:action={()=>getReadings(type)}>
 <!--            <Graphic class=""><i class={type.icon}></i></Graphic>-->
             <Text>{type.desc}</Text>
         </Item>

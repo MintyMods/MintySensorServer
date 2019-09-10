@@ -17,31 +17,35 @@
     let sensors = [];
     let readings = [];
     let selectedSensor;
+    let sendSocket = false;
     $: selectedSensor = selectedSensor;
 
-    function sensorsCallBack(content) {
-        sensors = content;
+    function sensorsCallBack(event) {
+        sensors = event.detail.content;
     }
 
-    function readingsCallBack(content) {
-        readings = content;
+    function readingsCallBack(event) {
+        sendSocket = false;
+        readings = event.detail.content;
     }
 
     function getReading(sensor) {
         selectedSensor = sensor;
+        sendSocket = true;
     }
 
 </script>
 
-<WebSocket bind:callback={sensorsCallBack} command="SENSORS" />
-{#if selectedSensor }
-    <WebSocket bind:callback={readingsCallBack} parameters={selectedSensor} command="SENSOR_READINGS" />
-{/if}
+<WebSocket on:event={sensorsCallBack} command="SENSORS" />
+
+<!--{#if sendSocket}-->
+<WebSocket on:event={readingsCallBack} parameters={selectedSensor} command="READINGS_BY_SENSOR" />
+<!--{/if}-->
 
 <div class="wrapper">
-    
-<List class="sensors">
-    {#each sensors as sensor, i}
+
+    <List class="sensors">
+        {#each sensors as sensor, i}
         <Item on:SMUI:action={() =>getReading(sensor)}>
             <Graphic class=""></Graphic>
             <Text>{sensor.label.description}</Text>
@@ -51,10 +55,10 @@
 
             
 <List class="readings">
-    {#each readings as { id, instance, label }, i}
+    {#each readings as reading, i}
         <Item>
-            <Graphic class=""></Graphic>
-            <Text>{label.description}</Text>
+            <Graphic class="{reading.icon}"></Graphic>
+            <Text>{reading.label.description}</Text>
         </Item>
     {/each}
 </List>

@@ -15,7 +15,7 @@
     export let shadow = true;
     export let hide = true;
     export let history;
-    debugger
+
     var wrapper;
     var core = {
         text: text,
@@ -58,17 +58,17 @@
         PNotify.defaults.icons = 'fontawesome5';
         PNotify.defaults.styling = 'material';
         PNotify.defaults.width = '400px';
-        PNotify.modules.History.defaults.maxInStack = 50;
-        PNotify.defaultStack = {
-            dir1: 'down',
-            dir2: 'left',
-            firstpos1: 25,
-            firstpos2: 25,
-            spacing1: 36,
-            spacing2: 36,
-            push: 'bottom',
-            context: document.body
-        }
+        //        PNotify.modules.History.defaults.maxInStack = 50;
+        //        PNotify.defaultStack = {
+        //            dir1: 'down',
+        //            dir2: 'left',
+        //            firstpos1: 25,
+        //            firstpos2: 25,
+        //            spacing1: 36,
+        //            spacing2: 36,
+        //            push: 'bottom',
+        //            context: document.body
+        //        }
 
         if (history) {
             PNotify.modules.History.showAll();
@@ -82,10 +82,6 @@
         }
 
         switch (type) {
-            case 'notice':
-                wrapper.icon = icon || 'fas fa-question-circle fa-2x';
-                PNotify.notice(wrapper);
-                break;
             case 'info':
                 wrapper.icon = icon || 'fas fa-info-circle fa-2x';
                 PNotify.info(wrapper);
@@ -102,7 +98,10 @@
                 wrapper.icon = icon || 'fad fa-engine-warning fa-2x';
                 PNotify.error(wrapper);
                 break;
+            case 'notice':
             default:
+                wrapper.addClass += ' minty-notice';
+                wrapper.icon = icon || 'fas fa-question-circle fa-2x';
                 PNotify.notice(wrapper);
         }
 

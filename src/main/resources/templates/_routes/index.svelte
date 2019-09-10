@@ -14,7 +14,6 @@
 <script>
     import Chart from '../_charts/chartjs/BarChart.svelte';
     import HalfDial from '../_charts/chartjs/HalfDial.svelte';
-    import Sensors from '../_components/SensorList.svelte';
     import Notification from '../_components/Notification.svelte';
     let data = [1, 2, 3, 4, 5, 6];
 
@@ -23,7 +22,6 @@
 <div class="chart">
     <Chart {data} />
     <HalfDial />
-    <Sensors />
 </div>
 
 
