@@ -1,5 +1,8 @@
 <script>
     import {
+        formatDistance
+    } from 'date-fns'
+    import {
         onMount
     } from 'svelte';
     import {
@@ -66,10 +69,8 @@
     }
 
     function getLastChecked() {
-        //        let out = "\nPING : " + moment(lastPing, 'MMMM Do YYYY, h:mm:ss a').fromNow();
-        //        out = out + "\nPONG : " + moment(lastPong, 'MMMM Do YYYY, h:mm:ss a').fromNow();
-        let out = "\nPING : " + moment(lastPing, 'MMMM Do YYYY, h:mm:ss a').format('h:mm:ss');
-        out = out + "\nPONG : " + moment(lastPong, 'MMMM Do YYYY, h:mm:ss a').format('h:mm:ss');
+        let out = "\nLast PING : " + formatDistance(lastPing, new Date());
+        out = out + "\nLast PONG : " + formatDistance(lastPong, new Date());
         return out;
     }
 
