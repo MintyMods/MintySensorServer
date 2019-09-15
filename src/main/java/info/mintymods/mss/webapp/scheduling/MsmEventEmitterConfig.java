@@ -52,6 +52,7 @@ public class MsmEventEmitterConfig {
 	public SimpleTriggerFactoryBean eventEmitterJobTrigger(@Qualifier("eventEmitterJobDetail") final JobDetail jobDetail,
 			@Value("${minty.scheduler.polling}") final long frequency) {
 		final SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();
+		config.setQuartzTriggerFactory(factoryBean);
 		factoryBean.setJobDetail(jobDetail);
 		log.debug("minty.scheduler.polling@" + config.getScheduler().getPolling());
 		factoryBean.setStartDelay(config.getScheduler().getDelay());

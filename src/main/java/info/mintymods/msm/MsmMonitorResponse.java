@@ -21,6 +21,7 @@ public class MsmMonitorResponse {
 	private String type;
 	private boolean debug;
 	private String time_taken;
+	private Long polling_period;
 
 	public MsmMonitorResponse() {
 		type = getClass().getName();
@@ -123,5 +124,14 @@ public class MsmMonitorResponse {
 		} catch (final JsonProcessingException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
+	}
+
+	public Long getPolling_period() {
+		return polling_period;
+	}
+
+	@JsonProperty("polling_period")
+	public void setPolling_period(final Long polling_period) {
+		this.polling_period = polling_period;
 	}
 }

@@ -5,6 +5,8 @@ import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Service;
@@ -14,24 +16,25 @@ import info.mintymods.msm.MsmSensor;
 import info.mintymods.msm.MsmSensorReading;
 import info.mintymods.msm.MsmSensorType;
 import info.mintymods.mss.webapp.websocket.WebSocketChannel;
+import info.mintymods.mss.webapp.websocket.WebSocketEvent;
 import info.mintymods.mss.webapp.websocket.WebSocketInstruction;
 import info.mintymods.utils.MintyJsonUtils;
 
 @Service
 public class MsmEventEmittingService {
 
+	private static final Logger log = LoggerFactory.getLogger(MsmEventEmittingService.class);
 	@Autowired
 	private SimpMessageSendingOperations messagingTemplate;
-	private final boolean debug = false;
+	private final boolean debug = true;
 	MsmMonitorResponse lastResponse;
 
 	public void processResponse(final MsmMonitorResponse response) {
 		lastResponse = response;
 		emitReadings(response);
 		if (debug) {
-			getGarbageCollectionStats();
-			// sendMessage(WebSocketConfiguration.API_CHANNEL, "DEBUG",
-			// String.format("@EventEmitterPolled# %d Sensors, %d Readings - %s", response.getSensors().size(), response.getReadings().size(), getGarbageCollectionStats()));
+			log.info(String.format("@EventEmitterPolled# %d Sensors, %d Readings - %s", response.getSensors().size(), response.getReadings().size(),
+					getGarbageCollectionStats()));
 		}
 	}
 
@@ -61,14 +64,10 @@ public class MsmEventEmittingService {
 	}
 
 	private void emitReadings(final MsmMonitorResponse response) {
-		final List<MsmSensorReading> readings = response.getReadings();
-		readings.forEach((reading) -> {
-			if ((reading.getType() == MsmSensorType.FAN) || (reading.getType() == MsmSensorType.TEMP)) {
-				final WebSocketInstruction message = new WebSocketInstruction(reading);
-				message.setChannel(WebSocketChannel.CHANNEL_EVENTS);
-				sendMessage(message);
-			}
-		});
+		final WebSocketEvent event = new WebSocketEvent(response);
+		final WebSocketInstruction message = new WebSocketInstruction(event);
+		message.setChannel(WebSocketChannel.CHANNEL_EVENTS);
+		sendMessage(message);
 	}
 
 	public void sendReadingsBySensor(final WebSocketInstruction message) {
@@ -113,6 +112,9 @@ public class MsmEventEmittingService {
 		final List<MsmSensor> sensors = lastResponse.getSensors();
 		for (int i = 0; i < sensors.size(); i++) {
 			final MsmSensor temp = sensors.get(i);
+			if ((temp == null) || (sensor == null)) {
+				continue;
+			}
 			if (temp.getLabel().getName().equals(sensor.getLabel().getName()) &&
 					(temp.getInstance() == sensor.getInstance())) {
 				return i;

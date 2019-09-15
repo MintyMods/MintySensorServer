@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.quartz.JobDetail;
-import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.spi.JobFactory;
 import org.slf4j.Logger;
@@ -56,7 +55,8 @@ public class MsmHistoryRecordingConfig {
 		log.debug("minty.scheduler.delay@" + config.getScheduler().getDelay());
 		factoryBean.setStartDelay(config.getScheduler().getDelay());
 		factoryBean.setRepeatInterval(config.getScheduler().getFrequency());
-		factoryBean.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
+		factoryBean.setRepeatCount(1);
+		// factoryBean.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
 		return factoryBean;
 	}
 

@@ -1,5 +1,5 @@
 <script>
-    import './_hamburger.scss';
+    import './_scss/_hamburger.scss';
     import {
         onMount
     } from 'svelte';
@@ -9,7 +9,7 @@
     } from '@smui/fab';
     import {
         storeIsNavigationOpen
-    } from './_stores.js';
+    } from '../_stores/stores.js';
     const timeout = 1000;
     let snoozing = false;
     let sleeping = false;
@@ -34,7 +34,7 @@
     }
 
     function Snoozing() {
-        if (!sideNavOpen) {
+        if (!sideNavOpen && !pulse) {
             snoozing = true;
             sleepInterval = setTimeout(() => {
                 Sleeping();
@@ -63,7 +63,7 @@
 <svelte:body on:mousemove={ResetTimeout} />
 <div class="hamburger-container" on:mouseover="{()=>pulse=true}" on:mouseout="{()=>pulse=false}" class:sleeping class:snoozing>
     <div id='hamburger' on:click={()=>toggleNavigation()} class:nav-open={sideNavOpen} class:pulse>
-        <Fab color="primary" variant='outlined' class="mdc-button--outlined">
+        <Fab color="primary" variant='outlined' class="">
             <i class="fal fa-bars"></i>
         </Fab>
     </div>

@@ -7,8 +7,9 @@
     } from 'svelte';
     import {
         storeLastNetworkPing,
-        storeLastNetworkPong
-    } from './_stores.js';
+        storeLastNetworkPong,
+        time
+    } from '../_stores/stores.js';
     import {
         createEventDispatcher
     } from 'svelte';
@@ -19,21 +20,20 @@
     export let channel = "/api/" + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 10);
     let stompClient = null;
     let lastPing;
-    $: lastPing = lastPing;
-    $: lastPong = lastPong;
-
-
     let lastPong;
+    const debugging = true;
+
     const dispatch = createEventDispatcher();
 
     //$: console.log('Last Active :' + lastAlive);
 
-    onMount(() => {
+    onMount((event) => {
         storeLastNetworkPing.set(new Date());
         let socket = new SockJS('https://localhost:8080/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
-        stompClient.debug = () => {};
+        stompClient.debug = () => {}; //if (debugging)
+        //event.preventDefault();
     });
 
     const unsubscribePing = storeLastNetworkPing.subscribe(ping => {
@@ -44,8 +44,9 @@
     });
 
     function onConnected() {
-        storeLastNetworkPong.set(new Date());
-        stompClient.subscribe(channel, onMessageReceived);
+        if (command == 'EVENTS') { //@todo remove
+            stompClient.subscribe(channel, onMessageReceived);
+        }
 
         let payload = JSON.stringify({
             command,
@@ -60,7 +61,6 @@
     }
 
     function onMessageReceived(payload) {
-        storeLastNetworkPong.set(new Date());
         let message = JSON.parse(payload.body);
         let content = JSON.parse(message.json);
         dispatch('event', {
@@ -69,21 +69,25 @@
     }
 
     function getLastChecked() {
-        let out = "\nLast PING : " + formatDistance(lastPing, new Date());
-        out = out + "\nLast PONG : " + formatDistance(lastPong, new Date());
-        return out;
+        let now = new Date();
+        let pinged = formatDistance(lastPing, now);
+        let ponged = formatDistance(lastPong, lastPing);
+        let ping = `\nLast PING : ` + formatter.format(lastPing) + `, ${pinged} ago.`;
+        let pong = `\nLast PONG : ` + formatter.format(lastPong) + `, ${ponged} ago.`;
+        return ping + pong;
     }
 
     function onError(error) {
         if (window.permanotice) {
-            storeLastNetworkPong.set(new Date());
             window.permanotice.open();
         } else {
             window.permanotice = PNotify.notice({
                 title: 'Network Error',
-                text: '\n' + error + getLastChecked(),
+                text: getLastChecked(),
                 hide: false,
-                icon: 'fad fa-wifi-slash fa-3x',
+                icon: 'fad fa-wifi-slash fa-2x',
+                width: '600px',
+                textTrusted: true,
                 modules: {
                     Buttons: {
                         closer: false,
@@ -103,5 +107,48 @@
 
         }
     }
+
+    function showStackBarBottom(type) {
+        if (typeof window.stackBarBottom === 'undefined') {
+            window.stackBarBottom = {
+                'dir1': 'up',
+                'firstpos1': 0,
+                'spacing1': 0
+            };
+        }
+        var opts = {
+            title: 'Over Here',
+            text: "Check me out. I'm in a different stack.",
+            addClass: 'stack-bar-bottom',
+            cornerClass: 'ui-pnotify-sharp',
+            shadow: false,
+            width: '100%',
+            stack: window.stackBarBottom
+        };
+        switch (type) {
+            case 'error':
+                opts.title = 'Oh No';
+                opts.text = 'Watch out for that water tower!';
+                opts.type = 'error';
+                break;
+            case 'info':
+                opts.title = 'Breaking News';
+                opts.text = 'Have you met Ted?';
+                opts.type = 'info';
+                break;
+            case 'success':
+                opts.title = 'Good News Everyone';
+                opts.text = "I've invented a device that bites shiny metal asses.";
+                opts.type = 'success';
+                break;
+        }
+        PNotify.alert(opts);
+    }
+    const formatter = new Intl.DateTimeFormat('en', {
+        hour12: true,
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit'
+    });
 
 </script>

@@ -1,5 +1,5 @@
 <script>
-    import './_notification.scss';
+    import './_scss/_notification.scss';
     import {
         onMount
     } from 'svelte';

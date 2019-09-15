@@ -1,5 +1,5 @@
 <script>
-    import './_fontawesomepicker.scss';
+    import './_scss/_fontAwesomePicker.scss';
 
     import Textfield, {
         Input,

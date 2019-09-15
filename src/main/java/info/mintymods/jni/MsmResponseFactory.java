@@ -2,6 +2,8 @@ package info.mintymods.jni;
 
 import java.io.File;
 
+import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
+
 import info.mintymods.msm.MsmMonitorRequest;
 import info.mintymods.msm.MsmMonitorResponse;
 import info.mintymods.mss.webapp.config.properties.MintyConfig;
@@ -26,7 +28,14 @@ public class MsmResponseFactory {
 			MintyFileUtils.writeAsString(getResponseLogFile(), json);
 		}
 		final MsmMonitorResponse response = MintyJsonUtils.getMsmMonitorResponse(json);
+		matchServicePollingInterval(response);
 		return response;
+	}
+
+	private void matchServicePollingInterval(final MsmMonitorResponse response) {
+		final SimpleTriggerFactoryBean factory = config.getQuartzTriggerFactory();
+		final Long period = response.getPolling_period();
+		factory.setRepeatInterval(period);
 	}
 
 	private File getResponseLogFile() {

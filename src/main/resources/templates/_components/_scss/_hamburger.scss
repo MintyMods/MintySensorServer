@@ -17,12 +17,12 @@
 
 .snoozing {
     transition: all 1s ease !important;
-    filter: alpha(opacity=0.5);
-    opacity: 0.5;
+    //    filter: alpha(opacity=0.5);
+    //    opacity: 0.5;
 }
 
 .sleeping {
-    transition: all 1s ease !important;
+    //    transition: all 1s ease !important;
     filter: alpha(opacity=0);
     opacity: 0;
 }
@@ -45,26 +45,34 @@
 }
 
 .pulse {
-    //    display: block;
-    //    border-radius: 100%;
-    //    background: $mdc-theme-primary;
-    //    cursor: pointer;
-    //    box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
-    //    animation: pulse 2s infinite;}
+    display: block;
+    border-radius: 100%;
+    background: $mdc-theme-primary;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
+    animation: pulse 2s infinite;
 }
+
 
 
 @-webkit-keyframes pulse {
     0% {
         -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+        filter: alpha(opacity=0.4);
+        opacity: 0.4;
     }
 
     70% {
         -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+            filter: alpha(opacity=0);
+    opacity: 0;
     }
+    
 
     100% {
         -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+            filter: alpha(opacity=0);
+    opacity: 0;
     }
 }
 
@@ -72,15 +80,22 @@
     0% {
         -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
         box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+        filter: alpha(opacity=0.4);
+        opacity: 0.4;
+        
     }
 
     70% {
         -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
         box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+            filter: alpha(opacity=0);
+    opacity: 0;
     }
 
     100% {
         -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
         box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+            filter: alpha(opacity=0);
+    opacity: 0;
     }
 }

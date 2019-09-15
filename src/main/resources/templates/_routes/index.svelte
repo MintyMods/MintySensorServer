@@ -13,15 +13,59 @@
 
 <script>
     import Chart from '../_charts/chartjs/BarChart.svelte';
-    import HalfDial from '../_charts/chartjs/HalfDial.svelte';
+    //    import HalfDial from '../_charts/chartjs/HalfDial.svelte';
     import Notification from '../_components/Notification.svelte';
-    let data = [1, 2, 3, 4, 5, 6];
+
+    import {
+        onMount
+    } from 'svelte';
+    import {
+        onDestroy
+    } from 'svelte';
+    import {
+        beforeUpdate
+    } from 'svelte';
+    import {
+        storeReadings
+    } from '../_stores/stores.js';
+
+    let unsubscribeReadings;
+    let readings = [];
+    let sensors = [];
+    let types = [];
+    let data = [];
+    let selectedIndex;
+    $: readings;
+    $: data;
+
+    onMount(() => {
+        subscribeToStores();
+
+    });
+
+    onDestroy(() => {
+        unsubscribeReadings();
+    });
+
+    beforeUpdate(() => {
+        if (readings.length > 1) {
+            data = readings.filter(function(reading) {
+                return reading.sensor_index > 10 && reading.sensor_index < 15;
+            });
+        }
+    });
+
+    function subscribeToStores() {
+        unsubscribeReadings = storeReadings.subscribe(value => {
+            readings = value;
+        });
+    }
 
 </script>
 
 <div class="chart">
-    <Chart {data} />
-    <HalfDial />
+    <Chart {...data} />
+    <!--    <HalfDial />-->
 </div>
 
 

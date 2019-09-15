@@ -37,17 +37,12 @@
 </div>
 
 <script>
-    import './_client.scss';
+    import './_scss/_client.scss';
     import {
         onMount
     } from 'svelte';
 
     onMount(() => {
-
-
-
-
-
         var usernamePage = document.querySelector('#username-page');
         var chatPage = document.querySelector('#chat-page');
         var usernameForm = document.querySelector('#usernameForm');

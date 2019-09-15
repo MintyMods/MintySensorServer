@@ -1,5 +1,5 @@
 <script>
-    import './_logo.scss';
+    import './_scss/_logo.scss';
 
 </script>
 

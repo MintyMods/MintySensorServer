@@ -16,7 +16,7 @@
 <script>
   import ImageList, {Item, ImageAspectContainer, Image, Supporting, Label} from '@smui/image-list';
   import Div from '@smui/common/Div.svelte';
-  import './_views.scss';
+  import './_scss/_views.scss';
 
   function getUnevenImageSize(counter, base, variance, preAdd = num => num) {
     const mid = (counter % 2 ? Math.cos : Math.sin)(counter) * variance;

@@ -1,65 +1,87 @@
 <script>
-    import './_sensorlist.scss';
-    import WebSocket from '../_components/WebSocket.svelte';
+    import './_scss/_sensorList.scss';
+
     import List, {
         Item,
         Graphic,
+        Meta,
         Separator,
         Text,
         PrimaryText,
         SecondaryText
     } from '@smui/list';
-    import Card from '@smui/card';
     import {
         onMount
     } from 'svelte';
+    import {
+        onDestroy
+    } from 'svelte';
+    import {
+        beforeUpdate
+    } from 'svelte';
+    import {
+        storeReadings,
+        storeSensors
+    } from '../_stores/stores.js';
 
-    let sensors = [];
+    let unsubscribeReadings;
+    let unsubscribeSensors;
     let readings = [];
-    let selectedSensor;
-    let sendSocket = false;
-    $: selectedSensor = selectedSensor;
+    let sensors = [];
+    let types = [];
+    let items;
+    let selectedIndex;
 
-    function sensorsCallBack(event) {
-        sensors = event.detail.content;
-    }
+    onMount(() => {
+        subscribeToStores();
+    });
 
-    function readingsCallBack(event) {
-        sendSocket = false;
-        readings = event.detail.content;
-    }
+    onDestroy(() => {
+        unsubscribeReadings();
+        unsubscribeSensors();
+    });
 
-    function getReading(sensor) {
-        selectedSensor = sensor;
-        sendSocket = true;
+    beforeUpdate(() => {
+        if (selectedIndex) {
+            items = readings.filter(function(reading) {
+                return reading.sensor_index === selectedIndex;
+            });
+        }
+    });
+
+    function subscribeToStores() {
+        unsubscribeReadings = storeReadings.subscribe(value => {
+            readings = value;
+        });
+        unsubscribeSensors = storeSensors.subscribe(value => {
+            sensors = value;
+        });
     }
 
 </script>
 
-<WebSocket on:event={sensorsCallBack} command="SENSORS" />
-
-<!--{#if sendSocket}-->
-<WebSocket on:event={readingsCallBack} parameters={selectedSensor} command="READINGS_BY_SENSOR" />
-<!--{/if}-->
-
-<div class="wrapper">
-
-    <List class="sensors">
-        {#each sensors as sensor, i}
-        <Item on:SMUI:action={() =>getReading(sensor)}>
-            <Graphic class=""></Graphic>
-            <Text>{sensor.label.description}</Text>
-        </Item>
-    {/each}
-</List>
-
-            
-<List class="readings">
-    {#each readings as reading, i}
-        <Item>
-            <Graphic class="{reading.icon}"></Graphic>
-            <Text>{reading.label.description}</Text>
-        </Item>
-    {/each}
-</List>
+<div class="container1">
+    <div class="accordion">
+        <dl>
+            {#each sensors as sensor, i (sensor.id)}
+                <dt on:click={()=>selectedIndex = i}>{sensor.label.description}</dt>
+            {/each}   
+            {#if items}
+                <dd>
+                    <List>
+                      {#each items as item, i (item.id)}
+                        <Item>
+                          <Graphic class={item.icon}/>
+                          <Text>
+                            <PrimaryText>{item.label.description}</PrimaryText>
+                            <SecondaryText>{item.value} {item.unit}</SecondaryText>
+                          </Text>
+                          <Meta class="material-icons">{item.type.desc}</Meta>
+                        </Item>
+                      {/each}
+                    </List>
+              </dd>
+              {/if}         
+        </dl>
+    </div>
 </div>

@@ -5,21 +5,45 @@
 
 </style>
 <script>
-    import WebSocket from '../../_components/WebSocket.svelte';
+    //    import WebSocket from '../../_components/WebSocket.svelte';
     import {
         onMount
     } from 'svelte';
+    import {
+        beforeUpdate
+    } from 'svelte';
 
-    export let data;
-    var ctx;
-    var chart;
+    export let readings = [];
+
+    let ctx;
+    let chart;
+    export let data = [];
+    let labels = [];
+    $: readings;
+    $: data;
+    $: labels;
+
+    onMount(() => {
+        createChart();
+    });
+
+    beforeUpdate(() => {
+        if (readings.length > 0) {
+            readings.forEach(function(reading) {
+                data = [...data, reading.value];
+                labels = [...labels, reading.label.description];
+            });
+            chart.data.datasets.data = data;
+            chart.update();
+        }
+    });
 
     function createChart() {
         ctx = document.getElementById('chart').getContext('2d');
         chart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Core #0', 'Core #1', 'Core #2', 'Core #3', 'Core Max', 'CPU Package'],
+                labels,
                 datasets: [{
                     label: 'CPU Temperature',
                     data,
@@ -57,38 +81,36 @@
         });
     }
 
-    onMount(() => {
-        createChart();
-    });
 
 
-    function onMessageReceived(event) {
-        let readings = event.detail.content;
-        //debugger
-        for (let i = 0; i < readings.length; i++) {
-            let reading = readings[i];
-            let name = reading.label.value;
-            let value = reading.value;
 
-            if (name == "Core #0") {
-                data[0] = value;
-            } else if (name == "Core #1") {
-                data[1] = value;
-            } else if (name == "Core #2") {
-                data[2] = value;
-            } else if (name == "Core #3") {
-                data[3] = value;
-            } else if (name == "Core Max") {
-                data[4] = value;
-            } else if (name == "CPU Package") {
-                data[5] = value;
-            }
-        }
-        chart.data.datasets.data = data;
-        chart.update();
-    }
+    //    function onMessageReceived(event) {
+    //        let readings = event.detail.content;
+    //        //debugger
+    //        for (let i = 0; i < readings.length; i++) {
+    //            let reading = readings[i];
+    //            let name = reading.label.value;
+    //            let value = reading.value;
+    //
+    //            if (name == "Core #0") {
+    //                data[0] = value;
+    //            } else if (name == "Core #1") {
+    //                data[1] = value;
+    //            } else if (name == "Core #2") {
+    //                data[2] = value;
+    //            } else if (name == "Core #3") {
+    //                data[3] = value;
+    //            } else if (name == "Core Max") {
+    //                data[4] = value;
+    //            } else if (name == "CPU Package") {
+    //                data[5] = value;
+    //            }
+    //        }
+    //        chart.data.datasets.data = data;
+    //        chart.update();
+    //    }
 
 </script>
 
 <canvas id="chart" width="2" height="1"></canvas>
-<WebSocket on:event={onMessageReceived} channel='/events/' command='EVENTS' />
+<!--<WebSocket on:event={onMessageReceived} channel='/events/' command='EVENTS' />-->
