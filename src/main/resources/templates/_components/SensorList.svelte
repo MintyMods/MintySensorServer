@@ -11,17 +11,14 @@
         SecondaryText
     } from '@smui/list';
     import {
-        onMount
-    } from 'svelte';
-    import {
-        onDestroy
-    } from 'svelte';
-    import {
+        onMount,
+        onDestroy,
         beforeUpdate
     } from 'svelte';
     import {
         storeReadings,
-        storeSensors
+        storeSensors,
+        storeTypes
     } from '../_stores/stores.js';
 
     let unsubscribeReadings;
@@ -76,7 +73,7 @@
                             <PrimaryText>{item.label.description}</PrimaryText>
                             <SecondaryText>{item.value} {item.unit}</SecondaryText>
                           </Text>
-                          <Meta class="material-icons">{item.type.desc}</Meta>
+                            <Meta class="material-icons"><i class={$storeTypes[item.type].icon}></i>  {$storeTypes[item.type].desc}</Meta>
                         </Item>
                       {/each}
                     </List>

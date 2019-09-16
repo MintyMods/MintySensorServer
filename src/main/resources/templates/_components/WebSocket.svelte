@@ -3,16 +3,14 @@
         formatDistance
     } from 'date-fns'
     import {
-        onMount
+        onMount,
+        createEventDispatcher
     } from 'svelte';
     import {
         storeLastNetworkPing,
         storeLastNetworkPong,
         time
     } from '../_stores/stores.js';
-    import {
-        createEventDispatcher
-    } from 'svelte';
     import Notification from '../_components/Notification.svelte';
     export let command;
     export let parameters;

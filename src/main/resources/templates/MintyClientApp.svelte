@@ -1,21 +1,3 @@
-<div id="minty-sensor-server" />
-
-<Hamburger />
-
-<aside>
-    <div class="drawer-container">
-        <Drawer variant="dismissible" bind:this={sideNav} bind:open={sideNavOpen}>
-            <Navigation />
-        </Drawer>
-        <Scrim />
-        <AppContent class="app-content">
-            <main class="main-content" bind:this={mainContent} class:open={sideNavOpen} class:close={!sideNavOpen}>
-                <Router {routes} />
-            </main>
-        </AppContent>
-    </div>
-</aside>
-
 <script>
     import './_minty-client-app.scss';
     import Hamburger from './_components/Hamburger.svelte';
@@ -32,13 +14,13 @@
         storeIsNavigationOpen,
         storeReadings,
         storeSensors,
-        storeTypes
+        storeTypes,
+        storeDemoCurrentJsonFile
     } from './_stores/stores.js';
     import {
-        onMount
-    } from 'svelte';
-    import {
-        onDestroy
+        onMount,
+        onDestroy,
+        beforeUpdate
     } from 'svelte';
     import Router, {
         link,
@@ -86,6 +68,9 @@
     let readings = [];
     let sensors = [];
     let types = [];
+    let demoModeActive = false;
+    let demoTickCount = 0;
+    $: demoTickCount = $storeDemoCurrentJsonFile;
 
     onMount(() => {
         subscribeToStores();
@@ -132,11 +117,75 @@
     }
 
     function onEventReceived(payload) {
+        demoModeActive = false;
         let message = JSON.parse(payload.body);
         let content = JSON.parse(message.json);
         storeReadings.set(content.readings);
         storeSensors.set(content.sensors);
         storeTypes.set(content.types);
+    }
+
+    beforeUpdate(() => {
+        if (demoModeActive) {
+            fetch(`json/msm_sample_data_${(demoTickCount + "").padStart(5, '0')}.json`)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(content) {
+                    storeReadings.set(content.readings);
+                    storeSensors.set(content.sensors);
+                    storeTypes.set(getTypes());
+                });
+        }
+    });
+
+    function getTypes() {
+        return [{
+            "name": "NONE",
+            "type": 0,
+            "desc": "None",
+            "icon": "fal fa-times-circle"
+        }, {
+            "name": "TEMP",
+            "type": 1,
+            "desc": "Temperatures",
+            "icon": "fal fa-thermometer-half"
+        }, {
+            "name": "VOLT",
+            "type": 2,
+            "desc": "Voltages",
+            "icon": "fal fa-bolt"
+        }, {
+            "name": "FAN",
+            "type": 3,
+            "desc": "Fans",
+            "icon": "fal fa-fan"
+        }, {
+            "name": "CURRENT",
+            "type": 4,
+            "desc": "Currents",
+            "icon": "fal fa-wave-square"
+        }, {
+            "name": "POWER",
+            "type": 5,
+            "desc": "Power",
+            "icon": "fal fa-car-battery"
+        }, {
+            "name": "CLOCK",
+            "type": 6,
+            "desc": "Clocks",
+            "icon": "far fa-clock"
+        }, {
+            "name": "USAGE",
+            "type": 7,
+            "desc": "Usages",
+            "icon": "fal fa-chart-pie"
+        }, {
+            "name": "OTHER",
+            "type": 8,
+            "desc": "Other",
+            "icon": "fal fa-share-alt"
+        }];
     }
 
     function onError(error) {
@@ -152,9 +201,10 @@
         if (window.permanotice) {
             window.permanotice.open();
         } else {
+            demoModeActive = true;
             window.permanotice = PNotify.error({
-                title: 'Network Error',
-                text: "Failed to communicate with server",
+                title: 'Demo Mode',
+                text: "Failed to communicate with server\nUsing fake data...",
                 hide: false,
                 icon: 'fad fa-wifi-slash fa-2x',
                 textTrusted: true,
@@ -182,3 +232,21 @@
     }
 
 </script>
+
+<div id="minty-sensor-server" />
+
+<Hamburger />
+{demoTickCount}
+<aside>
+    <div class="drawer-container">
+        <Drawer variant="dismissible" bind:this={sideNav} bind:open={sideNavOpen}>
+            <Navigation />
+        </Drawer>
+        <Scrim />
+        <AppContent class="app-content">
+            <main class="main-content" bind:this={mainContent} class:open={sideNavOpen} class:close={!sideNavOpen}>
+                <Router {routes} />
+            </main>
+        </AppContent>
+    </div>
+</aside>

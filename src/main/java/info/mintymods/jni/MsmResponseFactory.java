@@ -16,6 +16,8 @@ import info.mintymods.utils.MintyPathUtils;
 public class MsmResponseFactory {
 
 	MintyConfig config;
+	private final boolean demo = true;
+	private static int count;
 
 	public MsmResponseFactory(final MintyConfig config) {
 		this.config = config;
@@ -39,7 +41,8 @@ public class MsmResponseFactory {
 	}
 
 	private File getResponseLogFile() {
-		return new File(MintyPathUtils.getLogFolderPath() + File.separator + "minty_last_response.log");
+		final String filename = demo ? "msm_sample_data_" + String.format("%05d", count++) + ".json" : "msm_last_response.json";
+		return new File(MintyPathUtils.getLogFolderPath() + File.separator + filename);
 	}
 
 	public MsmMonitorResponse getResponse(final ProviderType type) throws MsmServiceProviderUnavailableException {

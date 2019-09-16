@@ -1,0 +1,98 @@
+<style>
+    .canvas-wrapper {
+        position: relative;
+        pointer-events: none;
+        width: 400px;
+        height: 400px;
+    }
+
+</style>
+<script>
+    import {
+        onMount,
+        beforeUpdate,
+        afterUpdate
+    } from 'svelte';
+
+    export let data;
+    export let labels = [];
+    export let caption = "";
+    export let width = 1;
+    export let height = 2;
+    export let backgroundColor;
+    export let borderColor;
+
+    export let id = "chart-" + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 10);
+    let ctx;
+    let chart;
+    $: data;
+    let all = [];
+
+    onMount(() => {
+        createChart();
+    });
+
+    beforeUpdate(() => {
+        if (data.length > 0) {
+            chart.data.datasets = getDataset(data);
+            chart.update();
+        }
+    });
+
+    function getDataset(data) {
+
+
+        if (data) {
+            data.forEach((reading, i) => {
+                let current = all[i];
+                console.log(i + ":" + reading.value)
+                if (current == undefined) {
+                    current = {};
+                    current.fill = false;
+                    setColors(current);
+                    current.data = [];
+                    all[i] = current;
+                }
+                current.label = reading.label.description;
+                current.data.push(reading.value);
+            });
+        }
+        return all;
+    };
+
+    function setColors(config) {
+        let r = (Math.round(Math.random() * 127) + 127);
+        let g = (Math.round(Math.random() * 127) + 127);
+        let b = (Math.round(Math.random() * 127) + 127);
+        config.backgroundColor = `rgba(${r},${g},${b}, 0.5)`;
+        config.borderColor = `rgba(${r},${g},${b}, 1)`;
+    }
+
+    function createChart() {
+        ctx = document.getElementById(id).getContext('2d');
+
+
+        chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [{
+                    label: caption,
+                    data,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsiveAnimationDuration: 10,
+                responsive: true,
+                maintainAspectRatio: false,
+                fill: false
+            }
+        });
+    }
+
+</script>
+
+<div class="canvas-wrapper">
+    <canvas width="1" height="1" id={id}></canvas>
+</div>

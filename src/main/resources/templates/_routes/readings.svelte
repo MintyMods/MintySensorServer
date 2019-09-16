@@ -5,7 +5,6 @@
 
 <script>
     import Readings from '../_components/ReadingsList.svelte';
-    import Notification from '../_components/Notification.svelte';
 
 </script>
 <Readings />

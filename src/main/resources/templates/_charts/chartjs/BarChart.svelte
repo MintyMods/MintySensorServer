@@ -1,116 +1,83 @@
 <style>
-    #chart {
+    .canvas-wrapper {
+        position: relative;
         pointer-events: none;
+        width: 400px;
+        height: 400px;
     }
 
 </style>
 <script>
-    //    import WebSocket from '../../_components/WebSocket.svelte';
     import {
-        onMount
-    } from 'svelte';
-    import {
-        beforeUpdate
+        onMount,
+        beforeUpdate,
+        afterUpdate
     } from 'svelte';
 
-    export let readings = [];
+    export let data = [];
+    export let labels = [];
+    export let caption = "";
+    export let width = 1;
+    export let height = 2;
+    export let backgroundColor;
+    export let borderColor;
 
+    export let id = "chart-" + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 10);
     let ctx;
     let chart;
-    export let data = [];
-    let labels = [];
-    $: readings;
     $: data;
     $: labels;
 
     onMount(() => {
         createChart();
+        setColors();
     });
 
     beforeUpdate(() => {
-        if (readings.length > 0) {
-            readings.forEach(function(reading) {
-                data = [...data, reading.value];
-                labels = [...labels, reading.label.description];
-            });
-            chart.data.datasets.data = data;
+        if (data.length > 0) {
+            if (backgroundColor.length === 0) setColors();
+            chart.data.labels = labels;
+            chart.data.datasets[0].data = data;
+            chart.data.datasets[0].backgroundColor = backgroundColor;
+            chart.data.datasets[0].borderColor = borderColor;
             chart.update();
         }
     });
 
+    function setColors() {
+        backgroundColor = [];
+        borderColor = [];
+        for (let i = 0; i < data.length; i++) {
+            let r = (Math.round(Math.random() * 127) + 127);
+            let g = (Math.round(Math.random() * 127) + 127);
+            let b = (Math.round(Math.random() * 127) + 127);
+            backgroundColor.push(`rgba(${r},${g},${b}, 0.5)`);
+            borderColor.push(`rgba(${r},${g},${b}, 1)`);
+        }
+    }
+
     function createChart() {
-        ctx = document.getElementById('chart').getContext('2d');
+        ctx = document.getElementById(id).getContext('2d');
         chart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels,
                 datasets: [{
-                    label: 'CPU Temperature',
+                    label: caption,
                     data,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
                     borderWidth: 1
                 }]
             },
             options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            steps: 10,
-                            stepValue: 5,
-                            max: 100
-                        }
-                    }]
-                }
+                responsiveAnimationDuration: 10,
+                responsive: true,
+                maintainAspectRatio: false
             }
         });
     }
 
-
-
-
-    //    function onMessageReceived(event) {
-    //        let readings = event.detail.content;
-    //        //debugger
-    //        for (let i = 0; i < readings.length; i++) {
-    //            let reading = readings[i];
-    //            let name = reading.label.value;
-    //            let value = reading.value;
-    //
-    //            if (name == "Core #0") {
-    //                data[0] = value;
-    //            } else if (name == "Core #1") {
-    //                data[1] = value;
-    //            } else if (name == "Core #2") {
-    //                data[2] = value;
-    //            } else if (name == "Core #3") {
-    //                data[3] = value;
-    //            } else if (name == "Core Max") {
-    //                data[4] = value;
-    //            } else if (name == "CPU Package") {
-    //                data[5] = value;
-    //            }
-    //        }
-    //        chart.data.datasets.data = data;
-    //        chart.update();
-    //    }
-
 </script>
 
-<canvas id="chart" width="2" height="1"></canvas>
-<!--<WebSocket on:event={onMessageReceived} channel='/events/' command='EVENTS' />-->
+<div class="canvas-wrapper">
+    <canvas width="1" height="1" id={id}></canvas>
+</div>
