@@ -21,10 +21,11 @@ public class MsmHistoryRecordingJob extends QuartzJobBean {
 	private MsmHistoryRecordingService service;
 	@Autowired
 	MintyConfig config;
+	@Autowired
+	MsmResponseFactory factory;
 
 	@Override
 	protected void executeInternal(final JobExecutionContext context) throws JobExecutionException {
-		final MsmResponseFactory factory = new MsmResponseFactory(config);
 		try {
 			service.processResponse(factory.getResponse(MintySensorServer.getProviderType()));
 		} catch (final MsmServiceProviderUnavailableException unavailableException) {

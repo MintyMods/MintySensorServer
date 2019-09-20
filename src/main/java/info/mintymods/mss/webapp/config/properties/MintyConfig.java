@@ -1,7 +1,6 @@
 package info.mintymods.mss.webapp.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 
 @ConfigurationProperties(prefix = "minty")
 public class MintyConfig {
@@ -13,7 +12,6 @@ public class MintyConfig {
 	private SchedulerConfig scheduler;
 	private ApplicationConfig application;
 	private ErrorConfig error;
-	private SimpleTriggerFactoryBean trigger;
 
 	public static MintyConfig getInstance() {
 		if (instance == null) {
@@ -72,13 +70,5 @@ public class MintyConfig {
 
 	public String getDomainName() {
 		return getApplication().getDomainName();
-	}
-
-	public void setQuartzTriggerFactory(final SimpleTriggerFactoryBean factory) {
-		trigger = factory;
-	}
-
-	public SimpleTriggerFactoryBean getQuartzTriggerFactory() {
-		return trigger;
 	}
 }

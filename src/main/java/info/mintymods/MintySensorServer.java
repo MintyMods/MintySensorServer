@@ -19,7 +19,7 @@ import info.mintymods.repository.entities.enums.ProviderType;
 @SpringBootApplication
 @EnableJpaRepositories("info.mintymods.repository.dao")
 @EntityScan("info.mintymods.repository.entities")
-@ComponentScan(basePackages = {"info.mintymods.mss.webapp"})
+@ComponentScan(basePackages = {"info.mintymods"})
 @ServletComponentScan
 @EnableConfigurationProperties(MintyConfig.class)
 public class MintySensorServer extends SpringBootServletInitializer {
@@ -28,9 +28,9 @@ public class MintySensorServer extends SpringBootServletInitializer {
 	public static MintyConfig config;
 
 	public static void main(final String[] args) {
-		final SpringApplicationBuilder builder = new SpringApplicationBuilder(MintySensorServer.class);
+		SpringApplicationBuilder builder = new SpringApplicationBuilder(MintySensorServer.class);
 		builder.listeners(new SslApplicationListener());
-		final ConfigurableApplicationContext context = builder.run(args);
+		ConfigurableApplicationContext context = builder.run(args);
 		config = context.getBean(MintyConfig.class);
 		log.info("@JavaVersion#" + context.getEnvironment().getProperty("java.runtime.version"));
 		log.info("Database URL:" + config.getDatabase().getUrl());

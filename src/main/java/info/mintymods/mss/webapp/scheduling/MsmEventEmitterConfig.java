@@ -29,6 +29,9 @@ public class MsmEventEmitterConfig {
 	private static final Logger log = LoggerFactory.getLogger(MsmEventEmitterConfig.class);
 	@Autowired
 	MintyConfig config;
+	@Autowired
+	@Qualifier("eventEmitterJobTrigger")
+	SimpleTriggerFactoryBean factoryBean;
 
 	@Bean
 	public JobFactory eventEmitterJobFactory(final ApplicationContext applicationContext) {
@@ -51,14 +54,13 @@ public class MsmEventEmitterConfig {
 	@Bean
 	public SimpleTriggerFactoryBean eventEmitterJobTrigger(@Qualifier("eventEmitterJobDetail") final JobDetail jobDetail,
 			@Value("${minty.scheduler.polling}") final long frequency) {
-		final SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();
-		config.setQuartzTriggerFactory(factoryBean);
-		factoryBean.setJobDetail(jobDetail);
+		SimpleTriggerFactoryBean trigger = new SimpleTriggerFactoryBean();
+		trigger.setJobDetail(jobDetail);
 		log.debug("minty.scheduler.polling@" + config.getScheduler().getPolling());
-		factoryBean.setStartDelay(config.getScheduler().getDelay());
-		factoryBean.setRepeatInterval(config.getScheduler().getPolling());
-		factoryBean.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
-		return factoryBean;
+		trigger.setStartDelay(config.getScheduler().getDelay());
+		trigger.setRepeatInterval(config.getScheduler().getPolling());
+		trigger.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
+		return trigger;
 	}
 
 	@Bean

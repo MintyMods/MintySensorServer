@@ -8,11 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.stereotype.Service;
 
 import info.mintymods.msm.MsmMonitorRequest;
 import info.mintymods.mss.webapp.exception.MsmMissingDependencyExceprion;
 import info.mintymods.utils.MintyPathUtils;
 
+@Service
 public class MsmJniWrapper {
 
 	public static final boolean DEBUG = false;
@@ -28,6 +30,8 @@ public class MsmJniWrapper {
 			log.error("@FAILED TO LOAD NATIVE CODE#" + e.getMessage());
 		}
 	}
+
+	protected native String processRequest(String json);
 
 	private static void deployRuntimeDependenciesToJavaHome() {
 		log.info("Deploying dependencies into " + getJavaBinDirectory());
@@ -94,6 +98,4 @@ public class MsmJniWrapper {
 			log.info("Response :: " + response);
 		}
 	}
-
-	protected native String processRequest(String json);
 }
