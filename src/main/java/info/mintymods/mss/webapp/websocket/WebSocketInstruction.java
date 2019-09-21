@@ -42,14 +42,6 @@ public class WebSocketInstruction {
 		this.parameters = parameters;
 	}
 
-	// public MsmSensor getSensor() {
-	// return sensor;
-	// }
-	//
-	// public void setSensor(final MsmSensor sensor) {
-	// this.sensor = sensor;
-	// }
-	//
 	public MsmSensorType getType() {
 		return type;
 	}

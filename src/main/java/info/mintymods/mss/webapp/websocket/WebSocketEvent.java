@@ -5,18 +5,15 @@ import java.util.List;
 import info.mintymods.msm.MsmMonitorResponse;
 import info.mintymods.msm.MsmSensor;
 import info.mintymods.msm.MsmSensorReading;
-import info.mintymods.msm.MsmSensorType;
 
 public class WebSocketEvent {
 
 	List<MsmSensorReading> readings;
 	List<MsmSensor> sensors;
-	MsmSensorType[] types;
 
 	public WebSocketEvent(final MsmMonitorResponse response) {
 		readings = response.getReadings();
 		sensors = response.getSensors();
-		types = MsmSensorType.values();
 	}
 
 	public List<MsmSensorReading> getReadings() {
@@ -33,13 +30,5 @@ public class WebSocketEvent {
 
 	public void setSensors(final List<MsmSensor> sensors) {
 		this.sensors = sensors;
-	}
-
-	public MsmSensorType[] getTypes() {
-		return types;
-	}
-
-	public void setTypes(final MsmSensorType[] types) {
-		this.types = types;
 	}
 }

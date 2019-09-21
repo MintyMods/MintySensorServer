@@ -18,17 +18,17 @@ public class WebSocketController {
 	@MessageMapping("/api.command")
 	@SendTo(WebSocketChannel.CHANNEL_API)
 	public WebSocketInstruction sendMessage(@Payload final WebSocketInstruction message) {
-		if (WebSocketCommand.SENSORS == message.getCommand()) {
-			service.sendSensors(message);
-		} else if (WebSocketCommand.READINGS_BY_SENSOR == message.getCommand()) {
-			service.sendReadingsBySensor(message);
-		} else if (WebSocketCommand.READINGS_BY_TYPE == message.getCommand()) {
-			service.sendReadingsByType(message);
-		} else if (WebSocketCommand.TYPES == message.getCommand()) {
-			service.sendTypes(message);
-		} else if (WebSocketCommand.PING == message.getCommand()) {
-			service.sendPong(message);
-		}
+		// if (WebSocketCommand.SENSORS == message.getCommand()) {
+		// service.sendSensors(message);
+		// } else if (WebSocketCommand.READINGS_BY_SENSOR == message.getCommand()) {
+		// service.sendReadingsBySensor(message);
+		// } else if (WebSocketCommand.READINGS_BY_TYPE == message.getCommand()) {
+		// service.sendReadingsByType(message);
+		// } else if (WebSocketCommand.TYPES == message.getCommand()) {
+		// service.sendTypes(message);
+		// } else if (WebSocketCommand.PING == message.getCommand()) {
+		// service.sendPong(message);
+		// }
 		return message;
 	}
 
@@ -36,7 +36,7 @@ public class WebSocketController {
 	@SendTo(WebSocketChannel.CHANNEL_EVENTS)
 	public WebSocketInstruction addListener(@Payload final WebSocketInstruction message,
 			final SimpMessageHeaderAccessor headerAccessor) {
-		service.sendReadings(message);
+		// service.sendReadings(message);
 		return message;
 	}
 

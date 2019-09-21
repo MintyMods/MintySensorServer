@@ -23,30 +23,22 @@ public class MsmResponseFactory {
 	MsmJniWrapper msm;
 	@Autowired
 	MintyConfig config;
-	private final boolean demo = false;
+	private boolean demo = true;
 	private static int count;
 	private static final Logger log = LoggerFactory.getLogger(MsmResponseFactory.class);
 
 	public MsmMonitorResponse getResponse(final MsmMonitorRequest request) throws MsmServiceProviderUnavailableException {
 		final String json = msm.processRequest(request.toString());
-		if (config.isDebug()) {
+		if (config.isDebug() || demo) {
+			if (count > 500) {
+				demo = false;
+			}
 			MintyFileUtils.writeAsString(getResponseLogFile(), json);
 		}
 		final MsmMonitorResponse response = MintyJsonUtils.getMsmMonitorResponse(json);
-		// matchServicePollingInterval(response);
 		return response;
 	}
 
-	// private void matchServicePollingInterval(final MsmMonitorResponse response) {
-	// final Long period = response.getPolling_period();
-	// if (controller != null) {
-	// final Long current = controller.getCurrentRepeatInterval();
-	// log.debug("current " + current);
-	// // if (current != period) {
-	// controller.setRepeatInterval(period);
-	// // }
-	// }
-	// }
 	private File getResponseLogFile() {
 		final String filename = demo ? "msm_sample_data_" + String.format("%05d", count++) + ".json" : "msm_last_response.json";
 		return new File(MintyPathUtils.getLogFolderPath() + File.separator + filename);

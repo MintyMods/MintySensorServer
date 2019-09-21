@@ -1,5 +1,5 @@
 /*!
- * Font Awesome Pro 5.10.2 by @fontawesome - https://fontawesome.com
+ * Font Awesome Pro 5.11.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license (Commercial License)
  */
 @import 'variables';
@@ -74,6 +74,8 @@
 .fad.#{$fa-css-prefix}-alarm-exclamation:after { content: fa-content(\10f843); }
 .fad.#{$fa-css-prefix}-alarm-plus:after { content: fa-content(\10f844); }
 .fad.#{$fa-css-prefix}-alarm-snooze:after { content: fa-content(\10f845); }
+.fad.#{$fa-css-prefix}-album:after { content: fa-content(\10f89f); }
+.fad.#{$fa-css-prefix}-album-collection:after { content: fa-content(\10f8a0); }
 .fad.#{$fa-css-prefix}-alicorn:after { content: fa-content(\10f6b0); }
 .fad.#{$fa-css-prefix}-align-center:after { content: fa-content(\10f037); }
 .fad.#{$fa-css-prefix}-align-justify:after { content: fa-content(\10f039); }
@@ -83,6 +85,7 @@
 .fad.#{$fa-css-prefix}-allergies:after { content: fa-content(\10f461); }
 .fad.#{$fa-css-prefix}-ambulance:after { content: fa-content(\10f0f9); }
 .fad.#{$fa-css-prefix}-american-sign-language-interpreting:after { content: fa-content(\10f2a3); }
+.fad.#{$fa-css-prefix}-amp-guitar:after { content: fa-content(\10f8a1); }
 .fad.#{$fa-css-prefix}-analytics:after { content: fa-content(\10f643); }
 .fad.#{$fa-css-prefix}-anchor:after { content: fa-content(\10f13d); }
 .fad.#{$fa-css-prefix}-angel:after { content: fa-content(\10f779); }
@@ -166,6 +169,7 @@
 .fad.#{$fa-css-prefix}-badge-check:after { content: fa-content(\10f336); }
 .fad.#{$fa-css-prefix}-badge-dollar:after { content: fa-content(\10f645); }
 .fad.#{$fa-css-prefix}-badge-percent:after { content: fa-content(\10f646); }
+.fad.#{$fa-css-prefix}-badge-sheriff:after { content: fa-content(\10f8a2); }
 .fad.#{$fa-css-prefix}-badger-honey:after { content: fa-content(\10f6b4); }
 .fad.#{$fa-css-prefix}-bags-shopping:after { content: fa-content(\10f847); }
 .fad.#{$fa-css-prefix}-balance-scale:after { content: fa-content(\10f24e); }
@@ -176,6 +180,7 @@
 .fad.#{$fa-css-prefix}-ballot-check:after { content: fa-content(\10f733); }
 .fad.#{$fa-css-prefix}-ban:after { content: fa-content(\10f05e); }
 .fad.#{$fa-css-prefix}-band-aid:after { content: fa-content(\10f462); }
+.fad.#{$fa-css-prefix}-banjo:after { content: fa-content(\10f8a3); }
 .fad.#{$fa-css-prefix}-barcode:after { content: fa-content(\10f02a); }
 .fad.#{$fa-css-prefix}-barcode-alt:after { content: fa-content(\10f463); }
 .fad.#{$fa-css-prefix}-barcode-read:after { content: fa-content(\10f464); }
@@ -203,6 +208,7 @@
 .fad.#{$fa-css-prefix}-bell-school-slash:after { content: fa-content(\10f5d6); }
 .fad.#{$fa-css-prefix}-bell-slash:after { content: fa-content(\10f1f6); }
 .fad.#{$fa-css-prefix}-bells:after { content: fa-content(\10f77f); }
+.fad.#{$fa-css-prefix}-betamax:after { content: fa-content(\10f8a4); }
 .fad.#{$fa-css-prefix}-bezier-curve:after { content: fa-content(\10f55b); }
 .fad.#{$fa-css-prefix}-bible:after { content: fa-content(\10f647); }
 .fad.#{$fa-css-prefix}-bicycle:after { content: fa-content(\10f206); }
@@ -234,6 +240,7 @@
 .fad.#{$fa-css-prefix}-bookmark:after { content: fa-content(\10f02e); }
 .fad.#{$fa-css-prefix}-books:after { content: fa-content(\10f5db); }
 .fad.#{$fa-css-prefix}-books-medical:after { content: fa-content(\10f7e8); }
+.fad.#{$fa-css-prefix}-boombox:after { content: fa-content(\10f8a5); }
 .fad.#{$fa-css-prefix}-boot:after { content: fa-content(\10f782); }
 .fad.#{$fa-css-prefix}-booth-curtain:after { content: fa-content(\10f734); }
 .fad.#{$fa-css-prefix}-border-all:after { content: fa-content(\10f84c); }
@@ -292,6 +299,7 @@
 .fad.#{$fa-css-prefix}-bus-school:after { content: fa-content(\10f5dd); }
 .fad.#{$fa-css-prefix}-business-time:after { content: fa-content(\10f64a); }
 .fad.#{$fa-css-prefix}-cabinet-filing:after { content: fa-content(\10f64b); }
+.fad.#{$fa-css-prefix}-cactus:after { content: fa-content(\10f8a7); }
 .fad.#{$fa-css-prefix}-calculator:after { content: fa-content(\10f1ec); }
 .fad.#{$fa-css-prefix}-calculator-alt:after { content: fa-content(\10f64c); }
 .fad.#{$fa-css-prefix}-calendar:after { content: fa-content(\10f133); }
@@ -305,8 +313,11 @@
 .fad.#{$fa-css-prefix}-calendar-star:after { content: fa-content(\10f736); }
 .fad.#{$fa-css-prefix}-calendar-times:after { content: fa-content(\10f273); }
 .fad.#{$fa-css-prefix}-calendar-week:after { content: fa-content(\10f784); }
+.fad.#{$fa-css-prefix}-camcorder:after { content: fa-content(\10f8a8); }
 .fad.#{$fa-css-prefix}-camera:after { content: fa-content(\10f030); }
 .fad.#{$fa-css-prefix}-camera-alt:after { content: fa-content(\10f332); }
+.fad.#{$fa-css-prefix}-camera-movie:after { content: fa-content(\10f8a9); }
+.fad.#{$fa-css-prefix}-camera-polaroid:after { content: fa-content(\10f8aa); }
 .fad.#{$fa-css-prefix}-camera-retro:after { content: fa-content(\10f083); }
 .fad.#{$fa-css-prefix}-campfire:after { content: fa-content(\10f6ba); }
 .fad.#{$fa-css-prefix}-campground:after { content: fa-content(\10f6bb); }
@@ -344,8 +355,10 @@
 .fad.#{$fa-css-prefix}-cart-arrow-down:after { content: fa-content(\10f218); }
 .fad.#{$fa-css-prefix}-cart-plus:after { content: fa-content(\10f217); }
 .fad.#{$fa-css-prefix}-cash-register:after { content: fa-content(\10f788); }
+.fad.#{$fa-css-prefix}-cassette-tape:after { content: fa-content(\10f8ab); }
 .fad.#{$fa-css-prefix}-cat:after { content: fa-content(\10f6be); }
 .fad.#{$fa-css-prefix}-cauldron:after { content: fa-content(\10f6bf); }
+.fad.#{$fa-css-prefix}-cctv:after { content: fa-content(\10f8ac); }
 .fad.#{$fa-css-prefix}-certificate:after { content: fa-content(\10f0a3); }
 .fad.#{$fa-css-prefix}-chair:after { content: fa-content(\10f6c0); }
 .fad.#{$fa-css-prefix}-chair-office:after { content: fa-content(\10f6c1); }
@@ -405,6 +418,7 @@
 .fad.#{$fa-css-prefix}-circle:after { content: fa-content(\10f111); }
 .fad.#{$fa-css-prefix}-circle-notch:after { content: fa-content(\10f1ce); }
 .fad.#{$fa-css-prefix}-city:after { content: fa-content(\10f64f); }
+.fad.#{$fa-css-prefix}-clarinet:after { content: fa-content(\10f8ad); }
 .fad.#{$fa-css-prefix}-claw-marks:after { content: fa-content(\10f6c2); }
 .fad.#{$fa-css-prefix}-clinic-medical:after { content: fa-content(\10f7f2); }
 .fad.#{$fa-css-prefix}-clipboard:after { content: fa-content(\10f328); }
@@ -425,6 +439,7 @@
 .fad.#{$fa-css-prefix}-cloud-meatball:after { content: fa-content(\10f73b); }
 .fad.#{$fa-css-prefix}-cloud-moon:after { content: fa-content(\10f6c3); }
 .fad.#{$fa-css-prefix}-cloud-moon-rain:after { content: fa-content(\10f73c); }
+.fad.#{$fa-css-prefix}-cloud-music:after { content: fa-content(\10f8ae); }
 .fad.#{$fa-css-prefix}-cloud-rain:after { content: fa-content(\10f73d); }
 .fad.#{$fa-css-prefix}-cloud-rainbow:after { content: fa-content(\10f73e); }
 .fad.#{$fa-css-prefix}-cloud-showers:after { content: fa-content(\10f73f); }
@@ -462,6 +477,7 @@
 .fad.#{$fa-css-prefix}-comment-alt-lines:after { content: fa-content(\10f4a6); }
 .fad.#{$fa-css-prefix}-comment-alt-medical:after { content: fa-content(\10f7f4); }
 .fad.#{$fa-css-prefix}-comment-alt-minus:after { content: fa-content(\10f4a7); }
+.fad.#{$fa-css-prefix}-comment-alt-music:after { content: fa-content(\10f8af); }
 .fad.#{$fa-css-prefix}-comment-alt-plus:after { content: fa-content(\10f4a8); }
 .fad.#{$fa-css-prefix}-comment-alt-slash:after { content: fa-content(\10f4a9); }
 .fad.#{$fa-css-prefix}-comment-alt-smile:after { content: fa-content(\10f4aa); }
@@ -474,6 +490,7 @@
 .fad.#{$fa-css-prefix}-comment-lines:after { content: fa-content(\10f4b0); }
 .fad.#{$fa-css-prefix}-comment-medical:after { content: fa-content(\10f7f5); }
 .fad.#{$fa-css-prefix}-comment-minus:after { content: fa-content(\10f4b1); }
+.fad.#{$fa-css-prefix}-comment-music:after { content: fa-content(\10f8b0); }
 .fad.#{$fa-css-prefix}-comment-plus:after { content: fa-content(\10f4b2); }
 .fad.#{$fa-css-prefix}-comment-slash:after { content: fa-content(\10f4b3); }
 .fad.#{$fa-css-prefix}-comment-smile:after { content: fa-content(\10f4b4); }
@@ -489,6 +506,8 @@
 .fad.#{$fa-css-prefix}-compress-alt:after { content: fa-content(\10f422); }
 .fad.#{$fa-css-prefix}-compress-arrows-alt:after { content: fa-content(\10f78c); }
 .fad.#{$fa-css-prefix}-compress-wide:after { content: fa-content(\10f326); }
+.fad.#{$fa-css-prefix}-computer-classic:after { content: fa-content(\10f8b1); }
+.fad.#{$fa-css-prefix}-computer-speaker:after { content: fa-content(\10f8b2); }
 .fad.#{$fa-css-prefix}-concierge-bell:after { content: fa-content(\10f562); }
 .fad.#{$fa-css-prefix}-construction:after { content: fa-content(\10f85d); }
 .fad.#{$fa-css-prefix}-container-storage:after { content: fa-content(\10f4b7); }
@@ -501,6 +520,8 @@
 .fad.#{$fa-css-prefix}-corn:after { content: fa-content(\10f6c7); }
 .fad.#{$fa-css-prefix}-couch:after { content: fa-content(\10f4b8); }
 .fad.#{$fa-css-prefix}-cow:after { content: fa-content(\10f6c8); }
+.fad.#{$fa-css-prefix}-cowbell:after { content: fa-content(\10f8b3); }
+.fad.#{$fa-css-prefix}-cowbell-more:after { content: fa-content(\10f8b4); }
 .fad.#{$fa-css-prefix}-credit-card:after { content: fa-content(\10f09d); }
 .fad.#{$fa-css-prefix}-credit-card-blank:after { content: fa-content(\10f389); }
 .fad.#{$fa-css-prefix}-credit-card-front:after { content: fa-content(\10f38a); }
@@ -548,6 +569,7 @@
 .fad.#{$fa-css-prefix}-digital-tachograph:after { content: fa-content(\10f566); }
 .fad.#{$fa-css-prefix}-diploma:after { content: fa-content(\10f5ea); }
 .fad.#{$fa-css-prefix}-directions:after { content: fa-content(\10f5eb); }
+.fad.#{$fa-css-prefix}-disc-drive:after { content: fa-content(\10f8b5); }
 .fad.#{$fa-css-prefix}-disease:after { content: fa-content(\10f7fa); }
 .fad.#{$fa-css-prefix}-divide:after { content: fa-content(\10f529); }
 .fad.#{$fa-css-prefix}-dizzy:after { content: fa-content(\10f567); }
@@ -662,6 +684,7 @@
 .fad.#{$fa-css-prefix}-file-medical:after { content: fa-content(\10f477); }
 .fad.#{$fa-css-prefix}-file-medical-alt:after { content: fa-content(\10f478); }
 .fad.#{$fa-css-prefix}-file-minus:after { content: fa-content(\10f318); }
+.fad.#{$fa-css-prefix}-file-music:after { content: fa-content(\10f8b6); }
 .fad.#{$fa-css-prefix}-file-pdf:after { content: fa-content(\10f1c1); }
 .fad.#{$fa-css-prefix}-file-plus:after { content: fa-content(\10f319); }
 .fad.#{$fa-css-prefix}-file-powerpoint:after { content: fa-content(\10f1c4); }
@@ -679,6 +702,7 @@
 .fad.#{$fa-css-prefix}-fill-drip:after { content: fa-content(\10f576); }
 .fad.#{$fa-css-prefix}-film:after { content: fa-content(\10f008); }
 .fad.#{$fa-css-prefix}-film-alt:after { content: fa-content(\10f3a0); }
+.fad.#{$fa-css-prefix}-film-cannister:after { content: fa-content(\10f8b7); }
 .fad.#{$fa-css-prefix}-filter:after { content: fa-content(\10f0b0); }
 .fad.#{$fa-css-prefix}-fingerprint:after { content: fa-content(\10f577); }
 .fad.#{$fa-css-prefix}-fire:after { content: fa-content(\10f06d); }
@@ -695,6 +719,7 @@
 .fad.#{$fa-css-prefix}-flag-checkered:after { content: fa-content(\10f11e); }
 .fad.#{$fa-css-prefix}-flag-usa:after { content: fa-content(\10f74d); }
 .fad.#{$fa-css-prefix}-flame:after { content: fa-content(\10f6df); }
+.fad.#{$fa-css-prefix}-flashlight:after { content: fa-content(\10f8b8); }
 .fad.#{$fa-css-prefix}-flask:after { content: fa-content(\10f0c3); }
 .fad.#{$fa-css-prefix}-flask-poison:after { content: fa-content(\10f6e0); }
 .fad.#{$fa-css-prefix}-flask-potion:after { content: fa-content(\10f6e1); }
@@ -702,6 +727,8 @@
 .fad.#{$fa-css-prefix}-flower-daffodil:after { content: fa-content(\10f800); }
 .fad.#{$fa-css-prefix}-flower-tulip:after { content: fa-content(\10f801); }
 .fad.#{$fa-css-prefix}-flushed:after { content: fa-content(\10f579); }
+.fad.#{$fa-css-prefix}-flute:after { content: fa-content(\10f8b9); }
+.fad.#{$fa-css-prefix}-flux-capacitor:after { content: fa-content(\10f8ba); }
 .fad.#{$fa-css-prefix}-fog:after { content: fa-content(\10f74e); }
 .fad.#{$fa-css-prefix}-folder:after { content: fa-content(\10f07b); }
 .fad.#{$fa-css-prefix}-folder-minus:after { content: fa-content(\10f65d); }
@@ -728,7 +755,9 @@
 .fad.#{$fa-css-prefix}-futbol:after { content: fa-content(\10f1e3); }
 .fad.#{$fa-css-prefix}-game-board:after { content: fa-content(\10f867); }
 .fad.#{$fa-css-prefix}-game-board-alt:after { content: fa-content(\10f868); }
+.fad.#{$fa-css-prefix}-game-console-handheld:after { content: fa-content(\10f8bb); }
 .fad.#{$fa-css-prefix}-gamepad:after { content: fa-content(\10f11b); }
+.fad.#{$fa-css-prefix}-gamepad-alt:after { content: fa-content(\10f8bc); }
 .fad.#{$fa-css-prefix}-gas-pump:after { content: fa-content(\10f52f); }
 .fad.#{$fa-css-prefix}-gas-pump-slash:after { content: fa-content(\10f5f4); }
 .fad.#{$fa-css-prefix}-gavel:after { content: fa-content(\10f0e3); }
@@ -760,6 +789,7 @@
 .fad.#{$fa-css-prefix}-golf-club:after { content: fa-content(\10f451); }
 .fad.#{$fa-css-prefix}-gopuram:after { content: fa-content(\10f664); }
 .fad.#{$fa-css-prefix}-graduation-cap:after { content: fa-content(\10f19d); }
+.fad.#{$fa-css-prefix}-gramophone:after { content: fa-content(\10f8bd); }
 .fad.#{$fa-css-prefix}-greater-than:after { content: fa-content(\10f531); }
 .fad.#{$fa-css-prefix}-greater-than-equal:after { content: fa-content(\10f532); }
 .fad.#{$fa-css-prefix}-grimace:after { content: fa-content(\10f57f); }
@@ -781,6 +811,8 @@
 .fad.#{$fa-css-prefix}-grip-lines-vertical:after { content: fa-content(\10f7a5); }
 .fad.#{$fa-css-prefix}-grip-vertical:after { content: fa-content(\10f58e); }
 .fad.#{$fa-css-prefix}-guitar:after { content: fa-content(\10f7a6); }
+.fad.#{$fa-css-prefix}-guitar-electric:after { content: fa-content(\10f8be); }
+.fad.#{$fa-css-prefix}-guitars:after { content: fa-content(\10f8bf); }
 .fad.#{$fa-css-prefix}-h-square:after { content: fa-content(\10f0fd); }
 .fad.#{$fa-css-prefix}-h1:after { content: fa-content(\10f313); }
 .fad.#{$fa-css-prefix}-h2:after { content: fa-content(\10f314); }
@@ -821,6 +853,8 @@
 .fad.#{$fa-css-prefix}-hard-hat:after { content: fa-content(\10f807); }
 .fad.#{$fa-css-prefix}-hashtag:after { content: fa-content(\10f292); }
 .fad.#{$fa-css-prefix}-hat-chef:after { content: fa-content(\10f86b); }
+.fad.#{$fa-css-prefix}-hat-cowboy:after { content: fa-content(\10f8c0); }
+.fad.#{$fa-css-prefix}-hat-cowboy-side:after { content: fa-content(\10f8c1); }
 .fad.#{$fa-css-prefix}-hat-santa:after { content: fa-content(\10f7a7); }
 .fad.#{$fa-css-prefix}-hat-winter:after { content: fa-content(\10f7a8); }
 .fad.#{$fa-css-prefix}-hat-witch:after { content: fa-content(\10f6e7); }
@@ -829,6 +863,7 @@
 .fad.#{$fa-css-prefix}-hdd:after { content: fa-content(\10f0a0); }
 .fad.#{$fa-css-prefix}-head-side:after { content: fa-content(\10f6e9); }
 .fad.#{$fa-css-prefix}-head-side-brain:after { content: fa-content(\10f808); }
+.fad.#{$fa-css-prefix}-head-side-headphones:after { content: fa-content(\10f8c2); }
 .fad.#{$fa-css-prefix}-head-side-medical:after { content: fa-content(\10f809); }
 .fad.#{$fa-css-prefix}-head-vr:after { content: fa-content(\10f6ea); }
 .fad.#{$fa-css-prefix}-heading:after { content: fa-content(\10f1dc); }
@@ -861,6 +896,7 @@
 .fad.#{$fa-css-prefix}-horizontal-rule:after { content: fa-content(\10f86c); }
 .fad.#{$fa-css-prefix}-horse:after { content: fa-content(\10f6f0); }
 .fad.#{$fa-css-prefix}-horse-head:after { content: fa-content(\10f7ab); }
+.fad.#{$fa-css-prefix}-horse-saddle:after { content: fa-content(\10f8c3); }
 .fad.#{$fa-css-prefix}-hospital:after { content: fa-content(\10f0f8); }
 .fad.#{$fa-css-prefix}-hospital-alt:after { content: fa-content(\10f47d); }
 .fad.#{$fa-css-prefix}-hospital-symbol:after { content: fa-content(\10f47e); }
@@ -889,6 +925,7 @@
 .fad.#{$fa-css-prefix}-id-card-alt:after { content: fa-content(\10f47f); }
 .fad.#{$fa-css-prefix}-igloo:after { content: fa-content(\10f7ae); }
 .fad.#{$fa-css-prefix}-image:after { content: fa-content(\10f03e); }
+.fad.#{$fa-css-prefix}-image-polaroid:after { content: fa-content(\10f8c4); }
 .fad.#{$fa-css-prefix}-images:after { content: fa-content(\10f302); }
 .fad.#{$fa-css-prefix}-inbox:after { content: fa-content(\10f01c); }
 .fad.#{$fa-css-prefix}-inbox-in:after { content: fa-content(\10f310); }
@@ -910,7 +947,10 @@
 .fad.#{$fa-css-prefix}-jedi:after { content: fa-content(\10f669); }
 .fad.#{$fa-css-prefix}-joint:after { content: fa-content(\10f595); }
 .fad.#{$fa-css-prefix}-journal-whills:after { content: fa-content(\10f66a); }
+.fad.#{$fa-css-prefix}-joystick:after { content: fa-content(\10f8c5); }
+.fad.#{$fa-css-prefix}-jug:after { content: fa-content(\10f8c6); }
 .fad.#{$fa-css-prefix}-kaaba:after { content: fa-content(\10f66b); }
+.fad.#{$fa-css-prefix}-kazoo:after { content: fa-content(\10f8c7); }
 .fad.#{$fa-css-prefix}-kerning:after { content: fa-content(\10f86f); }
 .fad.#{$fa-css-prefix}-key:after { content: fa-content(\10f084); }
 .fad.#{$fa-css-prefix}-key-skeleton:after { content: fa-content(\10f6f3); }
@@ -932,6 +972,7 @@
 .fad.#{$fa-css-prefix}-laptop:after { content: fa-content(\10f109); }
 .fad.#{$fa-css-prefix}-laptop-code:after { content: fa-content(\10f5fc); }
 .fad.#{$fa-css-prefix}-laptop-medical:after { content: fa-content(\10f812); }
+.fad.#{$fa-css-prefix}-lasso:after { content: fa-content(\10f8c8); }
 .fad.#{$fa-css-prefix}-laugh:after { content: fa-content(\10f599); }
 .fad.#{$fa-css-prefix}-laugh-beam:after { content: fa-content(\10f59a); }
 .fad.#{$fa-css-prefix}-laugh-squint:after { content: fa-content(\10f59b); }
@@ -964,6 +1005,7 @@
 .fad.#{$fa-css-prefix}-lira-sign:after { content: fa-content(\10f195); }
 .fad.#{$fa-css-prefix}-list:after { content: fa-content(\10f03a); }
 .fad.#{$fa-css-prefix}-list-alt:after { content: fa-content(\10f022); }
+.fad.#{$fa-css-prefix}-list-music:after { content: fa-content(\10f8c9); }
 .fad.#{$fa-css-prefix}-list-ol:after { content: fa-content(\10f0cb); }
 .fad.#{$fa-css-prefix}-list-ul:after { content: fa-content(\10f0ca); }
 .fad.#{$fa-css-prefix}-location:after { content: fa-content(\10f601); }
@@ -1034,6 +1076,7 @@
 .fad.#{$fa-css-prefix}-microphone-alt:after { content: fa-content(\10f3c9); }
 .fad.#{$fa-css-prefix}-microphone-alt-slash:after { content: fa-content(\10f539); }
 .fad.#{$fa-css-prefix}-microphone-slash:after { content: fa-content(\10f131); }
+.fad.#{$fa-css-prefix}-microphone-stand:after { content: fa-content(\10f8cb); }
 .fad.#{$fa-css-prefix}-microscope:after { content: fa-content(\10f610); }
 .fad.#{$fa-css-prefix}-mind-share:after { content: fa-content(\10f677); }
 .fad.#{$fa-css-prefix}-minus:after { content: fa-content(\10f068); }
@@ -1066,12 +1109,18 @@
 .fad.#{$fa-css-prefix}-motorcycle:after { content: fa-content(\10f21c); }
 .fad.#{$fa-css-prefix}-mountain:after { content: fa-content(\10f6fc); }
 .fad.#{$fa-css-prefix}-mountains:after { content: fa-content(\10f6fd); }
+.fad.#{$fa-css-prefix}-mouse:after { content: fa-content(\10f8cc); }
+.fad.#{$fa-css-prefix}-mouse-alt:after { content: fa-content(\10f8cd); }
 .fad.#{$fa-css-prefix}-mouse-pointer:after { content: fa-content(\10f245); }
+.fad.#{$fa-css-prefix}-mp3-player:after { content: fa-content(\10f8ce); }
 .fad.#{$fa-css-prefix}-mug:after { content: fa-content(\10f874); }
 .fad.#{$fa-css-prefix}-mug-hot:after { content: fa-content(\10f7b6); }
 .fad.#{$fa-css-prefix}-mug-marshmallows:after { content: fa-content(\10f7b7); }
 .fad.#{$fa-css-prefix}-mug-tea:after { content: fa-content(\10f875); }
 .fad.#{$fa-css-prefix}-music:after { content: fa-content(\10f001); }
+.fad.#{$fa-css-prefix}-music-alt:after { content: fa-content(\10f8cf); }
+.fad.#{$fa-css-prefix}-music-alt-slash:after { content: fa-content(\10f8d0); }
+.fad.#{$fa-css-prefix}-music-slash:after { content: fa-content(\10f8d1); }
 .fad.#{$fa-css-prefix}-narwhal:after { content: fa-content(\10f6fe); }
 .fad.#{$fa-css-prefix}-network-wired:after { content: fa-content(\10f6ff); }
 .fad.#{$fa-css-prefix}-neuter:after { content: fa-content(\10f22c); }
@@ -1140,12 +1189,15 @@
 .fad.#{$fa-css-prefix}-phone-laptop:after { content: fa-content(\10f87a); }
 .fad.#{$fa-css-prefix}-phone-office:after { content: fa-content(\10f67d); }
 .fad.#{$fa-css-prefix}-phone-plus:after { content: fa-content(\10f4d2); }
+.fad.#{$fa-css-prefix}-phone-rotary:after { content: fa-content(\10f8d3); }
 .fad.#{$fa-css-prefix}-phone-slash:after { content: fa-content(\10f3dd); }
 .fad.#{$fa-css-prefix}-phone-square:after { content: fa-content(\10f098); }
 .fad.#{$fa-css-prefix}-phone-square-alt:after { content: fa-content(\10f87b); }
 .fad.#{$fa-css-prefix}-phone-volume:after { content: fa-content(\10f2a0); }
 .fad.#{$fa-css-prefix}-photo-video:after { content: fa-content(\10f87c); }
 .fad.#{$fa-css-prefix}-pi:after { content: fa-content(\10f67e); }
+.fad.#{$fa-css-prefix}-piano:after { content: fa-content(\10f8d4); }
+.fad.#{$fa-css-prefix}-piano-keyboard:after { content: fa-content(\10f8d5); }
 .fad.#{$fa-css-prefix}-pie:after { content: fa-content(\10f705); }
 .fad.#{$fa-css-prefix}-pig:after { content: fa-content(\10f706); }
 .fad.#{$fa-css-prefix}-piggy-bank:after { content: fa-content(\10f4d3); }
@@ -1189,6 +1241,7 @@
 .fad.#{$fa-css-prefix}-print-slash:after { content: fa-content(\10f686); }
 .fad.#{$fa-css-prefix}-procedures:after { content: fa-content(\10f487); }
 .fad.#{$fa-css-prefix}-project-diagram:after { content: fa-content(\10f542); }
+.fad.#{$fa-css-prefix}-projector:after { content: fa-content(\10f8d6); }
 .fad.#{$fa-css-prefix}-pumpkin:after { content: fa-content(\10f707); }
 .fad.#{$fa-css-prefix}-puzzle-piece:after { content: fa-content(\10f12e); }
 .fad.#{$fa-css-prefix}-qrcode:after { content: fa-content(\10f029); }
@@ -1204,12 +1257,15 @@
 .fad.#{$fa-css-prefix}-racquet:after { content: fa-content(\10f45a); }
 .fad.#{$fa-css-prefix}-radiation:after { content: fa-content(\10f7b9); }
 .fad.#{$fa-css-prefix}-radiation-alt:after { content: fa-content(\10f7ba); }
+.fad.#{$fa-css-prefix}-radio:after { content: fa-content(\10f8d7); }
+.fad.#{$fa-css-prefix}-radio-alt:after { content: fa-content(\10f8d8); }
 .fad.#{$fa-css-prefix}-rainbow:after { content: fa-content(\10f75b); }
 .fad.#{$fa-css-prefix}-raindrops:after { content: fa-content(\10f75c); }
 .fad.#{$fa-css-prefix}-ram:after { content: fa-content(\10f70a); }
 .fad.#{$fa-css-prefix}-ramp-loading:after { content: fa-content(\10f4d4); }
 .fad.#{$fa-css-prefix}-random:after { content: fa-content(\10f074); }
 .fad.#{$fa-css-prefix}-receipt:after { content: fa-content(\10f543); }
+.fad.#{$fa-css-prefix}-record-vinyl:after { content: fa-content(\10f8d9); }
 .fad.#{$fa-css-prefix}-rectangle-landscape:after { content: fa-content(\10f2fa); }
 .fad.#{$fa-css-prefix}-rectangle-portrait:after { content: fa-content(\10f2fb); }
 .fad.#{$fa-css-prefix}-rectangle-wide:after { content: fa-content(\10f2fc); }
@@ -1237,6 +1293,7 @@
 .fad.#{$fa-css-prefix}-route:after { content: fa-content(\10f4d7); }
 .fad.#{$fa-css-prefix}-route-highway:after { content: fa-content(\10f61a); }
 .fad.#{$fa-css-prefix}-route-interstate:after { content: fa-content(\10f61b); }
+.fad.#{$fa-css-prefix}-router:after { content: fa-content(\10f8da); }
 .fad.#{$fa-css-prefix}-rss:after { content: fa-content(\10f09e); }
 .fad.#{$fa-css-prefix}-rss-square:after { content: fa-content(\10f143); }
 .fad.#{$fa-css-prefix}-ruble-sign:after { content: fa-content(\10f158); }
@@ -1258,9 +1315,12 @@
 .fad.#{$fa-css-prefix}-satellite-dish:after { content: fa-content(\10f7c0); }
 .fad.#{$fa-css-prefix}-sausage:after { content: fa-content(\10f820); }
 .fad.#{$fa-css-prefix}-save:after { content: fa-content(\10f0c7); }
+.fad.#{$fa-css-prefix}-sax-hot:after { content: fa-content(\10f8db); }
+.fad.#{$fa-css-prefix}-saxophone:after { content: fa-content(\10f8dc); }
 .fad.#{$fa-css-prefix}-scalpel:after { content: fa-content(\10f61d); }
 .fad.#{$fa-css-prefix}-scalpel-path:after { content: fa-content(\10f61e); }
 .fad.#{$fa-css-prefix}-scanner:after { content: fa-content(\10f488); }
+.fad.#{$fa-css-prefix}-scanner-image:after { content: fa-content(\10f488); }
 .fad.#{$fa-css-prefix}-scanner-keyboard:after { content: fa-content(\10f489); }
 .fad.#{$fa-css-prefix}-scanner-touchscreen:after { content: fa-content(\10f48a); }
 .fad.#{$fa-css-prefix}-scarecrow:after { content: fa-content(\10f70d); }
@@ -1326,6 +1386,7 @@
 .fad.#{$fa-css-prefix}-signal-alt-3:after { content: fa-content(\10f693); }
 .fad.#{$fa-css-prefix}-signal-alt-slash:after { content: fa-content(\10f694); }
 .fad.#{$fa-css-prefix}-signal-slash:after { content: fa-content(\10f695); }
+.fad.#{$fa-css-prefix}-signal-stream:after { content: fa-content(\10f8dd); }
 .fad.#{$fa-css-prefix}-signature:after { content: fa-content(\10f5b7); }
 .fad.#{$fa-css-prefix}-sim-card:after { content: fa-content(\10f7c4); }
 .fad.#{$fa-css-prefix}-sitemap:after { content: fa-content(\10f0e8); }
@@ -1336,6 +1397,7 @@
 .fad.#{$fa-css-prefix}-skiing:after { content: fa-content(\10f7c9); }
 .fad.#{$fa-css-prefix}-skiing-nordic:after { content: fa-content(\10f7ca); }
 .fad.#{$fa-css-prefix}-skull:after { content: fa-content(\10f54c); }
+.fad.#{$fa-css-prefix}-skull-cow:after { content: fa-content(\10f8de); }
 .fad.#{$fa-css-prefix}-skull-crossbones:after { content: fa-content(\10f714); }
 .fad.#{$fa-css-prefix}-slash:after { content: fa-content(\10f715); }
 .fad.#{$fa-css-prefix}-sledding:after { content: fa-content(\10f7cb); }
@@ -1393,6 +1455,8 @@
 .fad.#{$fa-css-prefix}-space-shuttle:after { content: fa-content(\10f197); }
 .fad.#{$fa-css-prefix}-spade:after { content: fa-content(\10f2f4); }
 .fad.#{$fa-css-prefix}-sparkles:after { content: fa-content(\10f890); }
+.fad.#{$fa-css-prefix}-speaker:after { content: fa-content(\10f8df); }
+.fad.#{$fa-css-prefix}-speakers:after { content: fa-content(\10f8e0); }
 .fad.#{$fa-css-prefix}-spell-check:after { content: fa-content(\10f891); }
 .fad.#{$fa-css-prefix}-spider:after { content: fa-content(\10f717); }
 .fad.#{$fa-css-prefix}-spider-black-widow:after { content: fa-content(\10f718); }
@@ -1571,6 +1635,7 @@
 .fad.#{$fa-css-prefix}-tree-palm:after { content: fa-content(\10f82b); }
 .fad.#{$fa-css-prefix}-trees:after { content: fa-content(\10f724); }
 .fad.#{$fa-css-prefix}-triangle:after { content: fa-content(\10f2ec); }
+.fad.#{$fa-css-prefix}-triangle-music:after { content: fa-content(\10f8e2); }
 .fad.#{$fa-css-prefix}-trophy:after { content: fa-content(\10f091); }
 .fad.#{$fa-css-prefix}-trophy-alt:after { content: fa-content(\10f2eb); }
 .fad.#{$fa-css-prefix}-truck:after { content: fa-content(\10f0d1); }
@@ -1582,12 +1647,17 @@
 .fad.#{$fa-css-prefix}-truck-pickup:after { content: fa-content(\10f63c); }
 .fad.#{$fa-css-prefix}-truck-plow:after { content: fa-content(\10f7de); }
 .fad.#{$fa-css-prefix}-truck-ramp:after { content: fa-content(\10f4e0); }
+.fad.#{$fa-css-prefix}-trumpet:after { content: fa-content(\10f8e3); }
 .fad.#{$fa-css-prefix}-tshirt:after { content: fa-content(\10f553); }
 .fad.#{$fa-css-prefix}-tty:after { content: fa-content(\10f1e4); }
 .fad.#{$fa-css-prefix}-turkey:after { content: fa-content(\10f725); }
+.fad.#{$fa-css-prefix}-turntable:after { content: fa-content(\10f8e4); }
 .fad.#{$fa-css-prefix}-turtle:after { content: fa-content(\10f726); }
 .fad.#{$fa-css-prefix}-tv:after { content: fa-content(\10f26c); }
+.fad.#{$fa-css-prefix}-tv-alt:after { content: fa-content(\10f8e5); }
+.fad.#{$fa-css-prefix}-tv-music:after { content: fa-content(\10f8e6); }
 .fad.#{$fa-css-prefix}-tv-retro:after { content: fa-content(\10f401); }
+.fad.#{$fa-css-prefix}-typewriter:after { content: fa-content(\10f8e7); }
 .fad.#{$fa-css-prefix}-umbrella:after { content: fa-content(\10f0e9); }
 .fad.#{$fa-css-prefix}-umbrella-beach:after { content: fa-content(\10f5ca); }
 .fad.#{$fa-css-prefix}-underline:after { content: fa-content(\10f0cd); }
@@ -1601,6 +1671,7 @@
 .fad.#{$fa-css-prefix}-unlock:after { content: fa-content(\10f09c); }
 .fad.#{$fa-css-prefix}-unlock-alt:after { content: fa-content(\10f13e); }
 .fad.#{$fa-css-prefix}-upload:after { content: fa-content(\10f093); }
+.fad.#{$fa-css-prefix}-usb-drive:after { content: fa-content(\10f8e9); }
 .fad.#{$fa-css-prefix}-usd-circle:after { content: fa-content(\10f2e8); }
 .fad.#{$fa-css-prefix}-usd-square:after { content: fa-content(\10f2e9); }
 .fad.#{$fa-css-prefix}-user:after { content: fa-content(\10f007); }
@@ -1612,6 +1683,7 @@
 .fad.#{$fa-css-prefix}-user-circle:after { content: fa-content(\10f2bd); }
 .fad.#{$fa-css-prefix}-user-clock:after { content: fa-content(\10f4fd); }
 .fad.#{$fa-css-prefix}-user-cog:after { content: fa-content(\10f4fe); }
+.fad.#{$fa-css-prefix}-user-cowboy:after { content: fa-content(\10f8ea); }
 .fad.#{$fa-css-prefix}-user-crown:after { content: fa-content(\10f6a4); }
 .fad.#{$fa-css-prefix}-user-edit:after { content: fa-content(\10f4ff); }
 .fad.#{$fa-css-prefix}-user-friends:after { content: fa-content(\10f500); }
@@ -1623,6 +1695,7 @@
 .fad.#{$fa-css-prefix}-user-md:after { content: fa-content(\10f0f0); }
 .fad.#{$fa-css-prefix}-user-md-chat:after { content: fa-content(\10f82e); }
 .fad.#{$fa-css-prefix}-user-minus:after { content: fa-content(\10f503); }
+.fad.#{$fa-css-prefix}-user-music:after { content: fa-content(\10f8eb); }
 .fad.#{$fa-css-prefix}-user-ninja:after { content: fa-content(\10f504); }
 .fad.#{$fa-css-prefix}-user-nurse:after { content: fa-content(\10f82f); }
 .fad.#{$fa-css-prefix}-user-plus:after { content: fa-content(\10f234); }
@@ -1647,12 +1720,14 @@
 .fad.#{$fa-css-prefix}-venus:after { content: fa-content(\10f221); }
 .fad.#{$fa-css-prefix}-venus-double:after { content: fa-content(\10f226); }
 .fad.#{$fa-css-prefix}-venus-mars:after { content: fa-content(\10f228); }
+.fad.#{$fa-css-prefix}-vhs:after { content: fa-content(\10f8ec); }
 .fad.#{$fa-css-prefix}-vial:after { content: fa-content(\10f492); }
 .fad.#{$fa-css-prefix}-vials:after { content: fa-content(\10f493); }
 .fad.#{$fa-css-prefix}-video:after { content: fa-content(\10f03d); }
 .fad.#{$fa-css-prefix}-video-plus:after { content: fa-content(\10f4e1); }
 .fad.#{$fa-css-prefix}-video-slash:after { content: fa-content(\10f4e2); }
 .fad.#{$fa-css-prefix}-vihara:after { content: fa-content(\10f6a7); }
+.fad.#{$fa-css-prefix}-violin:after { content: fa-content(\10f8ed); }
 .fad.#{$fa-css-prefix}-voicemail:after { content: fa-content(\10f897); }
 .fad.#{$fa-css-prefix}-volcano:after { content: fa-content(\10f770); }
 .fad.#{$fa-css-prefix}-volleyball-ball:after { content: fa-content(\10f45f); }
@@ -1665,7 +1740,9 @@
 .fad.#{$fa-css-prefix}-vote-nay:after { content: fa-content(\10f771); }
 .fad.#{$fa-css-prefix}-vote-yea:after { content: fa-content(\10f772); }
 .fad.#{$fa-css-prefix}-vr-cardboard:after { content: fa-content(\10f729); }
+.fad.#{$fa-css-prefix}-wagon-covered:after { content: fa-content(\10f8ee); }
 .fad.#{$fa-css-prefix}-walker:after { content: fa-content(\10f831); }
+.fad.#{$fa-css-prefix}-walkie-talkie:after { content: fa-content(\10f8ef); }
 .fad.#{$fa-css-prefix}-walking:after { content: fa-content(\10f554); }
 .fad.#{$fa-css-prefix}-wallet:after { content: fa-content(\10f555); }
 .fad.#{$fa-css-prefix}-wand:after { content: fa-content(\10f72a); }
@@ -1674,6 +1751,7 @@
 .fad.#{$fa-css-prefix}-warehouse-alt:after { content: fa-content(\10f495); }
 .fad.#{$fa-css-prefix}-washer:after { content: fa-content(\10f898); }
 .fad.#{$fa-css-prefix}-watch:after { content: fa-content(\10f2e1); }
+.fad.#{$fa-css-prefix}-watch-calculator:after { content: fa-content(\10f8f0); }
 .fad.#{$fa-css-prefix}-watch-fitness:after { content: fa-content(\10f63e); }
 .fad.#{$fa-css-prefix}-water:after { content: fa-content(\10f773); }
 .fad.#{$fa-css-prefix}-water-lower:after { content: fa-content(\10f774); }
@@ -1681,6 +1759,8 @@
 .fad.#{$fa-css-prefix}-wave-sine:after { content: fa-content(\10f899); }
 .fad.#{$fa-css-prefix}-wave-square:after { content: fa-content(\10f83e); }
 .fad.#{$fa-css-prefix}-wave-triangle:after { content: fa-content(\10f89a); }
+.fad.#{$fa-css-prefix}-waveform:after { content: fa-content(\10f8f1); }
+.fad.#{$fa-css-prefix}-waveform-path:after { content: fa-content(\10f8f2); }
 .fad.#{$fa-css-prefix}-webcam:after { content: fa-content(\10f832); }
 .fad.#{$fa-css-prefix}-webcam-slash:after { content: fa-content(\10f833); }
 .fad.#{$fa-css-prefix}-weight:after { content: fa-content(\10f496); }

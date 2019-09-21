@@ -7,7 +7,7 @@
     } from 'svelte/easing';
     import {
         navigationIsOpen
-    } from '../_stores/stores.js';
+    } from '../_stores/main-state.js';
     import FavIcon from '../_components/FavIcon.svelte';
     import Navigation from '../_components/Navigation.svelte';
     import Hamburger from '../_components/Hamburger.svelte';

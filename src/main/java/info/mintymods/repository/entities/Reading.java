@@ -20,7 +20,7 @@ public class Reading {
 	private MsmSensorType type;
 	private String name;
 	private String desc;
-	private int sensorIndex;
+	private int index;
 	private String sensorIndexName;
 	private String unit;
 	private double value;
@@ -35,7 +35,7 @@ public class Reading {
 	}
 
 	public int getSensorIndex() {
-		return sensorIndex;
+		return index;
 	}
 
 	public MsmSensorType getType() {
@@ -50,8 +50,8 @@ public class Reading {
 		return value;
 	}
 
-	public void setSensorIndex(final int sensor_index) {
-		sensorIndex = sensor_index;
+	public void setSensorIndex(final int sensor) {
+		index = index;
 	}
 
 	public void setType(final MsmSensorType type) {

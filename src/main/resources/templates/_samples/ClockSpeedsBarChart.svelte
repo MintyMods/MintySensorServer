@@ -1,49 +1,33 @@
-<style>
-    .chart {
-        height: 768px;
-        position: relative;
-        display: inline-block;
-        width: 1024px;
-    }
-
-</style>
-
 <script>
-    import BarChart from '../_charts/chartjs/BarChart.svelte';
-    import {
-        beforeUpdate,
-        afterUpdate
-    } from 'svelte';
-    import {
-        storeReadings,
-        storeTypes
-    } from '../_stores/stores.js';
+  import BarChart from "../_charts/chartjs/BarChart.svelte";
+  import { beforeUpdate } from "svelte";
+  import { storeReadings, storeTypes } from "../_stores/main-state.js";
 
-    let data = [];
-    let labels = [];
-    $: data = data;
-    $: labels = labels;
-    let caption = "Clock Speeds";
+  let data = [];
+  let labels = [];
+  $: data = data;
+  $: labels = labels;
+  let caption = "Clock Speeds";
 
-    afterUpdate(() => {
-        if ($storeReadings.length > 1) {
-            data = [];
-            labels = [];
-            $storeReadings.forEach(function(reading, i) {
-                let label = reading.label.value;
-                let type = $storeTypes[reading.type];
-                if (type.name == 'CLOCK' && (label.includes('Core') || label.includes('GPU'))) {
-                    data.push(reading.value);
-                    labels.push(reading.label.description);
-                }
-            });
+  beforeUpdate(() => {
+    if ($storeReadings.length > 0) {
+      data = [];
+      labels = [];
+      $storeReadings.forEach(function(reading, i) {
+        let label = reading.label.value;
+        if (
+          $storeTypes[reading.type].name == "CLOCK" &&
+          (label.includes("Core") || label.includes("GPU"))
+        ) {
+          data.push(reading.value);
+          labels.push(reading.label.desc);
         }
-    });
-
+      });
+    }
+  });
 </script>
 
-<div class="chart">
-    {#if data}
-        <BarChart {caption} {data} {labels}></BarChart>
-    {/if}
-</div>
+{#if data}
+  <BarChart {caption} {data} {labels} />
+{/if}
+

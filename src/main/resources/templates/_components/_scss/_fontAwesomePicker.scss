@@ -1,42 +1,42 @@
-   .filtering-list {
-        font-size: 18px;
-        padding: 10px;
-    }
+.filtering-list {
+	font-size: 18px;
+	padding: 10px;
+}
 
-    .search {
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        font-size: 18px;
-        padding: 15px 12px;
-        outline: none;
-        width: 100%;
-    }
+.search {
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	font-size: 18px;
+	padding: 15px 12px;
+	outline: none;
+	width: 100%;
+}
 
-    .filter-list {
-        list-style-type: none;
-        margin-left: 0;
-        padding-left: 0;
-    }
+.filter-list {
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+}
 
-    .filter-list li:first-child {
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-    }
+.filter-list li:first-child {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
 
-    .filter-list li:last-child {
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
+.filter-list li:last-child {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
 
-    .filter-list li {
-        margin-bottom: -1px;
-        padding: 10px;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        color: #333;
-    }
+.filter-list li {
+	margin-bottom: -1px;
+	padding: 10px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	color: #333;
+}
 
-    .filter-no-match {
-        background-color: #ddd;
-        padding: 15px;
-    }
+.filter-no-match {
+	background-color: #ddd;
+	padding: 15px;
+}

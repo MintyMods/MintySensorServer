@@ -10,7 +10,7 @@
         storeLastNetworkPing,
         storeLastNetworkPong,
         time
-    } from '../_stores/stores.js';
+    } from '../_stores/main-state.js';
     import Notification from '../_components/Notification.svelte';
     export let command;
     export let parameters;

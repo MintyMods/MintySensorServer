@@ -5,7 +5,7 @@
 <script>
     import {
         time
-    } from '../_stores/stores.js';
+    } from '../_stores/main-state.js';
     const formatter = new Intl.DateTimeFormat('en', {
         hour12: true,
         hour: 'numeric',

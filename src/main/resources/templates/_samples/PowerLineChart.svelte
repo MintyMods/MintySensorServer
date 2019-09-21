@@ -1,43 +1,28 @@
-<style>
-    .TempsBarChart {
-        height: 768px;
-        position: relative;
-        display: inline-block;
-        width: 1024px;
-    }
-
-</style>
-
 <script>
-    import BarChart from '../_charts/chartjs/LineChart.svelte';
-    import {
-        beforeUpdate,
-        afterUpdate
-    } from 'svelte';
-    import {
-        storeReadings
-    } from '../_stores/stores.js';
+  import LineChart from "../_charts/chartjs/LineChart.svelte";
+  import { beforeUpdate } from "svelte";
+  import { storeReadings, storeTypes } from "../_stores/main-state.js";
 
-    let data = [];
-    $: data = data;
-    let caption = "Power";
+  let data = [];
+  $: data = data;
+  let caption = "Power";
 
-    afterUpdate(() => {
-        if ($storeReadings.length > 1) {
-            data = [];
-            $storeReadings.forEach(function(reading, i) {
-                let label = reading.label.value;
-                if (reading.type.name == 'POWER' && label.toUpperCase().includes('POWER')) {
-                    data.push(reading);
-                }
-            });
+  beforeUpdate(() => {
+    if ($storeReadings.length > 0) {
+      data = [];
+      $storeReadings.forEach(function(reading, i) {
+        let label = reading.label.value;
+        if (
+          $storeTypes[reading.type].name == "POWER" &&
+          label.toUpperCase().includes("POWER")
+        ) {
+          data.push(reading);
         }
-    });
-
+      });
+    }
+  });
 </script>
 
-<div class="TempsBarChart">
-    {#if data}
-        <BarChart {caption} {data} ></BarChart>
-    {/if}
-</div>
+  {#if data}
+    <LineChart {caption} {data} />
+  {/if}

@@ -8,14 +8,14 @@ import info.mintymods.utils.MintyJsonUtils;
 public class MsmSensorLabel {
 
 	private String name;
-	private String description;
+	private String desc;
 
 	public MsmSensorLabel() {
 	}
 
-	public MsmSensorLabel(final String name, final String description) {
+	public MsmSensorLabel(final String name, final String desc) {
 		this.name = name;
-		this.description = description;
+		this.desc = desc;
 	}
 
 	public String getName() {
@@ -28,12 +28,12 @@ public class MsmSensorLabel {
 	}
 
 	public String getDescription() {
-		return description;
+		return desc;
 	}
 
-	@JsonProperty("description")
-	public void setDescription(final String description) {
-		this.description = description;
+	@JsonProperty("desc")
+	public void setDescription(final String desc) {
+		this.desc = desc;
 	}
 
 	@Override

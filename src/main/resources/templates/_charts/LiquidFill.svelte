@@ -1,50 +1,61 @@
-<svg id={id} width="97%" height="250"></svg>
-<style>
-    svg {
-        opacity: 0.5;
-    }
-
-</style>
 <script language="JavaScript">
-    import {
-        beforeUpdate
-    } from 'svelte';
+  // Liquid Fill Gauge v1.1
+  // https://gist.github.com/brattonc/5e5ce9beee483220e2f6
+  import { beforeUpdate } from "svelte";
+  import { Configurable } from "../_components/Configurable.svelte";
 
-    export let data;
-    $: data;
+  export let data;
+  let gauge;
+  let id =
+    "liquid-fill-" +
+    Math.random()
+      .toString(36)
+      .replace(/[^a-z]+/g, "")
+      .substr(2, 10);
 
-    export let id = "liquid-fill-" + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 10);
-    let gauge;
-
-    beforeUpdate(() => {
-        if (data) {
-            if (!gauge) {
-                gauge = loadLiquidFillGauge(id, data, getConfig());
-            }
-            gauge.update(data);
-        }
-    });
-
-    function getConfig() {
-        //https://gist.github.com/brattonc/5e5ce9beee483220e2f6
-        let config = liquidFillGaugeDefaultSettings();
-        config.circleColor = "#6bb9f0";
-        config.textColor = "#3498db";
-        config.waveTextColor = "#3498db";
-        config.waveColor = "#89c4f4";
-        config.circleThickness = 0.1;
-        config.textVertPosition = 0.2;
-        config.waveAnimateTime = 1000;
-        config.waveAnimate = true;
-        config.waveRise = true;
-        config.waveRiseTime = 2000;
-        config.displayPercent = false;
-        config.waveCount = 3;
-        config.textVertPosition = 0.52;
-        config.valueCountUp = true;
-        config.waveHeightScaling = true;
-        config.textSize = 2;
-        return config;
+beforeUpdate(() => {
+    if (data !== undefined && document.getElementById(id) !== null) {
+      if (gauge === undefined) {
+        gauge = loadLiquidFillGauge(id, data, getConfig());
+      }
+      gauge.update(data);
     }
+  });
 
+  function getConfig() {
+    let config = liquidFillGaugeDefaultSettings();
+    config.minValue = 0;
+    config.maxValue = 1600;
+    config.circleThickness = 0.1;
+    config.circleFillGap = 0.05;
+    config.circleColor = "#6bb9f0";
+    config.waveHeight = 0.05;
+    config.waveCount = 3;
+    config.waveRiseTime = 2000;
+    config.waveAnimateTime = 1000;
+    config.waveRise = true;
+    config.waveHeightScaling = true;
+    config.waveAnimate = true;
+    config.waveColor = "#89c4f4";
+    config.waveOffset = 0;
+    config.textVertPosition = 0.52;
+    config.textSize = 0.6;
+    config.valueCountUp = true;
+    config.displayPercent = false;
+    config.textColor = "#3498db";
+    config.waveTextColor = "#3498db";
+    config.displayUnit = " rpm";
+    return config;
+  }
 </script>
+
+<style>
+  svg {
+    opacity: 0.5;
+    width: 100%;
+    height:100%;
+    overflow: hidden;
+  }
+</style>
+
+<svg {id} />

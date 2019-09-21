@@ -4,7 +4,7 @@
 <script>
     import {
         storeSelectedThemeColor
-    } from '../_stores/stores.js';
+    } from '../_stores/main-state.js';
 
 
     function getRandomColor() {

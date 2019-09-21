@@ -9,7 +9,7 @@ public class MsmSensorReading {
 
 	private MsmSensorType type;
 	private int id;
-	private int sensor_index;
+	private int index;
 	private MsmSensorLabel label;
 	private String unit;
 	private double value;
@@ -28,7 +28,7 @@ public class MsmSensorReading {
 	}
 
 	public int getIndex() {
-		return sensor_index;
+		return index;
 	}
 
 	public MsmSensorLabel getLabel() {
@@ -65,9 +65,9 @@ public class MsmSensorReading {
 		this.id = id;
 	}
 
-	@JsonProperty("sensor_index")
+	@JsonProperty("index")
 	public void setIndex(final int index) {
-		sensor_index = index;
+		this.index = index;
 	}
 
 	@JsonProperty("label")

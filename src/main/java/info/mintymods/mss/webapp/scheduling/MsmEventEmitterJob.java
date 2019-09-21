@@ -39,29 +39,29 @@ public class MsmEventEmitterJob extends QuartzJobBean {
 	protected void executeInternal(final JobExecutionContext context) throws JobExecutionException {
 		try {
 			MsmMonitorResponse response = factory.getResponse(MintySensorServer.getProviderType());
-			Long period = response.getPolling_period();
-			Optional<SimpleTriggerImpl> mutableTrigger = Optional.ofNullable(context)
-					.map(JobExecutionContext::getTrigger)
-					.filter(SimpleTriggerImpl.class::isInstance)
-					.map(SimpleTriggerImpl.class::cast);
-			try {
-				if (mutableTrigger.isPresent()) {
-					SimpleTriggerImpl trigger = mutableTrigger.get();
-					log.info("trigger: {} fired [{}] times", trigger.getFullName(),
-							trigger.getTimesTriggered());
-					trigger.setStartTime(getNextTriggerTime(period));
-					scheduler.rescheduleJob(trigger.getKey(), trigger);
-				}
-			} catch (SchedulerException e) {
-				log.error("job was not rescheduled <{}>", response, e);
-			}
-			log.info("trigger: " + context.getNextFireTime());
+			adjustPollingIntervalToMatchServiceProvider(context, response);
 			service.processResponse(response);
 		} catch (final MsmServiceProviderUnavailableException unavailableException) {
 			Notification.sendError(unavailableException.getMessage());
-			log.error(unavailableException.getMessage());
 			log.warn("Service Provider Unavaliable - shutting down scheduler...");
+			log.error(unavailableException.getMessage());
 			shutDownScheduler(context);
+		}
+	}
+
+	private void adjustPollingIntervalToMatchServiceProvider(final JobExecutionContext context, MsmMonitorResponse response) {
+		Optional<SimpleTriggerImpl> mutableTrigger = Optional.ofNullable(context)
+				.map(JobExecutionContext::getTrigger)
+				.filter(SimpleTriggerImpl.class::isInstance)
+				.map(SimpleTriggerImpl.class::cast);
+		try {
+			if (mutableTrigger.isPresent()) {
+				SimpleTriggerImpl trigger = mutableTrigger.get();
+				trigger.setStartTime(getNextTriggerTime(response.getPolling_period()));
+				scheduler.rescheduleJob(trigger.getKey(), trigger);
+			}
+		} catch (SchedulerException e) {
+			log.error("Failed to match service providers poll interval", e);
 		}
 	}
 
@@ -71,7 +71,7 @@ public class MsmEventEmitterJob extends QuartzJobBean {
 
 	private void shutDownScheduler(final JobExecutionContext context) {
 		try {
-			context.getScheduler().shutdown();
+			scheduler.shutdown();
 		} catch (final SchedulerException schedulerException) {
 			log.error(schedulerException.getMessage(), schedulerException);
 		}

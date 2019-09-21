@@ -16,7 +16,7 @@
     storeSensors,
     storeTypes,
     storeDemoCurrentJsonFile
-  } from "./_stores/stores.js";
+  } from "./_stores/main-state.js";
   import { onMount, onDestroy, beforeUpdate } from "svelte";
   import Router, { link, location } from "svelte-spa-router";
 
@@ -115,7 +115,7 @@
     let content = JSON.parse(message.json);
     storeReadings.set(content.readings);
     storeSensors.set(content.sensors);
-    storeTypes.set(content.types);
+    storeTypes.set(getTypes());
   }
 
   beforeUpdate(() => {
@@ -140,55 +140,55 @@
         name: "NONE",
         type: 0,
         desc: "None",
-        icon: "fal fa-times-circle"
+        icon: "fal fa-times-circle fa-fw"
       },
       {
         name: "TEMP",
         type: 1,
         desc: "Temperatures",
-        icon: "fal fa-thermometer-half"
+        icon: "fal fa-thermometer-half fa-fw"
       },
       {
         name: "VOLT",
         type: 2,
         desc: "Voltages",
-        icon: "fal fa-bolt"
+        icon: "fal fa-bolt fa-fw"
       },
       {
         name: "FAN",
         type: 3,
         desc: "Fans",
-        icon: "fal fa-fan"
+        icon: "fal fa-fan fa-fw"
       },
       {
         name: "CURRENT",
         type: 4,
         desc: "Currents",
-        icon: "fal fa-wave-square"
+        icon: "fal fa-wave-square fa-fw"
       },
       {
         name: "POWER",
         type: 5,
         desc: "Power",
-        icon: "fal fa-car-battery"
+        icon: "fal fa-car-battery fa-fw"
       },
       {
         name: "CLOCK",
         type: 6,
         desc: "Clocks",
-        icon: "far fa-clock"
+        icon: "far fa-clock fa-fw"
       },
       {
         name: "USAGE",
         type: 7,
         desc: "Usages",
-        icon: "fal fa-chart-pie"
+        icon: "fal fa-chart-pie fa-fw"
       },
       {
         name: "OTHER",
         type: 8,
         desc: "Other",
-        icon: "fal fa-share-alt"
+        icon: "fal fa-share-alt fa-fw"
       }
     ];
   }
@@ -208,9 +208,9 @@
       demoModeActive = true;
       window.permanotice = PNotify.error({
         title: "Demo Mode",
-        text: "Failed to communicate with server\nUsing fake data...",
+        text: `Failed to communicate with server - Using fake data ${demoTickCount}...`,
         hide: false,
-        icon: "fad fa-wifi-slash fa-2x",
+        icon: "fad fa-wifi-slash fa-2x fa-fw",
         textTrusted: true,
         addClass: "stack-bar-bottom",
         cornerClass: "ui-pnotify-sharp",
@@ -222,9 +222,9 @@
             closer: false,
             sticker: false,
             classes: {
-              closer: "fas fa-bomb",
-              pinUp: "fas fa-anchor",
-              pinDown: "fas fa-hourglass"
+              closer: "fas fa-bomb fa-fw",
+              pinUp: "fas fa- fa-fw",
+              pinDown: "fas fa-hourglass fa-fw"
             }
           },
           Mobile: {
@@ -234,18 +234,23 @@
       });
     }
   }
+
+function closeNavigation() {
+  $storeIsNavigationOpen = false;
+}
+
 </script>
 
 <div id="minty-sensor-server" />
 
 <Hamburger />
-{demoTickCount}
+
 <aside>
   <div class="drawer-container">
-    <Drawer variant="dismissible" bind:this={sideNav} bind:open={sideNavOpen}>
+    <Drawer variant="modal" bind:this={sideNav} bind:open={sideNavOpen}>
       <Navigation />
     </Drawer>
-    <Scrim />
+    <Scrim on:click={()=>closeNavigation()} />
     <AppContent class="app-content">
       <main
         class="main-content"

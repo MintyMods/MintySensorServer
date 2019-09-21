@@ -1,84 +1,59 @@
 <script>
-    import './_scss/_sensorList.scss';
+  import "./_scss/_sensorList.scss";
+  import {
+    storeReadings,
+    storeSensors,
+    storeTypes
+  } from "../_stores/main-state.js";
+  import List, {
+    Item,
+    Graphic,
+    Meta,
+    Separator,
+    Text,
+    PrimaryText,
+    SecondaryText
+  } from "@smui/list";
 
-    import List, {
-        Item,
-        Graphic,
-        Meta,
-        Separator,
-        Text,
-        PrimaryText,
-        SecondaryText
-    } from '@smui/list';
-    import {
-        onMount,
-        onDestroy,
-        beforeUpdate
-    } from 'svelte';
-    import {
-        storeReadings,
-        storeSensors,
-        storeTypes
-    } from '../_stores/stores.js';
+  let index;
+  let readings;
+  $: readings = readings;
+  let types;
+  $: types = $storeTypes;
 
-    let unsubscribeReadings;
-    let unsubscribeSensors;
-    let readings = [];
-    let sensors = [];
-    let types = [];
-    let items;
-    let selectedIndex;
-
-    onMount(() => {
-        subscribeToStores();
+  $: if (index) {
+    readings = $storeReadings.filter(function(reading) {
+      return reading.index === index;
     });
-
-    onDestroy(() => {
-        unsubscribeReadings();
-        unsubscribeSensors();
-    });
-
-    beforeUpdate(() => {
-        if (selectedIndex) {
-            items = readings.filter(function(reading) {
-                return reading.sensor_index === selectedIndex;
-            });
-        }
-    });
-
-    function subscribeToStores() {
-        unsubscribeReadings = storeReadings.subscribe(value => {
-            readings = value;
-        });
-        unsubscribeSensors = storeSensors.subscribe(value => {
-            sensors = value;
-        });
-    }
-
+  }
 </script>
 
 <div class="container1">
-    <div class="accordion">
-        <dl>
-            {#each sensors as sensor, i (sensor.id)}
-                <dt on:click={()=>selectedIndex = i}>{sensor.label.description}</dt>
-            {/each}   
-            {#if items}
-                <dd>
-                    <List>
-                      {#each items as item, i (item.id)}
-                        <Item>
-                          <Graphic class={item.icon}/>
-                          <Text>
-                            <PrimaryText>{item.label.description}</PrimaryText>
-                            <SecondaryText>{item.value} {item.unit}</SecondaryText>
-                          </Text>
-                            <Meta class="material-icons"><i class={$storeTypes[item.type].icon}></i>  {$storeTypes[item.type].desc}</Meta>
-                        </Item>
-                      {/each}
-                    </List>
-              </dd>
-              {/if}         
-        </dl>
-    </div>
+  <div class="accordion">
+    <dl>
+      {#each $storeSensors as sensor, i (sensor.id + sensor.instance)}
+        <dt on:click={() => (index = i)}>{sensor.label.desc}</dt>
+      {/each}
+      {#if readings}
+        <dd>
+          <List>
+            {#each readings as reading, i (reading.id + reading.index)}
+              <Item>
+                <Graphic class={reading.type.icon} title={reading.type.desc} />
+                <Text>
+                  <PrimaryText>{reading.label.desc}</PrimaryText>
+                  <SecondaryText>{reading.value} {reading.unit}</SecondaryText>
+                </Text>
+                <Meta class="material-icons">{types[reading.type].desc}</Meta>
+              </Item>
+            {:else}
+              <div>None</div>
+            {/each}
+          </List>
+        </dd>
+      {:else}
+        <div>None</div>
+      {/if}
+    </dl>
+  </div>
 </div>

@@ -6,14 +6,14 @@
     } from 'svelte';
     import {
         storeReadings
-    } from '../_stores/stores.js';
+    } from '../_stores/main-state.js';
 
     export let data;
     $: data;
     beforeUpdate(() => {
         if ($storeReadings.length > 1) {
             $storeReadings.forEach(function(reading, i) {
-                if (reading.label.value === "System1") {
+                if (reading.label.value === "HPWR Pump") {
                     data = reading.value;
                 }
                 data = data;
@@ -24,3 +24,5 @@
 </script>
 
 <LiquidFill {data} />
+
+
