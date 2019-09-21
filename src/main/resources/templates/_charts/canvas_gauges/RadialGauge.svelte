@@ -1,4 +1,6 @@
 <script>
+  //  Canvas Guages 2.1.5
+  // https://canvas-gauges.com
   import { beforeUpdate } from "svelte";
   export let data;
   let gauge;
@@ -16,8 +18,8 @@
           units: data.unit,
           minValue: data.min,
           maxValue: data.max,
-            width:300,
-            height:300,
+          width: 300,
+          height: 300,
           minorTicks: 2,
           strokeTicks: true,
           highlights: [
@@ -46,7 +48,7 @@
 </script>
 
 <style>
-canvas {
+  canvas {
     padding: 0;
     margin: auto;
     display: block;
@@ -57,7 +59,7 @@ canvas {
     bottom: 0;
     left: 0;
     right: 0;
-}
+  }
 </style>
 
 <canvas id="radial-gauge" />

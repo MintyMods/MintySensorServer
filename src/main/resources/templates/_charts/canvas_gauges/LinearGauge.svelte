@@ -1,4 +1,6 @@
 <script>
+  //  Canvas Guages 2.1.5
+  // https://canvas-gauges.com
   import { beforeUpdate } from "svelte";
   export let data;
   let gauge;
