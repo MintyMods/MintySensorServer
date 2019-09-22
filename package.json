@@ -34,6 +34,7 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
+    "@fnando/sparkline": "^0.3.10",
     "@simonwep/pickr": "^1.2.6",
     "@stomp/stompjs": "^5.4.2",
     "canvas-gauges": "^2.1.5",

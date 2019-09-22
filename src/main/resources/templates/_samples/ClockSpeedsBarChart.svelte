@@ -30,4 +30,3 @@
 {#if data}
   <BarChart {caption} {data} {labels} />
 {/if}
-

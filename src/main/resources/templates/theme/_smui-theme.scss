@@ -1,15 +1,27 @@
 //
 // MDC Theme
 //
-
 @import "@material/theme/color-palette";
+@import "@material/theme/variables";
 
-//$mdc-theme-primary: #4285f4;
-//$mdc-theme-on-primary: yellow;
-//$mdc-theme-secondary: greenyellow;
-//$mdc-theme-on-secondary: #FFFFFF;
-//$mdc-theme-error: #b00020;
-//$mdc-theme-on-error: yellow;
-//$mdc-theme-surface: rgba(70, 150, 229, 1);
-//$mdc-theme-on-surface: white;
-//$mdc-theme-background: #00ff00;
+$mdc-theme-primary: #4285f4;
+$mdc-theme-on-primary: white;
+$mdc-theme-secondary: greenyellow;
+$mdc-theme-on-secondary: #ffffff;
+$mdc-theme-error: #b00020;
+$mdc-theme-on-error: yellow;
+$mdc-theme-surface: rgba(255, 255, 255, 1);
+$mdc-theme-on-surface: rgba(0, 0, 0, 1);
+$mdc-theme-background: #00ff00;
+
+:root {
+	--theme-primary: #{$mdc-theme-primary};
+	--theme-on-primary: #{$mdc-theme-on-primary};
+	--theme-secondary: #{$mdc-theme-secondary};
+	--theme-on-secondary: #{$mdc-theme-on-secondary};
+	--theme-error: #{$mdc-theme-error};
+	--theme-on-error: #{$mdc-theme-on-error};
+	--theme-surface: #{$mdc-theme-surface};
+	--theme-on-surface: #{$mdc-theme-on-surface};
+	--theme-background: #{$mdc-theme-background};
+}

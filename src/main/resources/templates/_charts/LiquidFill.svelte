@@ -52,9 +52,10 @@ beforeUpdate(() => {
 <style>
   svg {
     opacity: 0.5;
-    width: 100%;
-    height:100%;
+    width: 98%;
+    height:98%;
     overflow: hidden;
+    transform:scale(0.8);
   }
 </style>
 

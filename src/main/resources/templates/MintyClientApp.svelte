@@ -61,7 +61,7 @@
   let readings = [];
   let sensors = [];
   let types = [];
-  let demoModeActive = false;
+  let demoModeActive = true; // @todo TURN OFF demo mode
   let demoTickCount = 0;
   $: demoTickCount = $storeDemoCurrentJsonFile;
 
@@ -208,8 +208,9 @@
       demoModeActive = true;
       window.permanotice = PNotify.error({
         title: "Demo Mode",
-        text: `Failed to communicate with server - Using fake data ${demoTickCount}...`,
+        text: "Server Offline",
         hide: false,
+        width:200,
         icon: "fad fa-wifi-slash fa-2x fa-fw",
         textTrusted: true,
         addClass: "stack-bar-bottom",
