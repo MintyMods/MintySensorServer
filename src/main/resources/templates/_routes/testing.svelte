@@ -2,6 +2,7 @@
     <title>Testing</title>
 </svelte:head>
 <script>
+  import Notification from "../_components/Notification.svelte";
     import {
         storeSelectedThemeColor
     } from '../_stores/main-state.js';

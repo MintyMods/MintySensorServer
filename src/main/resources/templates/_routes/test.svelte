@@ -46,6 +46,7 @@
 -->
 
 <script>
+  import Notification from "../_components/Notification.svelte";
 //    var stompClient = null;
  //
  // function setConnected(connected) {

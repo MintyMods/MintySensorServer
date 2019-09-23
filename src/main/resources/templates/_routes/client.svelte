@@ -37,6 +37,7 @@
 </div>
 
 <script>
+  import Notification from "../_components/Notification.svelte";
     import './_scss/_client.scss';
     import {
         onMount

@@ -4,11 +4,13 @@
   import { beforeUpdate } from "svelte";
   export let data;
   let gauge;
+  let canvasElement;
   $: data = data;
 
   beforeUpdate(() => {
     if (
       data !== undefined &&
+      // canvasElement !== null
       document.getElementById("linear-gauge") !== null
     ) {
       if (gauge === undefined) {
@@ -70,4 +72,4 @@
   }
 </style>
 
-<canvas id="linear-gauge" />
+<canvas bind:this={canvasElement} id="linear-gauge" />

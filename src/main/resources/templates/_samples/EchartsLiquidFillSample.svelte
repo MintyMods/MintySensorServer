@@ -2,7 +2,7 @@
   import EchartsLiquidFill from "../_charts/echarts/EchartsLiquidFill.svelte";
   import { beforeUpdate } from "svelte";
   import { storeReadings } from "../_stores/main-state.js";
-
+export let edit;
   let data;
   $: data;
   beforeUpdate(() => {
@@ -15,6 +15,12 @@
       });
     }
   });
+
+  if (edit !== undefined) {
+      console.log("e1 " + edit);
+      debugger
+}
+
 </script>
 
 <EchartsLiquidFill {data} />

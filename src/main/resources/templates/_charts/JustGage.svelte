@@ -3,6 +3,7 @@
   // https://github.com/toorshia/justgage
 
   export let data;
+  export let max = 100;
   let chart;
   let readings;
 
@@ -17,7 +18,7 @@
     symbol: "", //	Special symbol to show next to value
     min: 0, //	Min value
     minTxt: false, //	Min value text, overrides min if specified
-    max: 100, //	Max value
+    //max: 100, //	Max value
     maxTxt: false, //	Max value text, overrides max if specified
     reverse: false, //	Reverse min and max
     humanFriendlyDecimal: 0, //	Number of decimal places for our human friendly number to contain
@@ -65,7 +66,8 @@
           defaults,
           value: data.value,
           title: data.label.desc,
-          label: data.unit
+          label: data.unit,
+          max:max
         });
       }
     }
