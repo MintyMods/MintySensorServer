@@ -1,5 +1,5 @@
 /*!
- * Font Awesome Pro 5.11.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Pro 5.11.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license (Commercial License)
  */
 .fa,
@@ -2517,7 +2517,7 @@ readers do not read off random characters that represent icons */
 .fa-film-alt:before {
   content: "\f3a0"; }
 
-.fa-film-cannister:before {
+.fa-film-canister:before {
   content: "\f8b7"; }
 
 .fa-filter:before {
@@ -4912,7 +4912,7 @@ readers do not read off random characters that represent icons */
   content: "\f488"; }
 
 .fa-scanner-image:before {
-  content: "\f488"; }
+  content: "\f8f3"; }
 
 .fa-scanner-keyboard:before {
   content: "\f489"; }
