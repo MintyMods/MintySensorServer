@@ -5,6 +5,11 @@
   export let data;
   let gauge;
   $: data = data;
+
+  export function showConfig() {
+    alert("Radial Guage Config");
+  }
+
   beforeUpdate(() => {
     if (
       data !== undefined &&

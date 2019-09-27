@@ -8,6 +8,11 @@
   $: data = data;
   $: labels = labels;
   let caption = "Clock Speeds";
+  let instance;
+
+  export function showConfig() {
+    instance.showConfig();
+  }
 
   beforeUpdate(() => {
     if ($storeReadings.length > 0) {
@@ -28,5 +33,5 @@
 </script>
 
 {#if data}
-  <BarChart {caption} {data} {labels} />
+  <BarChart bind:this={instance} {caption} {data} {labels} />
 {/if}

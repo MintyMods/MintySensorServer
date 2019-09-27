@@ -6,7 +6,6 @@
   import PowerLineChart from "../_samples/PowerLineChart.svelte";
   import JustGageSample2 from "../_samples/JustGageSample2.svelte";
   import EchartsLiquidFillSample from "../_samples/EchartsLiquidFillSample.svelte";
-
 </script>
 
 <style>

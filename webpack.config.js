@@ -20,14 +20,14 @@ module.exports = {
 		extensions: [ '.mjs', '.js', '.svelte' ],
 		mainFields: [ 'svelte', 'browser', 'module', 'main' ],
 	},
-	// output: {
-	// 	filename: 'minty.js',
-	// },
 	output: {
-		path: __dirname + resources + 'public',
-		filename: '[name].js',
-		chunkFilename: '[name].[id].js',
+		filename: 'minty.js',
 	},
+	// output: {
+	// 	path: __dirname + resources + 'public',
+	// 	filename: '[name].js',
+	// 	chunkFilename: '[name].[id].js',
+	// },
 	module: {
 		rules: [
 			{

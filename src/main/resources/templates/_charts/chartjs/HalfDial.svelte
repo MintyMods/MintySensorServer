@@ -5,6 +5,10 @@
   export let data;
   var ctx;
   var chart;
+  
+  export function showConfig() {
+    alert("Half dial Config");
+  }
 
   function createChart() {
     ctx = document.getElementById("doughnut");

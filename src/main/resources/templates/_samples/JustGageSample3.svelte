@@ -4,7 +4,12 @@
 
   let caption = "GPU Temperature";
   let data;
+  let instance;
   $: data = data;
+
+  export function showConfig() {
+    instance.showConfig();
+  }
 
   $: if ($storeReadings.length > 0) {
     $storeReadings.forEach(function(reading, i) {
@@ -19,5 +24,5 @@
 </script>
 
 {#if data}
-  <JustGage {data} />
+  <JustGage bind:this={instance} {data} />
 {/if}

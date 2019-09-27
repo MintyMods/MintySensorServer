@@ -7,6 +7,11 @@
   let canvasElement;
   $: data = data;
 
+
+  export function showConfig() {
+    alert("Linear Guage Config");
+  }
+
   beforeUpdate(() => {
     if (
       data !== undefined &&

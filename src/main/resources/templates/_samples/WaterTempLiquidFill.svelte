@@ -4,12 +4,11 @@
   import { storeReadings } from "../_stores/main-state.js";
 
   export let data;
-  export let edit;
-  $: edit;
+  let instance;
   $: data;
-  export function open(...args) {
-    console.log("open");
-    
+
+  export function showConfig() {
+    instance.showConfig();
   }
 
   beforeUpdate(() => {
@@ -22,10 +21,6 @@
       });
     }
   });
-
-    console.log("***************** e2 " + edit);
-
 </script>
 
-<LiquidFill {data} bind:edit={edit} />
-
+<LiquidFill {data} bind:this={instance} />

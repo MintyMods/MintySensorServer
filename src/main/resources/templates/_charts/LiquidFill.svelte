@@ -1,15 +1,41 @@
 <script language="JavaScript">
   // Liquid Fill Gauge v1.1
   // https://gist.github.com/brattonc/5e5ce9beee483220e2f6
-  import { beforeUpdate } from "svelte";
-  import { Configurable } from "../_components/Configurable.svelte";
+  import { onMount, beforeUpdate } from "svelte";
   import Dialog, { Title, Content, Actions, InitialFocus } from "@smui/dialog";
   import Button, { Label } from "@smui/button";
+  import Textfield, { Input, Textarea } from "@smui/textfield";
+  import HelperText from "@smui/textfield/helper-text";
+  import Slider from "@smui/slider";
+  import FormField from "@smui/form-field";
   export let data;
-  export let edit;
-  $: bind: edit;
+  export let minValue = 0;
+  export let maxValue = 1800;
+  export let circleThickness = 0.1;
+  export let circleFillGap = 0.05;
+  export let circleColor = "#6bb9f0";
+  export let waveHeight = 0.05;
+  export let waveCount = 3;
+  export let waveRiseTime = 2000;
+  export let waveAnimateTime = 1000;
+  export let waveRise = true;
+  export let waveHeightScaling = true;
+  export let waveAnimate = true;
+  export let waveColor = "#89c4f4";
+  export let waveOffset = 0;
+  export let textVertPosition = 0.52;
+  export let textSize = 0.6;
+  export let valueCountUp = true;
+  export let displayPercent = false;
+  export let textColor = "#3498db";
+  export let waveTextColor = "#3498db";
+  // config.displayUnit = " " + data.unit;
+
   let dialog;
   let gauge;
+  let config;
+  $: config = config;
+
   let id =
     "liquid-fill-" +
     Math.random()
@@ -17,54 +43,61 @@
       .replace(/[^a-z]+/g, "")
       .substr(2, 10);
 
+  onMount(() => {
+    config = getConfig();
+  });
+
   beforeUpdate(() => {
     if (data !== undefined && document.getElementById(id) !== null) {
       if (gauge === undefined) {
-        gauge = loadLiquidFillGauge(id, data, getConfig(data));
+        gauge = loadLiquidFillGauge(id, data, config);
       }
-      gauge.update(data.value);
+      gauge.update(data.value, config);
     }
   });
 
-  function getConfig(data) {
-    let config = liquidFillGaugeDefaultSettings();
-    config.minValue = 0;
-    config.maxValue = 1800;
-    config.circleThickness = 0.1;
-    config.circleFillGap = 0.05;
-    config.circleColor = "#6bb9f0";
-    config.waveHeight = 0.05;
-    config.waveCount = 3;
-    config.waveRiseTime = 2000;
-    config.waveAnimateTime = 1000;
-    config.waveRise = true;
-    config.waveHeightScaling = true;
-    config.waveAnimate = true;
-    config.waveColor = "#89c4f4";
-    config.waveOffset = 0;
-    config.textVertPosition = 0.52;
-    config.textSize = 0.6;
-    config.valueCountUp = true;
-    config.displayPercent = false;
-    config.textColor = "#3498db";
-    config.waveTextColor = "#3498db";
-    config.displayUnit = " " + data.unit;
+  export function showConfig() {
+    //alert("Liquid Fill Config");
+    dialog.open();
+  }
+
+  function selectionCloseHandler() {
+     return false;
+  }
+
+  $: minValue;
+  $: waveCount;
+
+  function getConfig() {
+    config = liquidFillGaugeDefaultSettings();
+    config.minValue = minValue;
+    config.maxValue = maxValue;
+    config.circleThickness = circleThickness;
+    config.circleFillGap = circleFillGap;
+    config.circleColor = circleColor;
+    config.waveHeight = waveHeight;
+    config.waveCount = waveCount;
+    config.waveRiseTime = waveRiseTime;
+    config.waveAnimateTime = waveAnimateTime;
+    config.waveRise = waveRise;
+    config.waveHeightScaling = waveHeightScaling;
+    config.waveAnimate = waveAnimate;
+    config.waveColor = waveColor;
+    config.waveOffset = waveOffset;
+    config.textVertPosition = textVertPosition;
+    config.textSize = textSize;
+    config.valueCountUp = valueCountUp;
+    config.displayPercent = displayPercent;
+    config.textColor = textColor;
+    config.waveTextColor = waveTextColor;
+    // config.displayUnit = " " + data.unit;
     return config;
   }
 
-  $: if (edit == "WaterTempLiquidFill") {
-    edit = undefined;
-    dialog.open();
-  }
-  function scrim() {
-    console.log("scrim");
-  }
-
-  export function open(...args) {
-    return dialog.open(...args);
-  }
-
-
+  // export function open(...args) {
+  //   return dialog.open(...args);
+  // }
+  let value;
 </script>
 
 <style>
@@ -75,24 +108,69 @@
     overflow: hidden;
     transform: scale(0.8);
   }
-</style>
+  dialog {
+    width:300px;
+    height: 300px;
+    border:2px dashed red;
+  }
 
+
+</style>
+     
 <svg {id} />
 
 <Dialog
-  scrimClickAction={() => scrim()}
+  on:MDCDialog:closed={selectionCloseHandler}
+  scrimClickAction={() => alert()}
   bind:this={dialog}
   aria-labelledby="simple-title"
   aria-describedby="simple-content">
-  <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-  <Title id="simple-title">Dialog Title</Title>
-  <Content id="simple-content">Super awesome dialog body text?</Content>
-  <Actions>
-    <Button>
-      <Label>No</Label>
-    </Button>
-    <Button>
-      <Label>Yes</Label>
-    </Button>
-  </Actions>
+  <Content id="simple-content">
+
+ <Slider  min={-500} max={2500} step={100} discrete displayMarkers />
+    {#if config != undefined}
+      <div class="configuration" />
+      <br />
+      <div>
+        <FormField align="end" style="display: flex;">
+          <Slider bind:value />
+          <span
+            slot="label"
+            style="padding-right: 12px; width: max-content; display: block;">
+            Amount of Wonder
+          </span>
+        </FormField>
+      </div>
+
+      <div>
+        <Textfield
+          type="range"
+          min=1
+          max=2000
+          class="shaped-outlined"
+          variant="outlined"
+          bind:value={config.maxValue}
+          label="Minimum Value"
+          input$aria-controls="helper-text-shaped-outlined-a"
+          input$aria-describedby="helper-text-shaped-outlined-a" />
+        <HelperText id="helper-text-shaped-outlined-a">Helper Text</HelperText>
+
+        <pre class="status">Value: {config.maxValue}</pre>
+         <Slider style="z-index:99"  min={-500} max={2500} step={100} discrete displayMarkers />
+      </div>
+
+    {/if}
+  </Content>
 </Dialog>
+<br/>
+
+
+<dialog open >
+<div class="d">
+ <hr/>
+ <Slider style="z-index:99"  min={-500} max={2500} step={100} discrete displayMarkers />
+ <hr/>
+ </div>
+</dialog>
+
+

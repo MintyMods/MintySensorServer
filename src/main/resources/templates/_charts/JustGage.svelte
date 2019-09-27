@@ -6,6 +6,11 @@
   export let max = 100;
   let chart;
   let readings;
+  
+  export function showConfig() {
+    alert("Just Guage Config " + data.id + '_' + data.index);
+  }
+
 
   let defaults = {
     parentNode: null, //	The HTML container element object. Used if id is not present

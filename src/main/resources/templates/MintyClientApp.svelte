@@ -33,6 +33,7 @@
   import Devices from "./_routes/Devices.svelte";
   import About from "./_routes/About.svelte";
   import Chat from "./_routes/Client.svelte";
+  import ViewBuilder from "./_samples/ViewBuilder.svelte";
   import NotFound from "./_routes/_error.svelte";
 
   const routes = {
@@ -49,6 +50,7 @@
     "/about": About,
     "/index": Home,
     "/chat": Chat,
+    "/builder": ViewBuilder,
     "/": Home,
     "*": NotFound
   };
@@ -118,11 +120,21 @@
     storeTypes.set(getTypes());
   }
 
+  let nocache = new Headers();
+  nocache.append("pragma", "no-cache");
+  nocache.append("cache-control", "no-cache");
+
+  let init = {
+    method: "GET",
+    headers: nocache
+  };
+
   beforeUpdate(() => {
-    if (demoModeActive) {
-      fetch(
+    if (demoModeActive === true) {
+      let request = new Request(
         `json/msm_sample_data_${(demoTickCount + "").padStart(5, "0")}.json`
-      )
+      );
+      fetch(request, init)
         .then(function(response) {
           return response.json();
         })
@@ -210,7 +222,7 @@
         title: "Demo Mode",
         text: "Server Offline",
         hide: false,
-        width:200,
+        width: 200,
         icon: "fad fa-wifi-slash fa-2x fa-fw",
         textTrusted: true,
         addClass: "stack-bar-bottom",
@@ -236,10 +248,9 @@
     }
   }
 
-function closeNavigation() {
-  $storeIsNavigationOpen = false;
-}
-
+  function closeNavigation() {
+    $storeIsNavigationOpen = false;
+  }
 </script>
 
 <div id="minty-sensor-server" />
@@ -251,7 +262,7 @@ function closeNavigation() {
     <Drawer variant="modal" bind:this={sideNav} bind:open={sideNavOpen}>
       <Navigation />
     </Drawer>
-    <Scrim on:click={()=>closeNavigation()} />
+    <Scrim on:click={() => closeNavigation()} />
     <AppContent class="app-content">
       <main
         class="main-content"

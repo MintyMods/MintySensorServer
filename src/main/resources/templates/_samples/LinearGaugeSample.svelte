@@ -5,6 +5,12 @@
   let caption = "CPU Temperature";
   let data;
   $: data = data;
+  let instance;
+
+  export function showConfig() {
+    instance.showConfig();
+  }
+
   $: if ($storeReadings.length > 0) {
     $storeReadings.forEach(function(reading, i) {
       if (
@@ -18,5 +24,5 @@
 </script>
 
 {#if data}
-  <LinearGauge {data} />
+  <LinearGauge bind:this={instance} {data} />
 {/if}

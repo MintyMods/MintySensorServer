@@ -8,6 +8,11 @@
   $: data = data;
   $: labels = labels;
   let caption = "Temperatures";
+  let instance;
+
+  export function showConfig() {
+    instance.showConfig();
+  }
 
   beforeUpdate(() => {
     if ($storeReadings.length > 0) {
@@ -25,9 +30,12 @@
       });
     }
   });
+
+  export const open = function() {
+    alert("Open");
+  };
 </script>
 
-
-  {#if data}
-    <BarChart {caption} {data} {labels} />
-  {/if}
+{#if data}
+  <BarChart bind:this={instance} {caption} {data} {labels} />
+{/if}

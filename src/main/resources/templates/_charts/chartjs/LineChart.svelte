@@ -23,6 +23,10 @@
   onMount(() => {
     createChart();
   });
+  
+  export function showConfig() {
+    alert("Line CHart Config");
+  }
 
   beforeUpdate(() => {
     if (data.length > 0 && document.getElementById(id) !== null) {

@@ -6,6 +6,11 @@
   let data = [];
   $: data = data;
   let caption = "Power";
+  let instance;
+
+  export function showConfig() {
+    instance.showConfig();
+  }
 
   beforeUpdate(() => {
     if ($storeReadings.length > 0) {
@@ -23,6 +28,6 @@
   });
 </script>
 
-  {#if data}
-    <LineChart {caption} {data} />
-  {/if}
+{#if data}
+  <LineChart bind:this={instance} {caption} {data} />
+{/if}

@@ -23,6 +23,10 @@
   onMount(() => {
     init();
   });
+  
+  export function showConfig() {
+    alert("Bar Chart Config");
+  }
 
   beforeUpdate(() => {
     if (data.length > 0 && document.getElementById(id) !== null) {

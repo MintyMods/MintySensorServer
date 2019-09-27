@@ -10,6 +10,11 @@
   let option;
   $: data;
   $: container;
+  
+  export function showConfig() {
+    alert("EChart Config");
+  }
+
 
   onMount(() => {
     container = document.getElementById("guage");

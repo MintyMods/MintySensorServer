@@ -5,6 +5,11 @@
   let caption = "GPU Temperature";
   let data;
   $: data = data;
+  let instance;
+
+  export function showConfig() {
+    instance.showConfig();
+  }
 
   $: if ($storeReadings.length > 0) {
     $storeReadings.forEach(function(reading, i) {
@@ -19,5 +24,5 @@
 </script>
 
 {#if data}
-  <RadialGauge {data} />
+  <RadialGauge bind:this={instance} {data} />
 {/if}

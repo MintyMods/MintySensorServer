@@ -1,55 +1,55 @@
 <script>
-  import "./_scss/_fontAwesomePicker.scss";
+  // import "./_scss/_fontAwesomePicker.scss";
 
-  import Textfield, { Input, Textarea } from "@smui/textfield";
-  import Icon from "@smui/textfield/icon";
-  import HelperText from "@smui/textfield/helper-text";
-  import CharacterCounter from "@smui/textfield/character-counter";
-  import { Icon as CommonIcon } from "@smui/common";
-  import FloatingLabel from "@smui/floating-label";
-  import LineRipple from "@smui/line-ripple";
-  import NotchedOutline from "@smui/notched-outline";
+  // import Textfield, { Input, Textarea } from "@smui/textfield";
+  // import Icon from "@smui/textfield/icon";
+  // import HelperText from "@smui/textfield/helper-text";
+  // import CharacterCounter from "@smui/textfield/character-counter";
+  // import { Icon as CommonIcon } from "@smui/common";
+  // import FloatingLabel from "@smui/floating-label";
+  // import LineRipple from "@smui/line-ripple";
+  // import NotchedOutline from "@smui/notched-outline";
 
-  import { onMount } from "svelte";
+  // import { onMount } from "svelte";
 
-  export let query = "";
-  export let selected;
+  // export let query = "";
+  // export let selected;
 
-  let fab;
-  let count = 0;
-  let icons = [];
-  let result = [];
-  let type = "fal";
+  // let fab;
+  // let count = 0;
+  // let icons = [];
+  // let result = [];
+  // let type = "fal";
 
-  onMount(() => {
-    let styles = window.___FONT_AWESOME___.styles;
-    fab = Object.keys(styles.fab);
-    icons = fab.concat(Object.keys(styles.fa)).sort();
-    icons = Object.keys(styles.fa);
-  });
+  // onMount(() => {
+  //   let styles = window.___FONT_AWESOME___.styles;
+  //   fab = Object.keys(styles.fab);
+  //   icons = fab.concat(Object.keys(styles.fa)).sort();
+  //   icons = Object.keys(styles.fa);
+  // });
 
-  function filterList(query) {
-    if (query == "") return [];
-    for (let icon of icons) {
-      if (count > 19) break;
-      if (icon.toLowerCase().indexOf(query.toLowerCase()) != -1) {
-        count++;
-        result = [...result, icon];
-      }
-    }
-    return result;
-  }
+  // function filterList(query) {
+  //   if (query == "") return [];
+  //   for (let icon of icons) {
+  //     if (count > 19) break;
+  //     if (icon.toLowerCase().indexOf(query.toLowerCase()) != -1) {
+  //       count++;
+  //       result = [...result, icon];
+  //     }
+  //   }
+  //   return result;
+  // }
 
-  function isBrand(icon) {
-    if (!fab) return false;
-    let brand = fab.includes(icon);
-    return brand;
-  }
+  // function isBrand(icon) {
+  //   if (!fab) return false;
+  //   let brand = fab.includes(icon);
+  //   return brand;
+  // }
 
-  $: result = filterList(query);
+  // $: result = filterList(query);
 </script>
 
-<br />
+<!-- <br />
 <br />
 <div class="filtering-list">
   <div class="filter-search">
@@ -85,4 +85,4 @@
       </li>
     {/each}
   </ul>
-</div>
+</div> -->
