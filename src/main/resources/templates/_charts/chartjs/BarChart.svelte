@@ -9,12 +9,7 @@
   export let backgroundColor = [];
   export let borderColor;
 
-  export let id =
-    "chart-" +
-    Math.random()
-      .toString(36)
-      .replace(/[^a-z]+/g, "")
-      .substr(2, 10);
+  const id = () => "_" + Math.random().toString(36).substr(2, 9);
   let ctx;
   let chart;
   $: data;

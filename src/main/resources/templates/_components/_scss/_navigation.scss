@@ -1,26 +1,103 @@
-  @import "@material/theme/variables";
 
+.fad.fa-fw:before,
+.fad.fa-stack-1x:before,
+.fad.fa-stack-2x:before {
+    left: inherit;
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+}
 
-  .fad.fa-fw:before,
-  .fad.fa-stack-1x:before,
-  .fad.fa-stack-2x:before {
-      left: inherit;
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-  }
+.mdc-drawer-app-content {
+    width: 100%;
+}
+.mdc-drawer .mdc-list-item .mdc-list-item__graphic {
+	transition: all 1.0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	-webkit-transition: -webkit-transform all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
-  .mdc-drawer .mdc-list-item .mdc-list-item__graphic {
-      transition: all 1.0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      -webkit-transition: -webkit-transform all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
+.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
+	transform: translate3d(0px, 0px, 0px) rotateY(-55deg) scale3d(1.2, 1.2, 1.5);
+	transition: all 1.0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	-webkit-transition: -webkit-transform all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
-  .mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
-      transform: translate3d(0px, 0px, 0px) rotateY(-55deg) scale3d(1.2, 1.2, 1.5);
-      transition: all 1.0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      -webkit-transition: -webkit-transform all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
+.mdc-list-itm, .mdc-list-itm > i {
+	perspective: 300px;
+	-webkit-perspective: 300px;
+}
 
-  .mdc-list-itm {
-      perspective: 300px;
-      -webkit-perspective: 300px;
-  }
+.mdc-drawer {
+    background-color: var(--theme-surface) ;
+    height:100vh;
+}
+// :global()
+.mdc-drawer .mdc-list-item {
+    color: var(--theme-on-surface);
+    
+    &:hover{
+        color: var(--theme-primary);
+    }
+}
+.mdc-list-item--activated {
+    color: var(--theme-on-secondary) !important;
+    background-color: var(--theme-secondary) !important;
+}
+.drawer-container {
+	position: relative;
+	display: flex;
+	height: 100vh;
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, .1);
+	overflow: hidden;
+	z-index: 0;
+}
+
+* :global(.app-content) {
+	flex: auto;
+	overflow: auto;
+	width: 100%;
+	position: relative;
+	flex-grow: 1;
+}
+
+.main-content {
+	padding: 16px;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+aside {
+	height: 100%;
+	width: 100%;
+}
+
+.drawer-container {
+	height: 100vh;
+	width: 100%;
+	perspective: 1500px;
+	-webkit-perspective: 1500px;
+	perspective-origin: 0% 50%;
+	margin: 0px !important;
+	max-width: none !important;
+}
+
+.open {
+	border: 2px solid rgba(0, 0, 0, 0.5) !important;
+	border-radius: 10px;
+	transform: translate3d(90px, 9px, -156px) rotateY(-51deg) scale3d(0.8, 0.8, 0.9);
+	transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	-webkit-transition: -webkit-transform all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	overflow: hidden;
+	-moz-box-shadow: 25px 25px 35px rgba(200, 200, 200, 0.5);
+	-webkit-box-shadow: 25px 25px 35px rgba(200, 200, 200, 0.5);
+	box-shadow: 25px 25px 35px rgba(200, 200, 200, 0.5);
+}
+
+.close {
+	border: 0px solid rgba(0, 0, 0, 0) !important;
+	transform: translate3d(0, 0, 0) rotateY(0) scale3d(1, 1, 1);
+	transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	-webkit-transition: -webkit-transform all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	border: 0px solid tra !important;
+	box-shadow: none;
+}

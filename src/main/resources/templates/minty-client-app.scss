@@ -1,0 +1,51 @@
+@import "@material/theme/color-palette";
+@import "@material/theme/variables";
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	font-weight: 400;
+	line-height: 1.58;
+	color: #000;
+	background-color: var(--theme-background);
+	height: 100%;
+}
+
+.clearfix:after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.hidden {
+	display: none;
+}
+
+.pace {
+	-webkit-pointer-events: none;
+	pointer-events: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.pace-inactive {
+	display: none;
+}
+
+.pace .pace-progress {
+	background: $mdc-theme-primary;
+	position: fixed;
+	z-index: 2000;
+	top: 0;
+	right: 100%;
+	width: 100%;
+	height: 6px;
+	border-bottom: 1px solid $mdc-theme-secondary;
+}

@@ -1,13 +1,37 @@
-@import "@material/image-list/mixins";
-@import "@material/theme/color-palette";
-@import "@material/theme/variables";
+.content {
+    width: 100%;
+	height: 100%;
+	display: flex;
+	border-radius: 6px;
+	justify-content: center;
+	align-items: center;
+	font-size: large;
+  }
+  :global(*) {
+    user-select: none;
+  }
+  :global(body) {
+    overflow: scroll;
+    margin: 0;
+  }
+  :global(.svlt-grid-resizer::after) {
+    // border-color: var(--theme-secondary);
+    border-color:5px  red !important;
+}
+:global(.svlt-grid-transition > .svlt-grid-item) {
+	transition: transform 0.2s;
+}
+:global(.svlt-grid-shadow) {
+	// background-color: var(--theme-background);
+	background-color: blue;
+	background: pink;
+    border-radius: 6px;
+    border-bottom-right-radius: 3px;
+    transition: top 0.2s, left 0.2s;
+    transition: transform 0.2s;
+  }
 
-.my-image-list-masonry {
-	@include mdc-image-list-masonry-columns(3);
-	@include mdc-image-list-shape-radius(10px);
-}
-.wrapper {
-	position: absolute;
-	display: inline-flex;
-	width: 100%;
-}
+
+  :global(.svlt-grid-container) {
+	background: rgb(0, 255, 85);
+  }

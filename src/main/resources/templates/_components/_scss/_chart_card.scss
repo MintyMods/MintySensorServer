@@ -1,11 +1,4 @@
-@import "@material/image-list/mixins";
-@import "@material/theme/color-palette";
-@import "@material/theme/variables";
 
-.my-image-list-masonry {
-	@include mdc-image-list-masonry-columns(3);
-	@include mdc-image-list-shape-radius(10px);
-}
 .wrapper {
 	position: absolute;
 	display: inline-flex;

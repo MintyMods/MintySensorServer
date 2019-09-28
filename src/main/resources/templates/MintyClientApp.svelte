@@ -1,5 +1,5 @@
 <script>
-  import "./_minty-client-app.scss";
+  import "./minty-client-app.scss";
   import Hamburger from "./_components/Hamburger.svelte";
   import Navigation from "./_components/Navigation.svelte";
   import Drawer, {

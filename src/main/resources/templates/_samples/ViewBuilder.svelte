@@ -55,11 +55,9 @@
   }
 
   function getChart(type, target) {
+    let ele = document.getElementById(target);
     switch (type) {
       case "WaterTempLiquidFill":
-        let chart = new ChartCard({ target: target, thing: 'thing' });
-        let ele = document.getElementById('thing');
-        debugger
         return new WaterTempLiquidFill({
           target: ele
         });
@@ -94,6 +92,7 @@
   <div id="test" />
 </ChartCard>
 <button
+
   on:click={() => getChart('WaterTempLiquidFill', document.getElementById('test'))}>
   Click
 </button>

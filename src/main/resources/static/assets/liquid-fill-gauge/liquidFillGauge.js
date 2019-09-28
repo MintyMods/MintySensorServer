@@ -32,7 +32,7 @@ function liquidFillGaugeDefaultSettings() {
 }
 
 function loadLiquidFillGauge(elementId, value, config) {
-	//if (config == null) config = liquidFillGaugeDefaultSettings();
+	if (config == null) config = liquidFillGaugeDefaultSettings();
 
 	var gauge = d3.select('#' + elementId);
 	var radius = Math.min(parseInt(gauge.style('width')), parseInt(gauge.style('height'))) / 2;
@@ -203,6 +203,11 @@ function loadLiquidFillGauge(elementId, value, config) {
 			if (newConfig !== undefined) {
 				config = newConfig;
 			}
+
+			// gaugeCircleArc = d3.svg.arc().startAngle(gaugeCircleX(0)).endAngle(gaugeCircleX(1)).outerRadius(gaugeCircleY(radius)).innerRadius(gaugeCircleY(radius - (config.circleThickness * radius)));
+			// gaugeGroup.append('path').attr('d', gaugeCircleArc).style('fill', config.circleColor).attr('transform', 'translate(' + radius + ',' + radius + ')');
+			// // Minty Edit End
+
 			var newFinalValue = parseFloat(value).toFixed(2);
 			var textRounderUpdater = function(value) {
 				return Math.round(value);

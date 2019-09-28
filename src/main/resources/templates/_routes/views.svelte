@@ -1,6 +1,8 @@
 <script>
   import "./_scss/_views.scss";
-  import Notification from "../_components/Notification";
+  import { onMount, tick, beforeUpdate } from "svelte";
+  import Grid from "svelte-grid";
+  import gridHelp from "svelte-grid/build/helper/index.mjs";
   import ClockSpeedsBarChart from "../_samples/ClockSpeedsBarChart";
   import JustGageSample2 from "../_samples/JustGageSample2";
   import TempsBarChart from "../_samples/TempsBarChart";
@@ -20,23 +22,11 @@
     ActionButtons,
     ActionIcons
   } from "@smui/card";
+
   import Button, { Label } from "@smui/button";
   import IconButton, { Icon } from "@smui/icon-button";
-  import List, { Item, Text } from "@smui/image-list";
-  import Div from "@smui/common/Div.svelte";
-  import { onMount } from "svelte";
-  import ChartCard from "../_components/ChartCard";
-
   export let aspectRatio = "square";
   export let ripple = false;
-  let hover = false;
-
-  onMount(() => {
-    pckry = new Packery(".grid", {
-      itemSelector: ".grid-item",
-      gutter: 10
-    });
-  });
 
   let charts = [
     WaterTempLiquidFill,
@@ -50,19 +40,24 @@
     JustGageSample3,
     RadialGaugeSample
   ];
-  let ratios = [
-    "square",
-    "16x9",
-    "16x9",
-    "16x9",
-    "16x9",
-    "square",
-    "square",
-    "square",
-    "square",
-    "square"
-  ];
+
+  let breakpoints = [[1100, 5], [800, 4], [530, 1]];
   let instances = [];
+  let hover = false;
+  let items;
+  let cols = 10;
+  const id = () =>
+    "_" +
+    Math.random()
+      .toString(36)
+      .substr(2, 9);
+
+  onMount(async () => {
+    await tick();
+    layout();
+    await tick();
+    build();
+  });
 
   function showToolBar(i) {
     document.getElementById("toolbar-" + i).classList.add("toolbar-active");
@@ -76,51 +71,120 @@
     instances[i].showConfig();
   }
 
-  let pckry;
+  function layout() {
+    items = [];
+    charts.forEach((chart, i) => {
+      const y = Math.ceil(Math.random() * 4) + 1;
+      let current = gridHelp.item({
+        x: (i * 2) % cols,
+        y: Math.floor(i / 6) * y,
+        w: 4,
+        h: y,
+        useTransform: true,
+        id: chart.name
+      });
+      items.push(current);
+    });
+    // items = gridHelp.resizeItems(items, cols);
+  }
+
+  function build() {
+    charts.forEach((chart, i) => {
+      instances[chart.name] = getChart(chart.name, chart.name);
+      console.log(instances[chart.name]);
+    });
+    gridHelp.resizeItems(items, cols);
+  }
+
+  function getChart(type, target) {
+    let ele = document.getElementById(target);
+    if (ele !== null) {
+      switch (type) {
+        case "WaterTempLiquidFill":
+          return new WaterTempLiquidFill({ target: ele });
+        case "EchartsLiquidFillSample":
+          return new EchartsLiquidFillSample({ target: ele });
+        case "JustGageSample2":
+          return new JustGageSample2({ target: ele });
+        case "ClockSpeedsBarChart":
+          return new ClockSpeedsBarChart({ target: ele });
+        case "TempsBarChart":
+          return new TempsBarChart({ target: ele });
+        case "JustGageSample1":
+          return new JustGageSample1({ target: ele });
+        case "PowerLineChart":
+          return new PowerLineChart({ target: ele });
+        case "LinearGaugeSample":
+          return new LinearGaugeSample({ target: ele });
+        case "JustGageSample3":
+          return new JustGageSample3({ target: ele });
+        case "RadialGaugeSample":
+          return new RadialGaugeSample({ target: ele });
+      }
+    }
+  }
 </script>
 
-{#each charts as chart, i}
+<style>
 
-  <div class="grid-item">
-    <Card
-      style="width: 360px; position:relative;"
-      on:mouseenter={() => showToolBar(i)}
-      on:mouseleave={() => hideToolBar(i)}>
-      <div class="wrapper">
-        <!-- <div id="toolbar" class:hover class="toolbar"> -->
-        <div id={'toolbar-' + i} class:hover class="toolbar">
-          <Actions>
-            <ActionIcons>
-              <IconButton
-                {ripple}
-                class="material-icons"
-                on:click={() => showConfig(i)}
-                title="Edit">
-                <i class="fal fa-cogs fa-fw" />
-              </IconButton>
-              <IconButton
-                {ripple}
-                on:click={() => process('NOTIFICATIONS')}
-                class="material-icons"
-                title="Alerts">
-                <i class="fal fa-bell fa-fw" />
-              </IconButton>
-              <IconButton
-                {ripple}
-                class="material-icons"
-                on:click={() => process('DELETE')}
-                title="Delete">
-                <i class="fal fa-trash-alt fa-fw" />
-              </IconButton>
-            </ActionIcons>
-          </Actions>
+</style>
+
+<div class="container">
+  {#if items !== undefined}
+    <Grid
+      useTransform
+      {breakpoints}
+      {charts}
+      {cols}
+      gap={10}
+      bind:items
+      let:item
+      rowHeight={100}>
+      <div
+        id={item.id}
+        class="content"
+        style="background: {item.static ? '#ccccee' : item.data}" />
+    </Grid>
+  {/if}
+</div>
+<!-- <Card
+        style="width: 360px; position:relative;"
+        on:mouseenter={() => showToolBar(item.id)}
+        on:mouseleave={() => hideToolBar(item.id)}>
+        <div class="wrapper">
+          <div id={'toolbar-' + item.id} class:hover class="toolbar">
+            <Actions>
+              <ActionIcons>
+                <IconButton
+                  {ripple}
+                  class="material-icons"
+                  on:click={() => showConfig(item.id)}
+                  title="Edit">
+                  <i class="fal fa-cogs fa-fw" />
+                </IconButton>
+                <IconButton
+                  {ripple}
+                  on:click={() => process('NOTIFICATIONS')}
+                  class="material-icons"
+                  title="Alerts">
+                  <i class="fal fa-bell fa-fw" />
+                </IconButton>
+                <IconButton
+                  {ripple}
+                  class="material-icons"
+                  on:click={() => process('DELETE')}
+                  title="Delete">
+                  <i class="fal fa-trash-alt fa-fw" />
+                </IconButton>
+              </ActionIcons>
+            </Actions>
+          </div>
         </div>
-      </div>
-      <Media class="card-media-16x9" {aspectRatio}>
-        <MediaContent>
-          <svelte:component this={charts[i]} bind:this={instances[i]} />
-        </MediaContent>
-      </Media>
-    </Card>
-  </div>
-{/each}
+        <Media class="card-media-16x9" {aspectRatio}>
+          <MediaContent>
+            <svelte:component
+              this={charts[item.id]}
+              bind:this={instances[item.id]} />
+          </MediaContent>
+        </Media>
+      </Card> -->

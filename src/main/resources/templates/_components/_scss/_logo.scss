@@ -1,9 +1,8 @@
-  @import "@material/theme/variables";
 
   .logo {
       text-shadow: 0 0 5px rgba(0, 0, 0, 1);
       font-weight: 600;
-      color: $mdc-theme-primary;
+      color: var(--theme-primary);
       height: auto;
   }
 
@@ -11,7 +10,7 @@
       position: absolute;
       font-family: 'Font Awesome 5 Pro';
       content: "\f126";
-      color: $mdc-theme-secondary;
+      color: var(--theme-secondary);
       transform: rotate(130deg);
       font-weight: 400;
       font-size: 2.5em;
@@ -23,12 +22,12 @@
 
   .logo-text {
       position: absolute;
-      color: $mdc-theme-primary;
+      color: var(--theme-primary);
   }
 
   .logo-alt {
       position: absolute;
-      color: $mdc-theme-on-primary;
+      color: var(--theme-on-primary);
   }
 
   .fa-times-circle {

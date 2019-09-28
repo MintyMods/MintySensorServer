@@ -1,18 +1,18 @@
-//
-// MDC Theme
-//
 @import "@material/theme/color-palette";
 @import "@material/theme/variables";
 
-$mdc-theme-primary: #4285f4;
-$mdc-theme-on-primary: white;
-$mdc-theme-secondary: greenyellow;
-$mdc-theme-on-secondary: #ffffff;
+$mdc-theme-primary: #f54f1d;
+$mdc-theme-on-primary: rgb(218, 255, 7);
+$mdc-theme-secondary: rgb(47, 255, 245);
+$mdc-theme-on-secondary: #f601d6;
 $mdc-theme-error: #b00020;
 $mdc-theme-on-error: yellow;
-$mdc-theme-surface: rgba(255, 255, 255, 1);
-$mdc-theme-on-surface: rgba(0, 0, 0, 1);
-$mdc-theme-background: #00ff00;
+$mdc-theme-surface: rgb(128, 2, 2);
+
+$mdc-theme-on-surface: rgba(145, 255, 0, 0.842);
+
+$mdc-theme-background: rgba(217, 241, 248, 0.972);
+
 
 :root {
 	--theme-primary: #{$mdc-theme-primary};
