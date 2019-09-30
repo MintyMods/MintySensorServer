@@ -13,18 +13,9 @@
   import LinearGaugeSample from "../_samples/LinearGaugeSample";
   import JustGageSample3 from "../_samples/JustGageSample3";
   import RadialGaugeSample from "../_samples/RadialGaugeSample";
-  import Card, {
-    Content,
-    PrimaryAction,
-    Media,
-    MediaContent,
-    Actions,
-    ActionButtons,
-    ActionIcons
-  } from "@smui/card";
-
-  import Button, { Label } from "@smui/button";
+  import Card, { Actions, ActionButtons, ActionIcons } from "@smui/card";
   import IconButton, { Icon } from "@smui/icon-button";
+
   export let aspectRatio = "square";
   export let ripple = false;
 
@@ -46,11 +37,6 @@
   let hover = false;
   let items;
   let cols = 10;
-  const id = () =>
-    "_" +
-    Math.random()
-      .toString(36)
-      .substr(2, 9);
 
   onMount(async () => {
     await tick();
@@ -59,16 +45,41 @@
     build();
   });
 
-  function showToolBar(i) {
-    document.getElementById("toolbar-" + i).classList.add("toolbar-active");
-  }
-  function hideToolBar(i) {
-    document.getElementById("toolbar-" + i).classList.remove("toolbar-active");
+  function getChart(id, i) {
+    let ele = document.getElementById(id);
+    console.log("Target: " + id + " : " + ele);
+
+    if (ele !== null) {
+      switch (i) {
+        case 0:
+          return new EchartsLiquidFillSample({ target: ele });
+        case 1:
+          return new EchartsLiquidFillSample({ target: ele });
+        case 2:
+          return new JustGageSample2({ target: ele });
+        case 3:
+          return new ClockSpeedsBarChart({ target: ele });
+        case 4:
+          return new TempsBarChart({ target: ele });
+        case 5:
+          return new JustGageSample1({ target: ele });
+        case 6:
+          return new PowerLineChart({ target: ele });
+        case 7:
+          return new LinearGaugeSample({ target: ele });
+        case 8:
+          return new JustGageSample3({ target: ele });
+        case 9:
+          return new RadialGaugeSample({ target: ele });
+      }
+    }
   }
 
-  function showConfig(i) {
-    hideToolBar(i);
-    instances[i].showConfig();
+  function showToolBar(id) {
+    document.getElementById("toolbar-" + id).classList.add("toolbar-active");
+  }
+  function hideToolBar(id) {
+    document.getElementById("toolbar-" + id).classList.remove("toolbar-active");
   }
 
   function layout() {
@@ -81,53 +92,36 @@
         w: 4,
         h: y,
         useTransform: true,
-        id: chart.name
+        id: Math.random()
+          .toString(36)
+          .substr(2, 9)
       });
       items.push(current);
     });
-    // items = gridHelp.resizeItems(items, cols);
+    console.log("Layout stored: " + items);
   }
 
   function build() {
     charts.forEach((chart, i) => {
-      instances[chart.name] = getChart(chart.name, chart.name);
-      console.log(instances[chart.name]);
+      let id = items[i].id;
+      instances[i] = getChart(id, i);
+      console.log("Instances: " + instances);
     });
     gridHelp.resizeItems(items, cols);
   }
 
-  function getChart(type, target) {
-    let ele = document.getElementById(target);
-    if (ele !== null) {
-      switch (type) {
-        case "WaterTempLiquidFill":
-          return new WaterTempLiquidFill({ target: ele });
-        case "EchartsLiquidFillSample":
-          return new EchartsLiquidFillSample({ target: ele });
-        case "JustGageSample2":
-          return new JustGageSample2({ target: ele });
-        case "ClockSpeedsBarChart":
-          return new ClockSpeedsBarChart({ target: ele });
-        case "TempsBarChart":
-          return new TempsBarChart({ target: ele });
-        case "JustGageSample1":
-          return new JustGageSample1({ target: ele });
-        case "PowerLineChart":
-          return new PowerLineChart({ target: ele });
-        case "LinearGaugeSample":
-          return new LinearGaugeSample({ target: ele });
-        case "JustGageSample3":
-          return new JustGageSample3({ target: ele });
-        case "RadialGaugeSample":
-          return new RadialGaugeSample({ target: ele });
+  function showConfig(id) {
+    items.some((item, i) => {
+      if (item.id === id) {
+        hideToolBar(id);
+        instances[i].showConfig();
+        return true;
       }
-    }
+    });
   }
+
+
 </script>
-
-<style>
-
-</style>
 
 <div class="container">
   {#if items !== undefined}
@@ -143,15 +137,11 @@
       <div
         id={item.id}
         class="content"
-        style="background: {item.static ? '#ccccee' : item.data}" />
-    </Grid>
-  {/if}
-</div>
-<!-- <Card
-        style="width: 360px; position:relative;"
+        style="background: {item.static ? '#ccccee' : item.data}"
         on:mouseenter={() => showToolBar(item.id)}
         on:mouseleave={() => hideToolBar(item.id)}>
-        <div class="wrapper">
+
+        <div class="toolbar-wrapper">
           <div id={'toolbar-' + item.id} class:hover class="toolbar">
             <Actions>
               <ActionIcons>
@@ -162,29 +152,18 @@
                   title="Edit">
                   <i class="fal fa-cogs fa-fw" />
                 </IconButton>
-                <IconButton
-                  {ripple}
-                  on:click={() => process('NOTIFICATIONS')}
-                  class="material-icons"
-                  title="Alerts">
+                <IconButton {ripple} class="material-icons" title="Alerts">
                   <i class="fal fa-bell fa-fw" />
                 </IconButton>
-                <IconButton
-                  {ripple}
-                  class="material-icons"
-                  on:click={() => process('DELETE')}
-                  title="Delete">
+                <IconButton {ripple} class="material-icons" title="Delete">
                   <i class="fal fa-trash-alt fa-fw" />
                 </IconButton>
               </ActionIcons>
             </Actions>
           </div>
         </div>
-        <Media class="card-media-16x9" {aspectRatio}>
-          <MediaContent>
-            <svelte:component
-              this={charts[item.id]}
-              bind:this={instances[item.id]} />
-          </MediaContent>
-        </Media>
-      </Card> -->
+
+      </div>
+    </Grid>
+  {/if}
+</div>

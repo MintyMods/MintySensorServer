@@ -31,7 +31,7 @@
 <div class="container">
   <div class="chart">
     <EchartsLiquidFillSample />
-    <WaterTempLiquidFill edit="{true}}" />
+    <WaterTempLiquidFill edit="{true}"/>
   </div>
   <div class="chart">
     <JustGageSample2 />

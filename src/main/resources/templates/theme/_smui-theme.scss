@@ -1,17 +1,15 @@
 @import "@material/theme/color-palette";
 @import "@material/theme/variables";
 
-$mdc-theme-primary: #f54f1d;
-$mdc-theme-on-primary: rgb(218, 255, 7);
-$mdc-theme-secondary: rgb(47, 255, 245);
-$mdc-theme-on-secondary: #f601d6;
+$mdc-theme-primary: #f51d9b;
+$mdc-theme-on-primary: rgb(255, 255, 255);
+$mdc-theme-secondary: rgb(199, 180, 216);
+$mdc-theme-on-secondary: rgb(251, 251, 251);
 $mdc-theme-error: #b00020;
 $mdc-theme-on-error: yellow;
-$mdc-theme-surface: rgb(128, 2, 2);
-
+$mdc-theme-surface: rgb(243, 197, 197);
 $mdc-theme-on-surface: rgba(145, 255, 0, 0.842);
-
-$mdc-theme-background: rgba(217, 241, 248, 0.972);
+$mdc-theme-background: rgba(240, 240, 240, 0.924);
 
 
 :root {

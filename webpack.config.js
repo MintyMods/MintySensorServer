@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const ExtractTextPlugin = require('extract-ttext-webpack-plugin');
 const path = require('path');
 const resources = './src/main/resources/';
 const templates = resources + 'templates/';
@@ -8,6 +9,9 @@ const prod = mode === 'production';
 const sassOptions = {
 	includePaths: [ './node_modules', templates + 'theme' ],
 };
+// const extractPlugin = new ExtractTextPlugin({
+// 	filename: 'minty.css'
+// });
 
 module.exports = {
 	entry: {
@@ -27,6 +31,7 @@ module.exports = {
 		path: __dirname + resources + 'public',
 		filename: '[name].js',
 		chunkFilename: '[name].[id].js',
+		// publicPath: '/dist',
 	},
 	module: {
 		rules: [
@@ -52,6 +57,16 @@ module.exports = {
 			//			 	]
 			//			 },
 			{
+				test: /\.js$/,
+				exclude: /(node_modules)/,
+				use: {
+					loader: 'babel-loader',
+					// options: {
+					// 	presets: [ 'es2015' ],
+					// },
+				},
+			},
+			{
 				test: /\.(sa|sc|c)ss$/,
 				use: [
 					'style-loader',
@@ -72,8 +87,8 @@ module.exports = {
 		}),
 	],
 	performance: {
-		maxEntrypointSize: 512000,
-		maxAssetSize: 512000,
+		maxEntrypointSize: 1024000,
+		maxAssetSize: 1024000,
 	},
 	devtool:
 		prod ? false :

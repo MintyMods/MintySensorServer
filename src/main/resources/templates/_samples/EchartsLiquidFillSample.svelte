@@ -2,30 +2,25 @@
   import EchartsLiquidFill from "../_charts/echarts/EchartsLiquidFill.svelte";
   import { beforeUpdate } from "svelte";
   import { storeReadings } from "../_stores/main-state.js";
-  export let edit;
-  let data;
-  let instance;
-  $: data;
 
-  export function showConfig() {
+  export let data;
+  $: data = data;
+
+  let instance;
+  export const showConfig = () => {
     instance.showConfig();
-  }
+  };
 
   beforeUpdate(() => {
     if ($storeReadings.length > 0) {
-      $storeReadings.forEach(function(reading, i) {
+      $storeReadings.some(reading => {
         if (reading.label.value === "HPWR Pump") {
-          data = reading.value;
+          data = reading;
+          return true;
         }
-        data = data;
       });
     }
   });
-
-  //   if (edit !== undefined) {
-  //       console.log("e1 " + edit);
-  //       debugger
-  // }
 </script>
 
-<EchartsLiquidFill bind:this={instance} {data} />
+<EchartsLiquidFill bind:this={instance} {data}/>

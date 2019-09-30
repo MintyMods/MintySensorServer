@@ -10,10 +10,11 @@ export let storeSensors = writable(readable([]));
 export let storeTypes = writable(readable([]));
 
 
-export const storeIsNavigationOpen = writable(false);
-export const storeSelectedThemeColor = writable('#ff0000');
-export const storeLastNetworkPing = writable(new Date());
-export const storeLastNetworkPong = readable(new Date());
+export let storeIsNavigationOpen = writable(false);
+export let storeSelectedThemeColor = writable('#ff0000');
+export let storeLastNetworkPing = writable(new Date());
+export let storeLastNetworkPong = readable(new Date());
+
 export const time = readable(new Date(), function start(set) {
     const intervalTime = setInterval(() => {
         set(new Date());

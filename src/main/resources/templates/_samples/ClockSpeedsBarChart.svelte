@@ -8,11 +8,10 @@
   $: data = data;
   $: labels = labels;
   let caption = "Clock Speeds";
-  let instance;
-
-  export function showConfig() {
+   let instance;
+  export const showConfig = () => {
     instance.showConfig();
-  }
+  };
 
   beforeUpdate(() => {
     if ($storeReadings.length > 0) {

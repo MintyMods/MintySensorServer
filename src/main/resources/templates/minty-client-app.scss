@@ -1,5 +1,6 @@
 @import "@material/theme/color-palette";
 @import "@material/theme/variables";
+
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -15,6 +16,15 @@ body {
 	color: #000;
 	background-color: var(--theme-background);
 	height: 100%;
+	width: 100vw !important;
+}
+
+
+.main-content {
+	padding: 16px;
+	height: 100%;
+	box-sizing: border-box;
+	overflow: auto;
 }
 
 .clearfix:after {
@@ -40,12 +50,35 @@ body {
 }
 
 .pace .pace-progress {
-	background: $mdc-theme-primary;
+	background: var(--theme-primary);
 	position: fixed;
 	z-index: 2000;
 	top: 0;
 	right: 100%;
 	width: 100%;
 	height: 6px;
-	border-bottom: 1px solid $mdc-theme-secondary;
+	border-bottom: 1px solid var(--theme-secondary);
 }
+
+* :global(.shaped) {
+    border-radius: 16px 16px 0 0;
+  }
+
+  * :global(.shaped-outlined .mdc-text-field__input) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__leading) {
+    border-radius: 28px 0 0 28px;
+    width: 28px;
+  }
+  * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__trailing) {
+    border-radius: 0 28px 28px 0;
+  }
+  * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__notch) {
+    max-width: calc(100% - 28px * 2);
+  }
+  * :global(.shaped-outlined + .mdc-text-field-helper-line) {
+    padding-left: 32px;
+    padding-right: 28px;
+  }

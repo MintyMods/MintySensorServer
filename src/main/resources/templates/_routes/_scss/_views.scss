@@ -6,6 +6,7 @@
 	justify-content: center;
 	align-items: center;
 	font-size: large;
+	border:1px solid rgba(0, 0, 0, 0.198);
   }
   :global(*) {
     user-select: none;
@@ -35,3 +36,15 @@
   :global(.svlt-grid-container) {
 	background: rgb(0, 255, 85);
   }
+
+  .mdc-dialog, .mdc-dialog__scrim {
+    border:2px dashed red;
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+}

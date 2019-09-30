@@ -35,6 +35,7 @@
   let gauge;
   let config;
   $: config = config;
+  let svg;
 
   let id =
     "liquid-fill-" +
@@ -46,13 +47,35 @@
   onMount(async () => {
     await tick();
     config = getConfig();
+    svg = document.getElementById(id);
+    const wrapper = document.querySelector(".wrapper");
+    await tick();
+    if (data !== undefined) {
+      gauge = loadLiquidFillGauge(id, data, config);
+    }
+
+    // const resize = new ResizeObserver(entries => {
+    //   entries.forEach(entry => {
+    //     if (svg != null) {
+    //       svg.width.baseVal.value = entry.contentRect.width;
+    //       svg.height.baseVal.value = entry.contentRect.height;
+    //       if (data !== undefined) {
+    //         gauge = null;
+    //         gauge = loadLiquidFillGauge(id, data, config);
+            // document.getElementById('gauge').getContext('2d').save();
+            //     document.getElementById('gauge').getContext('2d').setTransform(1, 0, 0, 1, 0, 0);
+            //     document.getElementById('gauge').getContext('2d').clearRect(0, 0, document.getElementById('gauge').getContext('2d').canvas.width, document.getElementById('gauge').getContext('2d').canvas.height);
+            //     document.getElementById('gauge').getContext('2d').restore();    
+    //       }
+    //     }
+    //   });
+    // });
+
+    // resize.observe(wrapper);
   });
 
   beforeUpdate(() => {
-    if (data !== undefined && document.getElementById(id) !== null) {
-      if (gauge === undefined) {
-        gauge = loadLiquidFillGauge(id, data, config);
-      }
+    if (data !== undefined && gauge !== undefined) {
       gauge.update(data.value, config);
     }
   });
@@ -95,13 +118,7 @@
     return config;
   }
 
-  // export function open(...args) {
-  //   return dialog.open(...args);
-  // }
   let value;
-
-  // on:MDCDialog:closed={selectionCloseHandler}
-  // scrimClickAction={() => alert()}
 </script>
 
 <style>
@@ -110,9 +127,12 @@
     width: 98%;
     height: 98%;
     overflow: hidden;
-    /* transform: scale(0.8); */
+    display: inline-block;
   }
-
+  .wrapper {
+    width: 100%;
+    height: 100%;
+  }
   #config {
     position: fixed;
     top: 10px;
@@ -122,7 +142,9 @@
   }
 </style>
 
-<svg {id} />
+<div class="wrapper">
+  <svg {id} preserveAspectRatio="xMidYMid meet" />
+</div>
 
 <!-- {#if config !== undefined}
 <div id="config">
