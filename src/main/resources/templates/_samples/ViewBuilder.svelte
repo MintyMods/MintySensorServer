@@ -51,7 +51,6 @@
 
   function buildCharts() {
     temps = new TempsBarChart({ target: document.getElementById("test") });
-    console.log(temps);
   }
 
   function getChart(type, target) {

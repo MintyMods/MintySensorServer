@@ -13,7 +13,7 @@
 	},
 	"homepage": "https://github.com/MintyMods/MintySensorServer#readme",
 	"scripts": {
-		"build": "cross-env NODE_ENV=production webpack",
+		"build": "cross-env NODE_ENV=production webpack -p",
 		"dev": "webpack-dev-server --https --port 8081 --color true --content-base src/main/resources/templates/public --content-base src/main/resources/public --content-base src/main/resources/static"
 	},
 	"devDependencies": {
@@ -43,14 +43,13 @@
 		"@stomp/stompjs": "^5.4.2",
 		"canvas-gauges": "^2.1.5",
 		"chart.js": "^2.8.0",
-		"date-fns": "^2.4.0",
 		"echarts": "^4.3.0",
 		"echarts-liquidfill": "^2.0.5",
 		"highcharts": "^7.1.2",
 		"justgage": "^1.3.1",
 		"pnotify": "^4.0.0",
+		"date-fns": "^2.4.0",
 		"sockjs": "^0.3.19",
-		"svelte-color-picker": "^1.0.6",
 		"svelte-watch-resize": "^1.0.3"
 	}
 }

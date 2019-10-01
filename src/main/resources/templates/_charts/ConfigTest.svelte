@@ -26,8 +26,6 @@ export let aspectRatio = "square";
 
   export let data;
   export let config;
-  $: console.log("Config::" + config);
-
   let dialog;
   let gauge;
 
@@ -45,7 +43,6 @@ export let aspectRatio = "square";
       }
       gauge.update(data.value);
     }
-    console.log("LFL:Config::" + config);
   });
 
   function getConfig(data) {
@@ -76,7 +73,6 @@ export let aspectRatio = "square";
 
   $: if (config != undefined) {
     config = undefined;
-    console.log("Showing Dialog");
     debugger;
   
   }

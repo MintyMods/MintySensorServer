@@ -36,23 +36,21 @@
   let instances = [];
   let hover = false;
   let items;
-  let cols = 10;
+  let cols = 5;
 
   onMount(async () => {
     await tick();
-    layout();
+    buildLayout();
     await tick();
-    build();
+    buildCharts();
   });
 
   function getChart(id, i) {
     let ele = document.getElementById(id);
-    console.log("Target: " + id + " : " + ele);
-
     if (ele !== null) {
       switch (i) {
         case 0:
-          return new EchartsLiquidFillSample({ target: ele });
+          return new WaterTempLiquidFill({ target: ele });
         case 1:
           return new EchartsLiquidFillSample({ target: ele });
         case 2:
@@ -82,8 +80,8 @@
     document.getElementById("toolbar-" + id).classList.remove("toolbar-active");
   }
 
-  function layout() {
-    items = [];
+  function buildLayout() {
+    let layout = [];
     charts.forEach((chart, i) => {
       const y = Math.ceil(Math.random() * 4) + 1;
       let current = gridHelp.item({
@@ -96,12 +94,14 @@
           .toString(36)
           .substr(2, 9)
       });
-      items.push(current);
+      layout.push(current);
     });
-    console.log("Layout stored: " + items);
+    // Helper function which normalize. you need to pass items and columns
+    items = gridHelp.resizeItems(layout, cols);
+    console.log("Layout sorted: " + items);
   }
 
-  function build() {
+  function buildCharts() {
     charts.forEach((chart, i) => {
       let id = items[i].id;
       instances[i] = getChart(id, i);
@@ -110,7 +110,9 @@
     gridHelp.resizeItems(items, cols);
   }
 
-  function showConfig(id) {
+  function showConfig(layout, id) {
+    // expandContainer(id);
+    debugger;
     items.some((item, i) => {
       if (item.id === id) {
         hideToolBar(id);
@@ -120,20 +122,48 @@
     });
   }
 
+  function expandContainer(id) {
+    let wrapper = document.getElementById(id);
 
+    // debugger;
+  }
 </script>
 
-<div class="container">
+<style>
+  .content {
+    width: 100%;
+    height: 100%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+  }
+  :global(.svlt-grid-shadow) {
+    background: rgba(228, 226, 226, 0.863);
+    border: 1px dashed rgba(68, 68, 68, 0.514);
+  }
+  :global(.svlt-grid-container) {
+    background: #eee;
+  }
+  .margin-b {
+    margin-bottom: 10px;
+  }
+
+</style>
+
+<div class="container margin-b">
   {#if items !== undefined}
     <Grid
-      useTransform
       {breakpoints}
       {charts}
       {cols}
       gap={10}
+      rowHeight={100}
+      fillEmpty={false}
+      useTransform={true}
       bind:items
-      let:item
-      rowHeight={100}>
+      let:item>
       <div
         id={item.id}
         class="content"
@@ -148,7 +178,7 @@
                 <IconButton
                   {ripple}
                   class="material-icons"
-                  on:click={() => showConfig(item.id)}
+                  on:click={() => showConfig(item, item.id)}
                   title="Edit">
                   <i class="fal fa-cogs fa-fw" />
                 </IconButton>
