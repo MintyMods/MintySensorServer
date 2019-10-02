@@ -1,10 +1,7 @@
 import App from './MintyClientApp.svelte';
 
 const app = new App({
-    target: document.body,
-    props: {
-        name: 'mss'
-    }
+	target: document.getElementById('app'),
 });
 
 window.app = app;

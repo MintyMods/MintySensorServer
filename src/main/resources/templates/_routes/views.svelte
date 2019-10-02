@@ -149,7 +149,6 @@
   .margin-b {
     margin-bottom: 10px;
   }
-
 </style>
 
 <div class="container margin-b">
@@ -182,11 +181,11 @@
                   title="Edit">
                   <i class="fal fa-cogs fa-fw" />
                 </IconButton>
-                <IconButton {ripple} class="material-icons" title="Alerts">
-                  <i class="fal fa-bell fa-fw" />
-                </IconButton>
                 <IconButton {ripple} class="material-icons" title="Delete">
                   <i class="fal fa-trash-alt fa-fw" />
+                </IconButton>
+                <IconButton {ripple} class="material-icons" title="Pin">
+                  <i class="fal fa-thumbtack fa-fw" />
                 </IconButton>
               </ActionIcons>
             </Actions>

@@ -135,7 +135,7 @@
 
   let colorText;
   $: $color = colorText;
-  $: console.log("COLOR:" + $color);
+  // $: console.log("COLOR:" + color);
 </script>
 
 <style>
@@ -147,75 +147,75 @@
     font-size: small;
     color: lightgrey;
   }
-  :global(dialog)::backdrop {
+  /* :global(dialog)::backdrop {
     background: rgba(255, 0, 0, 0.5);
-  }
+  } */
 </style>
 
-<div class="dialog-wrapper">
-  <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
 
-    {#if data !== undefined}
-      <Title id="title">
-        {#if Array.isArray(data)}
-          <TabBar tabs={data} let:tab>
-            <Tab {tab}>
-              <Label>{tab}</Label>
-            </Tab>
-          </TabBar>
-        {:else}{data.label.desc}{/if}
-      </Title>
-    {/if}
-    <Content id="content">
-      <!-- {#if config !== undefined} -->
-      <!-- WAVE COLOURS      -->
-      <!-- {#each $color as color, i} -->
-      <!-- <Textfield bind:value={colorText} label="Wave Colour" />
+  {#if data !== undefined}
+<!-- <div class="dialog-wrapper"> -->
+<Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
+    <Title id="title">
+      {#if Array.isArray(data)}
+        <TabBar tabs={data} let:tab>
+          <Tab {tab}>
+            <Label>{tab}</Label>
+          </Tab>
+        </TabBar>
+      {:else}{data.label.desc}{/if}
+    </Title>
+  <Content id="content">
+    <!-- {#if config !== undefined} -->
+    <!-- WAVE COLOURS      -->
+    <!-- {#each $color as color, i} -->
+    <!-- <Textfield bind:value={colorText} label="Wave Colour" />
       <div class="color-picker" /> -->
-      <!-- {/each} -->
+    <!-- {/each} -->
 
-      <!-- SHAPE -->
-      <Select
-        enhanced
-        bind:value={shapeSelected}
-        label="Guage shape "
-        class="shape"
-        menu$class="shape">
-        <Option value="" />
-        {#each SHAPES as item}
-          <Option value={item.type} selected={shapeSelected === item.type}>
-            <i class={item.icon} />
-            {item.desc}
-          </Option>
-        {/each}
-      </Select>
-      <br />
-      <!-- WAVE DIRECTION -->
-      <FormField>
-        <Switch bind:checked={directionChecked} />
-        <span slot="label">
-          Wave direction
-          <span class="current-value">{$direction}</span>
-        </span>
-      </FormField>
-      <br />
-      <!-- SHOW OUTLINE  -->
-      <FormField>
-        <Switch bind:checked={outlineShowChecked} />
-        <span slot="label">
-          Show Outline
-          <span class="current-value">{$outlineShow}</span>
-        </span>
-      </FormField>
-      <!-- {/if} -->
-    </Content>
-    <Actions>
-      <Button action="save">
-        <Label>Save</Label>
-      </Button>
-      <Button action="cancel" default use={[InitialFocus]}>
-        <Label>Cancel</Label>
-      </Button>
-    </Actions>
-  </Dialog>
-</div>
+    <!-- SHAPE -->
+    <Select
+      enhanced
+      bind:value={shapeSelected}
+      label="Guage shape "
+      class="shape"
+      menu$class="shape">
+      <Option value="" />
+      {#each SHAPES as item}
+        <Option value={item.type} selected={shapeSelected === item.type}>
+          <i class={item.icon} />
+          {item.desc}
+        </Option>
+      {/each}
+    </Select>
+    <br />
+    <!-- WAVE DIRECTION -->
+    <FormField>
+      <Switch bind:checked={directionChecked} />
+      <span slot="label">
+        Wave direction
+        <span class="current-value">{$direction}</span>
+      </span>
+    </FormField>
+    <br />
+    <!-- SHOW OUTLINE  -->
+    <FormField>
+      <Switch bind:checked={outlineShowChecked} />
+      <span slot="label">
+        Show Outline
+        <span class="current-value">{$outlineShow}</span>
+      </span>
+    </FormField>
+    <!-- {/if} -->
+  </Content>
+  <Actions>
+    <Button action="save">
+      <Label>Save</Label>
+    </Button>
+    <Button action="cancel" default use={[InitialFocus]}>
+      <Label>Cancel</Label>
+    </Button>
+  </Actions>
+</Dialog>
+<!-- </div> -->
+  {/if}
