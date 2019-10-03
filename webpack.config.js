@@ -15,7 +15,10 @@ const sassOptions = {
 
 module.exports = {
 	entry: {
-		bundle: [ templates + 'MintyClientApp.js' ],
+		bundle: [
+			'@webcomponents/custom-elements',
+			 templates + 'MintyClientApp.js' 
+			],
 	},
 	resolve: {
 		alias: {

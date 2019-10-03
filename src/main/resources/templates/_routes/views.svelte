@@ -18,6 +18,7 @@
 
   export let aspectRatio = "square";
   export let ripple = false;
+  let adjustAfterRemove = false;
 
   let charts = [
     WaterTempLiquidFill,
@@ -110,26 +111,60 @@
     gridHelp.resizeItems(items, cols);
   }
 
-  function showConfig(layout, id) {
+  function showConfig(layout) {
     // expandContainer(id);
-    debugger;
     items.some((item, i) => {
-      if (item.id === id) {
-        hideToolBar(id);
+      if (item.id === layout.id) {
+        hideToolBar(layout.id);
         instances[i].showConfig();
         return true;
       }
     });
   }
 
+  function removeContainer(item) {
+    let toolbar = document.getElementById("toolbar-" + item.id);
+    toolbar.classList.add("toolbar-confirm");
+    toolbar.querySelector(".mdc-card__actions").style.display = "none";
+
+    if (false) {
+      items = items.filter(value => value.id !== item.id);
+      if (adjustAfterRemove) {
+        items = gridHelp.resizeItems(items, cols);
+      }
+    }
+  }
+
+  function pinItemContainer(item) {
+    item.static = !item.static;
+    gridHelp.resizeItems(items, cols);
+  }
+
   function expandContainer(id) {
     let wrapper = document.getElementById(id);
-
-    // debugger;
   }
 </script>
 
 <style>
+  :global(.toolbar-confirm) {
+    background-color: var(--theme-error) !important;
+    color: var(--theme-on-error) !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 52px;
+    padding: 8px;
+  }
+
+  :global(.toolbar-confirm)::before {
+    content: "\f007";
+    /* content: "<i class='fas fa-check'></i>"; */
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  }
   .content {
     width: 100%;
     height: 100%;
@@ -142,13 +177,20 @@
   :global(.svlt-grid-shadow) {
     background: rgba(228, 226, 226, 0.863);
     border: 1px dashed rgba(68, 68, 68, 0.514);
+    transition: transform 0.2s;
   }
   :global(.svlt-grid-container) {
     background: #eee;
   }
+  :global(.svlt-grid-transition > svlt-grid-item) {
+    transition: transform 0.2s;
+  }
+  :global(.svlt-grid-shadow) {
+  }
   .margin-b {
     margin-bottom: 10px;
   }
+  /* on:click={removeContainer.bind(null, item)}> */
 </style>
 
 <div class="container margin-b">
@@ -161,6 +203,7 @@
       rowHeight={100}
       fillEmpty={false}
       useTransform={true}
+      static={true}
       bind:items
       let:item>
       <div
@@ -177,14 +220,22 @@
                 <IconButton
                   {ripple}
                   class="material-icons"
-                  on:click={() => showConfig(item, item.id)}
+                  on:click={() => showConfig(item)}
                   title="Edit">
                   <i class="fal fa-cogs fa-fw" />
                 </IconButton>
-                <IconButton {ripple} class="material-icons" title="Delete">
+                <IconButton
+                  {ripple}
+                  class="material-icons"
+                  title="Delete"
+                  on:click={() => removeContainer(item, this)}>
                   <i class="fal fa-trash-alt fa-fw" />
                 </IconButton>
-                <IconButton {ripple} class="material-icons" title="Pin">
+                <IconButton
+                  {ripple}
+                  class="material-icons primary"
+                  title="Pin"
+                  on:click={() => pinItemContainer(item)}>
                   <i class="fal fa-thumbtack fa-fw" />
                 </IconButton>
               </ActionIcons>

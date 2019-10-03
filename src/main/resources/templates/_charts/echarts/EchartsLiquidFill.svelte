@@ -18,7 +18,6 @@
   $: refreshChart(data);
 
   onMount(() => {
-
     chart = echarts.init(document.getElementById(id));
   });
 

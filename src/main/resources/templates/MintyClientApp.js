@@ -1,7 +1,7 @@
 import App from './MintyClientApp.svelte';
 
 const app = new App({
-	target: document.getElementById('app'),
+	target: document.body
 });
 
 window.app = app;

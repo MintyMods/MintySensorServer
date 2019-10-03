@@ -11,6 +11,10 @@
     top: 10px;
 }
 
+@keyframes pulse {
+    100% { transform: scale(1.1); } 
+  }
+
 .snoozing {
     transition: all 2s ease !important;
        filter: alpha(opacity=0.5);
@@ -32,13 +36,15 @@
 .smui-fab--color-primary {
     color: var(--theme-on-primary) !important;
     background-color: var(--theme-primary) !important;
+    &:hover{
+        animation: pulse 0.4s alternate infinite;
+    }
 }
 
 .nav-open {
     position: relative;
     transform: translate3d(189px, 27px, 16px) scale3d(0.7, 0.7, 1);
     transition: all 1s ease-in-out;
-
     i::before {
         content: '\f00d';
         color: var(--theme-on-secondary) !important;

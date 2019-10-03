@@ -31,13 +31,18 @@
     height:100vh;
 }
 // :global()
+// @keyframes pulse {
+// 	100% { transform: scale(1.1); } 
+// }
+// animation: pulse 0.4s alternate infinite;
+
 .mdc-drawer .mdc-list-item {
-    color: var(--theme-on-surface);
-    
+	color: var(--theme-on-surface);
     &:hover{
-        color: var(--theme-primary);
+		color: var(--theme-primary);
     }
 }
+
 .mdc-list-item--activated {
     color: var(--theme-on-secondary) !important;
     background-color: var(--theme-secondary) !important;
