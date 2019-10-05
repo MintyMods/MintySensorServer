@@ -46,10 +46,10 @@
     <Item
       href="#/"
       class="list-item"
-      on:click={() => setActive('home')}
-      activated={active === 'home'}>
-      <Graphic class="fa-fw fad fa-home fa-2x" />
-      <Text>Home</Text>
+      on:click={() => setActive('about')}
+      activated={active === 'about'}>
+      <Graphic class="fa-fw fad fa-question fa-2x" />
+      <Text>About</Text>
     </Item>
 
     <Item
@@ -115,14 +115,6 @@
       activated={active === 'notifications'}>
       <Graphic class="fa-fw fad fa-bell fa-2x" />
       <Text>Notifications</Text>
-    </Item>
-    <Item
-      href="#/about"
-      class="list-item"
-      on:click={() => setActive('about')}
-      activated={active === 'about'}>
-      <Graphic class="fa-fw fad fa-question fa-2x" />
-      <Text>About</Text>
     </Item>
   </List>
 </Content>

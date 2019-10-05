@@ -7,7 +7,7 @@
   var chart;
   
   export function showConfig() {
-    alert("Half dial Config");
+    PNotify.info("Half dial Config");
   }
 
   function createChart() {

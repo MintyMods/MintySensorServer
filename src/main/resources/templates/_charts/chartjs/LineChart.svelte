@@ -25,7 +25,7 @@
   });
   
   export function showConfig() {
-    alert("Line CHart Config");
+    PNotify.info("Line CHart Config");
   }
 
   beforeUpdate(() => {

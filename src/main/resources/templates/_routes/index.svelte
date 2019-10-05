@@ -2,10 +2,10 @@
   import Notification from "../_components/Notification.svelte";
   import ClockSpeedsBarChart from "../_samples/ClockSpeedsBarChart.svelte";
   import TempsBarChart from "../_samples/TempsBarChart.svelte";
-  import WaterTempLiquidFill from "../_samples/WaterTempLiquidFill.svelte";
   import PowerLineChart from "../_samples/PowerLineChart.svelte";
   import JustGageSample2 from "../_samples/JustGageSample2.svelte";
   import EchartsLiquidFillSample from "../_samples/EchartsLiquidFillSample.svelte";
+
 </script>
 
 <style>
@@ -31,7 +31,6 @@
 <div class="container">
   <div class="chart">
     <EchartsLiquidFillSample />
-    <WaterTempLiquidFill edit="{true}"/>
   </div>
   <div class="chart">
     <JustGageSample2 />

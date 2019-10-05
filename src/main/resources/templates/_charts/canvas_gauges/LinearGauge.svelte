@@ -9,7 +9,7 @@
   const id = "linear-gauge";
 
   export function showConfig() {
-    alert("Linear Guage Config");
+    PNotify.info("Linear Guage Config");
   }
 
   // onMount(() => {

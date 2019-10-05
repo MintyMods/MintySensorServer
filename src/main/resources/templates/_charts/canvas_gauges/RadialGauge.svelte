@@ -7,7 +7,7 @@
   $: data = data;
 
   export function showConfig() {
-    alert("Radial Guage Config");
+    PNotify.info("Radial Guage Config");
   }
 
   beforeUpdate(() => {

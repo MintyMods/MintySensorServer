@@ -8,7 +8,7 @@
   let readings;
   
   export function showConfig() {
-    alert("Just Guage Config " + data.id + '_' + data.index);
+    PNotify.info("Just Guage Config " + data.id + '_' + data.index);
   }
 
 

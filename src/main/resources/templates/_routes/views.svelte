@@ -4,24 +4,22 @@
   import { fade } from "svelte/transition";
   import Grid from "svelte-grid";
   import gridHelp from "svelte-grid/build/helper/index.mjs";
-  import ClockSpeedsBarChart from "../_samples/ClockSpeedsBarChart";
-  import JustGageSample2 from "../_samples/JustGageSample2";
-  import TempsBarChart from "../_samples/TempsBarChart";
-  import WaterTempLiquidFill from "../_samples/WaterTempLiquidFill";
-  import PowerLineChart from "../_samples/PowerLineChart";
-  import JustGageSample1 from "../_samples/JustGageSample1";
-  import EchartsLiquidFillSample from "../_samples/EchartsLiquidFillSample";
-  import LinearGaugeSample from "../_samples/LinearGaugeSample";
-  import JustGageSample3 from "../_samples/JustGageSample3";
-  import RadialGaugeSample from "../_samples/RadialGaugeSample";
   import Card, { Actions, ActionButtons, ActionIcons } from "@smui/card";
   import IconButton, { Icon } from "@smui/icon-button";
+  import ClockSpeedsBarChart from "../_samples/ClockSpeedsBarChart.svelte";
+  import JustGageSample2 from "../_samples/JustGageSample2.svelte";
+  import TempsBarChart from "../_samples/TempsBarChart.svelte";
+  import PowerLineChart from "../_samples/PowerLineChart.svelte";
+  import JustGageSample1 from "../_samples/JustGageSample1.svelte";
+  import EchartsLiquidFillSample from "../_samples/EchartsLiquidFillSample.svelte";
+  import LinearGaugeSample from "../_samples/LinearGaugeSample.svelte";
+  import JustGageSample3 from "../_samples/JustGageSample3.svelte";
+  import RadialGaugeSample from "../_samples/RadialGaugeSample.svelte";
 
   export let ripple = false;
   let adjustAfterRemove = true;
 
   let charts = [
-    WaterTempLiquidFill,
     EchartsLiquidFillSample,
     JustGageSample2,
     ClockSpeedsBarChart,
@@ -51,22 +49,20 @@
     if (ele !== null) {
       switch (i) {
         case 0:
-          return new WaterTempLiquidFill({ target: ele });
-        case 1:
           return new EchartsLiquidFillSample({ target: ele });
-        case 2:
+        case 1:
           return new JustGageSample2({ target: ele });
-        case 3:
+        case 2:
           return new ClockSpeedsBarChart({ target: ele });
-        case 4:
+        case 3:
           return new TempsBarChart({ target: ele });
-        case 5:
+        case 4:
           return new JustGageSample1({ target: ele });
-        case 6:
+        case 5:
           return new PowerLineChart({ target: ele });
-        case 7:
+        case 6:
           return new LinearGaugeSample({ target: ele });
-        case 8:
+        case 7:
           return new JustGageSample3({ target: ele });
         case 9:
           return new RadialGaugeSample({ target: ele });

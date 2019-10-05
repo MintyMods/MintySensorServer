@@ -20,7 +20,7 @@
   });
   
   export function showConfig() {
-    alert("Bar Chart Config");
+    PNotify.info("Bar Chart Config");
   }
 
   beforeUpdate(() => {

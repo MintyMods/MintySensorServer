@@ -16,15 +16,26 @@
 		"build": "cross-env NODE_ENV=production webpack -p",
 		"dev": "webpack-dev-server --https --port 8081 --color true --content-base src/main/resources/templates/public --content-base src/main/resources/public --content-base src/main/resources/static"
 	},
+	"browserslist": [
+		">1%",
+		"last 2 versions",
+		"Firefox ESR",
+		"not ie < 9",
+		"not dead"
+	],
 	"devDependencies": {
 		"@babel/core": "^7.6.2",
 		"@babel/preset-env": "^7.6.2",
-		"@fortawesome/fontawesome-pro": "^5.11.2",
 		"babel-loader": "^8.0.6",
+		"clean-webpack-plugin": "^3.0.0",
 		"cross-env": "^5.2.1",
 		"css-loader": "^2.1.1",
+		"file-loader": "^4.2.0",
+		"html-webpack-plugin": "^3.2.0",
 		"mini-css-extract-plugin": "^0.6.0",
 		"node-sass": "^4.12.0",
+		"postcss-css-variables": "^0.13.0",
+		"postcss-loader": "^3.0.0",
 		"sass-loader": "^7.3.1",
 		"serve": "^11.2.0",
 		"style-loader": "^0.23.1",
@@ -33,10 +44,14 @@
 		"svelte-loader": "^2.13.6",
 		"svelte-material-ui": "^1.0.0-beta.15",
 		"svelte-spa-router": "^1.2.0",
+		"svelte-watch-resize": "^1.0.3",
+		"friendly-errors-webpack-plugin": "^1.7.0",
+		"postcss-flexbugs-fixes": "^4.1.0",
+		"copy-webpack-plugin": "^5.0.4",
+		"autoprefixer": "^9.6.2",
 		"webpack": "^4.41.0",
 		"webpack-cli": "^3.3.9",
-		"webpack-dev-server": "^3.8.1",
-		"svelte-watch-resize": "^1.0.3"
+		"webpack-dev-server": "^3.8.1"
 	},
 	"dependencies": {
 		"@fnando/sparkline": "^0.3.10",
@@ -44,6 +59,7 @@
 		"@stomp/stompjs": "^5.4.2",
 		"canvas-gauges": "^2.1.5",
 		"chart.js": "^2.8.0",
+		"cssnano": "^4.1.10",
 		"date-fns": "^2.4.0",
 		"echarts": "^4.3.0",
 		"echarts-liquidfill": "^2.0.5",
