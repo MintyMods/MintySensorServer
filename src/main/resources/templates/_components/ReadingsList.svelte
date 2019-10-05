@@ -1,6 +1,7 @@
 <script>
   //   import "./_scss/_readingsList.scss";
   import { storeReadings, storeTypes } from "../_stores/main-state.js";
+  // import AutoComplete from "./AutoComplete.svelte";
   import List, {
     Item,
     Graphic,
@@ -13,13 +14,15 @@
 
   let index;
   let readings;
-  
+
   $: if (index) {
     readings = $storeReadings.filter(function(reading) {
       return reading.type === index;
     });
   }
 </script>
+
+
 
 <div class="container1">
   <div class="accordion">
@@ -33,7 +36,7 @@
       {#if readings}
         <dd>
           <List>
-            {#each readings as reading (reading.id + "_" + reading.index)}
+            {#each readings as reading (reading.id + '_' + reading.index)}
               <Item>
                 <Graphic class={reading.icon} />
                 <Text>
@@ -51,7 +54,7 @@
           </List>
         </dd>
       {:else}
-        <div></div>
+        <div />
       {/if}
     </dl>
   </div>

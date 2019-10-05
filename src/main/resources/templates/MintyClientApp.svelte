@@ -64,7 +64,7 @@
   let sensors = [];
   let types = [];
   let demoModeActive = true; // @todo TURN OFF demo mode
-  let demoTickCount = 0;
+  // let demoTickCount = 0;
   $: demoTickCount = $storeDemoCurrentJsonFile;
 
   onMount(() => {
@@ -225,6 +225,7 @@
         width: 200,
         icon: "fad fa-wifi-slash fa-2x fa-fw",
         textTrusted: true,
+        styling: {},
         addClass: "stack-bar-bottom",
         cornerClass: "ui-pnotify-sharp",
         shadow: false,
@@ -253,6 +254,14 @@
   }
 </script>
 
+<style>
+  :global(.stack-bar-bottom) {
+    width: 250px;
+    line-height: 1em;
+        opacity: .5 !important;
+  }
+</style>
+
 <div id="minty-sensor-server" />
 
 <Hamburger />
@@ -266,6 +275,7 @@
     <AppContent class="app-content">
       <main
         class="main-content"
+        id="main-content"
         bind:this={mainContent}
         class:open={sideNavOpen}
         class:close={!sideNavOpen}>

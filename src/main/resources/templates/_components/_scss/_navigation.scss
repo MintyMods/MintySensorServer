@@ -1,14 +1,13 @@
-
 .fad.fa-fw:before,
 .fad.fa-stack-1x:before,
 .fad.fa-stack-2x:before {
-    left: inherit;
+	left: inherit;
 	-webkit-transform: translateX(0);
 	transform: translateX(0);
 }
 
 .mdc-drawer-app-content {
-    width: 100%;
+	width: 100%;
 }
 .mdc-drawer .mdc-list-item .mdc-list-item__graphic {
 	transition: all 1.0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -21,50 +20,45 @@
 	-webkit-transition: -webkit-transform all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.mdc-list-itm, .mdc-list-itm > i {
+.mdc-list-itm,
+.mdc-list-itm > i {
 	perspective: 300px;
 	-webkit-perspective: 300px;
 }
 
 .mdc-drawer {
-    background-color: var(--theme-surface) ;
-    height:100vh;
+	background-color: var(--theme-surface);
+	height: 100vh;
 }
 // :global()
 // @keyframes pulse {
-// 	100% { transform: scale(1.1); } 
+// 	100% { transform: scale(1.1); }
 // }
 // animation: pulse 0.4s alternate infinite;
 
 .mdc-drawer .mdc-list-item {
 	color: var(--theme-on-surface);
-    &:hover{
+	&:hover {
 		color: var(--theme-primary);
-    }
+	}
 }
 
 .mdc-list-item--activated {
-    color: var(--theme-on-secondary) !important;
-    background-color: var(--theme-secondary) !important;
-}
-.drawer-container {
-	position: relative;
-	display: flex;
-	height: 100vh;
-	width: 100%;
-	border: 1px solid rgba(0, 0, 0, .1);
-	overflow: hidden;
-	z-index: 0;
+	color: var(--theme-on-secondary) !important;
+	background-color: var(--theme-secondary) !important;
 }
 
+
 * :global(.app-content) {
+
+	all:unset;
 	flex: auto;
 	overflow: auto;
 	width: 100%;
 	position: relative;
 	flex-grow: 1;
+	border:2px dashed red;
 }
-
 
 aside {
 	height: 100%;
@@ -72,13 +66,27 @@ aside {
 }
 
 .drawer-container {
-	height: 100vh;
 	width: 100%;
+	height: 100%;
 	perspective: 1500px;
 	-webkit-perspective: 1500px;
 	perspective-origin: 0% 50%;
 	margin: 0px !important;
 	max-width: none !important;
+	position: relative;
+	display: flex;
+	border: 1px solid rgba(0, 0, 0, .1);
+	overflow: hidden;
+	z-index: 0;
+}
+
+
+.main-container-open {
+	height:100vh;
+	transition: height 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.main-container-closed {
+	height:100%;
 }
 
 .open {

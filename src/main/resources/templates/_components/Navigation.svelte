@@ -1,7 +1,7 @@
 <script>
   import "./_scss/_navigation.scss";
   import Logo from "./Logo.svelte";
-    import { storeIsNavigationOpen } from "../_stores/main-state.js";
+  import { storeIsNavigationOpen } from "../_stores/main-state.js";
 
   import Drawer, {
     AppContent,
@@ -22,8 +22,21 @@
     active = value;
     $storeIsNavigationOpen = false;
   }
-</script>
 
+  $: if ($storeIsNavigationOpen) {
+    let content = document.getElementById("main-content");
+    if (content !== null) {
+      content.classList.add("main-container-open");
+      content.classList.remove("main-container-closed");
+    }
+  } else {
+    let content = document.getElementById("main-content");
+    if (content !== null) {
+      content.classList.remove("main-container-open");
+      content.classList.add("main-container-closed");
+    }
+  }
+</script>
 
 <Header>
   <Logo />

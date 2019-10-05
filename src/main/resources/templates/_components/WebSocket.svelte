@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import {
         formatDistance
     } from 'date-fns'
@@ -149,4 +149,4 @@
         second: '2-digit'
     });
 
-</script>
+</script> -->

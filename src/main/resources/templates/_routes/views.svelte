@@ -1,6 +1,7 @@
 <script>
   import "./_scss/_views.scss";
   import { onMount, tick, beforeUpdate } from "svelte";
+  import { fade } from "svelte/transition";
   import Grid from "svelte-grid";
   import gridHelp from "svelte-grid/build/helper/index.mjs";
   import ClockSpeedsBarChart from "../_samples/ClockSpeedsBarChart";
@@ -16,9 +17,8 @@
   import Card, { Actions, ActionButtons, ActionIcons } from "@smui/card";
   import IconButton, { Icon } from "@smui/icon-button";
 
-  export let aspectRatio = "square";
   export let ripple = false;
-  let adjustAfterRemove = false;
+  let adjustAfterRemove = true;
 
   let charts = [
     WaterTempLiquidFill,
@@ -97,16 +97,13 @@
       });
       layout.push(current);
     });
-    // Helper function which normalize. you need to pass items and columns
     items = gridHelp.resizeItems(layout, cols);
-    console.log("Layout sorted: " + items);
   }
 
   function buildCharts() {
     charts.forEach((chart, i) => {
       let id = items[i].id;
       instances[i] = getChart(id, i);
-      console.log("Instances: " + instances);
     });
     gridHelp.resizeItems(items, cols);
   }
@@ -122,101 +119,77 @@
     });
   }
 
-  function removeContainer(item) {
+  function showConfirm(item) {
     let toolbar = document.getElementById("toolbar-" + item.id);
-    toolbar.classList.add("toolbar-confirm");
-    toolbar.querySelector(".mdc-card__actions").style.display = "none";
-
-    if (false) {
-      items = items.filter(value => value.id !== item.id);
-      if (adjustAfterRemove) {
-        items = gridHelp.resizeItems(items, cols);
-      }
-    }
+    let confirm = document.getElementById("confirm-" + item.id);
+    confirm.classList.add("confirm-active");
+    toolbar.style.display = "none";
+    confirm.style.display = "block";
   }
 
-  function pinItemContainer(item) {
+  function hideConfirm(item) {
+    let toolbar = document.getElementById("toolbar-" + item.id);
+    let confirm = document.getElementById("confirm-" + item.id);
+    confirm.classList.remove("confirm-active");
+    toolbar.style.display = "block";
+    confirm.style.display = "none";
+  }
+
+  function removeContainer(item) {
+    items = items.filter(value => value.id !== item.id);
+    if (adjustAfterRemove) {
+      items = gridHelp.resizeItems(items, cols);
+    }
+  }
+  async function pinItemContainer(item) {
     item.static = !item.static;
-    gridHelp.resizeItems(items, cols);
+    await tick();
+    items = gridHelp.resizeItems(items, cols);
   }
 
   function expandContainer(id) {
     let wrapper = document.getElementById(id);
   }
-</script>
-
-<style>
-  :global(.toolbar-confirm) {
-    background-color: var(--theme-error) !important;
-    color: var(--theme-on-error) !important;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-sizing: border-box;
-    min-height: 52px;
-    padding: 8px;
-  }
-
-  :global(.toolbar-confirm)::before {
-    content: "\f007";
-    /* content: "<i class='fas fa-check'></i>"; */
-    font-family: "Font Awesome 5 Pro";
-    font-weight: 900;
-    text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  }
-  .content {
-    width: 100%;
-    height: 100%;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: large;
-  }
-  :global(.svlt-grid-shadow) {
-    background: rgba(228, 226, 226, 0.863);
-    border: 1px dashed rgba(68, 68, 68, 0.514);
-    transition: transform 0.2s;
-  }
-  :global(.svlt-grid-container) {
-    background: #eee;
-  }
-  :global(.svlt-grid-transition > svlt-grid-item) {
-    transition: transform 0.2s;
-  }
-  :global(.svlt-grid-shadow) {
-  }
-  .margin-b {
-    margin-bottom: 10px;
-  }
   /* on:click={removeContainer.bind(null, item)}> */
-</style>
+</script>
+<style>
 
+:global(.svlt-grid-shadow) {
+  background: rgba(228, 226, 226, 0.863) !important;
+  border: 1px dashed rgba(68, 68, 68, 0.514) !important;
+  transition: transform 0.2s;
+}
+:global(.svlt-grid-item) {
+  border:1px solid rgba(187, 186, 186, 0.753) !important;
+}
+:global(.svlt-grid-transition > svlt-grid-item) {
+  transition: transform 0.2s;
+}
+</style>
 <div class="container margin-b">
   {#if items !== undefined}
     <Grid
       {breakpoints}
       {charts}
       {cols}
-      gap={10}
+      gap={5}
       rowHeight={100}
-      fillEmpty={false}
+      fillEmpty={true}
       useTransform={true}
       static={true}
       bind:items
       let:item>
       <div
+        out:fade={{ duration: 300 }}
         id={item.id}
         class="content"
         style="background: {item.static ? '#ccccee' : item.data}"
         on:mouseenter={() => showToolBar(item.id)}
         on:mouseleave={() => hideToolBar(item.id)}>
-
         <div class="toolbar-wrapper">
-          <div id={'toolbar-' + item.id} class:hover class="toolbar">
-            <Actions>
-              <ActionIcons>
+          <Actions>
+            <ActionIcons>
+              <div id={'toolbar-' + item.id} class:hover class="toolbar">
                 <IconButton
                   {ripple}
                   class="material-icons"
@@ -228,7 +201,7 @@
                   {ripple}
                   class="material-icons"
                   title="Delete"
-                  on:click={() => removeContainer(item, this)}>
+                  on:click={() => showConfirm(item, this)}>
                   <i class="fal fa-trash-alt fa-fw" />
                 </IconButton>
                 <IconButton
@@ -238,9 +211,26 @@
                   on:click={() => pinItemContainer(item)}>
                   <i class="fal fa-thumbtack fa-fw" />
                 </IconButton>
-              </ActionIcons>
-            </Actions>
-          </div>
+              </div>
+              <div id={'confirm-' + item.id} class:hover class="confirm">
+                <div>Remove</div>
+                <IconButton
+                  {ripple}
+                  class="material-icons"
+                  title="Cancel"
+                  on:click={() => hideConfirm(item, this)}>
+                  <i class="fal fa-times fa-fw" />
+                </IconButton>
+                <IconButton
+                  {ripple}
+                  class="material-icons primary"
+                  title="Pin"
+                  on:click={() => removeContainer(item)}>
+                  <i class="fal fa-check fa-fw" />
+                </IconButton>
+              </div>
+            </ActionIcons>
+          </Actions>
         </div>
 
       </div>
