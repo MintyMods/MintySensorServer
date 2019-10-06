@@ -27,14 +27,9 @@
 }
 
 .mdc-drawer {
-	background-color: var(--theme-surface);
+	background-color: var(--theme-surface) !important;
 	height: 100vh;
 }
-// :global()
-// @keyframes pulse {
-// 	100% { transform: scale(1.1); }
-// }
-// animation: pulse 0.4s alternate infinite;
 
 .mdc-drawer .mdc-list-item {
 	color: var(--theme-on-surface);
@@ -42,19 +37,21 @@
 		color: var(--theme-primary);
 	}
 }
-
-.mdc-list-item--activated {
-	color: var(--theme-on-secondary) !important;
-	background-color: var(--theme-secondary) !important;
+@keyframes pulse {
+	100% {
+		transform: scale(1.1);
+	}
+	0% {
+		transform: scale(.9);
+	}
 }
-
-* :global(.app-content) {
-	all: unset;
-	flex: auto;
-	overflow: auto;
-	width: 100%;
-	position: relative;
-	flex-grow: 1;
+.mdc-list-item--activated {
+	color: var(--theme-on-primary) !important;
+	background-color: var(--theme-primary) !important;
+}
+.mdc-list-item--activated > span.mdc-list-item__graphic {
+	color: var(--theme-on-primary) !important;
+	background-color: var(--theme-primary) !important;
 }
 
 aside {
@@ -64,7 +61,7 @@ aside {
 
 .drawer-container {
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	perspective: 1500px;
 	-webkit-perspective: 1500px;
 	perspective-origin: 0% 50%;
@@ -73,15 +70,16 @@ aside {
 	position: relative;
 	display: flex;
 	border: 1px solid rgba(0, 0, 0, .1);
-	overflow: hidden;
 	z-index: 0;
 }
 
 .main-container-open {
-	height: 100vh;
+	height: 100%;
+	// min-height: 100vh;
 }
 .main-container-closed {
-	height: 100%;
+	height: 100vh;
+	// min-height:100%;
 }
 
 .open {
@@ -89,10 +87,8 @@ aside {
 	border-radius: 10px;
 	transform: translate3d(90px, 9px, -156px) rotateY(-51deg) scale3d(0.8, 0.8, 0.9);
 	transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	-webkit-transition: -webkit-transform all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	// transition: height 0s;
 	overflow: hidden;
-	-moz-box-shadow: 25px 25px 35px rgba(200, 200, 200, 0.5);
-	-webkit-box-shadow: 25px 25px 35px rgba(200, 200, 200, 0.5);
 	box-shadow: 25px 25px 35px rgba(200, 200, 200, 0.5);
 }
 
@@ -100,7 +96,7 @@ aside {
 	border: 0px solid rgba(0, 0, 0, 0) !important;
 	transform: translate3d(0, 0, 0) rotateY(0) scale3d(1, 1, 1);
 	transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	-webkit-transition: -webkit-transform all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	// transition: height 0s;
 	border: 0px solid tra !important;
 	box-shadow: none;
 }

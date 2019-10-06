@@ -1,7 +1,3 @@
-// @import "@material/theme/color-palette";
-// @import "@material/theme/variables";
-@import "./_scss/_theme.scss";
-
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -12,15 +8,15 @@ html {
 	height: 100%;
 }
 body {
+	color: var(--theme-on-background);
+	background-color: var(--theme-background);
+	font-family: var(--theme-font-family);
 	min-height: 100%;
 	margin: 0;
 	padding: 0;
 	font-weight: 400;
 	line-height: 1.58;
-	color: #000;
 	position: relative;
-	background-color: var(--theme-background);
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
 .clearfix:after {
@@ -47,6 +43,7 @@ body {
 }
 
 .pace .pace-progress {
+	border-top: 1px solid var(--theme-secondary);
 	background: var(--theme-primary);
 	position: fixed;
 	z-index: 2000;
@@ -54,7 +51,6 @@ body {
 	right: 100%;
 	width: 100%;
 	height: 6px;
-	border-bottom: 1px solid var(--theme-secondary);
 }
 
 * :global(.shaped) {
@@ -79,3 +75,18 @@ body {
 	padding-left: 32px;
 	padding-right: 28px;
 }
+* :global(.stack-bar-bottom) {
+	width: 250px;
+	line-height: 1em;
+	opacity: .5 !important;
+}
+
+* :global(.app-content) {
+	all: unset;
+	flex: auto;
+	overflow: auto;
+	width: 100%;
+	position: relative;
+	flex-grow: 1;
+    height:100vh;
+ }

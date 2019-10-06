@@ -1,6 +1,6 @@
 
   .logo {
-      text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+      text-shadow: 0 0 5px var(--theme-on-surface);
       font-weight: 600;
       color: var(--theme-primary);
       height: auto;
@@ -10,24 +10,16 @@
       position: absolute;
       font-family: 'Font Awesome 5 Pro';
       content: "\f126";
-      color: var(--theme-secondary);
+      color: var(--theme-primary);
       transform: rotate(130deg);
       font-weight: 400;
       font-size: 2.5em;
-      //      text-shadow: 0 0 5px rgba(0, 0, 0, 1);
       z-index: -1;
-      //      left: -10px;
-      //      top: 5px;
   }
 
   .logo-text {
       position: absolute;
-      color: var(--theme-primary);
-  }
-
-  .logo-alt {
-      position: absolute;
-      color: var(--theme-on-primary);
+      color: var(--theme-surface);
   }
 
   .fa-times-circle {

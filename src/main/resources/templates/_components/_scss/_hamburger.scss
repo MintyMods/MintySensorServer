@@ -12,18 +12,17 @@
 }
 
 @keyframes pulse {
-    100% { transform: scale(1.1); } 
+    100% { transform: scale(1.1) }
+    0% { transform: scale(0.9) } 
   }
 
 .snoozing {
     transition: all 2s ease !important;
-       filter: alpha(opacity=0.5);
-       opacity: 0.5;
+    opacity: 0.5;
 }
 
 .sleeping {
-       transition: all 2s ease !important;
-    filter: alpha(opacity=0);
+    transition: all 2s ease !important;
     opacity: 0;
 }
 
@@ -37,7 +36,7 @@
     color: var(--theme-on-primary) !important;
     background-color: var(--theme-primary) !important;
     &:hover{
-        animation: pulse 0.4s alternate infinite;
+        animation: pulse 1s alternate infinite;
     }
 }
 
@@ -47,63 +46,7 @@
     transition: all 1s ease-in-out;
     i::before {
         content: '\f00d';
-        color: var(--theme-on-secondary) !important;
+        color: var(--theme-on-primary) !important;
         transition: all 1s ease-in-out;
     }
 }
-
-// .pulse {
-//     display: block;
-//     border-radius: 100%;
-//     background: $mdc-theme-primary;
-//     cursor: pointer;
-//     box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
-//     animation: pulse 2s infinite;
-// }
-
-
-
-// @-webkit-keyframes pulse {
-//     0% {
-//         -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-//         filter: alpha(opacity=0.4);
-//         opacity: 0.4;
-//     }
-
-//     70% {
-//         -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
-//             filter: alpha(opacity=0);
-//     opacity: 0;
-//     }
-    
-
-//     100% {
-//         -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-//             filter: alpha(opacity=0);
-//     opacity: 0;
-//     }
-// }
-
-// @keyframes pulse {
-//     0% {
-//         -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-//         box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-//         filter: alpha(opacity=0.4);
-//         opacity: 0.4;
-        
-//     }
-
-//     70% {
-//         -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
-//         box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
-//             filter: alpha(opacity=0);
-//     opacity: 0;
-//     }
-
-//     100% {
-//         -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-//         box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-//             filter: alpha(opacity=0);
-//     opacity: 0;
-//     }
-// }

@@ -17,7 +17,7 @@
     storeTypes,
     storeDemoCurrentJsonFile
   } from "./_stores/main-state.js";
-   import { fade } from "svelte/transition";
+  import { fade } from "svelte/transition";
   import { onMount, onDestroy, beforeUpdate } from "svelte";
   import Router, { link, location } from "svelte-spa-router";
   import About from "./_routes/Index.svelte";
@@ -48,14 +48,12 @@
 
   let sideNavOpen;
   let sideNav;
-  let active = "index";
   let mainContent;
   let stompClient = null;
   let readings = [];
   let sensors = [];
   let types = [];
-  let demoModeActive = true; // @todo TURN OFF demo mode
-  // let demoTickCount = 0;
+  let demoModeActive = false;
   $: demoTickCount = $storeDemoCurrentJsonFile;
 
   onMount(() => {
@@ -90,11 +88,6 @@
     stompClient = Stomp.over(socket);
     stompClient.debug = () => {};
     stompClient.connect({}, onConnected, onError);
-  }
-
-  function setActive(value) {
-    active = value;
-    storeIsNavigationOpen.set(!sideNavOpen);
   }
 
   function onConnected() {
@@ -215,27 +208,10 @@
         hide: false,
         width: 200,
         icon: "fad fa-wifi-slash fa-2x fa-fw",
-        textTrusted: true,
         styling: {},
-        addClass: "stack-bar-bottom",
-        cornerClass: "ui-pnotify-sharp",
+        addClass: "nonblock stack-bar-bottom",
         shadow: false,
-        width: "100%",
-        stack: window.stackBarBottom,
-        modules: {
-          Buttons: {
-            closer: false,
-            sticker: false,
-            classes: {
-              closer: "fas fa-bomb fa-fw",
-              pinUp: "fas fa- fa-fw",
-              pinDown: "fas fa-hourglass fa-fw"
-            }
-          },
-          Mobile: {
-            swipeDismiss: false
-          }
-        }
+        stack: window.stackBarBottom
       });
     }
   }
@@ -244,14 +220,6 @@
     $storeIsNavigationOpen = false;
   }
 </script>
-
-<style>
-  :global(.stack-bar-bottom) {
-    width: 250px;
-    line-height: 1em;
-        opacity: .5 !important;
-  }
-</style>
 
 <div id="minty-sensor-server" />
 
@@ -265,8 +233,8 @@
     <Scrim on:click={() => closeNavigation()} />
     <AppContent class="app-content">
       <main
-        in:fade={{ duration: 8000 }} 
-        out:fade={{ duration: 8000 }} 
+        in:fade={{ duration: 8000 }}
+        out:fade={{ duration: 8000 }}
         class="main-content"
         id="main-content"
         bind:this={mainContent}

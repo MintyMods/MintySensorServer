@@ -17,28 +17,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* height: 80vh; */
+    height: 100vh !important;
+    width: 100%;
+  }
+  :global(.main-content) {
+    height: 100%;
   }
   .slider {
     width: 300px;
   }
-  :global(.app-content){
-    /* height:100vh; */
-  }
 </style>
 
 <Dialog bind:this={dialog}>
-<div id="content">
-  <Content>
-    <p>Current Value : {value}</p>
-    <Slider
-
-      min={-500}
-      max={2500}
-      step={100}
-      discrete
-      displayMarkers />
-  </Content>
+  <div id="content">
+    <Content>
+      <p>Current Value : {value}</p>
+      <Slider min={-500} max={2500} step={100} discrete displayMarkers />
+    </Content>
   </div>
 </Dialog>
 
@@ -58,24 +53,18 @@
     <Label>Show native dialog</Label>
   </Button> -->
   <div class="slider">
-  <Slider    
-    bind:value
-    min={-500}
-    max={2500}
-    step={100}
-    discrete
-    displayMarkers />
-    </div> 
-</div>
-
-<dialog id="native">
-  <h2>Native dialog content</h2>
-    <p>Current Value : {value}</p>
     <Slider
-
+      bind:value
       min={-500}
       max={2500}
       step={100}
       discrete
       displayMarkers />
-  </dialog>
+  </div>
+</div>
+
+<dialog id="native">
+  <h2>Native dialog content</h2>
+  <p>Current Value : {value}</p>
+  <Slider min={-500} max={2500} step={100} discrete displayMarkers />
+</dialog>

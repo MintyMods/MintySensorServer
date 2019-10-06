@@ -1,8 +1,11 @@
 <script>
   import "./_scss/_navigation.scss";
   import Logo from "./Logo.svelte";
-  import { storeIsNavigationOpen } from "../_stores/main-state.js";
-
+  import {
+    storeIsNavigationOpen,
+    storeActivePageHash
+  } from "../_stores/main-state.js";
+  import { onMount, afterUpdate, tick } from "svelte";
   import Drawer, {
     AppContent,
     Content,
@@ -12,15 +15,38 @@
     Scrim
   } from "@smui/drawer";
   import List, { Item, Text, Graphic, Separator, Subheader } from "@smui/list";
+  import { location } from "svelte-spa-router";
 
-  let active = "home";
+  const ABOUT = "#/about";
+  const VIEWS = "#/views";
+  const SENSORS = "#/sensors";
+  const READINGS = "#/readings";
+  const DEVICES = "#/devices";
+  const HOSTS = "#/hosts";
+  const PROVIDERS = "#/providers";
+  const SETTINGS = "#/settings";
+  const NOTIFICATIONS = "#/notifications";
+
   export let segment;
   let closeHover;
   let menuHover;
+  let active;
+  //$: active = location;
 
-  function setActive(value) {
-    active = value;
+  $: if (location !== undefined) {
+    setActiveNavigationSection(location.hash);
+  }
+
+  afterUpdate(async () => {
+    await tick();
+    active = location.hash;
+    setActiveNavigationSection(active);
+  });
+
+  function setActive(hash) {
+    active = hash;
     $storeIsNavigationOpen = false;
+    setActiveNavigationSection(hash);
   }
 
   $: if ($storeIsNavigationOpen) {
@@ -36,6 +62,22 @@
       content.classList.add("main-container-closed");
     }
   }
+
+  function setActiveNavigationSection(hash) {
+    let nav = document.getElementById("navigation");
+    if (nav !== null) {
+      let sections = nav.querySelectorAll("a");
+      sections.forEach(section => {
+        if (section.hash === "#" + $location) {
+          section.classList.add("activated");
+          section.classList.add("mdc-list-item--activated");
+        } else {
+          section.classList.remove("activated");
+          section.classList.remove("mdc-list-item--activated");
+        }
+      });
+    }
+  }
 </script>
 
 <Header>
@@ -44,75 +86,74 @@
 <Content>
   <List id="navigation">
     <Item
-      href="#/"
+      href={ABOUT}
       class="list-item"
-      on:click={() => setActive('about')}
-      activated={active === 'about'}>
+      on:click={() => setActive(ABOUT)}
+      activated={active === ABOUT}>
       <Graphic class="fa-fw fad fa-question fa-2x" />
       <Text>About</Text>
     </Item>
-
     <Item
-      href="#/views"
+      href={VIEWS}
       class="list-item"
-      on:click={() => setActive('views')}
-      activated={active === 'views'}>
+      on:click={() => setActive(VIEWS)}
+      activated={active === VIEWS}>
       <Graphic class="fa-fw fad fa-eye fa-2x" />
       <Text>Views</Text>
     </Item>
     <Item
-      href="#/sensors"
+      href={SENSORS}
       class="list-item"
-      on:click={() => setActive('sensors')}
-      activated={active === 'sensors'}>
+      on:click={() => setActive(SENSORS)}
+      activated={active === SENSORS}>
       <Graphic class="fa-fw fad fa-compress-arrows-alt fa-2x" />
       <Text>Sensors</Text>
     </Item>
     <Item
-      href="#/readings"
+      href={READINGS}
       class="list-item"
-      on:click={() => setActive('readings')}
-      activated={active === 'readings'}>
+      on:click={() => setActive(READINGS)}
+      activated={active === READINGS}>
       <Graphic class="fa-fw fad fa-tachometer-alt-average fa-2x" />
       <Text>Readings</Text>
     </Item>
     <Item
-      href="#/devices"
+      href={DEVICES}
       class="list-item"
-      on:click={() => setActive('devices')}
-      activated={active === 'devices'}>
+      on:click={() => setActive(DEVICES)}
+      activated={active === DEVICES}>
       <Graphic class="fa-fw fad fa-digital-tachograph fa-2x" />
       <Text>Devices</Text>
     </Item>
     <Item
-      href="#/hosts"
+      href={HOSTS}
       class="list-item"
-      on:click={() => setActive('hosts')}
-      activated={active === 'hosts'}>
+      on:click={() => setActive(HOSTS)}
+      activated={active === HOSTS}>
       <Graphic class="fa-fw fad fa-network-wired fa-2x" />
       <Text>Hosts</Text>
     </Item>
     <Item
-      href="#/providers"
+      href={PROVIDERS}
       class="list-item"
-      on:click={() => setActive('providers')}
-      activated={active === 'providers'}>
+      on:click={() => setActive(PROVIDERS)}
+      activated={active === PROVIDERS}>
       <Graphic class="fa-fw fad fa-podcast fa-2x" />
       <Text>Providers</Text>
     </Item>
     <Item
-      href="#/settings"
+      href={SETTINGS}
       class="list-item"
-      on:click={() => setActive('settings')}
-      activated={active === 'settings'}>
+      on:click={() => setActive(SETTINGS)}
+      activated={active === SETTINGS}>
       <Graphic class="fa-fw fad fa-user-cog fa-2x" />
       <Text>Settings</Text>
     </Item>
     <Item
-      href="#/notifications"
+      href={NOTIFICATIONS}
       class="list-item"
-      on:click={() => setActive('notifications')}
-      activated={active === 'notifications'}>
+      on:click={() => setActive(NOTIFICATIONS)}
+      activated={active === NOTIFICATIONS}>
       <Graphic class="fa-fw fad fa-bell fa-2x" />
       <Text>Notifications</Text>
     </Item>

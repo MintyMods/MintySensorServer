@@ -113,7 +113,7 @@
 
   export const openDialog = (options, data) => {
     data = data;
-    dialog.open();
+    dialog.showModal();
     // initPickr();
   };
 
