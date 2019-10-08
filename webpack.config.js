@@ -23,6 +23,19 @@ const babelLoader = {
 	},
 };
 
+function getPlugins() {
+	var plugins = [];
+
+	plugins.push(new FriendlyErrorsWebpackPlugin());
+
+	if (prod) {
+		// plugins.push(new webpack.optimize.UglifyJsPlugin());
+		plugins.push(new CopyWebpackPlugin([ { from: resources + 'static', to: dist }, { from: templates + 'public', to: dist } ]));
+		plugins.push(new MiniCssExtractPlugin({ filename: app + '.css' }));
+	}
+	return plugins;
+}
+
 module.exports = {
 	entry: {
 		bundle: [ templates + 'MintyClientApp.js' ],
@@ -99,14 +112,7 @@ module.exports = {
 		],
 	},
 	mode,
-	plugins: [
-		//new CleanWebpackPlugin({ verbose: false }),
-		new FriendlyErrorsWebpackPlugin(),
-		new MiniCssExtractPlugin({
-			filename: app + '.css',
-		}),
-		new CopyWebpackPlugin([ { from: resources + 'static', to: dist }, { from: templates + 'public', to: dist } ]),
-	],
+	plugins: getPlugins(),
 	performance: {
 		maxEntrypointSize: 1024000,
 		maxAssetSize: 1024000,

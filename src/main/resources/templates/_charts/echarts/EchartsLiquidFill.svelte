@@ -49,8 +49,8 @@
       .item(0);
   }
 
-  export const showConfig = () => {
-    config.openDialog(options, data);
+  export const showConfig = (item) => {
+    config.openDialog(item);
   };
 
   export const hideConfig = () => {

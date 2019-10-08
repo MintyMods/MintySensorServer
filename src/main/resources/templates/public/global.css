@@ -1,1 +1,7 @@
 
+.mdc-dialog, .mdc-dialog__scrim) {
+	height: 100vh !important;
+	width: 100vw !important;
+	pointer-events: none;
+	background-color: aquamarine  !important;
+}

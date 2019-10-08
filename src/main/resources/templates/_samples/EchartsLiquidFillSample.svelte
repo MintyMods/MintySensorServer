@@ -7,8 +7,8 @@
   $: data = data;
 
   let instance;
-  export const showConfig = () => {
-    instance.showConfig();
+  export const showConfig = (item) => {
+    instance.showConfig(item);
   };
 
   beforeUpdate(() => {

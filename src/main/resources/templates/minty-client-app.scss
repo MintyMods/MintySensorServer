@@ -1,3 +1,5 @@
+@import "_scss/include-media";
+
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -88,5 +90,22 @@ body {
 	width: 100%;
 	position: relative;
 	flex-grow: 1;
-    height:100vh;
- }
+	height: 100vh;
+}
+
+* :global(.mdc-dialog, .mdc-dialog__scrim) {
+	height: 100vh !important;
+	width: 100vw !important;
+	pointer-events: none;
+}
+
+* global(.centre) {
+	position: absolute;
+	top: 50%;
+	right: auto;
+	bottom: auto;
+	left: 50%;
+	width: auto;
+	height: 100%;
+	transform: translate3d(-50%, -50%, 0);
+}

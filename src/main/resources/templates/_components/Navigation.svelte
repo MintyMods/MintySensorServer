@@ -63,16 +63,18 @@
     }
   }
 
-  function setActiveNavigationSection(hash) {
+  function setActiveNavigationSection() {
     let nav = document.getElementById("navigation");
     if (nav !== null) {
       let sections = nav.querySelectorAll("a");
+      let page = '#' + $location;
+      if (page === '#/') page = '#/about';
       sections.forEach(section => {
-        if (section.hash === "#" + $location) {
-          section.classList.add("activated");
+        if (section.hash === page) {
+          // section.classList.add("activated");
           section.classList.add("mdc-list-item--activated");
         } else {
-          section.classList.remove("activated");
+          // section.classList.remove("activated");
           section.classList.remove("mdc-list-item--activated");
         }
       });

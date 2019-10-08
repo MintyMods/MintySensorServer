@@ -109,7 +109,7 @@
     items.some((item, i) => {
       if (item.id === layout.id) {
         hideToolBar(layout.id);
-        instances[i].showConfig();
+        instances[i].showConfig(item);
         return true;
       }
     });
@@ -146,10 +146,10 @@
   function expandContainer(id) {
     let wrapper = document.getElementById(id);
   }
-  /* on:click={removeContainer.bind(null, item)}> */
+
 </script>
 <style>
-
+/* @todo These styles dont work unless placed here!!  */
 :global(.svlt-grid-shadow) {
   background: rgba(228, 226, 226, 0.863) !important;
   border: 1px dashed rgba(68, 68, 68, 0.514) !important;
@@ -208,6 +208,10 @@
                   <i class="fal fa-thumbtack fa-fw" />
                 </IconButton>
               </div>
+                          </ActionIcons>
+          </Actions>
+                    <Actions>
+            <ActionIcons>
               <div id={'confirm-' + item.id} class:hover class="confirm">
                 <div>Remove</div>
                 <IconButton

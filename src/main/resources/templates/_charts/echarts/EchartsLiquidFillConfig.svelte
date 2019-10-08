@@ -111,11 +111,23 @@
     });
   }
 
-  export const openDialog = (options, data) => {
+  export const openDialog = item => {
     data = data;
-    dialog.showModal();
+    dialog.open();
+   // initDialog(item);
     // initPickr();
   };
+
+  function initDialog(item) {
+    let module = document.getElementById(item.id);
+    let items = module.querySelectorAll('.svlt-grid-item');
+    
+    debugger;
+    //svlt-grid-item svelte-sfqi95
+    module.classList.add("scrim");
+    module.style.width = "100vw";
+    module.style.height = "100vh";
+  }
 
   export const closeDialog = () => {
     dialog.close();
@@ -139,9 +151,13 @@
 </script>
 
 <style>
-  .dialog-wrapper {
-    width: 100%;
+  .scrim {
+    width: 100vw;
     height: 100vh;
+  }
+  .dialog-wrapper {
+    width: 100vw !important;
+    height: 100vh !important;
   }
   .current-value {
     font-size: small;
@@ -152,10 +168,9 @@
   } */
 </style>
 
-
-  {#if data !== undefined}
-<!-- <div class="dialog-wrapper"> -->
-<Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
+{#if data !== undefined}
+  <!-- <div class="dialog-wrapper"> -->
+  <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
     <Title id="title">
       {#if Array.isArray(data)}
         <TabBar tabs={data} let:tab>
@@ -165,57 +180,57 @@
         </TabBar>
       {:else}{data.label.desc}{/if}
     </Title>
-  <Content id="content">
-    <!-- {#if config !== undefined} -->
-    <!-- WAVE COLOURS      -->
-    <!-- {#each $color as color, i} -->
-    <!-- <Textfield bind:value={colorText} label="Wave Colour" />
+    <Content id="content">
+      <!-- {#if config !== undefined} -->
+      <!-- WAVE COLOURS      -->
+      <!-- {#each $color as color, i} -->
+      <!-- <Textfield bind:value={colorText} label="Wave Colour" />
       <div class="color-picker" /> -->
-    <!-- {/each} -->
+      <!-- {/each} -->
 
-    <!-- SHAPE -->
-    <Select
-      enhanced
-      bind:value={shapeSelected}
-      label="Guage shape "
-      class="shape"
-      menu$class="shape">
-      <Option value="" />
-      {#each SHAPES as item}
-        <Option value={item.type} selected={shapeSelected === item.type}>
-          <i class={item.icon} />
-          {item.desc}
-        </Option>
-      {/each}
-    </Select>
-    <br />
-    <!-- WAVE DIRECTION -->
-    <FormField>
-      <Switch bind:checked={directionChecked} />
-      <span slot="label">
-        Wave direction
-        <span class="current-value">{$direction}</span>
-      </span>
-    </FormField>
-    <br />
-    <!-- SHOW OUTLINE  -->
-    <FormField>
-      <Switch bind:checked={outlineShowChecked} />
-      <span slot="label">
-        Show Outline
-        <span class="current-value">{$outlineShow}</span>
-      </span>
-    </FormField>
-    <!-- {/if} -->
-  </Content>
-  <Actions>
-    <Button action="save">
-      <Label>Save</Label>
-    </Button>
-    <Button action="cancel" default use={[InitialFocus]}>
-      <Label>Cancel</Label>
-    </Button>
-  </Actions>
-</Dialog>
-<!-- </div> -->
-  {/if}
+      <!-- SHAPE -->
+      <Select
+        enhanced
+        bind:value={shapeSelected}
+        label="Guage shape "
+        class="shape"
+        menu$class="shape">
+        <Option value="" />
+        {#each SHAPES as item}
+          <Option value={item.type} selected={shapeSelected === item.type}>
+            <i class={item.icon} />
+            {item.desc}
+          </Option>
+        {/each}
+      </Select>
+      <br />
+      <!-- WAVE DIRECTION -->
+      <FormField>
+        <Switch bind:checked={directionChecked} />
+        <span slot="label">
+          Wave direction
+          <span class="current-value">{$direction}</span>
+        </span>
+      </FormField>
+      <br />
+      <!-- SHOW OUTLINE  -->
+      <FormField>
+        <Switch bind:checked={outlineShowChecked} />
+        <span slot="label">
+          Show Outline
+          <span class="current-value">{$outlineShow}</span>
+        </span>
+      </FormField>
+      <!-- {/if} -->
+    </Content>
+    <Actions>
+      <Button action="save">
+        <Label>Save</Label>
+      </Button>
+      <Button action="cancel" default use={[InitialFocus]}>
+        <Label>Cancel</Label>
+      </Button>
+    </Actions>
+  </Dialog>
+  <!-- </div> -->
+{/if}

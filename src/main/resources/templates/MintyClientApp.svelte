@@ -29,7 +29,8 @@
   import Notifications from "./_routes/Notifications.svelte";
   import Hosts from "./_routes/Hosts.svelte";
   import Devices from "./_routes/Devices.svelte";
-  import NotFound from "./_routes/_error.svelte";
+  import NotFound from "./_errors/NotFound.svelte";
+  import Error from "./_routes/_error.svelte";
 
   const routes = {
     "/settings": Settings,
@@ -42,8 +43,9 @@
     "/devices": Devices,
     "/about": About,
     "/index": About,
+    "/404": NotFound,
     "/": About,
-    "*": NotFound
+    "*": Error
   };
 
   let sideNavOpen;

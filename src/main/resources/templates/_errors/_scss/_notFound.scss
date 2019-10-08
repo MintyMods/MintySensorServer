@@ -1,0 +1,220 @@
+@import "../../_scss/include-media";
+
+.svg-content {
+	height: 100vh;
+	width: 100%;
+}
+
+.status-code {
+	font-size: 10vw;
+	color: white;
+	position: absolute;
+	top: 0px;
+	display: inline-block;
+}
+.status-text {
+	font-size: 10vw;
+	color: white;
+	position: absolute;
+	bottom: 40px;
+	right: auto;
+}
+
+.scan,
+.scan:before,
+.scan:after {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 10%;
+	background-color: hsla(0, 0%, 0%, .13);
+	box-shadow: 0 0 10px hsla(0, 0%, 0%, .25);
+	animation: scan 8s linear infinite;
+}
+
+.scan:before,
+.scan:after {
+	content: '';
+	display: block;
+	height: 60%;
+}
+
+.scan:before {
+	top: -350%;
+}
+
+.scan:after {
+	top: -1100%;
+}
+
+@keyframes scan {
+	0% {
+		top: -20%;
+	}
+	100% {
+		top: 95%;
+	}
+}
+
+.static,
+.static div {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	animation: static 3s steps(5, end) infinite;
+	opacity: 0.65;
+	background-image: url('/svg/errors/404/static.png');
+}
+
+.static div {
+	background-size: 100px 100px;
+	animation-duration: 2.5s;
+}
+
+@keyframes static {
+	0% {
+		background-position: 0% 0%;
+	}
+	20% {
+		background-position: 25% 15%;
+	}
+	40% {
+		background-position: 50% 69%;
+	}
+	60% {
+		background-position: 33% 25%;
+	}
+	80% {
+		background-position: 72% 4%;
+	}
+	100% {
+		background-position: 80% 91%;
+	}
+}
+
+svg {
+	position: absolute;
+	-webkit-text-stroke: 4px white;
+	top: 0px;
+	left: 0px;
+}
+
+html {
+	height: 100%;
+}
+
+
+
+@include media(">phone", "<=tablet") {
+	.page-not-found {
+		font-size: 2rem !important;
+	}
+}
+@include media(">tablet", "<=desktop") {
+	.page-not-found {
+		font-size: 4rem !important;
+	}
+}
+@include media(">desktop", "<=1150px") {
+	.page-not-found {
+		font-size: 5rem !important;
+	}
+}
+@include media(">1150px", "<=2150px") {
+	.page-not-found {
+		font-size: 7rem !important;
+	}
+}
+@include media(">2000px", "<=3000px") {
+	.page-not-found {
+		font-size: 9rem !important;
+	}
+}
+@include media(">3000px", "<=6000px") {
+	.page-not-found {
+		font-size: 12rem !important;
+	}
+}
+
+
+.filterwrapper {
+	position: absolute;
+	z-index: -1;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.svgtext {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.intro {
+	margin-bottom: 3em;
+}
+
+.glitch-filter-example {
+	text-align: center;
+	margin: 0;
+	min-width: 490px;
+}
+
+.glitch-filter-example__filtered-text {
+	filter: url(#filter);
+	fill: rgb(194, 178, 178);
+	font-size: 80px;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+.top-r,
+.bot-r,
+.top-g,
+.bot-g {
+	stroke: #ffffff;
+}
+
+.top-r {
+	stroke-width: 100px;
+	animation: topani 3.5s linear infinite;
+}
+
+.bot-r {
+	stroke-width: 100px;
+	animation: botani 4s linear infinite;
+}
+
+.top-g {
+	stroke-width: 50px;
+	animation: topani 4s linear reverse infinite;
+}
+
+.bot-g {
+	stroke-width: 50%;
+	animation: botani 3.5s linear reverse infinite;
+}
+
+@mixin createRandomKeyframes( $numberOfKeys ) {
+	$delta: round(100/$numberOfKeys);
+
+	@for $i from 1 through $numberOfKeys {
+		$time: ($i*$delta - random($delta)) +'%';
+		#{$time} {
+			stroke-width: random(200) + px;
+		}
+	}
+}
+
+@keyframes topani {
+	@include createRandomKeyframes( 10 + random(10) );
+}
+
+@keyframes botani {
+	@include createRandomKeyframes( 10 + random(10) );
+}
