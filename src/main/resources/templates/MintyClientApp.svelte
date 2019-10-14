@@ -55,7 +55,7 @@
   let readings = [];
   let sensors = [];
   let types = [];
-  let demoModeActive = false;
+  let demoModeActive = true;
   $: demoTickCount = $storeDemoCurrentJsonFile;
 
   onMount(() => {

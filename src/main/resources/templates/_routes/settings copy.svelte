@@ -70,7 +70,7 @@
 
 </div>
 
-<Dialog class="mdc-dialog" bind:this={dialog}>
+<!-- <Dialog class="mdc-dialog" bind:this={dialog}>
   <div id="content">
     <Content>
       <p>Current Value : {value}</p>
@@ -83,9 +83,9 @@
         displayMarkers />
     </Content>
   </div>
-</Dialog>
+</Dialog> -->
 
-
+<!-- 
 <div class="wrapper">
   <Button
     action="cancel"
@@ -104,10 +104,10 @@
       discrete
       displayMarkers />
   </div>
-</div>
-
+</div> -->
+<!-- 
 <dialog id="native">
   <h2>Native dialog content</h2>
   <p>Current Value : {value}</p>
   <Slider min={-500} max={2500} step={100} discrete displayMarkers />
-</dialog>
+</dialog> -->

@@ -7,9 +7,9 @@
   }
 
   .logo::before {
+      content: "\f126";
       position: absolute;
       font-family: 'Font Awesome 5 Pro';
-      content: "\f126";
       color: var(--theme-primary);
       transform: rotate(130deg);
       font-weight: 400;

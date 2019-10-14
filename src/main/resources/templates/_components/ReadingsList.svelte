@@ -20,6 +20,10 @@
       return reading.type === index;
     });
   }
+
+  function getReadings(type) {
+    return readings.filter(reading => reading.type === type.type);
+  }
 </script>
 
 
@@ -32,11 +36,9 @@
           <Graphic class={type.icon} />
           <Text>{type.desc}</Text>
         </dt>
-      {/each}
-      {#if readings}
-        <dd>
+{#if readings}
           <List>
-            {#each readings as reading (reading.id + '_' + reading.index)}
+            {#each getReadings(type) as reading (reading.id + '_' + reading.index + '_' + type.type)}
               <Item>
                 <Graphic class={reading.icon} />
                 <Text>
@@ -48,14 +50,10 @@
                   {$storeTypes[reading.type].desc}
                 </Meta>
               </Item>
-            {:else}
-              <div>Loading...</div>
             {/each}
           </List>
-        </dd>
-      {:else}
-        <div />
-      {/if}
+        {/if}
+      {/each}
     </dl>
   </div>
 </div>

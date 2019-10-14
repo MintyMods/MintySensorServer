@@ -4,7 +4,46 @@
   import { onDestroy, onMount } from "svelte";
   import { watchResize } from "svelte-watch-resize";
   import EchartsLiquidFillConfig from "./EchartsLiquidFillConfig.svelte";
-
+  import {
+    color,
+    center,
+    radius,
+    amplitude,
+    waveLength,
+    period,
+    direction,
+    shape,
+    waveAnimation,
+    animationEasing,
+    animationEasingUpdate,
+    animationDuration,
+    animationDurationUpdate,
+    outlineShow,
+    outlineBorderDistance,
+    outlineitemStyleColor,
+    outlineitemStyleBorderColor,
+    outlineitemStyleBorderWidth,
+    outlineitemStyleShadowBlur,
+    outlineitemStyleShadowColor,
+    backgroundStyleColor,
+    backgroundStyleBorderWidth,
+    backgroundStyleBorderColor,
+    backgroundStyleItemStyleShadowBlur,
+    backgroundStyleItemStyleShadowColor,
+    backgroundStyleItemStyleOpacity,
+    itemStyleOpacity,
+    itemStyleShadowBlur,
+    itemStyleShadowColor,
+    emphasisItemStyleOpacity,
+    labelShow,
+    labelColor,
+    labelInsideColor,
+    labelFontSize,
+    labelFontWeight,
+    labelAlign,
+    labelBaseline,
+    labelPosition
+  } from "./config/echarts-liquid-fill-store.js";
   export let data;
   export let options;
   const id =
@@ -125,50 +164,11 @@
     };
   }
 
-  import {
-    color,
-    center,
-    radius,
-    amplitude,
-    waveLength,
-    period,
-    direction,
-    shape,
-    waveAnimation,
-    animationEasing,
-    animationEasingUpdate,
-    animationDuration,
-    animationDurationUpdate,
-    outlineShow,
-    outlineBorderDistance,
-    outlineitemStyleColor,
-    outlineitemStyleBorderColor,
-    outlineitemStyleBorderWidth,
-    outlineitemStyleShadowBlur,
-    outlineitemStyleShadowColor,
-    backgroundStyleColor,
-    backgroundStyleBorderWidth,
-    backgroundStyleBorderColor,
-    backgroundStyleItemStyleShadowBlur,
-    backgroundStyleItemStyleShadowColor,
-    backgroundStyleItemStyleOpacity,
-    itemStyleOpacity,
-    itemStyleShadowBlur,
-    itemStyleShadowColor,
-    emphasisItemStyleOpacity,
-    labelShow,
-    labelColor,
-    labelInsideColor,
-    labelFontSize,
-    labelFontWeight,
-    labelAlign,
-    labelBaseline,
-    labelPosition
-  } from "../../_stores/echarts-liquid-fill-store.js";
+
 </script>
 
 <style>
-  .guage {
+  .gauge {
     display: block;
     width: 100%;
     height: 100%;
@@ -176,7 +176,7 @@
   }
 </style>
 
-<div {id} class="guage" use:watchResize={resizeChart} />
+<div {id} class="gauge" use:watchResize={resizeChart} />
 
 <EchartsLiquidFillConfig bind:this={config} {data} />
 

@@ -2,174 +2,88 @@
   import { afterUpdate, onMount, tick } from "svelte";
   import Dialog, { Title, Content, Actions, InitialFocus } from "@smui/dialog";
   import Button from "@smui/button";
-  import Textfield, { Input, Textarea } from "@smui/textfield";
-  import HelperText from "@smui/textfield/helper-text";
-  //   import Slider from "@smui/slider";
-  import Select, { Option } from "@smui/select";
   import Tab, { Icon, Label } from "@smui/tab";
   import TabBar from "@smui/tab-bar";
-  import Switch from "@smui/switch";
-  import FormField from "@smui/form-field";
 
-  import {
-    color,
-    center,
-    radius,
-    amplitude,
-    waveLength,
-    period,
-    direction,
-    shape,
-    waveAnimation,
-    animationEasing,
-    animationEasingUpdate,
-    animationDuration,
-    animationDurationUpdate,
-    outlineShow,
-    outlineBorderDistance,
-    outlineitemStyleColor,
-    outlineitemStyleBorderColor,
-    outlineitemStyleBorderWidth,
-    outlineitemStyleShadowBlur,
-    outlineitemStyleShadowColor,
-    backgroundStyleColor,
-    backgroundStyleBorderWidth,
-    backgroundStyleBorderColor,
-    backgroundStyleItemStyleShadowBlur,
-    backgroundStyleItemStyleShadowColor,
-    backgroundStyleItemStyleOpacity,
-    itemStyleOpacity,
-    itemStyleShadowBlur,
-    itemStyleShadowColor,
-    emphasisItemStyleOpacity,
-    labelShow,
-    labelColor,
-    labelInsideColor,
-    labelFontSize,
-    labelFontWeight,
-    labelAlign,
-    labelBaseline,
-    labelPosition
-  } from "../../_stores/echarts-liquid-fill-store.js";
+  // Configuration Input Fields
+  import About from "./config/About";
+  import Shape from "./config/Shape";
+  import Color from "./config/Color";
+  import Direction from "./config/Direction";
+  import OutlineShow from "./config/OutlineShow";
+  import Center from "./config/Center";
+  import Radius from "./config/Radius";
+  import Amplitude from "./config/Amplitude";
+  import WaveLength from "./config/WaveLength";
+  import Period from "./config/Period";
+  import WaveAnimation from "./config/WaveAnimation";
+  import AnimationEasing from "./config/AnimationEasing";
+  import AnimationEasingUpdate from "./config/AnimationEasingUpdate";
+  import AnimationDuration from "./config/AnimationDuration";
+  import AnimationDurationUpdate from "./config/AnimationDurationUpdate";
+  import OutlineBorderDistance from "./config/OutlineBorderDistance";
+  import OutlineitemStyleColor from "./config/OutlineitemStyleColor";
+  import OutlineitemStyleBorderColor from "./config/OutlineitemStyleBorderColor";
+  import OutlineitemStyleBorderWidth from "./config/OutlineitemStyleBorderWidth";
+  import OutlineitemStyleShadowBlur from "./config/OutlineitemStyleShadowBlur";
+  import OutlineitemStyleShadowColor from "./config/OutlineitemStyleShadowColor";
+  import BackgroundStyleColor from "./config/BackgroundStyleColor";
+  import BackgroundStyleBorderWidth from "./config/BackgroundStyleBorderWidth";
+  import BackgroundStyleBorderColor from "./config/BackgroundStyleBorderColor";
+  import BackgroundStyleItemStyleShadowBlur from "./config/BackgroundStyleItemStyleShadowBlur";
+  import BackgroundStyleItemStyleShadowColor from "./config/BackgroundStyleItemStyleShadowColor";
+  import BackgroundStyleItemStyleOpacity from "./config/BackgroundStyleItemStyleOpacity";
+  import ItemStyleOpacity from "./config/ItemStyleOpacity";
+  import ItemStyleShadowBlur from "./config/ItemStyleShadowBlur";
+  import ItemStyleShadowColor from "./config/ItemStyleShadowColor";
+  import EmphasisItemStyleOpacity from "./config/EmphasisItemStyleOpacity";
+  import LabelShow from "./config/LabelShow";
+  import LabelColor from "./config/LabelColor";
+  import LabelInsideColor from "./config/LabelInsideColor";
+  import LabelFontSize from "./config/LabelFontSize";
+  import LabelFontWeight from "./config/LabelFontWeight";
+  import LabelAlign from "./config/LabelAlign";
+  import LabelBaseline from "./config/LabelBaseline";
+  import LabelPosition from "./config/LabelPosition";
 
-  const SHAPES = [
-    { type: "circle", desc: "Circle", icon: "fal fa-circle fa-fw" },
-    {
-      type: "rect",
-      desc: "Rectangle",
-      icon: "fal fa-rectangle-landscape fa-fw"
-    },
-    {
-      type: "roundRect",
-      desc: "Rounded Rectangle",
-      icon: "fad fa-rectangle-landscape fa-fw"
-    },
-    { type: "triangle", desc: "Triangle", icon: "fal fa-triangle fa-fw" },
-    { type: "diamond", desc: "Diamond", icon: "fal fa-diamond fa-fw" },
-    { type: "pin", desc: "Pin", icon: "fal fa-map-marker fa-fw" },
-    { type: "arrow", desc: "Arrow", icon: "fal fa-arrow-alt-up fa-fw" }
+  let iconTabs = [
+    { id: "data", icon: "fad fa-layer-plus", label: "Data" },
+    { id: "wave", icon: "fad fa-water", label: "Wave" },
+    { id: "outline", icon: "fad fa-border-all", label: "Outline" },
+    { id: "background", icon: "fal fa-chess-board", label: "Background" },
+    { id: "label", icon: "fad fa-text-size", label: "Label" },
+    { id: "layout", icon: "fad fa-arrows-alt", label: "Layout" },
+    { id: "animation", icon: "fad fa-camera-movie", label: "Animation" },
+    { id: "about", icon: "fad fa-info-circle", label: "About" }
   ];
-  const EASING = [
-    "linear",
-    "ease",
-    "ease-in",
-    "ease-out",
-    "ease-in-out",
-    "step-start",
-    "step-end"
-  ];
-  const ALIGN = ["left", "center", "right"];
-  const POSTITION = ["inside", "left", "right", "top", "bottom"];
-  const FONT_WEIGHT = ["normal", "bold", "bolder", "lighter"];
 
   export let data;
-  let dialog;
-
-  // afterUpdate(async () => {
-  //   await tick();
-  //   initPickr();
-  // });
-
-  function initPickr() {
-    let pickers = document.querySelectorAll(".color-picker");
-    pickers.forEach(picker => {
-      Pickr.create({
-        el: picker,
-        theme: "nano",
-        components: {
-          preview: true,
-          opacity: true,
-          hue: true,
-          interaction: {
-            rgba: false,
-            input: false,
-            save: true,
-            cancel: false
-          }
-        }
-      });
-    });
-  }
 
   export const openDialog = item => {
     data = data;
-    dialog.open();
-   // initDialog(item);
-    // initPickr();
+    dialog && dialog.open();
   };
-
-  function initDialog(item) {
-    let module = document.getElementById(item.id);
-    let items = module.querySelectorAll('.svlt-grid-item');
-    
-    debugger;
-    //svlt-grid-item svelte-sfqi95
-    module.classList.add("scrim");
-    module.style.width = "100vw";
-    module.style.height = "100vh";
-  }
 
   export const closeDialog = () => {
     dialog.close();
   };
 
-  function changeColour(ele) {
-    console.log(ele);
-  }
-
-  let directionChecked = true;
-  $: $direction = directionChecked ? "right" : "left";
-  let outlineShowChecked = true;
-  $: $outlineShow = outlineShowChecked;
-
+  let dialog;
   let shapeSelected;
-  $: $shape = shapeSelected;
+  let activeTab;
 
-  let colorText;
-  $: $color = colorText;
-  // $: console.log("COLOR:" + color);
+  $: dialog && dialog.open(); // @todo remove after issue seen
 </script>
 
 <style>
-  .scrim {
-    width: 100vw;
-    height: 100vh;
+  .config-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
-  .dialog-wrapper {
-    width: 100vw !important;
-    height: 100vh !important;
-  }
-  .current-value {
-    font-size: small;
-    color: lightgrey;
-  }
-  /* :global(dialog)::backdrop {
-    background: rgba(255, 0, 0, 0.5);
-  } */
 </style>
 
 {#if data !== undefined}
-  <!-- <div class="dialog-wrapper"> -->
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
     <Title id="title">
       {#if Array.isArray(data)}
@@ -180,48 +94,69 @@
         </TabBar>
       {:else}{data.label.desc}{/if}
     </Title>
-    <Content id="content">
-      <!-- {#if config !== undefined} -->
-      <!-- WAVE COLOURS      -->
-      <!-- {#each $color as color, i} -->
-      <!-- <Textfield bind:value={colorText} label="Wave Colour" />
-      <div class="color-picker" /> -->
-      <!-- {/each} -->
+    <Content class="content" id="content">
+      <div class="config-wrapper">
 
-      <!-- SHAPE -->
-      <Select
-        enhanced
-        bind:value={shapeSelected}
-        label="Guage shape "
-        class="shape"
-        menu$class="shape">
-        <Option value="" />
-        {#each SHAPES as item}
-          <Option value={item.type} selected={shapeSelected === item.type}>
-            <i class={item.icon} />
-            {item.desc}
-          </Option>
-        {/each}
-      </Select>
-      <br />
-      <!-- WAVE DIRECTION -->
-      <FormField>
-        <Switch bind:checked={directionChecked} />
-        <span slot="label">
-          Wave direction
-          <span class="current-value">{$direction}</span>
-        </span>
-      </FormField>
-      <br />
-      <!-- SHOW OUTLINE  -->
-      <FormField>
-        <Switch bind:checked={outlineShowChecked} />
-        <span slot="label">
-          Show Outline
-          <span class="current-value">{$outlineShow}</span>
-        </span>
-      </FormField>
-      <!-- {/if} -->
+        <TabBar tabs={iconTabs} let:tab minWidth bind:active={activeTab}>
+          <Tab {tab}>
+            <Icon class={tab.icon} />
+            <Label>{tab.label}</Label>
+          </Tab>
+        </TabBar>
+
+        {#if activeTab && activeTab.id === 'data'}
+      <div></div>
+        {:else if activeTab && activeTab.id === 'layout'}
+          <Center />
+          <Amplitude />
+          <WaveLength />
+          <Radius />
+          <Shape />
+        {:else if activeTab && activeTab.id === 'wave'}
+          <Color />
+          <ItemStyleShadowColor />
+          <ItemStyleShadowBlur />
+          <ItemStyleOpacity />
+          <EmphasisItemStyleOpacity />
+        {:else if activeTab && activeTab.id === 'outline'}
+          <OutlineitemStyleColor />
+          <OutlineitemStyleBorderColor />
+          <OutlineitemStyleShadowColor />
+          <OutlineBorderDistance />
+          <OutlineitemStyleBorderWidth />
+          <OutlineitemStyleShadowBlur />
+          <OutlineShow />
+        {:else if activeTab && activeTab.id === 'background'}
+          <BackgroundStyleColor />
+          <BackgroundStyleBorderColor />
+          <BackgroundStyleItemStyleShadowColor />
+          <BackgroundStyleBorderWidth />
+          <BackgroundStyleItemStyleOpacity />
+          <BackgroundStyleItemStyleShadowBlur />
+        {:else if activeTab && activeTab.id === 'label'}
+          <LabelColor/>
+          <LabelInsideColor/>
+          <LabelFontSize/>
+          <LabelFontWeight/>
+          <LabelAlign/>
+          <LabelBaseline/>
+          <LabelPosition/>
+          <LabelShow/>
+        {:else if activeTab && activeTab.id === 'animation'}
+          <Period />
+          <AnimationDuration />
+          <AnimationDurationUpdate />
+          <AnimationEasing />
+          <AnimationEasingUpdate />
+          <WaveAnimation />
+          <Direction />
+        {:else if activeTab && activeTab.id === 'about'}
+          <About />
+        {:else}
+          <h1 class="error">Error - Please Report</h1>
+        {/if}
+
+      </div>
     </Content>
     <Actions>
       <Button action="save">
@@ -232,5 +167,4 @@
       </Button>
     </Actions>
   </Dialog>
-  <!-- </div> -->
 {/if}

@@ -46,4 +46,4 @@
   </div>
 </div>
 
-<Notification type="success" text="success message" title="Great Success!" />
+<Notification type="success" text="Example notification message" title="Great Success!" />

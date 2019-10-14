@@ -1,5 +1,5 @@
 <script>
-  //  Canvas Guages 2.1.5
+  //  Canvas Gauges 2.1.5
   // https://canvas-gauges.com
   import { onMount, beforeUpdate } from "svelte";
   export let data;
@@ -9,7 +9,7 @@
   const id = "linear-gauge";
 
   export function showConfig() {
-    PNotify.info("Linear Guage Config");
+    PNotify.info("Linear Gauge Config");
   }
 
   // onMount(() => {

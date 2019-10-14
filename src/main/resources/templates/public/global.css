@@ -1,7 +1,52 @@
-
-.mdc-dialog, .mdc-dialog__scrim) {
+.mdc-dialog,
+.mdc-dialog__scrim {
 	height: 100vh !important;
 	width: 100vw !important;
 	pointer-events: none;
-	background-color: aquamarine  !important;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	color: var(--theme-on-background);
+	background-color: var(--theme-background);
+	font-family: var(--theme-font-family);
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	font-weight: 400;
+	line-height: 1.58;
+	position: relative;
+}
+
+.error {
+	color: var(--theme-on-error);
+	background-color: var(--theme-error);
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.hidden {
+	display: none;
+}
+.config-current-value {
+	font-size: small;
+	color: rgba(0, 0, 0, 0.6);
+	text-align: end;
+}
+.pickr {
+	position: absolute;
+	left: 0px;
+	bottom: 5px;
 }

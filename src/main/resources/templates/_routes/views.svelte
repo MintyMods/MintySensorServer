@@ -20,8 +20,8 @@
   let adjustAfterRemove = true;
 
   let charts = [
-    EchartsLiquidFillSample,
     JustGageSample2,
+    EchartsLiquidFillSample,
     ClockSpeedsBarChart,
     TempsBarChart,
     JustGageSample1,
@@ -49,9 +49,9 @@
     if (ele !== null) {
       switch (i) {
         case 0:
-          return new EchartsLiquidFillSample({ target: ele });
-        case 1:
           return new JustGageSample2({ target: ele });
+        case 1:
+          return new EchartsLiquidFillSample({ target: ele });
         case 2:
           return new ClockSpeedsBarChart({ target: ele });
         case 3:
@@ -146,23 +146,9 @@
   function expandContainer(id) {
     let wrapper = document.getElementById(id);
   }
-
 </script>
-<style>
-/* @todo These styles dont work unless placed here!!  */
-:global(.svlt-grid-shadow) {
-  background: rgba(228, 226, 226, 0.863) !important;
-  border: 1px dashed rgba(68, 68, 68, 0.514) !important;
-  transition: transform 0.2s;
-}
-:global(.svlt-grid-item) {
-  border:1px solid rgba(187, 186, 186, 0.753) !important;
-}
-:global(.svlt-grid-transition > svlt-grid-item) {
-  transition: transform 0.2s;
-}
-</style>
-<div class="container margin-b">
+
+<div class="container">
   {#if items !== undefined}
     <Grid
       {breakpoints}
@@ -171,7 +157,7 @@
       gap={5}
       rowHeight={100}
       fillEmpty={true}
-      useTransform={true}
+      useTransform={false}
       static={true}
       bind:items
       let:item>
@@ -208,10 +194,6 @@
                   <i class="fal fa-thumbtack fa-fw" />
                 </IconButton>
               </div>
-                          </ActionIcons>
-          </Actions>
-                    <Actions>
-            <ActionIcons>
               <div id={'confirm-' + item.id} class:hover class="confirm">
                 <div>Remove</div>
                 <IconButton
