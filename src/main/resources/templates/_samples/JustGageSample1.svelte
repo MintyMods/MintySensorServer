@@ -1,5 +1,5 @@
 <script>
-  import JustGage from "../_charts/JustGage.svelte";
+  import JustGage from "../_charts/justgage/JustGage.svelte";
   import { storeReadings, storeTypes } from "../_stores/main-state.js";
 
   let caption = "GPU Temperature";

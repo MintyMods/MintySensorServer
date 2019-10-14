@@ -11,7 +11,7 @@
   import TempsBarChart from "../_samples/TempsBarChart.svelte";
   import PowerLineChart from "../_samples/PowerLineChart.svelte";
   import JustGageSample1 from "../_samples/JustGageSample1.svelte";
-  import EchartsLiquidFillSample from "../_samples/EchartsLiquidFillSample.svelte";
+  import EchartsLiquidFillData from "../_samples/EchartsLiquidFillData.svelte";
   import LinearGaugeSample from "../_samples/LinearGaugeSample.svelte";
   import JustGageSample3 from "../_samples/JustGageSample3.svelte";
   import RadialGaugeSample from "../_samples/RadialGaugeSample.svelte";
@@ -21,7 +21,7 @@
 
   let charts = [
     JustGageSample2,
-    EchartsLiquidFillSample,
+    EchartsLiquidFillData,
     ClockSpeedsBarChart,
     TempsBarChart,
     JustGageSample1,
@@ -51,7 +51,7 @@
         case 0:
           return new JustGageSample2({ target: ele });
         case 1:
-          return new EchartsLiquidFillSample({ target: ele });
+          return new EchartsLiquidFillData({ target: ele });
         case 2:
           return new ClockSpeedsBarChart({ target: ele });
         case 3:

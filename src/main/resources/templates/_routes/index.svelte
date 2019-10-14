@@ -4,8 +4,7 @@
   import TempsBarChart from "../_samples/TempsBarChart.svelte";
   import PowerLineChart from "../_samples/PowerLineChart.svelte";
   import JustGageSample2 from "../_samples/JustGageSample2.svelte";
-  import EchartsLiquidFillSample from "../_samples/EchartsLiquidFillSample.svelte";
-
+  import EchartsLiquidFillData from "../_samples/EchartsLiquidFillData.svelte";
 </script>
 
 <style>
@@ -30,7 +29,7 @@
 </svelte:head>
 <div class="container">
   <div class="chart">
-    <EchartsLiquidFillSample />
+    <EchartsLiquidFillData />
   </div>
   <div class="chart">
     <JustGageSample2 />
@@ -46,4 +45,7 @@
   </div>
 </div>
 
-<Notification type="success" text="Example notification message" title="Great Success!" />
+<Notification
+  type="success"
+  text="Example notification message"
+  title="Great Success!" />
