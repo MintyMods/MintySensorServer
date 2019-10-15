@@ -14,6 +14,7 @@
 </script>
 
 <Textfield
+  type="number"
   bind:value={animationDurationUpdate}
   label="Update animation duration" />
 <HelperText>value in milliseconds</HelperText>

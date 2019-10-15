@@ -2,7 +2,7 @@
   import { afterUpdate, onMount, tick } from "svelte";
   import { createEventDispatcher } from "svelte";
   import { TABS } from "./config/constants.js";
-    import { MDCSlider } from "@material/slider";
+  import { MDCSlider } from "@material/slider";
   import { MDCDialog } from "@material/dialog";
   import Dialog, { Title, Content, Actions, InitialFocus } from "@smui/dialog";
   import Card, { Media, MediaContent } from "@smui/card";
@@ -93,12 +93,8 @@
   const dispatch = createEventDispatcher();
 
   export const openDialog = item => {
-    // data = data;
-    console.log("showing dialog");
     dialog && dialog.open();
   };
-
-
 
   export const closeDialog = () => {
     dialog.close();
@@ -108,21 +104,22 @@
   let activeTab;
   //<Media class="card-media-16x9" aspectRatio="16x9">
 
+  $: if (dialog) {
+    fixDialogIssueWithSvelteGrid();
+  }
 
-  onMount(async () => {
-    await tick();
-dialog && dialog.open();
+  function fixDialogIssueWithSvelteGrid() {
+    const dialog = new MDCDialog(document.querySelector(".mdc-dialog"));
+    dialog.listen("MDCDialog:opened", () => {
+      var newParent = document.getElementById("body");
+      var oldParent = document.getElementById("dialog-fix-wrapper");
+      while (oldParent.childNodes.length > 0) {
+        newParent.appendChild(oldParent.childNodes[0]);
+      }
+    });
+  }
 
-    // const dialog = new MDCDialog(document.querySelector(".mdc-dialog"));
-    // dialog.listen("MDCDialog:opened", () => {
-    //   var newParent = document.getElementById('body');
-    //   var oldParent = document.getElementById('dialog-wrapper');
-    //   while (oldParent.childNodes.length > 0) {
-      //       newParent.appendChild(oldParent.childNodes[0]);
-    //   }
-    // });
-  });
-
+ $: dialog && dialog.open();
 </script>
 
 <style>
@@ -133,23 +130,23 @@ dialog && dialog.open();
   }
 </style>
 
-<div class="dialog-wrapper">
+<div id="dialog-fix-wrapper">
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
-      <div id="preview">
-        <span class="place-holder" />
-      </div>
+    <div id="preview">
+      <span class="place-holder" />
+    </div>
 
-{#if data !== undefined}
-    <Title id="title">
-      {#if Array.isArray(data)}
-        <TabBar tabs={data} let:tab>
-          <Tab {tab}>
-            <Label>{tab}</Label>
-          </Tab>
-        </TabBar>
-      {:else}{data.label.desc}{/if}
-    </Title>
-      {/if}
+    {#if data !== undefined}
+      <Title id="title">
+        {#if Array.isArray(data)}
+          <TabBar tabs={data} let:tab>
+            <Tab {tab}>
+              <Label>{tab}</Label>
+            </Tab>
+          </TabBar>
+        {:else}{data.label.desc}{/if}
+      </Title>
+    {/if}
     <Content class="content" id="content">
       <div class="config-wrapper">
 
@@ -255,4 +252,4 @@ dialog && dialog.open();
       </Button>
     </Actions>
   </Dialog>
-  </div>
+</div>

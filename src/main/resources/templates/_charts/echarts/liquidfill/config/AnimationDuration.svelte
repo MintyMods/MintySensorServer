@@ -9,11 +9,12 @@
   export let animationDuration;
 
   $: if (animationDuration) {
-    dispatch('animationDuration', animationDuration);
+    dispatch("animationDuration", animationDuration);
   }
 </script>
 
 <Textfield
+  type="number"
   bind:value={animationDuration}
   label="Initial animation duration" />
 <HelperText>value in milliseconds</HelperText>

@@ -1,11 +1,11 @@
 export const TABS = [
-	{ id: 'data', icon: 'fad fa-layer-plus', label: 'Data' },
-	{ id: 'wave', icon: 'fad fa-water', label: 'Wave' },
+    { id: 'wave', icon: 'fad fa-water', label: 'Wave' },
 	{ id: 'outline', icon: 'fad fa-border-all', label: 'Outline' },
 	{ id: 'background', icon: 'fal fa-chess-board', label: 'Background' },
 	{ id: 'label', icon: 'fad fa-text-size', label: 'Label' },
 	{ id: 'layout', icon: 'fad fa-arrows-alt', label: 'Layout' },
 	{ id: 'animation', icon: 'fad fa-camera-movie', label: 'Animation' },
+	{ id: 'data', icon: 'fad fa-layer-plus', label: 'Data' },
 	{ id: 'about', icon: 'fad fa-info-circle', label: 'About' },
 ];
 
