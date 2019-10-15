@@ -1,23 +1,25 @@
 <script>
-  import { center } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import HelperText from "@smui/textfield/helper-text/index";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
 
+  const dispatch = createEventDispatcher();
+  export let center;
   let centerX = "";
   let centerY = "";
 
   onMount(async () => {
     await tick();
-    centerX = $center[0];
-    centerY = $center[1];
+    centerX = center[0];
+    centerY = center[1];
   });
 
-  $: if (centerX || centerY) {
-    $center[0] = centerX;
-    $center[1] = centerY;
+
+$: if (centerX || centerY) {
+   dispatch("center", [centerX, centerY]);
   }
 </script>
 

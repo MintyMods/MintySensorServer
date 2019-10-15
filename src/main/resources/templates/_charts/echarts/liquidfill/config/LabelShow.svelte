@@ -1,13 +1,16 @@
 <script>
-  import { labelShow } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import Switch from "@smui/switch";
   import FormField from "@smui/form-field";
 
-  let labelShowChecked = true;
-  $: $labelShow = labelShowChecked;
+  const dispatch = createEventDispatcher();
+  export let labelShow;
+  $: if (labelShow || !labelShow) {
+    dispatch("labelShow", labelShow);
+  }
 </script>
 
 <FormField>
-  <Switch bind:checked={labelShowChecked} />
+  <Switch bind:checked={labelShow} />
   <span slot="label">Show label</span>
 </FormField>

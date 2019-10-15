@@ -1,36 +1,23 @@
 <script>
-  import { animationEasing } from "./echarts-liquid-fill-store.js";
-  import { onMount, tick } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import Select, { Option } from "@smui/select";
   import HelperText from "@smui/textfield/helper-text/index";
+  import { EASING } from "./constants.js";
 
-  const EASING = [
-    "linear",
-    "ease",
-    "ease-in",
-    "ease-out",
-    "ease-in-out",
-    "step-start",
-    "step-end"
-  ];
+  const dispatch = createEventDispatcher();
+  export let animationEasing;
 
-  onMount(async () => {
-    await tick();
-    animationEasingSelected = $animationEasing;
-  });
-
-  let animationEasingSelected;
-  $: if (animationEasingSelected) {
-    $animationEasing = animationEasingSelected;
+  $: if (animationEasing) {
+    dispatch("animationEasing", animationEasing);
   }
 </script>
 
 <Select
   enhanced
-  bind:value={animationEasingSelected}
+  bind:value={animationEasing}
   label="Initial Animation Easing (waves rise from bottom)">
   {#each EASING as easing}
-    <Option value={easing} selected={animationEasingSelected === easing}>
+    <Option value={easing} selected={animationEasing === easing}>
       {easing}
     </Option>
   {/each}

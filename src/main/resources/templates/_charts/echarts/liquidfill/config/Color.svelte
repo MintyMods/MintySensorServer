@@ -1,14 +1,16 @@
 <script>
-  import { color } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
   import HelperText from "@smui/textfield/helper-text/index";
 
+  const dispatch = createEventDispatcher();
+  export let color;
+
   onMount(async () => {
     await tick();
-    colorText = $color;
     initPickr();
   });
 
@@ -17,7 +19,7 @@
     pickr = Pickr.create({
       el: document.getElementById("color-picker"),
       theme: "nano",
-      default: colorText,
+      default: color,
       components: {
         preview: true,
         opacity: true,
@@ -25,17 +27,16 @@
       }
     });
     pickr.on("changestop", instance => {
-      colorText = instance
+      color = instance
         .getColor()
         .toRGBA()
         .toString(2);
     });
   }
 
-  let colorText = "";
-  $: if (colorText) {
-    pickr.setColor(colorText);
-    $color = colorText;
+  $: if (color && pickr) {
+    pickr.setColor(color);
+    dispatch("color", color);
   }
 </script>
 
@@ -47,11 +48,10 @@
   }
 </style>
 
+{#each color as item, index}
 <div class="color-picker-wrapper">
-  <Textfield
-    withLeadingIcon
-    bind:value={colorText}
-    label="Wave colour" />
+  <Textfield withLeadingIcon bind:value={color} label="Wave colour" />
   <div id="color-picker" />
 </div>
 <HelperText />
+{/each}

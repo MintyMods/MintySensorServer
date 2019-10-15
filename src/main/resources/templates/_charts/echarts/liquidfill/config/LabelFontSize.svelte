@@ -1,21 +1,17 @@
 <script>
-  import { labelFontSize } from "./echarts-liquid-fill-store.js";
-  import { onMount, tick } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import HelperText from "@smui/textfield/helper-text/index";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
 
-  onMount(async () => {
-    await tick();
-    labelFontSizeText = $labelFontSize;
-  });
+  const dispatch = createEventDispatcher();
+  export let labelFontSize;
 
-  let labelFontSizeText = "";
-  $: if (labelFontSizeText) {
-    $labelFontSize = labelFontSizeText;
+  $: if (labelFontSize) {
+    dispatch("labelFontSize", labelFontSize);
   }
 </script>
 
-<Textfield bind:value={labelFontSizeText} label="Label font size" />
+<Textfield bind:value={labelFontSize} label="Label font size" />
 <HelperText />

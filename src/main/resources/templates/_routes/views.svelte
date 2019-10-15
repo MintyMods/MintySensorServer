@@ -74,7 +74,7 @@
     document.getElementById("toolbar-" + id).classList.add("toolbar-active");
   }
   function hideToolBar(id) {
-    document.getElementById("toolbar-" + id).classList.remove("toolbar-active");
+    //document.getElementById("toolbar-" + id).classList.remove("toolbar-active");
   }
 
   function buildLayout() {
@@ -156,9 +156,9 @@
       {cols}
       gap={5}
       rowHeight={100}
-      fillEmpty={true}
-      useTransform={false}
-      static={true}
+      fillEmpty={false}
+      useTransform={true}
+      static={false}
       bind:items
       let:item>
       <div

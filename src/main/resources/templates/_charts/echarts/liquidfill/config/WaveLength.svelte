@@ -1,21 +1,17 @@
 <script>
-  import { waveLength } from "./echarts-liquid-fill-store.js";
-  import { onMount, tick } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import HelperText from "@smui/textfield/helper-text/index";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
 
-  onMount(async () => {
-    await tick();
-    waveLengthText = $waveLength;
-  });
+  const dispatch = createEventDispatcher();
+  export let waveLength;
 
-  let waveLengthText = "";
-  $: if (waveLengthText) {
-    $waveLength = waveLengthText;
+  $: if (waveLength) {
+    dispatch("waveLength", waveLength);
   }
 </script>
 
-<Textfield bind:value={waveLengthText} label="Wave length" />
+<Textfield bind:value={waveLength} label="Wave length" />
 <HelperText>Value in pixels 'px' or as a percentage '%'</HelperText>

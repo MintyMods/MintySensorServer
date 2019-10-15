@@ -1,11 +1,13 @@
 <script>
   import { afterUpdate, onMount, tick } from "svelte";
-  import { MDCDialog } from "@material/dialog";
+  import { createEventDispatcher } from "svelte";
+
   import Dialog, { Title, Content, Actions, InitialFocus } from "@smui/dialog";
   import Card, { Media, MediaContent } from "@smui/card";
   import Button from "@smui/button";
   import Tab, { Icon, Label } from "@smui/tab";
   import TabBar from "@smui/tab-bar";
+
   // Configuration Input Fields
   import About from "./config/About";
   import Shape from "./config/Shape";
@@ -47,7 +49,48 @@
   import LabelBaseline from "./config/LabelBaseline";
   import LabelPosition from "./config/LabelPosition";
 
-  let iconTabs = [
+  // Props
+  export let color;
+  export let center = ['50%','50%'];
+  export let radius;
+  export let amplitude;
+  export let waveLength;
+  export let period;
+  export let direction;
+  export let shape;
+  export let waveAnimation;
+  export let animationEasing;
+  export let animationEasingUpdate;
+  export let animationDuration;
+  export let animationDurationUpdate;
+  export let outlineShow;
+  export let outlineBorderDistance;
+  export let outlineitemStyleColor;
+  export let outlineitemStyleBorderColor;
+  export let outlineitemStyleBorderWidth;
+  export let outlineitemStyleShadowBlur;
+  export let outlineitemStyleShadowColor;
+  export let backgroundStyleColor;
+  export let backgroundStyleBorderWidth;
+  export let backgroundStyleBorderColor;
+  export let backgroundStyleItemStyleShadowBlur;
+  export let backgroundStyleItemStyleShadowColor;
+  export let backgroundStyleItemStyleOpacity;
+  export let itemStyleOpacity;
+  export let itemStyleShadowBlur;
+  export let itemStyleShadowColor;
+  export let emphasisItemStyleOpacity;
+  export let labelShow;
+  export let labelColor;
+  export let labelInsideColor;
+  export let labelFontSize;
+  export let labelFontWeight;
+  export let labelAlign;
+  export let labelBaseline;
+  export let labelPosition;
+  export let showConfigurationDialog;
+
+  const TABS = [
     { id: "data", icon: "fad fa-layer-plus", label: "Data" },
     { id: "wave", icon: "fad fa-water", label: "Wave" },
     { id: "outline", icon: "fad fa-border-all", label: "Outline" },
@@ -57,42 +100,26 @@
     { id: "animation", icon: "fad fa-camera-movie", label: "Animation" },
     { id: "about", icon: "fad fa-info-circle", label: "About" }
   ];
+  const dispatch = createEventDispatcher();
 
   export let data;
   export let chart;
 
-  onMount(async () => {
-    await tick();
-    // const dialog = new MDCDialog(document.querySelector(".mdc-dialog"));
-    // dialog.listen("MDCDialog:opened", () => {
+  // export const openDialog = item => {
+  //   data = data;
+  //   dialog && dialog.open();
+  // };
 
-
-    // });
-  });
-
-  export const openDialog = item => {
-    data = data;
-    cloneChart(item);
-    dialog && dialog.open();
-  };
-
-  export const closeDialog = () => {
-    dialog.close();
-  };
+  // export const closeDialog = () => {
+  //   dialog.close();
+  // };
 
   let dialog;
   let shapeSelected;
   let activeTab;
 
-  $: dialog && dialog.open(); // @todo remove after issue seen
-
-  function cloneChart(item) {
-    chart;
-    let gridItem = document.getElementById(item.id);
-    let canvas = gridItem.querySelector("canvas");
-    let clone = chart.cloneNode(true);
-    let preview = document.getElementById("preview");
-    preview.replaceChild(clone, preview.querySelector(".place-holder"));
+  $: if (showConfigurationDialog) {
+    dialog && dialog.open();
   }
 </script>
 
@@ -123,7 +150,7 @@
     <Content class="content" id="content">
       <div class="config-wrapper">
 
-        <TabBar tabs={iconTabs} let:tab minWidth bind:active={activeTab}>
+        <TabBar tabs={TABS} let:tab minWidth bind:active={activeTab}>
           <Tab {tab}>
             <Icon class={tab.icon} />
             <Label>{tab.label}</Label>
@@ -133,49 +160,81 @@
         {#if activeTab && activeTab.id === 'data'}
           <div />
         {:else if activeTab && activeTab.id === 'layout'}
-          <Center />
-          <Amplitude />
-          <WaveLength />
-          <Radius />
-          <Shape />
+          <Center {center} on:center />
+          <Amplitude {amplitude} on:amplitude />
+          <WaveLength {waveLength} on:waveLength />
+          <Radius {radius} on:radius />
+          <Shape {shape} on:shape />
         {:else if activeTab && activeTab.id === 'wave'}
-          <Color />
-          <ItemStyleShadowColor />
-          <ItemStyleShadowBlur />
-          <ItemStyleOpacity />
-          <EmphasisItemStyleOpacity />
+          <!-- <Color {color} on:color /> -->
+          <ItemStyleShadowColor
+            {itemStyleShadowColor}
+            on:itemStyleShadowColor />
+          <ItemStyleShadowBlur {itemStyleShadowBlur} on:itemStyleShadowBlur />
+          <ItemStyleOpacity {itemStyleOpacity} on:itemStyleOpacity />
+          <EmphasisItemStyleOpacity
+            {emphasisItemStyleOpacity}
+            on:emphasisItemStyleOpacity />
         {:else if activeTab && activeTab.id === 'outline'}
-          <OutlineitemStyleColor />
-          <OutlineitemStyleBorderColor />
-          <OutlineitemStyleShadowColor />
-          <OutlineBorderDistance />
-          <OutlineitemStyleBorderWidth />
-          <OutlineitemStyleShadowBlur />
-          <OutlineShow />
+          <OutlineitemStyleColor
+            {outlineitemStyleColor}
+            on:outlineitemStyleColor />
+          <OutlineitemStyleBorderColor
+            {outlineitemStyleBorderColor}
+            on:outlineitemStyleBorderColor />
+          <OutlineitemStyleShadowColor
+            {outlineitemStyleShadowColor}
+            on:outlineitemStyleShadowColor />
+          <OutlineBorderDistance
+            {outlineBorderDistance}
+            on:outlineBorderDistance />
+          <OutlineitemStyleBorderWidth
+            {outlineitemStyleBorderWidth}
+            on:outlineitemStyleBorderWidth />
+          <OutlineitemStyleShadowBlur
+            {outlineitemStyleShadowBlur}
+            on:outlineitemStyleShadowBlur />
+          <OutlineShow {outlineShow} on:outlineShow />
         {:else if activeTab && activeTab.id === 'background'}
-          <BackgroundStyleColor />
-          <BackgroundStyleBorderColor />
-          <BackgroundStyleItemStyleShadowColor />
-          <BackgroundStyleBorderWidth />
-          <BackgroundStyleItemStyleOpacity />
-          <BackgroundStyleItemStyleShadowBlur />
+          <BackgroundStyleColor
+            {backgroundStyleColor}
+            on:backgroundStyleColor />
+          <BackgroundStyleBorderColor
+            {backgroundStyleBorderColor}
+            on:backgroundStyleBorderColor />
+          <BackgroundStyleItemStyleShadowColor
+            {backgroundStyleItemStyleShadowColor}
+            on:backgroundStyleItemStyleShadowColor />
+          <BackgroundStyleBorderWidth
+            {backgroundStyleBorderWidth}
+            on:backgroundStyleBorderWidth />
+          <BackgroundStyleItemStyleOpacity
+            {backgroundStyleItemStyleOpacity}
+            on:backgroundStyleItemStyleOpacity />
+          <BackgroundStyleItemStyleShadowBlur
+            {backgroundStyleItemStyleShadowBlur}
+            on:backgroundStyleItemStyleShadowBlur />
         {:else if activeTab && activeTab.id === 'label'}
-          <LabelColor />
-          <LabelInsideColor />
-          <LabelFontSize />
-          <LabelFontWeight />
-          <LabelAlign />
-          <LabelBaseline />
-          <LabelPosition />
-          <LabelShow />
+          <LabelColor {labelColor} on:labelColor />
+          <LabelInsideColor {labelInsideColor} on:labelInsideColor />
+          <LabelFontSize {labelFontSize} on:labelFontSize />
+          <LabelFontWeight {labelFontWeight} on:labelFontWeight />
+          <LabelAlign {labelAlign} on:labelAlign />
+          <LabelBaseline {labelBaseline} on:labelBaseline />
+          <LabelPosition {labelPosition} on:labelPosition />
+          <LabelShow {labelShow} on:labelShow />
         {:else if activeTab && activeTab.id === 'animation'}
-          <Period />
-          <AnimationDuration />
-          <AnimationDurationUpdate />
-          <AnimationEasing />
-          <AnimationEasingUpdate />
-          <WaveAnimation />
-          <Direction />
+          <Period {period} on:period />
+          <AnimationDuration {animationDuration} on:animationDuration />
+          <AnimationDurationUpdate
+            {animationDurationUpdate}
+            on:animationDurationUpdate />
+          <AnimationEasing {animationEasing} on:animationEasing />
+          <AnimationEasingUpdate
+            {animationEasingUpdate}
+            on:animationEasingUpdate />
+          <WaveAnimation {waveAnimation} on:waveAnimation />
+          <Direction {direction} on:direction />
         {:else if activeTab && activeTab.id === 'about'}
           <About />
         {:else}

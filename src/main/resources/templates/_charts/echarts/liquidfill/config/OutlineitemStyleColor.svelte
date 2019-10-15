@@ -1,14 +1,16 @@
 <script>
-  import { outlineitemStyleColor } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
   import HelperText from "@smui/textfield/helper-text/index";
 
+  const dispatch = createEventDispatcher();
+  export let outlineitemStyleColor;
+
   onMount(async () => {
     await tick();
-    outlineitemStyleColorText = $outlineitemStyleColor;
     initPickr();
   });
 
@@ -17,7 +19,7 @@
     pickr = Pickr.create({
       el: document.getElementById("os-color-picker"),
       theme: "nano",
-      default: outlineitemStyleColorText,
+      default: outlineitemStyleColor,
       components: {
         preview: true,
         opacity: true,
@@ -25,17 +27,16 @@
       }
     });
     pickr.on("changestop", instance => {
-      outlineitemStyleColorText = instance
+      outlineitemStyleColor = instance
         .getColor()
         .toRGBA()
         .toString(2);
-   });
+    });
   }
 
-  let outlineitemStyleColorText = "";
-  $: if (outlineitemStyleColorText) {
-    pickr.setColor(outlineitemStyleColorText);
-    $outlineitemStyleColor = outlineitemStyleColorText;
+  $: if (outlineitemStyleColor && pickr) {
+    pickr.setColor(outlineitemStyleColor);
+    dispatch("outlineitemStyleColor", outlineitemStyleColor);
   }
 </script>
 
@@ -50,7 +51,7 @@
 <div class="os-color-picker-wrapper">
   <Textfield
     withLeadingIcon
-    bind:value={outlineitemStyleColorText}
+    bind:value={outlineitemStyleColor}
     label="Outline colour" />
   <div id="os-color-picker" />
 </div>

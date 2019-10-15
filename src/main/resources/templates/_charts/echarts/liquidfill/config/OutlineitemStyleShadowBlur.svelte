@@ -1,5 +1,5 @@
 <script>
-  import { outlineitemStyleShadowBlur } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import { MDCSlider } from "@material/slider";
   import { MDCDialog } from "@material/dialog";
@@ -7,9 +7,11 @@
   import FormField from "@smui/form-field";
   import HelperText from "@smui/textfield/helper-text/index";
 
+  const dispatch = createEventDispatcher();
+  export let outlineitemStyleShadowBlur;
+
   onMount(async () => {
     await tick();
-    outlineitemStyleShadowBlurValue = $outlineitemStyleShadowBlur;
     const dialog = new MDCDialog(document.querySelector(".mdc-dialog"));
     const slider = new MDCSlider(document.querySelector(".mdc-slider"));
     dialog.listen("MDCDialog:opened", () => {
@@ -17,16 +19,15 @@
     });
   });
 
-  let outlineitemStyleShadowBlurValue = "";
-  $: if (outlineitemStyleShadowBlurValue) {
-    $outlineitemStyleShadowBlur = outlineitemStyleShadowBlurValue;
+  $: if (outlineitemStyleShadowBlur) {
+    dispatch("outlineitemStyleShadowBlur", outlineitemStyleShadowBlur);
   }
 </script>
 
 <div class="slider">
   <FormField align="end" style="display: flex;">
     <Slider
-      bind:value={outlineitemStyleShadowBlurValue}
+      bind:value={outlineitemStyleShadowBlur}
       min={-1}
       max={200}
       step={1}
@@ -34,7 +35,7 @@
       displayMarkers />
     <span
       slot="label"
-      title="current value: {outlineitemStyleShadowBlurValue}"
+      title="current value: {outlineitemStyleShadowBlur}"
       style="padding-right: 12px; width: max-content; display: block;">
       Outline shadow blur size
     </span>

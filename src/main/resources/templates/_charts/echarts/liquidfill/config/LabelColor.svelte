@@ -1,14 +1,16 @@
 <script>
-  import { labelColor } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
   import HelperText from "@smui/textfield/helper-text/index";
 
+  const dispatch = createEventDispatcher();
+  export let labelColor;
+
   onMount(async () => {
     await tick();
-    labelColorText = $labelColor;
     initPickr();
   });
 
@@ -17,7 +19,7 @@
     pickr = Pickr.create({
       el: document.getElementById("labelColor-picker"),
       theme: "nano",
-      default: labelColorText,
+      default: labelColor,
       components: {
         preview: true,
         opacity: true,
@@ -25,17 +27,16 @@
       }
     });
     pickr.on("changestop", instance => {
-      labelColorText = instance
+      labelColor = instance
         .getColor()
         .toRGBA()
         .toString(2);
     });
   }
 
-  let labelColorText = "";
-  $: if (labelColorText) {
-    pickr.setColor(labelColorText);
-    $labelColor = labelColorText;
+  $: if (labelColor && pickr) {
+    pickr.setColor(labelColor);
+    dispatch("labelColor", labelColor);
   }
 </script>
 
@@ -50,7 +51,7 @@
 <div class="labelColor-picker-wrapper">
   <Textfield
     withLeadingIcon
-    bind:value={labelColorText}
+    bind:value={labelColor}
     label="Color of text when displayed on background" />
   <div id="labelColor-picker" />
 </div>

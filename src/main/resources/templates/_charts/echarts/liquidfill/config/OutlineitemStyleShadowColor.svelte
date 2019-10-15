@@ -1,14 +1,16 @@
 <script>
-  import { outlineitemStyleShadowColor } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
   import HelperText from "@smui/textfield/helper-text/index";
 
+  const dispatch = createEventDispatcher();
+  export let outlineitemStyleShadowColor;
+
   onMount(async () => {
     await tick();
-    outlineitemStyleShadowColorText = $outlineitemStyleShadowColor;
     initPickr();
   });
 
@@ -17,7 +19,7 @@
     pickr = Pickr.create({
       el: document.getElementById("oss-color-picker"),
       theme: "nano",
-      default: outlineitemStyleShadowColorText,
+      default: outlineitemStyleShadowColor,
       components: {
         preview: true,
         opacity: true,
@@ -25,17 +27,16 @@
       }
     });
     pickr.on("changestop", instance => {
-      outlineitemStyleShadowColorText = instance
+      outlineitemStyleShadowColor = instance
         .getColor()
         .toRGBA()
         .toString(2);
     });
   }
 
-  let outlineitemStyleShadowColorText = "";
-  $: if (outlineitemStyleShadowColorText) {
-    pickr.setColor(outlineitemStyleShadowColorText);
-    $outlineitemStyleShadowColor = outlineitemStyleShadowColorText;
+  $: if (outlineitemStyleShadowColor && pickr) {
+    pickr.setColor(outlineitemStyleShadowColor);
+    dispatch("outlineitemStyleShadowColor", outlineitemStyleShadowColor);
   }
 </script>
 
@@ -50,7 +51,7 @@
 <div class="oss-color-picker-wrapper">
   <Textfield
     withLeadingIcon
-    bind:value={outlineitemStyleShadowColorText}
+    bind:value={outlineitemStyleShadowColor}
     label="Outline shadow colour" />
   <div id="oss-color-picker" />
 </div>

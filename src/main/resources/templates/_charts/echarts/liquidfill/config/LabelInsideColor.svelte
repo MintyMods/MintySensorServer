@@ -1,14 +1,17 @@
 <script>
-  import { labelInsideColor } from "./echarts-liquid-fill-store.js";
+  
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
   import HelperText from "@smui/textfield/helper-text/index";
 
+    const dispatch = createEventDispatcher();
+  export let labelInsideColor;
+
   onMount(async () => {
     await tick();
-    labelInsideColorText = $labelInsideColor;
     initPickr();
   });
 
@@ -17,7 +20,7 @@
     pickr = Pickr.create({
       el: document.getElementById("li-color-picker"),
       theme: "nano",
-      default: labelInsideColorText,
+      default: labelInsideColor,
       components: {
         preview: true,
         opacity: true,
@@ -25,17 +28,17 @@
       }
     });
     pickr.on("changestop", instance => {
-      labelInsideColorText = instance
+      labelInsideColor = instance
         .getColor()
         .toRGBA()
         .toString(2);
     });
   }
 
-  let labelInsideColorText = "";
-  $: if (labelInsideColorText) {
-    pickr.setColor(labelInsideColorText);
-    $labelInsideColor = labelInsideColorText;
+
+  $: if (labelInsideColor && pickr) {
+    pickr.setColor(labelInsideColor);
+    dispatch('labelInsideColor', labelInsideColor);
   }
 </script>
 
@@ -50,7 +53,7 @@
 <div class="li-color-picker-wrapper">
   <Textfield
     withLeadingIcon
-    bind:value={labelInsideColorText}
+    bind:value={labelInsideColor}
     label="Color of text while displayed over a wave" />
   <div id="li-color-picker" />
 </div>

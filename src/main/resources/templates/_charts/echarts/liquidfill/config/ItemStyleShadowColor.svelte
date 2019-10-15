@@ -1,14 +1,16 @@
 <script>
-  import { itemStyleShadowColor } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
   import HelperText from "@smui/textfield/helper-text/index";
+  const dispatch = createEventDispatcher();
+
+  export let itemStyleShadowColor;
 
   onMount(async () => {
     await tick();
-    itemStyleShadowColorText = $itemStyleShadowColor;
     initPickr();
   });
 
@@ -17,7 +19,7 @@
     pickr = Pickr.create({
       el: document.getElementById("iss-color-picker"),
       theme: "nano",
-      default: itemStyleShadowColorText,
+      default: itemStyleShadowColor,
       components: {
         preview: true,
         opacity: true,
@@ -25,17 +27,16 @@
       }
     });
     pickr.on("changestop", instance => {
-      itemStyleShadowColorText = instance
+      itemStyleShadowColor = instance
         .getColor()
         .toRGBA()
         .toString(2);
-   });
+    });
   }
 
-  let itemStyleShadowColorText = "";
-  $: if (itemStyleShadowColorText) {
-    pickr.setColor(itemStyleShadowColorText);
-    $itemStyleShadowColor = itemStyleShadowColorText;
+  $: if (itemStyleShadowColor && pickr) {
+    pickr.setColor(itemStyleShadowColor);
+    dispatch("itemStyleShadowColor", itemStyleShadowColor);
   }
 </script>
 
@@ -50,7 +51,7 @@
 <div class="iss-color-picker-wrapper">
   <Textfield
     withLeadingIcon
-    bind:value={itemStyleShadowColorText}
+    bind:value={itemStyleShadowColor}
     label="Wave shadow colour" />
   <div id="iss-color-picker" />
 </div>

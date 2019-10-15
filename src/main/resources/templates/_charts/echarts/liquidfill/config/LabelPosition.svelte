@@ -1,27 +1,20 @@
 <script>
-  import { labelPosition } from "./echarts-liquid-fill-store.js";
-  import { onMount, tick } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import Select, { Option } from "@smui/select";
   import HelperText from "@smui/textfield/helper-text/index";
 
+  const dispatch = createEventDispatcher();
   const POSTITION = ["inside", "left", "right", "top", "bottom"];
 
-  onMount(async () => {
-    await tick();
-    labelPositionSelected = $labelPosition;
-  });
-
-  let labelPositionSelected;
-  $: if (labelPositionSelected) {
-    $labelPosition = labelPositionSelected;
+  export let labelPosition;
+  $: if (labelPosition) {
+    dispatch("labelPosition", labelPosition);
   }
 </script>
 
-<Select enhanced bind:value={labelPositionSelected} label="Label position">
+<Select enhanced bind:value={labelPosition} label="Label position">
   {#each POSTITION as align}
-    <Option value={align} selected={labelPositionSelected === align}>
-      {align}
-    </Option>
+    <Option value={align} selected={labelPosition === align}>{align}</Option>
   {/each}
 </Select>
 <HelperText />

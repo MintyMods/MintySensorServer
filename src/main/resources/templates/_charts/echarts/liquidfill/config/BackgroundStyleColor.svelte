@@ -1,15 +1,17 @@
 <script>
-  import { backgroundStyleColor } from "./echarts-liquid-fill-store.js";
+    import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
   import HelperText from "@smui/textfield/helper-text/index";
 
+    const dispatch = createEventDispatcher();
+  export let backgroundStyleColor;
+
   onMount(async () => {
     await tick();
-    backgroundStyleColorText = $backgroundStyleColor;
-    initPickr();
+      initPickr();
   });
 
   let pickr;
@@ -17,7 +19,7 @@
     pickr = Pickr.create({
       el: document.getElementById("bs-color-picker"),
       theme: "nano",
-      default: backgroundStyleColorText,
+      default: backgroundStyleColor,
       components: {
         preview: true,
         opacity: true,
@@ -25,17 +27,16 @@
       }
     });
     pickr.on("changestop", instance => {
-      backgroundStyleColorText = instance
+      backgroundStyleColor = instance
         .getColor()
         .toRGBA()
         .toString(2);
     });
   }
 
-  let backgroundStyleColorText = "";
-  $: if (backgroundStyleColorText) {
-    pickr.setColor(backgroundStyleColorText);
-    $backgroundStyleColor = backgroundStyleColorText;
+  $: if (backgroundStyleColor && pickr) {
+    pickr.setColor(backgroundStyleColor);
+    dispatch('backgroundStyleColor', backgroundStyleColor);
   }
 </script>
 
@@ -50,7 +51,7 @@
 <div class="bs-color-picker-wrapper">
   <Textfield
     withLeadingIcon
-    bind:value={backgroundStyleColorText}
+    bind:value={backgroundStyleColor}
     label="Background fill colour" />
   <div id="bs-color-picker" />
 </div>

@@ -1,5 +1,5 @@
 <script>
-  import { itemStyleShadowBlur } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import { MDCSlider } from "@material/slider";
   import { MDCDialog } from "@material/dialog";
@@ -7,9 +7,11 @@
   import FormField from "@smui/form-field";
   import HelperText from "@smui/textfield/helper-text/index";
 
+  const dispatch = createEventDispatcher();
+  export let itemStyleShadowBlur;
+
   onMount(async () => {
     await tick();
-    itemStyleShadowBlurValue = $itemStyleShadowBlur;
     const dialog = new MDCDialog(document.querySelector(".mdc-dialog"));
     const slider = new MDCSlider(document.querySelector(".mdc-slider"));
     dialog.listen("MDCDialog:opened", () => {
@@ -17,16 +19,15 @@
     });
   });
 
-  let itemStyleShadowBlurValue = "";
-  $: if (itemStyleShadowBlurValue) {
-    $itemStyleShadowBlur = itemStyleShadowBlurValue;
+  $: if (itemStyleShadowBlur) {
+    dispatch("itemStyleShadowBlur", itemStyleShadowBlur);
   }
 </script>
 
 <div class="slider">
   <FormField align="end" style="display: flex;">
     <Slider
-      bind:value={itemStyleShadowBlurValue}
+      bind:value={itemStyleShadowBlur}
       min={0}
       max={25}
       step={1}
@@ -34,7 +35,7 @@
       displayMarkers />
     <span
       slot="label"
-      title="current value: {itemStyleShadowBlurValue}"
+      title="current value: {itemStyleShadowBlur}"
       style="padding-right: 12px; width: max-content; display: block;">
       Wave shadow blur size
     </span>

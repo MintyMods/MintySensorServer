@@ -1,14 +1,16 @@
 <script>
-  import { backgroundStyleBorderColor } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
   import HelperText from "@smui/textfield/helper-text/index";
 
+  const dispatch = createEventDispatcher();
+  export let backgroundStyleBorderColor;
+
   onMount(async () => {
     await tick();
-    backgroundStyleBorderColorText = $backgroundStyleBorderColor;
     initPickr();
   });
 
@@ -17,7 +19,7 @@
     pickr = Pickr.create({
       el: document.getElementById("bsb-color-picker"),
       theme: "nano",
-      default: backgroundStyleBorderColorText,
+      default: backgroundStyleBorderColor,
       components: {
         preview: true,
         opacity: true,
@@ -25,17 +27,16 @@
       }
     });
     pickr.on("changestop", instance => {
-      backgroundStyleBorderColorText = instance
+      backgroundStyleBorderColor = instance
         .getColor()
         .toRGBA()
         .toString(2);
     });
   }
 
-  let backgroundStyleBorderColorText = "";
-  $: if (backgroundStyleBorderColorText) {
-    pickr.setColor(backgroundStyleBorderColorText);
-    $backgroundStyleBorderColor = backgroundStyleBorderColorText;
+  $: if (backgroundStyleBorderColor && pickr) {
+    pickr.setColor(backgroundStyleBorderColor);
+    dispatch("backgroundStyleBorderColor", backgroundStyleBorderColor);
   }
 </script>
 
@@ -50,7 +51,7 @@
 <div class="bsb-color-picker-wrapper">
   <Textfield
     withLeadingIcon
-    bind:value={backgroundStyleBorderColorText}
+    bind:value={backgroundStyleBorderColor}
     label="Background border colour" />
   <div id="bsb-color-picker" />
 </div>

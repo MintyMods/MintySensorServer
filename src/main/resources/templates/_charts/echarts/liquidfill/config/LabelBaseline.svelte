@@ -1,27 +1,20 @@
 <script>
-  import { labelBaseline } from "./echarts-liquid-fill-store.js";
-  import { onMount, tick } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import Select, { Option } from "@smui/select";
   import HelperText from "@smui/textfield/helper-text/index";
 
+  const dispatch = createEventDispatcher();
   const BASELINE = ["top", "middle", "bottom"];
+  export let labelBaseline;
 
-  onMount(async () => {
-    await tick();
-    labelBaselineSelected = $labelBaseline;
-  });
-
-  let labelBaselineSelected;
-  $: if (labelBaselineSelected) {
-    $labelBaseline = labelBaselineSelected;
+  $: if (labelBaseline) {
+    dispatch("labelBaseline", labelBaseline);
   }
 </script>
 
-<Select enhanced bind:value={labelBaselineSelected} label="Label baseline">
+<Select enhanced bind:value={labelBaseline} label="Label baseline">
   {#each BASELINE as align}
-    <Option value={align} selected={labelBaselineSelected === align}>
-      {align}
-    </Option>
+    <Option value={align} selected={labelBaseline === align}>{align}</Option>
   {/each}
 </Select>
 <HelperText />

@@ -1,23 +1,19 @@
 <script>
-  import { animationDuration } from "./echarts-liquid-fill-store.js";
-  import { onMount, tick } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import HelperText from "@smui/textfield/helper-text/index";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
 
-  onMount(async () => {
-    await tick();
-    animationDurationText = $animationDuration;
-  });
+  const dispatch = createEventDispatcher();
+  export let animationDuration;
 
-  let animationDurationText = "";
-  $: if (animationDurationText) {
-    $animationDuration = animationDurationText;
+  $: if (animationDuration) {
+    dispatch('animationDuration', animationDuration);
   }
 </script>
 
 <Textfield
-  bind:value={animationDurationText}
+  bind:value={animationDuration}
   label="Initial animation duration" />
 <HelperText>value in milliseconds</HelperText>

@@ -1,5 +1,5 @@
 <script>
-  import { itemStyleOpacity } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import { MDCSlider } from "@material/slider";
   import { MDCDialog } from "@material/dialog";
@@ -7,9 +7,11 @@
   import FormField from "@smui/form-field";
   import HelperText from "@smui/textfield/helper-text/index";
 
+  const dispatch = createEventDispatcher();
+  export let itemStyleOpacity;
+
   onMount(async () => {
     await tick();
-    itemStyleOpacityValue = $itemStyleOpacity;
     const dialog = new MDCDialog(document.querySelector(".mdc-dialog"));
     const slider = new MDCSlider(document.querySelector(".mdc-slider"));
     dialog.listen("MDCDialog:opened", () => {
@@ -17,18 +19,17 @@
     });
   });
 
-  let itemStyleOpacityValue = "";
-  $: if (itemStyleOpacityValue) {
-    $itemStyleOpacity = itemStyleOpacityValue;
+  $: if (itemStyleOpacity) {
+    dispatch("itemStyleOpacity", itemStyleOpacity);
   }
 </script>
 
 <div class="slider">
   <FormField align="end" style="display: flex;">
-    <Slider bind:value={itemStyleOpacityValue} min={0} max={1} />
+    <Slider bind:value={itemStyleOpacity} min={0} max={1} />
     <span
       slot="label"
-      title="current value: {itemStyleOpacityValue}"
+      title="current value: {itemStyleOpacity}"
       style="padding-right: 12px; width: max-content; display: block;">
       Wave opacity
     </span>

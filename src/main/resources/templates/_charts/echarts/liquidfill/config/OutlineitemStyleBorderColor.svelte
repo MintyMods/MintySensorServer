@@ -1,14 +1,16 @@
 <script>
-  import { outlineitemStyleBorderColor } from "./echarts-liquid-fill-store.js";
+  import { createEventDispatcher } from "svelte";
   import { onMount, tick } from "svelte";
   import Textfield, { Input, Textarea } from "@smui/textfield";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
   import HelperText from "@smui/textfield/helper-text/index";
 
+    const dispatch = createEventDispatcher();
+  export let outlineitemStyleBorderColor;
+
   onMount(async () => {
     await tick();
-    outlineitemStyleBorderColorText = $outlineitemStyleBorderColor;
     initPickr();
   });
 
@@ -17,7 +19,7 @@
     pickr = Pickr.create({
       el: document.getElementById("osb-color-picker"),
       theme: "nano",
-      default: outlineitemStyleBorderColorText,
+      default: outlineitemStyleBorderColor,
       components: {
         preview: true,
         opacity: true,
@@ -25,17 +27,16 @@
       }
     });
     pickr.on("changestop", instance => {
-      outlineitemStyleBorderColorText = instance
+      outlineitemStyleBorderColor = instance
         .getColor()
         .toRGBA()
         .toString(2);
     });
   }
 
-  let outlineitemStyleBorderColorText = "";
-  $: if (outlineitemStyleBorderColorText) {
-    pickr.setColor(outlineitemStyleBorderColorText);
-    $outlineitemStyleBorderColor = outlineitemStyleBorderColorText;
+  $: if (outlineitemStyleBorderColor && pickr) {
+    pickr.setColor(outlineitemStyleBorderColor);
+    dispatch('outlineitemStyleBorderColor', outlineitemStyleBorderColor);
   }
 </script>
 
@@ -50,7 +51,7 @@
 <div class="osb-color-picker-wrapper">
   <Textfield
     withLeadingIcon
-    bind:value={outlineitemStyleBorderColorText}
+    bind:value={outlineitemStyleBorderColor}
     label="Outline border colour" />
   <div id="osb-color-picker" />
 </div>

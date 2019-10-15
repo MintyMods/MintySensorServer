@@ -1,25 +1,21 @@
 <script>
-  import { labelFontWeight } from "./echarts-liquid-fill-store.js";
-  import { onMount, tick } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import Select, { Option } from "@smui/select";
   import HelperText from "@smui/textfield/helper-text/index";
 
-  const FONT_WEIGHT = ["normal", "bolder", "lighter"];
+  const dispatch = createEventDispatcher();
+  const FONT_WEIGHT = ["normal", "bold", "bolder", "lighter"];
 
-  onMount(async () => {
-    await tick();
-    weightSelected = $labelFontWeight;
-  });
+  export let labelFontWeight;
 
-  let weightSelected;
-  $: if (weightSelected) {
-    $labelFontWeight = weightSelected;
+  $: if (labelFontWeight) {
+    dispatch("labelFontWeight", labelFontWeight);
   }
 </script>
 
-<Select enhanced bind:value={weightSelected} label="Label font weight">
+<Select enhanced bind:value={labelFontWeight} label="Label font weight">
   {#each FONT_WEIGHT as weight}
-    <Option value={weight} selected={weightSelected === weight}>
+    <Option value={weight} selected={labelFontWeight === weight}>
       {weight}
     </Option>
   {/each}
