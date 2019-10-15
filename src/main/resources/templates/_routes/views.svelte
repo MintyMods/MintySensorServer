@@ -74,19 +74,18 @@
     document.getElementById("toolbar-" + id).classList.add("toolbar-active");
   }
   function hideToolBar(id) {
-    //document.getElementById("toolbar-" + id).classList.remove("toolbar-active");
+    document.getElementById("toolbar-" + id).classList.remove("toolbar-active");
   }
 
   function buildLayout() {
     let layout = [];
     charts.forEach((chart, i) => {
-      const y = Math.ceil(Math.random() * 4) + 1;
       let current = gridHelp.item({
-        x: (i * 2) % cols,
-        y: Math.floor(i / 6) * y,
-        w: 4,
-        h: y,
-        useTransform: true,
+        x: 1,
+        y: 1,
+        w: 2,
+        h: 4,
+        useTransform: false,
         id: Math.random()
           .toString(36)
           .substr(2, 9)
@@ -109,6 +108,7 @@
     items.some((item, i) => {
       if (item.id === layout.id) {
         hideToolBar(layout.id);
+        console.log("showing config in views");
         instances[i].showConfig(item);
         return true;
       }
@@ -157,13 +157,13 @@
       gap={5}
       rowHeight={100}
       fillEmpty={false}
-      useTransform={true}
+      useTransform={false}
       static={false}
       bind:items
       let:item>
       <div
-        out:fade={{ duration: 300 }}
         id={item.id}
+        on:click={() => showConfig(item)}
         class="content"
         style="background: {item.static ? '#ccccee' : item.data}"
         on:mouseenter={() => showToolBar(item.id)}

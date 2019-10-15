@@ -21,6 +21,7 @@
       });
     }
   });
+
 </script>
 <style>
   .chart {
@@ -32,5 +33,5 @@
   }
 </style>
 <div class="chart">
-<EchartsLiquidFill bind:this={instance} {data}/>
+<EchartsLiquidFill on:click={showConfig} bind:this={instance} {data}/>
 </div>

@@ -89,9 +89,9 @@
       .item(0);
   };
 
-  let showConfigurationDialog = true;
   export const showConfig = item => {
-    showConfigurationDialog = true;
+    console.log("showing config in fill");
+    config.openDialog(item);
   };
 
   export const hideConfig = () => {
@@ -108,12 +108,29 @@
     return path;
   }
 
+  function formatData(data) {
+    // console.log(data);
+    let out = data;
+    if (data > 0 && data < 10) {
+      out = data / 10;
+    } else if (data > 10 && data < 100) {
+      out = data / 100;
+    } else if (data > 100 && data < 1000) {
+      out = data / 1000;
+    } else if (data > 1000 && data < 10000) {
+      out = data / 1000;
+    } else if (data > 10000 && data < 100000) {
+      out = data / 10000;
+    }
+    return out;
+  }
+
   function getOptions() {
     return {
       series: [
         {
           type: "liquidFill",
-          data: [data.value / divide, 0.06],
+          data: [formatData(data.value), 0.06, 0.03, 0.05],
           options: {
             responsive: false
           },
@@ -189,7 +206,6 @@
 <div {id} class="gauge" use:watchResize={resizeChart} />
 
 <EchartsLiquidFillConfig
-  {showConfigurationDialog}
   {data}
   {shape}
   {color}

@@ -1,10 +1,10 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import Select, { Option } from "@smui/select";
+ import Select, { Option } from "@smui/select";
   import HelperText from "@smui/textfield/helper-text/index";
+  import { BASELINE } from "./constants.js";
 
   const dispatch = createEventDispatcher();
-  const BASELINE = ["top", "middle", "bottom"];
   export let labelBaseline;
 
   $: if (labelBaseline) {
@@ -14,7 +14,7 @@
 
 <Select enhanced bind:value={labelBaseline} label="Label baseline">
   {#each BASELINE as align}
-    <Option value={align} selected={labelBaseline === align}>{align}</Option>
+    <Option value={align} selected={align === labelBaseline}>{align}</Option>
   {/each}
 </Select>
 <HelperText />

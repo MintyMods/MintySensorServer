@@ -1,14 +1,14 @@
 <script>
   import { afterUpdate, onMount, tick } from "svelte";
   import { createEventDispatcher } from "svelte";
-
+  import { TABS } from "./config/constants.js";
+    import { MDCSlider } from "@material/slider";
+  import { MDCDialog } from "@material/dialog";
   import Dialog, { Title, Content, Actions, InitialFocus } from "@smui/dialog";
   import Card, { Media, MediaContent } from "@smui/card";
   import Button from "@smui/button";
   import Tab, { Icon, Label } from "@smui/tab";
   import TabBar from "@smui/tab-bar";
-
-  // Configuration Input Fields
   import About from "./config/About";
   import Shape from "./config/Shape";
   import Color from "./config/Color";
@@ -49,9 +49,8 @@
   import LabelBaseline from "./config/LabelBaseline";
   import LabelPosition from "./config/LabelPosition";
 
-  // Props
   export let color;
-  export let center = ['50%','50%'];
+  export let center = ["50%", "50%"];
   export let radius;
   export let amplitude;
   export let waveLength;
@@ -89,38 +88,41 @@
   export let labelBaseline;
   export let labelPosition;
   export let showConfigurationDialog;
-
-  const TABS = [
-    { id: "data", icon: "fad fa-layer-plus", label: "Data" },
-    { id: "wave", icon: "fad fa-water", label: "Wave" },
-    { id: "outline", icon: "fad fa-border-all", label: "Outline" },
-    { id: "background", icon: "fal fa-chess-board", label: "Background" },
-    { id: "label", icon: "fad fa-text-size", label: "Label" },
-    { id: "layout", icon: "fad fa-arrows-alt", label: "Layout" },
-    { id: "animation", icon: "fad fa-camera-movie", label: "Animation" },
-    { id: "about", icon: "fad fa-info-circle", label: "About" }
-  ];
-  const dispatch = createEventDispatcher();
-
   export let data;
   export let chart;
+  const dispatch = createEventDispatcher();
 
-  // export const openDialog = item => {
-  //   data = data;
-  //   dialog && dialog.open();
-  // };
+  export const openDialog = item => {
+    // data = data;
+    console.log("showing dialog");
+    dialog && dialog.open();
+  };
 
-  // export const closeDialog = () => {
-  //   dialog.close();
-  // };
+
+
+  export const closeDialog = () => {
+    dialog.close();
+  };
 
   let dialog;
-  let shapeSelected;
   let activeTab;
+  //<Media class="card-media-16x9" aspectRatio="16x9">
 
-  $: if (showConfigurationDialog) {
-    dialog && dialog.open();
-  }
+
+  onMount(async () => {
+    await tick();
+dialog && dialog.open();
+
+    // const dialog = new MDCDialog(document.querySelector(".mdc-dialog"));
+    // dialog.listen("MDCDialog:opened", () => {
+    //   var newParent = document.getElementById('body');
+    //   var oldParent = document.getElementById('dialog-wrapper');
+    //   while (oldParent.childNodes.length > 0) {
+      //       newParent.appendChild(oldParent.childNodes[0]);
+    //   }
+    // });
+  });
+
 </script>
 
 <style>
@@ -131,13 +133,13 @@
   }
 </style>
 
-{#if data !== undefined}
+<div class="dialog-wrapper">
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
-    <Media class="card-media-16x9" aspectRatio="16x9">
       <div id="preview">
         <span class="place-holder" />
       </div>
-    </Media>
+
+{#if data !== undefined}
     <Title id="title">
       {#if Array.isArray(data)}
         <TabBar tabs={data} let:tab>
@@ -147,6 +149,7 @@
         </TabBar>
       {:else}{data.label.desc}{/if}
     </Title>
+      {/if}
     <Content class="content" id="content">
       <div class="config-wrapper">
 
@@ -164,9 +167,9 @@
           <Amplitude {amplitude} on:amplitude />
           <WaveLength {waveLength} on:waveLength />
           <Radius {radius} on:radius />
-          <Shape {shape} on:shape />
         {:else if activeTab && activeTab.id === 'wave'}
           <!-- <Color {color} on:color /> -->
+          <Shape {shape} on:shape />
           <ItemStyleShadowColor
             {itemStyleShadowColor}
             on:itemStyleShadowColor />
@@ -252,4 +255,4 @@
       </Button>
     </Actions>
   </Dialog>
-{/if}
+  </div>

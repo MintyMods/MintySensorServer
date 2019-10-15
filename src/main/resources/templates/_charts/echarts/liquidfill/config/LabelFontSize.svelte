@@ -13,5 +13,5 @@
   }
 </script>
 
-<Textfield bind:value={labelFontSize} label="Label font size" />
+<Textfield type="number" bind:value={labelFontSize} label="Label font size" />
 <HelperText />

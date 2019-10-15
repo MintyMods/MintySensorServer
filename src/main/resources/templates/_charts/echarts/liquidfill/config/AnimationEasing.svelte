@@ -1,8 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import { EASING } from "./constants.js";
   import Select, { Option } from "@smui/select";
   import HelperText from "@smui/textfield/helper-text/index";
-  import { EASING } from "./constants.js";
 
   const dispatch = createEventDispatcher();
   export let animationEasing;
@@ -17,9 +17,7 @@
   bind:value={animationEasing}
   label="Initial Animation Easing (waves rise from bottom)">
   {#each EASING as easing}
-    <Option value={easing} selected={animationEasing === easing}>
-      {easing}
-    </Option>
+    <Option value={easing.type} selected={easing.type === animationEasing}>{easing.desc}</Option>
   {/each}
 </Select>
 <HelperText>animated rising from bottom during startup</HelperText>

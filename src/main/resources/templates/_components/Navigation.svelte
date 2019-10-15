@@ -1,5 +1,5 @@
 <script>
-  import "./_scss/_navigation.scss";
+  // import "./_scss/_navigation.scss";
   import Logo from "./Logo.svelte";
   import {
     storeIsNavigationOpen,
