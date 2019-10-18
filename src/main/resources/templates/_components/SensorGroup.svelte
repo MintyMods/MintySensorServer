@@ -7,6 +7,7 @@
   } from "../_stores/main-state.js";
   import { createEventDispatcher } from "svelte";
   import { onMount, afterUpdate, tick } from "svelte";
+  import { fade } from 'svelte/transition';
   import Select, { Option } from "@smui/select";
   import HelperText from "@smui/textfield/helper-text/index";
   import Textfield, { Input, Textarea } from "@smui/textfield";
@@ -31,11 +32,11 @@
     SecondaryText
   } from "@smui/list";
   const dispatch = createEventDispatcher();
-  let filterTypes = [].fill(false);
-  let typeRestrict = "@FIX ME Not firing / Change description!! ";
+  let filterTypes = new Array(9).fill(false);
+  let typeRestrict = [];
   let data = [];
   let selected = [];
-  $: showDropZone = selected.length === 0;
+  $: showDropZone = false;
   $: data = $storeReadings.filter(reading => isSelected(reading));
   $: filterText = "";
   $: sensorId = "";
@@ -115,7 +116,7 @@
       on:dragenter={event => event.target.classList.add('drop-active')}
       on:dragleave={event => event.target.classList.remove('drop-active')}
       on:dragover={event => event.preventDefault()}>
-      <i class="fad fa-sync fa-6x fa-spin" />
+      <i class="fad fa-sync fa-6x slow-spin" />
     </div>
   {/if}
 
@@ -141,6 +142,15 @@
         </Item>
         <Separator />
       {/each}
+      {#if selected.length === 0}
+        <Item disabled>
+          <Text class="center">
+            <SecondaryText></SecondaryText>
+            <PrimaryText style="text-align:center">No Active Readings</PrimaryText>
+            <SecondaryText>drag-&-drop a sensor reading here</SecondaryText>
+          </Text>
+        </Item>
+      {/if}
     </List>
   </div>
 
@@ -173,10 +183,10 @@
 
   <Select
     enhanced
-    label="Filter by type {typeRestrict}"
-    bind:value={typeRestrict}>
+    bind:value={typeRestrict}
+    label="Filter by type {typeRestrict}">
     {#each $storeTypes as type, index}
-      <Option value="bbbb+{index}">
+      <Option value="{index}">
         <Item style="width:100%">
           <FormField class="type-toggle-wrapper">
             <Switch bind:checked={filterTypes[index]} class="type-toggle" />
@@ -201,7 +211,7 @@
   </Select>
 
   <Select enhanced bind:value={sensorId} label="Filter by device">
-    <Option />
+    <Option/>
     {#each $storeSensors as sensor}
       <Option
         value={getSensorId(sensor)}

@@ -19,7 +19,12 @@
     z-index: 1;
     cursor: grab;
 }
-
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
 .chip-wrapper {
 	display: flex;
 }
@@ -89,16 +94,11 @@
 
 .drop-active {
     color: var(--theme-on-primary);
-    
 }
 
 .data-list {
-
     min-height: 158px;
-
 }
-
-
 
 .readings-container {
 	background-color: rgba(255, 255, 255, 0.52);
@@ -126,3 +126,7 @@
 .mdc-form-field label {
 	cursor: pointer;
 }
+.slow-spin {
+    -webkit-animation: fa-spin 6s infinite linear;
+    animation: fa-spin 6s infinite linear;
+  }
