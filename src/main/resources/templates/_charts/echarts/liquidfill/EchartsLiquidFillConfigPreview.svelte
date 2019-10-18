@@ -89,16 +89,7 @@
       .item(0);
   };
 
-  export const showConfig = item => {
-    console.log("showing config in fill");
-    config.openDialog(item);
-  };
-
-  export const hideConfig = () => {
-    config.closeDialog();
-  };
-
-  function getShape() {
+    function getShape() {
     let path;
     SHAPES.forEach(item => {
       if (item.type === shape) {
@@ -205,83 +196,3 @@
 
 <div {id} class="gauge" use:watchResize={resizeChart} />
 
-<EchartsLiquidFillConfig
-  owner={id}
-  {data}
-  {shape}
-  {color}
-  {center}
-  {radius}
-  {amplitude}
-  {waveLength}
-  {period}
-  {direction}
-  {waveAnimation}
-  {animationEasing}
-  {animationEasingUpdate}
-  {animationDuration}
-  {animationDurationUpdate}
-  {outlineShow}
-  {outlineBorderDistance}
-  {outlineitemStyleColor}
-  {outlineitemStyleBorderColor}
-  {outlineitemStyleBorderWidth}
-  {outlineitemStyleShadowBlur}
-  {outlineitemStyleShadowColor}
-  {backgroundStyleColor}
-  {backgroundStyleBorderWidth}
-  {backgroundStyleBorderColor}
-  {backgroundStyleItemStyleShadowBlur}
-  {backgroundStyleItemStyleShadowColor}
-  {backgroundStyleItemStyleOpacity}
-  {itemStyleOpacity}
-  {itemStyleShadowBlur}
-  {itemStyleShadowColor}
-  {emphasisItemStyleOpacity}
-  {labelShow}
-  {labelColor}
-  {labelInsideColor}
-  {labelFontSize}
-  {labelFontWeight}
-  {labelAlign}
-  {labelBaseline}
-  {labelPosition}
-  bind:this={config}
-  on:shape={event => (shape = event.detail)}
-  on:color={event => (color = event.detail)}
-  on:center={event => (center = event.detail)}
-  on:radius={event => (radius = event.detail)}
-  on:amplitude={event => (amplitude = event.detail)}
-  on:waveLength={event => (waveLength = event.detail)}
-  on:period={event => (period = event.detail)}
-  on:direction={event => (direction = event.detail)}
-  on:waveAnimation={event => (waveAnimation = event.detail)}
-  on:animationEasing={event => (animationEasing = event.detail)}
-  on:animationEasingUpdate={event => (animationEasingUpdate = event.detail)}
-  on:animationDuration={event => (animationDuration = event.detail)}
-  on:animationDurationUpdate={event => (animationDurationUpdate = event.detail)}
-  on:outlineShow={event => (outlineShow = event.detail)}
-  on:outlineBorderDistance={event => (outlineBorderDistance = event.detail)}
-  on:outlineitemStyleColor={event => (outlineitemStyleColor = event.detail)}
-  on:outlineitemStyleBorderColor={event => (outlineitemStyleBorderColor = event.detail)}
-  on:outlineitemStyleBorderWidth={event => (outlineitemStyleBorderWidth = event.detail)}
-  on:outlineitemStyleShadowBlur={event => (outlineitemStyleShadowBlur = event.detail)}
-  on:outlineitemStyleShadowColor={event => (outlineitemStyleShadowColor = event.detail)}
-  on:backgroundStyleColor={event => (backgroundStyleColor = event.detail)}
-  on:backgroundStyleBorderWidth={event => (backgroundStyleBorderWidth = event.detail)}
-  on:backgroundStyleBorderColor={event => (backgroundStyleBorderColor = event.detail)}
-  on:backgroundStyleItemStyleShadowBlur={event => (backgroundStyleItemStyleShadowBlur = event.detail)}
-  on:backgroundStyleItemStyleShadowColor={event => (backgroundStyleItemStyleShadowColor = event.detail)}
-  on:backgroundStyleItemStyleOpacity={event => (backgroundStyleItemStyleOpacity = event.detail)}
-  on:itemStyleOpacity={event => (itemStyleOpacity = event.detail)}
-  on:itemStyleShadowBlur={event => (itemStyleShadowBlur = event.detail)}
-  on:itemStyleShadowColor={event => (itemStyleShadowColor = event.detail)}
-  on:emphasisItemStyleOpacity={event => (emphasisItemStyleOpacity = event.detail)}
-  on:labelShow={event => (labelShow = event.detail)}
-  on:labelColor={event => (labelColor = event.detail)}
-  on:labelInsideColor={event => (labelInsideColor = event.detail)}
-  on:labelFontSize={event => (labelFontSize = event.detail)}
-  on:labelFontWeight={event => (labelFontWeight = event.detail)}
-  on:labelAlign={event => (labelAlign = event.detail)}
-  on:labelBaseline={event => (labelBaseline = event.detail)}
-  on:labelPosition={event => (labelPosition = event.detail)} />

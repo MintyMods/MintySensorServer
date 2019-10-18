@@ -2,6 +2,7 @@
   import { afterUpdate, onMount, tick } from "svelte";
   import { createEventDispatcher } from "svelte";
   import { TABS } from "./config/constants.js";
+  import EchartsLiquidFillConfigPreview from "./EchartsLiquidFillConfigPreview";
   import { MDCSlider } from "@material/slider";
   import { MDCDialog } from "@material/dialog";
   import SensorGroup from "../../../_components/SensorGroup";
@@ -91,6 +92,7 @@
   export let showConfigurationDialog;
   export let data;
   export let chart;
+  export let owner;
   const dispatch = createEventDispatcher();
 
   export const openDialog = item => {
@@ -128,13 +130,14 @@
     flex-direction: column;
     justify-content: space-evenly;
   }
+  .preview-wrapper {
+    min-width:400px;
+    height:300px;
+  }
 </style>
 
 <div id="dialog-fix-wrapper">
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
-    <div id="preview">
-      <span class="place-holder" />
-    </div>
 
     {#if data !== undefined}
       <Title id="title">
@@ -148,6 +151,48 @@
       </Title>
     {/if}
     <Content class="content" id="content">
+      <div class="preview-wrapper">
+        <EchartsLiquidFillConfigPreview
+          {data}
+          {shape}
+          {color}
+          {center}
+          {radius}
+          {amplitude}
+          {waveLength}
+          {period}
+          {direction}
+          {waveAnimation}
+          {animationEasing}
+          {animationEasingUpdate}
+          {animationDuration}
+          {animationDurationUpdate}
+          {outlineShow}
+          {outlineBorderDistance}
+          {outlineitemStyleColor}
+          {outlineitemStyleBorderColor}
+          {outlineitemStyleBorderWidth}
+          {outlineitemStyleShadowBlur}
+          {outlineitemStyleShadowColor}
+          {backgroundStyleColor}
+          {backgroundStyleBorderWidth}
+          {backgroundStyleBorderColor}
+          {backgroundStyleItemStyleShadowBlur}
+          {backgroundStyleItemStyleShadowColor}
+          {backgroundStyleItemStyleOpacity}
+          {itemStyleOpacity}
+          {itemStyleShadowBlur}
+          {itemStyleShadowColor}
+          {emphasisItemStyleOpacity}
+          {labelShow}
+          {labelColor}
+          {labelInsideColor}
+          {labelFontSize}
+          {labelFontWeight}
+          {labelAlign}
+          {labelBaseline}
+          {labelPosition} />
+      </div>
       <div class="config-wrapper">
 
         <TabBar tabs={TABS} let:tab minWidth bind:active={activeTab}>

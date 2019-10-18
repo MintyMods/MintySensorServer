@@ -5,33 +5,25 @@
     storeSensors,
     storeTypes
   } from "../_stores/main-state.js";
-  import { createEventDispatcher } from "svelte";
-  import { onMount, afterUpdate, tick } from "svelte";
-  import { fade } from "svelte/transition";
   import Select, { Option } from "@smui/select";
-  import HelperText from "@smui/textfield/helper-text/index";
-  import Textfield, { Input, Textarea } from "@smui/textfield";
+  import Textfield, { Input } from "@smui/textfield";
   import FloatingLabel from "@smui/floating-label";
   import LineRipple from "@smui/line-ripple";
   import Switch from "@smui/switch";
   import FormField from "@smui/form-field";
   import Dialog, { Actions, InitialFocus } from "@smui/dialog";
   import Button from "@smui/button";
-  import Chip, { Set, Icon, Checkmark, Text } from "@smui/chips";
-  import Menu, { SelectionGroup, SelectionGroupIcon } from "@smui/menu";
-  import MenuSurface, { Anchor } from "@smui/menu-surface";
+  import Chip, { Set, Icon, Text } from "@smui/chips";
   import List, {
-    Group,
-    Item,
+   Item,
     Graphic,
     Meta,
     Label,
-    Separator,
-    Subheader,
+    Separator,    
     PrimaryText,
     SecondaryText
   } from "@smui/list";
-  const dispatch = createEventDispatcher();
+  
   let filterTypes = new Array(9).fill(false);
   let typeRestrict = "";
   let data = [];
