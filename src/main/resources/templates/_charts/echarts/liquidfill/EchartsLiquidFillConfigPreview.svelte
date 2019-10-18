@@ -89,7 +89,7 @@
       .item(0);
   };
 
-    function getShape() {
+  function getShape() {
     let path;
     SHAPES.forEach(item => {
       if (item.type === shape) {
@@ -189,10 +189,13 @@
 <style>
   .gauge {
     display: inline-block;
-    width: 100%;
+    min-width: 500px;
+    min-height: 300px;
+    /* width: 100%;
     height: 100%;
+    width: 400px;  */
+    /* height: 300px; */
   }
 </style>
 
 <div {id} class="gauge" use:watchResize={resizeChart} />
-

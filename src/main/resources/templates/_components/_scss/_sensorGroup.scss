@@ -5,6 +5,10 @@
 	font-size: 1.5em;
 }
 
+:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item{
+    background-color: white;
+}
+
 .mdc-list--dense .mdc-list-item__secondary-text {
     max-width: 385px;
 }
@@ -86,31 +90,50 @@
     overflow-x: hidden;
 }
 .drop-zone {
-    padding: 5% 0;
-    color: transparent;
-    background-color: var(--theme-primary);
-    width: 485px;
-    position: absolute;
-    opacity: .2;
-    z-index: 5;
+    content: '\f019';
+    font-family: "Font Awesome 5 Pro";
+    color: #000;
+    font-weight: 400;
+    opacity: .5;
     text-align: center;
-    vertical-align: middle;
-    outline: 3px dashed var(--theme-secondary);
-    margin:5px;  
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    transform: translate(-49%, -50%);
+    z-index: 4;
     height: 150px;
+    min-height: 150px; 
+   
+    width: 490px;
+}
+
+.drop-zone::after {
+    content: '\f019';
+    font-family: "Font Awesome 5 Pro";
+    font-size: 6em;
+    opacity: .1;
+    display: inline-block;
+    top: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .drop-active {
     color: var(--theme-on-primary);
+    outline: 2px dashed var(--theme-primary);
 }
 
 .data-list {
     min-height: 158px;
+    background-color: rgba(250, 250, 250, 0.9);
+	border: 1px solid rgba(189, 188, 188, 0.5);
 }
 
 .readings-container {
-	background-color: rgba(255, 255, 255, 0.52);
-	border: 1px solid grey;
+	background-color: rgba(250, 250, 250, 0.9);
+	border: 1px solid rgba(189, 188, 188, 0.5);
 	height: 160px;
 	overflow-y: scroll;
 	overflow-x: hidden;

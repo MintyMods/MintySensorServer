@@ -111,3 +111,8 @@
 	}
 }
 
+.mdc-dialog__container {
+	height:100%;
+	transition: all .4s ease-in-out;
+	-webkit-transition: all .4s ease-in-out;
+}

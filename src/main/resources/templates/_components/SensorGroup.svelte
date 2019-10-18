@@ -33,15 +33,7 @@
   $: filterText = "";
   $: sensorId = "";
 
-  function isSelected(reading) {
-    for (let i = 0; i < selected.length; i++) {
-      let item = selected[i];
-      if (reading.id === item.id && reading.index === item.index) {
-        return true;
-      }
-    }
-    return false;
-  }
+
   function matches(chip) {
     let sensor = $storeSensors[chip.index];
     if (sensorId !== "") {
@@ -78,6 +70,16 @@
       return !(reading.id === item.id && reading.index === item.index);
     });
   }
+  
+  function isSelected(reading) {
+    for (let i = 0; i < selected.length; i++) {
+      let item = selected[i];
+      if (reading.id === item.id && reading.index === item.index) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   function dragStart(event, reading) {
     event.dataTransfer.effectAllowed = "link";
@@ -103,14 +105,13 @@
       on:dragenter={event => event.target.classList.add('drop-active')}
       on:dragleave={event => event.target.classList.remove('drop-active')}
       on:dragover={event => event.preventDefault()}>
-      <i class="fad fa-sync fa-6x slow-spin" />
     </div>
   {/if}
 
   <div class="data">
     <List dense threeLine singleSelection class="data-list">
       {#each data as reading (getReadingId(reading))}
-        <Item>
+        <Item selected="true">
           <Graphic>
             <i class="{$storeTypes[reading.type].icon} fa-2x" />
           </Graphic>
@@ -144,8 +145,9 @@
   </div>
 
   <div class="readings-container">
-    <Set chips={getReadings()} choice let:chip key={chip => getReadingId(chip)}>
-      <Chip
+    <Set chips={getReadings()} choice let:chip key={reading => getReadingId(reading)}>
+      <Chip 
+        selected={isSelected(chip)}
         class="chip"
         draggable="true"
         on:dragstart={event => dragStart(event, chip)}>
