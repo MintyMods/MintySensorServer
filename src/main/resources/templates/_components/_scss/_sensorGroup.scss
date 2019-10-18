@@ -1,0 +1,128 @@
+* :global(.mdc-list-item__meta) {
+	font-family: "Font Awesome 5 Pro";
+	color: var(--theme-primary);
+	font-weight: 400;
+	font-size: 1.5em;
+}
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+	/* Required to make elements draggable in old WebKit */
+	-khtml-user-drag: element;
+	-webkit-user-drag: element;
+}
+.mdc-chip.chip {
+	touch-action: none;
+    z-index: 1;
+    cursor: grab;
+}
+
+.chip-wrapper {
+	display: flex;
+}
+
+.smui-select--standard {
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.chip-reading-value {
+	width: 45px;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 0.8em;
+	margin-left: 5px;
+	margin-right: 3px;
+	text-align: right;
+	opacity: 0.8;
+}
+
+.chip-reading-unit {
+	font-size: 0.7em;
+	vertical-align: middle;
+	opacity: 0.8;
+}
+
+.filter-text-delete {
+	color: var(--theme-primary);
+	right: 5px;
+	position: absolute;
+	bottom: 10px;
+	cursor: pointer;
+	z-index: 4;
+	font-size: 0.7em;
+}
+
+.filter-group-delete {
+	color: var(--theme-primary);
+}
+
+.data {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	background-color: rgba(255, 255, 255, 0.52);
+	height: 158px;
+	min-height: 158px;
+	overflow-y: scroll;
+    overflow-x: hidden;
+}
+.drop-zone {
+    padding: 5% 0;
+    color: transparent;
+    background-color: var(--theme-primary);
+    width: 485px;
+    position: absolute;
+    opacity: .2;
+    z-index: 5;
+    text-align: center;
+    vertical-align: middle;
+    outline: 3px dashed var(--theme-secondary);
+    margin:5px;  
+    height: 150px;
+}
+
+.drop-active {
+    color: var(--theme-on-primary);
+    
+}
+
+.data-list {
+
+    min-height: 158px;
+
+}
+
+
+
+.readings-container {
+	background-color: rgba(255, 255, 255, 0.52);
+	border: 1px solid grey;
+	height: 160px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border-radius: 5px;
+}
+.icon-align-wrapper {
+	position: relative;
+}
+.mdc-form-field > i {
+	margin-right: 10px;
+}
+.type-toggle-wrapper {
+	width: 100%;
+}
+.type-toggle-icon {
+	font-size: 1.3em;
+	opacity: .7;
+	text-align: right;
+}
+
+.mdc-form-field label {
+	cursor: pointer;
+}

@@ -4,6 +4,7 @@
   import { TABS } from "./config/constants.js";
   import { MDCSlider } from "@material/slider";
   import { MDCDialog } from "@material/dialog";
+  import SensorGroup from "../../../_components/SensorGroup";
   import Dialog, { Title, Content, Actions, InitialFocus } from "@smui/dialog";
   import Card, { Media, MediaContent } from "@smui/card";
   import Button from "@smui/button";
@@ -102,13 +103,12 @@
 
   let dialog;
   let activeTab;
-  //<Media class="card-media-16x9" aspectRatio="16x9">
 
   $: if (dialog) {
-    fixDialogIssueWithSvelteGrid();
+    moveDialogToBody();
   }
 
-  function fixDialogIssueWithSvelteGrid() {
+  function moveDialogToBody() {
     const dialog = new MDCDialog(document.querySelector(".mdc-dialog"));
     dialog.listen("MDCDialog:opened", () => {
       var newParent = document.getElementById("body");
@@ -119,7 +119,7 @@
     });
   }
 
- $: dialog && dialog.open();
+  $: dialog && dialog.open(); // @todo remove
 </script>
 
 <style>
@@ -158,7 +158,7 @@
         </TabBar>
 
         {#if activeTab && activeTab.id === 'data'}
-          <div />
+          <SensorGroup />
         {:else if activeTab && activeTab.id === 'layout'}
           <Center {center} on:center />
           <Amplitude {amplitude} on:amplitude />
@@ -166,7 +166,8 @@
           <Radius {radius} on:radius />
         {:else if activeTab && activeTab.id === 'wave'}
           <!-- <Color {color} on:color /> -->
-          <Shape {shape} on:shape />
+          <LabelColor {labelColor} on:labelColor />
+          <LabelInsideColor {labelInsideColor} on:labelInsideColor />
           <ItemStyleShadowColor
             {itemStyleShadowColor}
             on:itemStyleShadowColor />
@@ -205,6 +206,7 @@
           <BackgroundStyleItemStyleShadowColor
             {backgroundStyleItemStyleShadowColor}
             on:backgroundStyleItemStyleShadowColor />
+          <Shape {shape} on:shape />
           <BackgroundStyleBorderWidth
             {backgroundStyleBorderWidth}
             on:backgroundStyleBorderWidth />
@@ -215,8 +217,6 @@
             {backgroundStyleItemStyleShadowBlur}
             on:backgroundStyleItemStyleShadowBlur />
         {:else if activeTab && activeTab.id === 'label'}
-          <LabelColor {labelColor} on:labelColor />
-          <LabelInsideColor {labelInsideColor} on:labelInsideColor />
           <LabelFontSize {labelFontSize} on:labelFontSize />
           <LabelFontWeight {labelFontWeight} on:labelFontWeight />
           <LabelAlign {labelAlign} on:labelAlign />

@@ -9,11 +9,11 @@
 .svlt-grid-shadow {
 	background: rgba(228, 226, 226, 0.863) !important;
 	border: 1px dashed rgba(68, 68, 68, 0.514) !important;
-	// transition: transform 0.2s;
+	transition: transform 0.2s;
 }
 
 .svlt-grid-transition > svlt-grid-item {
-	// transition: transform 0.2s;
+	transition: transform 0.2s;
 }
 
 .content {
@@ -22,37 +22,36 @@
 }
 
 .toolbar {
-	// position: absolute;
-	// z-index: 999;
+	position: absolute;
+	z-index: 999;
 	width: 0px;
 	top: 20px;
 	margin-left: auto;
 	right: 0px;
 	display: flex;
 	justify-content: flex-end;
-	// opacity: 0;
-	// transition: all .1s ease-in-out;
-	// -webkit-transition: all .1s ease-in-out;
-	// animation-name: toolbar;
-	// transform: scale(0);
+	opacity: 0;
+	transition: all .1s ease-in-out;
+	-webkit-transition: all .1s ease-in-out;
+	animation-name: toolbar;
+	transform: scale(0);
 }
 .toolbar-active {
 	cursor: pointer;
 	right: 0px;
-	// display: inline-block;
+	display: inline-block;
 	border: 1px solid var(--theme-secondary);
 	border-top-left-radius: 20px;
 	border-bottom-left-radius: 20px;
 	border-right: none;
 	background-color: var(--theme-primary);
 	color: var(--theme-on-primary);
-
-	// opacity: .90;
+	opacity: .90;
 	width: 160px;
-	// transition: all .2s ease-in-out;
-	// -webkit-transition: all .2s ease-in-out;
-	// animation-name: toolbar;
-	// transform: scale(1);
+	transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	animation-name: toolbar;
+	transform: scale(1);
 }
 
 .mdc-card__action--icon:not(:disabled) {
@@ -61,8 +60,8 @@
 
 .toolbar-active .mdc-icon-button:hover {
 	color: var(--theme-on-secondary) !important;
-	// transform: scale(1.3);
-	// animation: pulse 0.6s alternate infinite;
+	transform: scale(1.3);
+	animation: pulse 0.6s alternate infinite;
 }
 
 @keyframes pulse {
@@ -98,17 +97,17 @@
 	opacity: .80;
 	width: 150px;
 	right: -20px;
-	// transition: all .2s ease-in-out;
-	// -webkit-transition: all .2s ease-in-out;
-	// transform: scale(.8) !important;
+	transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	transform: scale(.8) !important;
 	text-align: center;
 	font-size: 1em;
 }
 .confirm-active i {
 	color: var(--theme-on-error) !important;
-	// &:hover {
-	// 	transform: scale(1.4);
-	// 	animation: pulse 0.4s alternate infinite;
-	// }
+	&:hover {
+		transform: scale(1.4);
+		animation: pulse 0.4s alternate infinite;
+	}
 }
 

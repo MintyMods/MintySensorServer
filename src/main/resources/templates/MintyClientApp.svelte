@@ -137,8 +137,8 @@
       {
         name: "NONE",
         type: 0,
-        desc: "None",
-        icon: "fal fa-times-circle fa-fw"
+        desc: "Unknown",
+        icon: "fal fa-question-circle fa-fw"
       },
       {
         name: "TEMP",
