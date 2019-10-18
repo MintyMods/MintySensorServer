@@ -4,6 +4,14 @@
 	font-weight: 400;
 	font-size: 1.5em;
 }
+
+.mdc-list--dense .mdc-list-item__secondary-text {
+    max-width: 385px;
+}
+.mdc-list--dense .mdc-list-item__primary-text {
+    max-width: 385px;
+}
+
 /* Prevent the text contents of draggable elements from being selectable. */
 [draggable] {
 	-moz-user-select: none;

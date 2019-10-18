@@ -7,7 +7,7 @@
   } from "../_stores/main-state.js";
   import { createEventDispatcher } from "svelte";
   import { onMount, afterUpdate, tick } from "svelte";
-  import { fade } from 'svelte/transition';
+  import { fade } from "svelte/transition";
   import Select, { Option } from "@smui/select";
   import HelperText from "@smui/textfield/helper-text/index";
   import Textfield, { Input, Textarea } from "@smui/textfield";
@@ -33,7 +33,7 @@
   } from "@smui/list";
   const dispatch = createEventDispatcher();
   let filterTypes = new Array(9).fill(false);
-  let typeRestrict = [];
+  let typeRestrict = "";
   let data = [];
   let selected = [];
   $: showDropZone = false;
@@ -69,9 +69,9 @@
     return true;
   }
 
-  function getId(chip) {
-    let sensor = $storeSensors[chip.index];
-    return chip.id + "_" + sensor.id + "_" + sensor.instance;
+  function getReadingId(reading) {
+    let sensor = $storeSensors[reading.index];
+    return reading.id + "_" + sensor.id + "_" + sensor.instance;
   }
   function getSensorId(sensor) {
     return sensor.id + "_" + sensor.instance;
@@ -83,7 +83,7 @@
 
   function removeReading(reading) {
     selected = selected.filter(item => {
-      return reading.id !== item.id && reading.index !== item.index;
+      return !(reading.id === item.id && reading.index === item.index);
     });
   }
 
@@ -99,11 +99,6 @@
     showDropZone = false;
     let payload = JSON.parse(event.dataTransfer.getData("application/json"));
     selected.push(payload);
-    console.dir("DROPPED " + payload);
-  }
-
-  $: if (data) {
-    console.log("Selected:" + selected.length + " Data:" + data.length);
   }
 </script>
 
@@ -122,7 +117,7 @@
 
   <div class="data">
     <List dense threeLine singleSelection class="data-list">
-      {#each data as reading}
+      {#each data as reading (getReadingId(reading))}
         <Item>
           <Graphic>
             <i class="{$storeTypes[reading.type].icon} fa-2x" />
@@ -145,8 +140,10 @@
       {#if selected.length === 0}
         <Item disabled>
           <Text class="center">
-            <SecondaryText></SecondaryText>
-            <PrimaryText style="text-align:center">No Active Readings</PrimaryText>
+            <SecondaryText />
+            <PrimaryText style="text-align:center">
+              No Active Readings
+            </PrimaryText>
             <SecondaryText>drag-&-drop a sensor reading here</SecondaryText>
           </Text>
         </Item>
@@ -155,7 +152,7 @@
   </div>
 
   <div class="readings-container">
-    <Set chips={getReadings()} choice let:chip key={chip => getId(chip)}>
+    <Set chips={getReadings()} choice let:chip key={chip => getReadingId(chip)}>
       <Chip
         class="chip"
         draggable="true"
@@ -185,8 +182,8 @@
     enhanced
     bind:value={typeRestrict}
     label="Filter by type {typeRestrict}">
-    {#each $storeTypes as type, index}
-      <Option value="{index}">
+    {#each $storeTypes as type, index (type.type + '_' + index)}
+      <Option value={type.type + '_' + index} selected={false}>
         <Item style="width:100%">
           <FormField class="type-toggle-wrapper">
             <Switch bind:checked={filterTypes[index]} class="type-toggle" />
@@ -211,7 +208,7 @@
   </Select>
 
   <Select enhanced bind:value={sensorId} label="Filter by device">
-    <Option/>
+    <Option value=""/>
     {#each $storeSensors as sensor}
       <Option
         value={getSensorId(sensor)}
