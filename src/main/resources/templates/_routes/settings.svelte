@@ -1,12 +1,8 @@
 <script>
-  import { onMount } from "svelte";
-  import SensorGroup from "../_components/SensorGroup";
-  
+    import { onMount } from "svelte";
+    import BarH from "../_charts/rough-viz/BarH.svelte";
+
+
 </script>
 
-<style>
-  
-</style>
-
-<SensorGroup/>
-
+<BarH />

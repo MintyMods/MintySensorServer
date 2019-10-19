@@ -1,10 +1,10 @@
 $mdc-theme-primary: #f51d9b;
 $mdc-theme-on-primary: #fff;
 $mdc-theme-secondary: #bd006d;
-$mdc-theme-on-secondary: #FFF;
+$mdc-theme-on-secondary: #fff;
 $mdc-theme-error: #d13d58;
 $mdc-theme-on-error: rgb(253, 253, 253);
-$mdc-theme-surface: #FFF;
+$mdc-theme-surface: #fff;
 $mdc-theme-on-surface: #000;
 $mdc-theme-background: #fff;
 $mdc-theme-on-background: #000;
@@ -22,3 +22,13 @@ $mdc-theme-on-background: #000;
 	--theme-on-background: #{$mdc-theme-on-background};
 	--theme-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
+
+// @media (prefers-color-scheme: dark) {
+// 	:root {
+// 		--theme-on-surface: #{$mdc-theme-surface};
+// 		--theme-surface: #{$mdc-theme-on-surface};
+// 		--theme-on-background: #{$mdc-theme-background};
+// 		--theme-background: #{$mdc-theme-on-background};
+// 		--theme-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+// 	}
+// }

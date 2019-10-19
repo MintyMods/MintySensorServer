@@ -138,18 +138,7 @@
 
 <div id="dialog-fix-wrapper">
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
-
-    {#if data !== undefined}
-      <Title id="title">
-        {#if Array.isArray(data)}
-          <TabBar tabs={data} let:tab>
-            <Tab {tab}>
-              <Label>{tab}</Label>
-            </Tab>
-          </TabBar>
-        {:else}{data.label.desc}{/if}
-      </Title>
-    {/if}
+    <Title id="title">ECharts Liquid Fill</Title>
     <Content class="content" id="content">
       <div class="preview-wrapper">
         <EchartsLiquidFillConfigPreview

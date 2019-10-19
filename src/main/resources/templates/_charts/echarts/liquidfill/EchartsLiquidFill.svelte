@@ -8,7 +8,7 @@
 
   export let color = "rgba(0, 0, 0, 1)";
   export let center = ["50%", "50%"];
-  export let radius = "99%";
+  export let radius = "150%";
   export let amplitude = "58%";
   export let waveLength = "400%";
   export let period = "auto";
@@ -17,13 +17,13 @@
   export let waveAnimation = true;
   export let animationEasing = "linear";
   export let animationEasingUpdate = "linear";
-  export let animationDuration = 2000;
+  export let animationDuration = 1000;
   export let animationDurationUpdate = 1000;
   export let outlineShow = true;
   export let outlineBorderDistance = 1;
   export let outlineitemStyleColor = "#000";
   export let outlineitemStyleBorderColor = "#000";
-  export let outlineitemStyleBorderWidth = 8;
+  export let outlineitemStyleBorderWidth = 6;
   export let outlineitemStyleShadowBlur = 9;
   export let outlineitemStyleShadowColor = "rgba(0, 0, 0, 0.5)";
   export let backgroundStyleColor = "rgba(250.16, 252.02, 6.07, 1)";
@@ -31,16 +31,16 @@
   export let backgroundStyleBorderColor = "#000";
   export let backgroundStyleItemStyleShadowBlur = 10;
   export let backgroundStyleItemStyleShadowColor =
-    "rgba(177.78, 169.57, 169.57, 1)";
+    "rgba(0, 0, 0, 1)";
   export let backgroundStyleItemStyleOpacity = 0.9;
   export let itemStyleOpacity = 0.95;
-  export let itemStyleShadowBlur = 50;
+  export let itemStyleShadowBlur = 25;
   export let itemStyleShadowColor = "rgba(0, 0, 0, 0.4)";
   export let emphasisItemStyleOpacity = 0.8;
   export let labelShow = true;
   export let labelColor = "#000";
   export let labelInsideColor = "#fff";
-  export let labelFontSize = 50;
+  export let labelFontSize = 30;
   export let labelFontWeight = "normal";
   export let labelAlign = "center";
   export let labelBaseline = "middle";
@@ -138,17 +138,17 @@
           phase: "auto",
           color: ["yellow"],
           shape: getShape(),
-          direction: direction,
-          amplitude: amplitude,
-          waveAnimation: waveAnimation,
-          animationEasing: animationEasing,
-          animationEasingUpdate: animationEasingUpdate,
-          animationDuration: animationDuration,
-          animationDurationUpdate: animationDurationUpdate,
-          center: center,
-          radius: radius,
-          waveLength: waveLength,
-          period: period,
+          direction,
+          amplitude,
+          waveAnimation,
+          animationEasing,
+          animationEasingUpdate,
+          animationDuration,
+          animationDurationUpdate,
+          center,
+          radius,
+          waveLength,
+          period,
           outline: {
             show: outlineShow,
             borderDistance: outlineBorderDistance,

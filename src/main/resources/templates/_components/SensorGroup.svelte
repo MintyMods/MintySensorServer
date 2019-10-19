@@ -70,7 +70,7 @@
       return !(reading.id === item.id && reading.index === item.index);
     });
   }
-  
+
   function isSelected(reading) {
     for (let i = 0; i < selected.length; i++) {
       let item = selected[i];
@@ -111,7 +111,7 @@
   <div class="data">
     <List dense threeLine singleSelection class="data-list">
       {#each data as reading (getReadingId(reading))}
-        <Item selected="true">
+        <Item selected="isSelected(reading)">
           <Graphic>
             <i class="{$storeTypes[reading.type].icon} fa-2x" />
           </Graphic>
@@ -145,9 +145,10 @@
   </div>
 
   <div class="readings-container">
-    <Set chips={getReadings()} choice let:chip key={reading => getReadingId(reading)}>
+    <Set chips={getReadings()}  let:chip key={reading => getReadingId(reading)}>
       <Chip 
         selected={isSelected(chip)}
+        shouldRemoveOnTrailingIconClick=false
         class="chip"
         draggable="true"
         on:dragstart={event => dragStart(event, chip)}>

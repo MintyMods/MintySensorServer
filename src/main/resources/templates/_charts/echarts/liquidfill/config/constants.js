@@ -1,12 +1,12 @@
 export const TABS = [
-	{ id: 'data', icon: 'fad fa-layer-plus', label: 'Data' },
-    { id: 'wave', icon: 'fad fa-water', label: 'Wave' },
-	{ id: 'outline', icon: 'fad fa-border-all', label: 'Outline' },
+	{ id: 'data', icon: 'fal fa-layer-plus', label: 'Data' },
+    { id: 'wave', icon: 'fal fa-water', label: 'Wave' },
+	{ id: 'outline', icon: 'fal fa-border-all', label: 'Outline' },
 	{ id: 'background', icon: 'fal fa-chess-board', label: 'Background' },
-	{ id: 'label', icon: 'fad fa-text-size', label: 'Label' },
-	{ id: 'layout', icon: 'fad fa-arrows-alt', label: 'Layout' },
-	{ id: 'animation', icon: 'fad fa-camera-movie', label: 'Animation' },
-	{ id: 'about', icon: 'fad fa-info-circle', label: 'About' },
+	{ id: 'label', icon: 'fal fa-text-size', label: 'Label' },
+	{ id: 'layout', icon: 'fal fa-arrows-alt', label: 'Layout' },
+	{ id: 'animation', icon: 'fal fa-camera-movie', label: 'Animation' },
+	{ id: 'about', icon: 'fal fa-info-circle', label: 'About' },
 ];
 
 export const ALIGN = [ 'left', 'center', 'right' ];

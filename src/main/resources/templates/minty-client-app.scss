@@ -53,6 +53,11 @@
 	opacity: .5 !important;
 }
 
+:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item {
+	background-color: var(--theme-surface);
+	color:var(--theme-on-surface)
+}
+
 // * :global(.app-content) {
 // 	all: unset;
 // 	flex: auto;
