@@ -17,7 +17,11 @@
   bind:value={animationEasingUpdate}
   label="Animation Easing Update (value & position changes)">
   {#each EASING as easing}
-    <Option value={easing.type} selected={easing.type === animationEasingUpdate}>{easing.desc}</Option>
+    <Option
+      value={easing.type}
+      selected={easing.type === animationEasingUpdate}>
+      {easing.desc}
+    </Option>
   {/each}
 </Select>
 <HelperText>chart value & position changes</HelperText>

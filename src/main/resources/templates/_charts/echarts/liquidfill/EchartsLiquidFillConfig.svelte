@@ -138,7 +138,7 @@
 
 <div id="dialog-fix-wrapper">
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
-    <Title id="title">ECharts Liquid Fill</Title>
+    <Title id="title"><i class="fad fa-water fa-1x"></i> ECharts Liquid Fill</Title>
     <Content class="content" id="content">
       <div class="preview-wrapper">
         <EchartsLiquidFillConfigPreview

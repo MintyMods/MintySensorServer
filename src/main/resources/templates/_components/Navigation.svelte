@@ -26,6 +26,7 @@
   const PROVIDERS = "#/providers";
   const SETTINGS = "#/settings";
   const NOTIFICATIONS = "#/notifications";
+  const CREDITS = "#/credits";
 
   export let segment;
   let closeHover;
