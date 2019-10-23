@@ -1,7 +1,6 @@
 <script>
 
-  import { afterUpdate, onMount, tick } from "svelte";
-
+  import { afterUpdate, onMount, tick ,onDestroy, getContext } from "svelte";
   import { createEventDispatcher } from "svelte";
   import { TABS } from "../common/constants.js";
   import BarHorizontalConfigPreview from "./BarHorizontalConfigPreview";
@@ -54,6 +53,8 @@
   import Bottom from "../common/Bottom";
   import Right from "../common/Right";
   import Left from "../common/Left";
+  
+
 
   export let data;
   export let values;
@@ -97,6 +98,18 @@
   let dialog;
   let activeTab;
   const dispatch = createEventDispatcher();
+  let getInstance = getContext("MSS:chart:getInstance");
+
+  let previewPromiseResolve;
+  let previewPromise = new Promise(resolve => previewPromiseResolve = resolve);
+  
+  setContext("MSS:chart:getInstance", getChartInstancePromise);
+
+  let clone;
+  onMount(async () => {
+    config = await getInstance();
+    clone = { ...config };
+  });
 
   export const openDialog = () => {
     dialog && dialog.open();
@@ -127,6 +140,7 @@
     width: 100%;
     height: 200px;
     overflow: overlay;
+    cursor: grab;
   }
 </style>
 
@@ -139,44 +153,11 @@
     <Content class="content" id="content">
       <div class="flex-container">
         <div id="preview-wrapper">
-          <BarHorizontalConfigPreview
-            {labels}
+          <BarHorizontalConfigPreview 
+          {...chart}
+           {labels}
             {values}
-            {color}
-            {width}
-            {height}
-            {circle}
-            {circleRadius}
-            {circleRoughness}
-            {colorVar}
-            {curbZero}
-            {title}
-            {axisFontSize}
-            {axisRoughness}
-            {axisStrokeWidth}
-            {bowing}
-            {fillStyle}
-            {fillWeight}
-            {fontFamily}
-            {highlight}
-            {innerStrokeWidth}
-            {interactive}
-            {labelFontSize}
-            {top}
-            {bottom}
-            {right}
-            {left}
-            {padding}
-            {roughness}
-            {simplification}
-            {stroke}
-            {strokeWidth}
-            {titleFontSize}
-            {tooltipFontSize}
-            {xLabel}
-            {yLabel}
-            {legend}
-            {legendPosition} />
+              on:color={event => (color = event.detail)}/>
         </div>
         <div class="config-wrapper">
 
@@ -225,11 +206,11 @@
             <TooltipFontSize {tooltipFontSize} on:tooltipFontSize />
             <AxisFontSize {axisFontSize} on:axisFontSize />
           {:else if activeTab && activeTab.id === 'spacing'}
-            <Padding {padding} on:padding />
             <Top {top} on:top />
             <Right {right} on:right />
             <Bottom {bottom} on:bottom />
             <Left {left} on:left />
+            <Padding {padding} on:padding />
           {:else if activeTab && activeTab.id === 'about'}
             <About />
           {:else}

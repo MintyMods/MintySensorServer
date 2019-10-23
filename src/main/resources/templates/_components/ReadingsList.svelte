@@ -1,5 +1,4 @@
 <script>
-  //   import "./_scss/_readingsList.scss";
   import { storeReadings, storeTypes } from "../_stores/main-state.js";
   // import AutoComplete from "./AutoComplete.svelte";
   import List, {

@@ -1,9 +1,9 @@
 <script>
   // RoughViz Charts 1.0.4
   // https://github.com/jwilber/roughViz
-  import { config } from "./defaults.js";
+  import { CONFIG as config } from "./defaults.js";
   import roughViz from "rough-viz";
-  import { onDestroy, onMount } from "svelte";
+  import { onDestroy, onMount, setContext } from "svelte";
   import { watchResize } from "svelte-watch-resize";
   import BarHorizontalConfig from "./BarHorizontalConfig.svelte";
 
@@ -45,6 +45,10 @@
   export let legend;
   export let legendPosition;
 
+  let chartPromiseResolve;
+  let chartPromise = new Promise(resolve => chartPromiseResolve = resolve);
+  setContext("MSS:chart:getInstance", getChartInstancePromise);
+
   let chart;
   let settings;
   const id =
@@ -52,13 +56,18 @@
     Math.random()
       .toString(36)
       .substr(2, 9);
-
+$: chart;
   $: refreshChart(values, labels);
 
   onMount(() => {
     config.element = "#" + id;
     chart = new roughViz.BarH(config);
+    chartPromiseResolve(chart);
   });
+
+function getChartInstancePromise() {
+  return chartPromise;
+}
 
   function refreshChart(values, labels) {
     if (chart !== undefined) {
@@ -108,8 +117,7 @@
     }
   }
 
-  function resizeChart(node) {
-  }
+  function resizeChart(node) {}
 
   export const showConfig = item => {
     settings.openDialog(item);
@@ -120,7 +128,7 @@
   };
 </script>
 
- <div {id} />
+<div {id} />
 
 <BarHorizontalConfig
   {labels}

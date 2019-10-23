@@ -25,7 +25,7 @@
 
 <div class="slider">
   <FormField align="end" style="display: flex;">
-    <Slider bind:value={innerStrokeWidth} min={0} max={50} />
+    <Slider bind:value={innerStrokeWidth} min={0} max={25} />
     <span
       slot="label"
       title="current value: {innerStrokeWidth}"

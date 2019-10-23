@@ -1,6 +1,5 @@
 @import "_scss/include-media";
 
-
 /* Pace Loader progress */
 .pace {
 	-webkit-pointer-events: none;
@@ -24,6 +23,33 @@
 	width: 100%;
 	height: 6px;
 }
+/* End Pace Loader */
+
+/* Coloured Scroll Bars */
+::-webkit-scrollbar {
+	width: 10px;
+	height:10px;
+	opacity:.1;
+}
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+	border: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: radial-gradient(var(--theme-surface), var(--theme-background));
+	border: 1px solid #aaa;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: var(--theme-primary);
+}
+::-webkit-scrollbar-thumb:active {
+	background: var(--theme-secondary);
+}
+/* End Coloured Scroll Bars */
 
 * :global(.shaped) {
 	border-radius: 16px 16px 0 0;
@@ -55,32 +81,6 @@
 
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item {
 	background-color: var(--theme-surface);
-	color:var(--theme-on-surface)
+	color: var(--theme-on-surface);
 }
 
-// * :global(.app-content) {
-// 	all: unset;
-// 	flex: auto;
-// 	overflow: auto;
-// 	width: 100%;
-// 	position: relative;
-// 	flex-grow: 1;
-// 	height: 100vh;
-// }
-
-// * :global(.mdc-dialog, .mdc-dialog__scrim) {
-// 	height: 100vh !important;
-// 	width: 100vw !important;
-// 	pointer-events: none;
-// }
-
-// * :global(.centre) {
-// 	position: absolute;
-// 	top: 50%;
-// 	right: auto;
-// 	bottom: auto;
-// 	left: 50%;
-// 	width: auto;
-// 	height: 100%;
-// 	transform: translate3d(-50%, -50%, 0);
-// }

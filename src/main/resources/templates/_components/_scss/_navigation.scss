@@ -75,11 +75,9 @@ aside {
 
 .main-container-open {
 	height: 100%;
-	// min-height: 100vh;
 }
 .main-container-closed {
 	height: 100vh;
-	// min-height:100%;
 }
 
 .open {
@@ -87,7 +85,6 @@ aside {
 	border-radius: 10px;
 	transform: translate3d(90px, 9px, -156px) rotateY(-51deg) scale3d(0.8, 0.8, 0.9);
 	transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	// transition: height 0s;
 	overflow: hidden;
 	box-shadow: 25px 25px 35px rgba(200, 200, 200, 0.5);
 }
@@ -96,7 +93,6 @@ aside {
 	border: 0px solid rgba(0, 0, 0, 0) !important;
 	transform: translate3d(0, 0, 0) rotateY(0) scale3d(1, 1, 1);
 	transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	// transition: height 0s;
 	border: 0px solid tra !important;
 	box-shadow: none;
 }

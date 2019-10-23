@@ -5,6 +5,7 @@
   import { onDestroy, onMount } from "svelte";
   import { watchResize } from "svelte-watch-resize";
   import EchartsLiquidFillConfig from "./EchartsLiquidFillConfig.svelte";
+  import panzoom from "panzoom";
 
   export let color = "rgba(0, 0, 0, 1)";
   export let center = ["50%", "50%"];
@@ -56,16 +57,33 @@
       .substr(2, 9);
   let chart;
   let config;
+  let opts = {
+    x: 0,
+    y: 0,
+    zoom: 1,
+    maxZoom: 2,
+    minZoom: 0.1
+  };
 
   $: refreshChart(data);
 
   onMount(() => {
     chart = echarts.init(document.getElementById(id));
+    initPreview();
   });
 
   onDestroy(() => {
     chart.dispose();
   });
+
+  function initPreview() {
+    let preview = document.getElementById(id);
+    panzoom(preview, {
+      maxZoom: opts.maxZoom,
+      minZoom: opts.minZoom,
+      zoomSpeed: opts.zoomSpeed
+    }).zoomAbs(opts.x, opts.y, opts.zoom);
+  }
 
   function refreshChart(data) {
     if (data !== undefined && chart !== undefined) {
@@ -188,13 +206,9 @@
 
 <style>
   .gauge {
-    display: inline-block;
-    min-width: 500px;
-    min-height: 300px;
-    /* width: 100%;
-    height: 100%;
-    width: 400px;  */
-    /* height: 300px; */
+    width: 100%;
+    height: 200px;
+    overflow: overlay;
   }
 </style>
 

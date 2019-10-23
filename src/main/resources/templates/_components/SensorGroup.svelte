@@ -14,25 +14,31 @@
   import Dialog, { Actions, InitialFocus } from "@smui/dialog";
   import Button from "@smui/button";
   import Chip, { Set, Icon, Text } from "@smui/chips";
+    import MenuSurface, {Anchor} from '@smui/menu-surface';
   import List, {
-   Item,
+    Item,
     Graphic,
     Meta,
     Label,
-    Separator,    
+    Separator,
     PrimaryText,
     SecondaryText
   } from "@smui/list";
-  
+
   let filterTypes = new Array(9).fill(false);
-  let typeRestrict = "";
   let data = [];
   let selected = [];
+  let opts = {
+    x: 0,
+    y: 0,
+    zoom: 1,
+    maxZoom: 2,
+    minZoom: 0.1
+  };
   $: showDropZone = false;
   $: data = $storeReadings.filter(reading => isSelected(reading));
   $: filterText = "";
   $: sensorId = "";
-
 
   function matches(chip) {
     let sensor = $storeSensors[chip.index];
@@ -94,8 +100,31 @@
     let payload = JSON.parse(event.dataTransfer.getData("application/json"));
     selected.push(payload);
   }
-</script>
+  function showSelectedTypes() {
+    let icons = "";
+    let select = document.getElementById("filterTypeSelect");
+    if (select) {
+      let desc = select.querySelector(".mdc-select__selected-text");
+      for (let i = 0; i < filterTypes.length; i++) {
+        if (filterTypes[i]) {
+          icons += "<i class='" + $storeTypes[i].icon + "' />";
+        }
+      }
+      desc.innerHTML = "<div class='selected-type-container'>" + icons + "</div>";
+    }
+  }
 
+  $: if (filterTypes) {
+    showSelectedTypes();
+  }
+</script>
+<style>
+
+:global(.selected-type-container) {
+    letter-spacing: 10px !important;
+}
+
+</style>
 <div class="wrapper" on:dragend={event => (showDropZone = false)}>
 
   {#if showDropZone}
@@ -104,8 +133,7 @@
       on:drop={event => dragDrop(event)}
       on:dragenter={event => event.target.classList.add('drop-active')}
       on:dragleave={event => event.target.classList.remove('drop-active')}
-      on:dragover={event => event.preventDefault()}>
-    </div>
+      on:dragover={event => event.preventDefault()} />
   {/if}
 
   <div class="data">
@@ -145,10 +173,10 @@
   </div>
 
   <div class="readings-container">
-    <Set chips={getReadings()}  let:chip key={reading => getReadingId(reading)}>
-      <Chip 
+    <Set chips={getReadings()} let:chip key={reading => getReadingId(reading)}>
+      <Chip
         selected={isSelected(chip)}
-        shouldRemoveOnTrailingIconClick=false
+        shouldRemoveOnTrailingIconClick="false"
         class="chip"
         draggable="true"
         on:dragstart={event => dragStart(event, chip)}>
@@ -175,19 +203,18 @@
 
   <Select
     enhanced
-    bind:value={typeRestrict}
-    label="Filter by type {typeRestrict}">
-    {#each $storeTypes as type, index (type.type + '_' + index)}
-      <Option value={type.type + '_' + index} selected={false}>
-        <Item style="width:100%">
-          <FormField class="type-toggle-wrapper">
-            <Switch bind:checked={filterTypes[index]} class="type-toggle" />
-            <span slot="label">{type.desc}</span>
-          </FormField>
-          <Icon class="{type.icon} fa-1x type-toggle-icon" />
-        </Item>
-      </Option>
-    {/each}
+    id="filterTypeSelect"
+    label="Filter by type">
+    <MenuSurface static>
+      {#each $storeTypes as type, index (type.type + '_' + index)}
+          <Item style="width:100%">
+            <FormField class="type-toggle-wrapper">
+              <Switch bind:checked={filterTypes[index]} />
+              <span class="type-toggle" slot="label">{type.desc}</span>
+            </FormField>
+            <Icon class="{type.icon} fa-1x type-toggle-icon" />
+          </Item>
+      {/each}
     <Actions>
       <Button
         action="none"
@@ -200,10 +227,11 @@
         <Label>Select All</Label>
       </Button>
     </Actions>
+    </MenuSurface>
   </Select>
 
   <Select enhanced bind:value={sensorId} label="Filter by device">
-    <Option value=""/>
+    <Option value="" />
     {#each $storeSensors as sensor}
       <Option
         value={getSensorId(sensor)}

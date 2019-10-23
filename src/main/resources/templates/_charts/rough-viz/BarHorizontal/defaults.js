@@ -1,5 +1,4 @@
-
-export const config = {
+export const CONFIG = {
 	data: {
 		labels: [],
 		values: [],
@@ -7,10 +6,10 @@ export const config = {
 	color: 'DeepPink',
 	title: '',
 	axisRoughness: 0.5,
-	circle: true,
+	circle: false,
 	circleRadius: '10',
 	circleRoughness: '2',
-	colorVar: 'tomato',
+	colorVar: 'Tomato',
 	width: 400,
 	height: 300,
 	axisStrokeWidth: 0.5,
@@ -18,9 +17,9 @@ export const config = {
 	fillStyle: 'cross-hatch',
 	fillWeight: 0.2,
 	fontFamily: 0,
-	highlight: 'tomato',
+	highlight: 'Tomato',
 	innerStrokeWidth: 1,
-	interactive: true,
+	interactive: false,
 	margin: { top: 35, bottom: 10, left: 150, right: 10 },
 	padding: 0.2,
 	roughness: 4,
@@ -36,3 +35,47 @@ export const config = {
 	legend: false,
 	legendPosition: 'left',
 };
+
+export const ATTRIBUTES = [
+	'title',
+	'color',
+	'highlight',
+	'roughness',
+	'stroke',
+	'strokeWidth',
+	'axisStrokeWidth',
+	'axisRoughness',
+	'innerStrokeWidth',
+	'fillStyle',
+	'bowing',
+	'fillWeight',
+	'simplification',
+	'interactive',
+	'titleFontSize',
+	'axisFontSize',
+	'tooltipFontSize',
+	'font',
+	'dataFormat',
+	'labels',
+	'values',
+	'padding',
+	'xLabel',
+	'yLabel',
+	'labelFontSize',
+	'fontFamily',
+	'circle',
+	'circleRadius',
+	'circleRoughness',
+	'colorVar',
+	'curbZero',
+	'legend',
+	'legendPosition',
+];
+
+export const PREVIEW = {
+	x: 0,
+	y: 0,
+	zoom: 0.6,
+	maxZoom: 5,
+	minZoom: 0.1
+  };

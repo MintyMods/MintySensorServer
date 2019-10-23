@@ -1,5 +1,5 @@
 <script>
-  import "./_scss/_sensorList.scss";
+
   import {
     storeReadings,
     storeSensors,

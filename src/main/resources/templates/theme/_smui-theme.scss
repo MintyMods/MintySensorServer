@@ -1,13 +1,14 @@
-$mdc-theme-primary: deeppink;
+$mdc-theme-primary: DeepPink;
 $mdc-theme-on-primary: snow;
 $mdc-theme-secondary: #bd006d;
 $mdc-theme-on-secondary: GhostWhite;
 $mdc-theme-error: LightCoral ;
 $mdc-theme-on-error: LightYellow;
-$mdc-theme-surface: Snow;
+$mdc-theme-surface: WhiteSmoke;
 $mdc-theme-on-surface: Black;
-$mdc-theme-background: GhostWhite;
+$mdc-theme-background: WhiteSmoke;
 $mdc-theme-on-background: Black;
+$mdc-theme-scrollbar: #ffc2e2ef;
 
 :root {
 	--theme-primary: #{$mdc-theme-primary};
@@ -20,6 +21,7 @@ $mdc-theme-on-background: Black;
 	--theme-on-surface: #{$mdc-theme-on-surface};
 	--theme-background: #{$mdc-theme-background};
 	--theme-on-background: #{$mdc-theme-on-background};
+	--theme-scrollbar: #{$mdc-theme-scrollbar};
 	--theme-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 

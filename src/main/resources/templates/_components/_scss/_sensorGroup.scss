@@ -154,7 +154,9 @@
 	opacity: .7;
 	text-align: right;
 }
-
+.type-toggle {
+	//pointer-events: none;
+}
 .mdc-form-field label {
 	cursor: pointer;
 }
