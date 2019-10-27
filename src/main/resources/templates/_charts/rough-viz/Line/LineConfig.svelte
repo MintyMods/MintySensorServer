@@ -2,7 +2,7 @@
   import { onMount, tick, getContext, setContext } from "svelte";
   import { createEventDispatcher } from "svelte";
   import { tabs } from "../common/constants.js";
-  import BarHorizontalConfigPreview from "./BarHorizontalConfigPreview";
+  import LineConfigPreview from "./LineConfigPreview";
   import { MDCSlider } from "@material/slider";
   import { MDCDialog } from "@material/dialog";
   import SensorGroup from "../../../_components/SensorGroup";
@@ -22,15 +22,17 @@
   import AxisRoughness from "../common/AxisRoughness";
   import AxisStrokeWidth from "../common/AxisStrokeWidth";
   import Bowing from "../common/Bowing";
+  import Circle from "../common/Circle";
+  import CircleRadius from "../common/CircleRadius";
+  import CircleRoughness from "../common/CircleRoughness";
   import Color from "../common/Color";
   import FillStyle from "../common/FillStyle";
   import FillWeight from "../common/FillWeight";
   import FontFamily from "../common/FontFamily";
-  import Highlight from "../common/Highlight";
-  import InnerStrokeWidth from "../common/InnerStrokeWidth";
   import Interactive from "../common/Interactive";
   import LabelFontSize from "../common/LabelFontSize";
-  import Padding from "../common/Padding";
+  import Legend from "../common/Legend";
+  import LegendPosition from "../common/LegendPosition";
   import Roughness from "../common/Roughness";
   import Simplification from "../common/Simplification";
   import Stroke from "../common/Stroke";
@@ -108,12 +110,12 @@
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
     <DialogTitle>
       <i class="fad fa-chart-bar fa-rotate-90" />
-      RoughViz BarH
+      RoughViz Line
     </DialogTitle>
     <Content class="content" id="content">
       <div class="flex-container">
         <div id="preview-wrapper">
-          <BarHorizontalConfigPreview {labels} {values} />
+          <LineConfigPreview {labels} {values} />
         </div>
         <div class="config-wrapper">
 
@@ -130,9 +132,6 @@
             <Color
               {...clone}
               on:color={event => (clone.color = event.detail)} />
-            <Highlight
-              {...clone}
-              on:highlight={event => (clone.highlight = event.detail)} />
             <Width
               {...clone}
               on:width={event => (clone.width = event.detail)} />
@@ -152,15 +151,15 @@
             <StrokeWidth
               {...clone}
               on:strokeWidth={event => (clone.strokeWidth = event.detail)} />
-            <InnerStrokeWidth
-              {...clone}
-              on:innerStrokeWidth={event => (clone.innerStrokeWidth = event.detail)} />
             <AxisStrokeWidth
               {...clone}
               on:axisStrokeWidth={event => (clone.axisStrokeWidth = event.detail)} />
             <FillWeight
               {...clone}
               on:fillWeight={event => (clone.fillWeight = event.detail)} />
+            <Circle
+              {...clone}
+              on:circle={event => (clone.circle = event.detail)} />
           {:else if activeTab && activeTab.id === 'style'}
             <Roughness
               {...clone}
@@ -168,9 +167,15 @@
             <AxisRoughness
               {...clone}
               on:axisRoughness={event => (clone.axisRoughness = event.detail)} />
+            <CircleRoughness
+              {...clone}
+              on:circleRoughness={event => (clone.circleRoughness = event.detail)} />
             <Bowing
               {...clone}
               on:bowing={event => (clone.bowing = event.detail)} />
+            <CircleRadius
+              {...clone}
+              on:circleRadius={event => (clone.circleRadius = event.detail)} />
             <Simplification
               {...clone}
               on:simplification={event => (clone.simplification = event.detail)} />
@@ -187,6 +192,12 @@
             <YLabel
               {...clone}
               on:yLabel={event => (clone.yLabel = event.detail)} />
+            <LegendPosition
+              {...clone}
+              on:legendPosition={event => (clone.legendPosition = event.detail)} />
+            <Legend
+              {...clone}
+              on:legend={event => (clone.legend = event.detail)} />
           {:else if activeTab && activeTab.id === 'size'}
             <LabelFontSize
               {...clone}
@@ -213,9 +224,6 @@
             <Left
               {...clone.margin}
               on:left={event => (clone.margin.left = event.detail)} />
-            <Padding
-              {...clone}
-              on:padding={event => (clone.padding = event.detail)} />
           {:else if activeTab && activeTab.id === 'about'}
             <About />
           {:else}

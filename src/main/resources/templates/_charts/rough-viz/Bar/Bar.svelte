@@ -6,7 +6,7 @@
   import roughViz from "rough-viz";
   import { onDestroy, onMount, setContext } from "svelte";
   import { watchResize } from "svelte-watch-resize";
-  import BarHorizontalConfig from "./BarHorizontalConfig.svelte";
+  import BarConfig from "./BarConfig.svelte";
 
   export let values;
   export let labels;
@@ -26,7 +26,7 @@
 
   onMount(() => {
     defaults.element = "#" + id;
-    chart = new roughViz.BarH(defaults);
+    chart = new roughViz.Bar(defaults);
     chartPromiseResolve(chart);
   });
 
@@ -63,14 +63,14 @@
       defaults[attr] = clone[attr];
     });
     document.getElementById(chart.el.substring(1)).innerHTML = "";
-    chart = new roughViz.BarH(defaults);
+    chart = new roughViz.Bar(defaults);
     // refreshChart(values, labels, defaults);
   }
 </script>
 
 <div {id} />
 
-<BarHorizontalConfig
+<BarConfig
   bind:this={config}
   {labels}
   {values}

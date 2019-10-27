@@ -10,7 +10,7 @@
   export let left;
 </script>
 
-<!-- <Top {top} on:top /> -->
-<!-- <Bottom {bottom} on:bottom /> -->
-<!-- <Right {right} on:right /> -->
-<!-- <Left {left} on:left /> -->
+<Top {top} on:top />
+<Bottom {bottom} on:bottom />
+<Right {right} on:right />
+<Left {left} on:left />

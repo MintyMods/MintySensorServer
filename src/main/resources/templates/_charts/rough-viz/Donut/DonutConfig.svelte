@@ -2,7 +2,7 @@
   import { onMount, tick, getContext, setContext } from "svelte";
   import { createEventDispatcher } from "svelte";
   import { tabs } from "../common/constants.js";
-  import BarHorizontalConfigPreview from "./BarHorizontalConfigPreview";
+  import DonutConfigPreview from "./DonutConfigPreview";
   import { MDCSlider } from "@material/slider";
   import { MDCDialog } from "@material/dialog";
   import SensorGroup from "../../../_components/SensorGroup";
@@ -18,9 +18,6 @@
   import TabBar from "@smui/tab-bar";
   import { attributes } from "./defaults.js";
   import About from "../common/About";
-  import AxisFontSize from "../common/AxisFontSize";
-  import AxisRoughness from "../common/AxisRoughness";
-  import AxisStrokeWidth from "../common/AxisStrokeWidth";
   import Bowing from "../common/Bowing";
   import Color from "../common/Color";
   import FillStyle from "../common/FillStyle";
@@ -29,17 +26,15 @@
   import Highlight from "../common/Highlight";
   import InnerStrokeWidth from "../common/InnerStrokeWidth";
   import Interactive from "../common/Interactive";
-  import LabelFontSize from "../common/LabelFontSize";
+  import Legend from "../common/Legend";
+  import LegendPosition from "../common/LegendPosition";
   import Padding from "../common/Padding";
   import Roughness from "../common/Roughness";
   import Simplification from "../common/Simplification";
-  import Stroke from "../common/Stroke";
   import StrokeWidth from "../common/StrokeWidth";
   import Title from "../common/Title"; //@todo
   import TitleFontSize from "../common/TitleFontSize";
   import TooltipFontSize from "../common/TooltipFontSize";
-  import XLabel from "../common/XLabel";
-  import YLabel from "../common/YLabel";
   import Top from "../common/Top";
   import Bottom from "../common/Bottom";
   import Right from "../common/Right";
@@ -108,12 +103,12 @@
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
     <DialogTitle>
       <i class="fad fa-chart-bar fa-rotate-90" />
-      RoughViz BarH
+      RoughViz Donut
     </DialogTitle>
     <Content class="content" id="content">
       <div class="flex-container">
         <div id="preview-wrapper">
-          <BarHorizontalConfigPreview {labels} {values} />
+          <DonutConfigPreview {labels} {values} />
         </div>
         <div class="config-wrapper">
 
@@ -146,18 +141,12 @@
             <FillStyle
               {...clone}
               on:fillStyle={event => (clone.fillStyle = event.detail)} />
-            <Stroke
-              {...clone}
-              on:stroke={event => (clone.stroke = event.detail)} />
             <StrokeWidth
               {...clone}
               on:strokeWidth={event => (clone.strokeWidth = event.detail)} />
             <InnerStrokeWidth
               {...clone}
               on:innerStrokeWidth={event => (clone.innerStrokeWidth = event.detail)} />
-            <AxisStrokeWidth
-              {...clone}
-              on:axisStrokeWidth={event => (clone.axisStrokeWidth = event.detail)} />
             <FillWeight
               {...clone}
               on:fillWeight={event => (clone.fillWeight = event.detail)} />
@@ -165,9 +154,6 @@
             <Roughness
               {...clone}
               on:roughness={event => (clone.roughness = event.detail)} />
-            <AxisRoughness
-              {...clone}
-              on:axisRoughness={event => (clone.axisRoughness = event.detail)} />
             <Bowing
               {...clone}
               on:bowing={event => (clone.bowing = event.detail)} />
@@ -181,25 +167,19 @@
             <Title
               {...clone}
               on:title={event => (clone.title = event.detail)} />
-            <XLabel
+            <LegendPosition
               {...clone}
-              on:xLabel={event => (clone.xLabel = event.detail)} />
-            <YLabel
+              on:legendPosition={event => (clone.legendPosition = event.detail)} />
+            <Legend
               {...clone}
-              on:yLabel={event => (clone.yLabel = event.detail)} />
+              on:legend={event => (clone.legend = event.detail)} />
           {:else if activeTab && activeTab.id === 'size'}
-            <LabelFontSize
-              {...clone}
-              on:labelFontSize={event => (clone.labelFontSize = event.detail)} />
             <TitleFontSize
               {...clone}
               on:titleFontSize={event => (clone.titleFontSize = event.detail)} />
             <TooltipFontSize
               {...clone}
               on:tooltipFontSize={event => (clone.tooltipFontSize = event.detail)} />
-            <AxisFontSize
-              {...clone}
-              on:axisFontSize={event => (clone.axisFontSize = event.detail)} />
           {:else if activeTab && activeTab.id === 'spacing'}
             <Top
               {...clone.margin}

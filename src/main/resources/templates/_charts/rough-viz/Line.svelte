@@ -1,10 +1,10 @@
 <script>
-  import BarHorizontal from "./BarHorizontal/BarHorizontal.svelte";
+  import Line from "./Line/Line.svelte";
   import { beforeUpdate } from "svelte";
   import { storeReadings } from "../../_stores/main-state.js";
   import Button from "@smui/button";
   import Tab, { Icon, Label } from "@smui/tab";
-  let title = "RoughViz BarH";
+  let title = "RoughViz Line";
   let instance;
   let data;
   data = {
@@ -48,15 +48,15 @@
 </style>
 
 <div class="chart">
-  <BarHorizontal
+  <Line
     bind:this={instance}
     values={data.values}
     labels={data.labels}
     {title} />
+</div>
+
 <div class="button-wrapper">
 <Button  action="config" on:click={() => instance.showConfig()}>
   <Label>Show Config</Label>
 </Button>
 </div>
-</div>
-

@@ -4,7 +4,7 @@
   import panzoom from "panzoom";
   import roughViz from "rough-viz";
   import { onDestroy, onMount, getContext } from "svelte";
-  import BarHorizontalConfig from "./BarHorizontalConfig.svelte";
+  import LineConfig from "./LineConfig.svelte";
 
   export let labels;
   export let values;
@@ -16,7 +16,7 @@
 
   onMount(async () => {
     config = await getInstance();
-    chart = new roughViz.BarH({
+    chart = new roughViz.Line({
       element: "#" + id,
       data: { labels: [], values: [] }
     });

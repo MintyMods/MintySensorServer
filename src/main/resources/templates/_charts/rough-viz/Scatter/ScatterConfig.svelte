@@ -2,7 +2,7 @@
   import { onMount, tick, getContext, setContext } from "svelte";
   import { createEventDispatcher } from "svelte";
   import { tabs } from "../common/constants.js";
-  import BarHorizontalConfigPreview from "./BarHorizontalConfigPreview";
+  import ScatterConfigPreview from "./ScatterConfigPreview";
   import { MDCSlider } from "@material/slider";
   import { MDCDialog } from "@material/dialog";
   import SensorGroup from "../../../_components/SensorGroup";
@@ -23,6 +23,8 @@
   import AxisStrokeWidth from "../common/AxisStrokeWidth";
   import Bowing from "../common/Bowing";
   import Color from "../common/Color";
+  import ColorVar from "../common/ColorVar";
+  import CurbZero from "../common/CurbZero";
   import FillStyle from "../common/FillStyle";
   import FillWeight from "../common/FillWeight";
   import FontFamily from "../common/FontFamily";
@@ -30,7 +32,7 @@
   import InnerStrokeWidth from "../common/InnerStrokeWidth";
   import Interactive from "../common/Interactive";
   import LabelFontSize from "../common/LabelFontSize";
-  import Padding from "../common/Padding";
+  import Radius from "../common/Radius";
   import Roughness from "../common/Roughness";
   import Simplification from "../common/Simplification";
   import Stroke from "../common/Stroke";
@@ -108,12 +110,12 @@
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
     <DialogTitle>
       <i class="fad fa-chart-bar fa-rotate-90" />
-      RoughViz BarH
+      RoughViz Scatter
     </DialogTitle>
     <Content class="content" id="content">
       <div class="flex-container">
         <div id="preview-wrapper">
-          <BarHorizontalConfigPreview {labels} {values} />
+          <ScatterConfigPreview {labels} {values} />
         </div>
         <div class="config-wrapper">
 
@@ -130,6 +132,9 @@
             <Color
               {...clone}
               on:color={event => (clone.color = event.detail)} />
+            <ColorVar
+              {...clone}
+              on:color={event => (clone.colorVar = event.detail)} />
             <Highlight
               {...clone}
               on:highlight={event => (clone.highlight = event.detail)} />
@@ -161,6 +166,9 @@
             <FillWeight
               {...clone}
               on:fillWeight={event => (clone.fillWeight = event.detail)} />
+            <CurbZero
+              {...clone}
+              on:circle={event => (clone.curbZero = event.detail)} />
           {:else if activeTab && activeTab.id === 'style'}
             <Roughness
               {...clone}
@@ -171,6 +179,9 @@
             <Bowing
               {...clone}
               on:bowing={event => (clone.bowing = event.detail)} />
+            <Radius
+              {...clone}
+              on:radius={event => (clone.radius = event.detail)} />
             <Simplification
               {...clone}
               on:simplification={event => (clone.simplification = event.detail)} />
@@ -213,9 +224,6 @@
             <Left
               {...clone.margin}
               on:left={event => (clone.margin.left = event.detail)} />
-            <Padding
-              {...clone}
-              on:padding={event => (clone.padding = event.detail)} />
           {:else if activeTab && activeTab.id === 'about'}
             <About />
           {:else}

@@ -1,0 +1,93 @@
+/* Pace Loader progress */
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+.pace .pace-progress {
+  border-top: 1px solid var(--theme-secondary);
+  background: var(--theme-primary);
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 6px;
+}
+
+/* End Pace Loader */
+/* Coloured Scroll Bars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  opacity: .1;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: radial-gradient(var(--theme-surface), var(--theme-background));
+  border: 1px solid #aaa;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-primary);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--theme-secondary);
+}
+
+/* End Coloured Scroll Bars */
+* :global(.shaped) {
+  border-radius: 16px 16px 0 0;
+}
+
+* :global(.shaped-outlined .mdc-text-field__input) {
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+* :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__leading) {
+  border-radius: 28px 0 0 28px;
+  width: 28px;
+}
+
+* :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__trailing) {
+  border-radius: 0 28px 28px 0;
+}
+
+* :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__notch) {
+  max-width: calc(100% - 28px * 2);
+}
+
+* :global(.shaped-outlined + .mdc-text-field-helper-line) {
+  padding-left: 32px;
+  padding-right: 28px;
+}
+
+* :global(.stack-bar-bottom) {
+  width: 250px;
+  line-height: 1em;
+  opacity: .5 !important;
+}
+
+:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item {
+  background-color: var(--theme-surface);
+  color: var(--theme-on-surface);
+}

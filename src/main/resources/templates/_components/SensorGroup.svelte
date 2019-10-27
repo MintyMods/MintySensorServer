@@ -28,14 +28,8 @@
   let filterTypes = new Array(9).fill(false);
   let data = [];
   let selected = [];
-  let opts = {
-    x: 0,
-    y: 0,
-    zoom: 1,
-    maxZoom: 2,
-    minZoom: 0.1
-  };
-  $: showDropZone = false;
+
+  $: showDropZone = true;
   $: data = $storeReadings.filter(reading => isSelected(reading));
   $: filterText = "";
   $: sensorId = "";
@@ -118,14 +112,14 @@
     showSelectedTypes();
   }
 </script>
-<style>
 
+<style>
 :global(.selected-type-container) {
     letter-spacing: 10px !important;
 }
-
 </style>
-<div class="wrapper" on:dragend={event => (showDropZone = false)}>
+
+<div class="wrapper" >
 
   {#if showDropZone}
     <div
@@ -209,7 +203,7 @@
       {#each $storeTypes as type, index (type.type + '_' + index)}
           <Item style="width:100%">
             <FormField class="type-toggle-wrapper">
-              <Switch bind:checked={filterTypes[index]} />
+              <Switch bind:checked={filterTypes[index]}  />
               <span class="type-toggle" slot="label">{type.desc}</span>
             </FormField>
             <Icon class="{type.icon} fa-1x type-toggle-icon" />

@@ -13,7 +13,7 @@
 </script>
 
 <style>
-  .card-container {
+  .mdc-card-container {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -30,8 +30,7 @@
 
 <div class="mdc-card-container">
   <Card>
-    <PrimaryAction
-      on:click={() => window.open('#/about')}>
+    <PrimaryAction on:click={() => window.open('#/about')}>
       <Content class="mdc-typography--body2">
         <h2 class="mdc-typography--headline6" style="margin: 0;">
           ECharts Liquid Fill Chart

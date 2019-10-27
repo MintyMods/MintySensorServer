@@ -2,7 +2,7 @@
   import { onMount, tick, getContext, setContext } from "svelte";
   import { createEventDispatcher } from "svelte";
   import { tabs } from "../common/constants.js";
-  import BarHorizontalConfigPreview from "./BarHorizontalConfigPreview";
+  import BarConfigPreview from "./BarConfigPreview";
   import { MDCSlider } from "@material/slider";
   import { MDCDialog } from "@material/dialog";
   import SensorGroup from "../../../_components/SensorGroup";
@@ -108,12 +108,12 @@
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
     <DialogTitle>
       <i class="fad fa-chart-bar fa-rotate-90" />
-      RoughViz BarH
+      RoughViz Bar
     </DialogTitle>
     <Content class="content" id="content">
       <div class="flex-container">
         <div id="preview-wrapper">
-          <BarHorizontalConfigPreview {labels} {values} />
+          <BarConfigPreview {labels} {values} />
         </div>
         <div class="config-wrapper">
 

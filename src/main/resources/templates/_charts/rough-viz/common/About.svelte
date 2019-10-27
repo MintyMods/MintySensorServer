@@ -1,6 +1,6 @@
+<script>
   // RoughViz Charts 1.0.4
   // https://github.com/jwilber/roughViz
-<script>
   import Card, {
     Content,
     PrimaryAction,
