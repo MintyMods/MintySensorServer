@@ -1,13 +1,13 @@
 <script>
   import { createEventDispatcher } from "svelte";
- import Select, { Option } from "@smui/select";
+  import Select, { Option } from "@smui/select";
   import HelperText from "@smui/textfield/helper-text/index";
 
   const dispatch = createEventDispatcher();
   const FONT_WEIGHT = ["normal", "bold", "bolder", "lighter"];
   export let labelFontWeight;
 
-$: if (labelFontWeight) {
+  $: if (labelFontWeight) {
     dispatch("labelFontWeight", labelFontWeight);
   }
 </script>

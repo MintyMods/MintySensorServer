@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
- import Select, { Option } from "@smui/select";
+  import Select, { Option } from "@smui/select";
   import HelperText from "@smui/textfield/helper-text/index";
   import { BASELINE } from "./constants.js";
 

@@ -21,7 +21,7 @@ export const defaults = {
 	margin: { top: 50, bottom: 70, left: 100, right: 20 },
 	roughness: 1,
 	simplification: 0.2,
-	stroke: this.colors,
+	stroke: ['coral', 'skyblue', '#66c2a5', 'tan', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f', 'tan', 'orange'],
 	strokeWidth: 1,
 	title: '',
 	titleFontSize: '2rem',
