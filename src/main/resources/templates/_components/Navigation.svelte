@@ -28,7 +28,6 @@
   const NOTIFICATIONS = "#/notifications";
   const CREDITS = "#/credits";
 
-  export let segment;
   let closeHover;
   let menuHover;
   let active;
@@ -68,8 +67,8 @@
     let nav = document.getElementById("navigation");
     if (nav !== null) {
       let sections = nav.querySelectorAll("a");
-      let page = '#' + $location;
-      if (page === '#/') page = '#/about';
+      let page = "#" + $location;
+      if (page === "#/") page = "#/about";
       sections.forEach(section => {
         if (section.hash === page) {
           // section.classList.add("activated");

@@ -89,10 +89,7 @@
   export let labelAlign;
   export let labelBaseline;
   export let labelPosition;
-  export let showConfigurationDialog;
   export let data;
-  export let chart;
-  export let owner;
   const dispatch = createEventDispatcher();
 
   export const openDialog = item => {
@@ -140,7 +137,10 @@
 
 <div id="dialog-fix-wrapper">
   <Dialog bind:this={dialog} aria-labelledby="title" aria-describedby="content">
-    <Title id="title"><i class="fad fa-water fa-1x"></i> ECharts Liquid Fill</Title>
+    <Title id="title">
+      <i class="fad fa-water fa-1x" />
+      ECharts Liquid Fill
+    </Title>
     <Content class="content" id="content">
       <div class="preview-wrapper">
         <EchartsLiquidFillConfigPreview

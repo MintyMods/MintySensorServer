@@ -4,10 +4,6 @@
   export let data = [];
   export let labels = [];
   export let caption = "";
-  export let width = 1;
-  export let height = 2;
-  export let backgroundColor;
-  export let borderColor;
 
   export let id =
     "chart-" +
@@ -23,7 +19,7 @@
   onMount(() => {
     createChart();
   });
-  
+
   export function showConfig() {
     PNotify.info("Line CHart Config");
   }
@@ -96,7 +92,6 @@
     width: 100%;
     height: 100%;
   }
-  
 </style>
 
 <div class="canvas-wrapper">

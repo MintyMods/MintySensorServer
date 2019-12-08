@@ -30,8 +30,7 @@
   export let backgroundStyleBorderWidth = 4;
   export let backgroundStyleBorderColor = "#000";
   export let backgroundStyleItemStyleShadowBlur = 10;
-  export let backgroundStyleItemStyleShadowColor =
-    "rgba(0, 0, 0, 1)";
+  export let backgroundStyleItemStyleShadowColor = "rgba(0, 0, 0, 1)";
   export let backgroundStyleItemStyleOpacity = 0.9;
   export let itemStyleOpacity = 0.95;
   export let itemStyleShadowBlur = 25;
@@ -45,9 +44,7 @@
   export let labelAlign = "center";
   export let labelBaseline = "middle";
   export let labelPosition = "inside";
-  export let divide = 10000;
   export let data;
-  export let options;
 
   const id =
     "mss_" +

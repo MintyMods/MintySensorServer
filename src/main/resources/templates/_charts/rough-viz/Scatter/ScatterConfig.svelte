@@ -49,7 +49,6 @@
   import Width from "../common/Width";
   import Height from "../common/Height";
 
-  export let chart;
   export let values;
   export let labels;
   let dialog;

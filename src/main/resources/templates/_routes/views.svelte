@@ -38,11 +38,22 @@
   let cols = 5;
 
   onMount(async () => {
-    await tick();
-    buildLayout();
-    await tick();
-    buildCharts();
+    //await tick();
+    // buildLayout();
+    // await tick();
+    // buildCharts();
   });
+
+  const id = () =>
+    "_" +
+    Math.random()
+      .toString(36)
+      .substr(2, 9);
+
+  items = [
+    gridHelp.item({ x: 0, y: 0, w: 2, h: 2, id: id() }),
+    gridHelp.item({ x: 2, y: 0, w: 2, h: 2, id: id() })
+  ];
 
   function getChart(id, i) {
     let ele = document.getElementById(id);
@@ -92,7 +103,8 @@
       });
       layout.push(current);
     });
-    items = gridHelp.resizeItems(layout, cols);
+    debugger;
+    // items = gridHelp.resizeItems(layout, cols);
   }
 
   function buildCharts() {
@@ -148,20 +160,24 @@
   }
 </script>
 
-<div class="container">
-  {#if items !== undefined}
-    <Grid
-      {breakpoints}
-      {charts}
-      {cols}
-      gap={5}
-      rowHeight={100}
-      fillEmpty={false}
-      useTransform={false}
-      static={false}
-      bind:items
-      let:item>
-      <div
+<Grid {items} cols={3} bind:items let:item>
+  <div>{item.id}</div>
+</Grid>
+
+<!-- <div class="container"> -->
+{#if items !== undefined}
+  <Grid
+    {breakpoints}
+    {charts}
+    {cols}
+    gap={5}
+    rowHeight={100}
+    fillEmpty={false}
+    useTransform={false}
+    static={false}
+    bind:items
+    let:item>
+    <!-- <div
         id={item.id}
         on:click={() => showConfig(item)}
         class="content"
@@ -215,7 +231,7 @@
           </Actions>
         </div>
 
-      </div>
-    </Grid>
-  {/if}
-</div>
+      </div> -->
+  </Grid>
+{/if}
+<!-- </div> -->

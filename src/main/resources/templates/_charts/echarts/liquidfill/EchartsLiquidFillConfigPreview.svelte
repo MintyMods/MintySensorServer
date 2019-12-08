@@ -7,7 +7,6 @@
   import EchartsLiquidFillConfig from "./EchartsLiquidFillConfig.svelte";
   import panzoom from "panzoom";
 
-  export let color = "rgba(0, 0, 0, 1)";
   export let center = ["50%", "50%"];
   export let radius = "99%";
   export let amplitude = "58%";
@@ -46,9 +45,7 @@
   export let labelAlign = "center";
   export let labelBaseline = "middle";
   export let labelPosition = "inside";
-  export let divide = 10000;
   export let data;
-  export let options;
 
   const id =
     "mss_" +

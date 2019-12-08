@@ -4,12 +4,16 @@
   export let data = [];
   export let labels = [];
   export let caption = "";
-  export let width = 1;
-  export let height = 2;
-  export let backgroundColor = [];
-  export let borderColor;
+  let width = 1;
+  let height = 2;
+  let backgroundColor = [];
+  let borderColor;
 
-  const id = () => "_" + Math.random().toString(36).substr(2, 9);
+  const id = () =>
+    "_" +
+    Math.random()
+      .toString(36)
+      .substr(2, 9);
   let ctx;
   let chart;
   $: data;
@@ -18,7 +22,7 @@
   onMount(() => {
     init();
   });
-  
+
   export function showConfig() {
     PNotify.info("Bar Chart Config");
   }
@@ -81,7 +85,6 @@
     width: 100%;
     height: 100%;
   }
- 
 </style>
 
 <div class="canvas-wrapper">

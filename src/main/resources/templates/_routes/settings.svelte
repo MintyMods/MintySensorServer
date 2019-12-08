@@ -8,10 +8,10 @@
   import Scatter from "../_charts/rough-viz/Scatter.svelte";
   import Select, { Option } from "@smui/select";
 </script>
-<Scatter/>
+<!-- <Scatter/> -->
 <!-- <Line/> -->
 <!-- <Pie/> -->
 <!-- <Donut/> -->
-<!-- <Bar /> -->
+<Bar />
 <!-- <BarH /> -->
 

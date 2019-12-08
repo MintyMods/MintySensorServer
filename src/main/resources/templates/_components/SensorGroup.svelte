@@ -14,7 +14,7 @@
   import Dialog, { Actions, InitialFocus } from "@smui/dialog";
   import Button from "@smui/button";
   import Chip, { Set, Icon, Text } from "@smui/chips";
-    import MenuSurface, {Anchor} from '@smui/menu-surface';
+  import MenuSurface, { Anchor } from "@smui/menu-surface";
   import List, {
     Item,
     Graphic,
@@ -104,7 +104,8 @@
           icons += "<i class='" + $storeTypes[i].icon + "' />";
         }
       }
-      desc.innerHTML = "<div class='selected-type-container'>" + icons + "</div>";
+      desc.innerHTML =
+        "<div class='selected-type-container'>" + icons + "</div>";
     }
   }
 
@@ -114,12 +115,12 @@
 </script>
 
 <style>
-:global(.selected-type-container) {
+  :global(.selected-type-container) {
     letter-spacing: 10px !important;
-}
+  }
 </style>
 
-<div class="wrapper" >
+<div class="wrapper">
 
   {#if showDropZone}
     <div
@@ -169,8 +170,8 @@
   <div class="readings-container">
     <Set chips={getReadings()} let:chip key={reading => getReadingId(reading)}>
       <Chip
+        shouldRemoveOnTrailingIconClick={false}
         selected={isSelected(chip)}
-        shouldRemoveOnTrailingIconClick="false"
         class="chip"
         draggable="true"
         on:dragstart={event => dragStart(event, chip)}>
@@ -195,32 +196,29 @@
       label="Search" />
   </div>
 
-  <Select
-    enhanced
-    id="filterTypeSelect"
-    label="Filter by type">
+  <Select enhanced id="filterTypeSelect" label="Filter by type">
     <MenuSurface static>
       {#each $storeTypes as type, index (type.type + '_' + index)}
-          <Item style="width:100%">
-            <FormField class="type-toggle-wrapper">
-              <Switch bind:checked={filterTypes[index]}  />
-              <span class="type-toggle" slot="label">{type.desc}</span>
-            </FormField>
-            <Icon class="{type.icon} fa-1x type-toggle-icon" />
-          </Item>
+        <Item style="width:100%">
+          <FormField class="type-toggle-wrapper">
+            <Switch bind:checked={filterTypes[index]} />
+            <span class="type-toggle" slot="label">{type.desc}</span>
+          </FormField>
+          <Icon class="{type.icon} fa-1x type-toggle-icon" />
+        </Item>
       {/each}
-    <Actions>
-      <Button
-        action="none"
-        on:click={() => (filterTypes = filterTypes.fill(false))}>
-        <Label>Select None</Label>
-      </Button>
-      <Button
-        action="all"
-        on:click={() => (filterTypes = filterTypes.fill(true))}>
-        <Label>Select All</Label>
-      </Button>
-    </Actions>
+      <Actions>
+        <Button
+          action="none"
+          on:click={() => (filterTypes = filterTypes.fill(false))}>
+          <Label>Select None</Label>
+        </Button>
+        <Button
+          action="all"
+          on:click={() => (filterTypes = filterTypes.fill(true))}>
+          <Label>Select All</Label>
+        </Button>
+      </Actions>
     </MenuSurface>
   </Select>
 
