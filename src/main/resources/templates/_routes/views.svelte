@@ -38,22 +38,11 @@
   let cols = 5;
 
   onMount(async () => {
-    //await tick();
-    // buildLayout();
-    // await tick();
-    // buildCharts();
+    await tick();
+    buildLayout();
+    await tick();
+    buildCharts();
   });
-
-  const id = () =>
-    "_" +
-    Math.random()
-      .toString(36)
-      .substr(2, 9);
-
-  items = [
-    gridHelp.item({ x: 0, y: 0, w: 2, h: 2, id: id() }),
-    gridHelp.item({ x: 2, y: 0, w: 2, h: 2, id: id() })
-  ];
 
   function getChart(id, i) {
     let ele = document.getElementById(id);
@@ -92,8 +81,8 @@
     let layout = [];
     charts.forEach((chart, i) => {
       let current = gridHelp.item({
-        x: 1,
-        y: 1,
+        x: 0,
+        y: 0,
         w: 2,
         h: 4,
         useTransform: false,
@@ -103,8 +92,8 @@
       });
       layout.push(current);
     });
-    debugger;
-    // items = gridHelp.resizeItems(layout, cols);
+
+    items = gridHelp.resizeItems(layout, cols);
   }
 
   function buildCharts() {
@@ -150,9 +139,10 @@
     }
   }
   async function pinItemContainer(item) {
+    debugger;
     item.static = !item.static;
-    await tick();
-    items = gridHelp.resizeItems(items, cols);
+    // await tick();
+    // items = gridHelp.resizeItems(items, cols);
   }
 
   function expandContainer(id) {
@@ -160,24 +150,20 @@
   }
 </script>
 
-<Grid {items} cols={3} bind:items let:item>
-  <div>{item.id}</div>
-</Grid>
-
-<!-- <div class="container"> -->
-{#if items !== undefined}
-  <Grid
-    {breakpoints}
-    {charts}
-    {cols}
-    gap={5}
-    rowHeight={100}
-    fillEmpty={false}
-    useTransform={false}
-    static={false}
-    bind:items
-    let:item>
-    <!-- <div
+<div class="container">
+  {#if items !== undefined}
+    <Grid
+      {breakpoints}
+      {charts}
+      {cols}
+      gap={5}
+      rowHeight={100}
+      fillEmpty={false}
+      useTransform={false}
+      static={false}
+      bind:items
+      let:item>
+      <div
         id={item.id}
         on:click={() => showConfig(item)}
         class="content"
@@ -231,7 +217,7 @@
           </Actions>
         </div>
 
-      </div> -->
-  </Grid>
-{/if}
-<!-- </div> -->
+      </div>
+    </Grid>
+  {/if}
+</div>

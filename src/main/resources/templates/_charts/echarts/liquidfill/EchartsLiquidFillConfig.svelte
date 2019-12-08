@@ -118,7 +118,7 @@
     });
   }
 
-  $: dialog && dialog.open(); // @todo remove
+  // $: dialog && dialog.open(); // @todo remove
 </script>
 
 <style>

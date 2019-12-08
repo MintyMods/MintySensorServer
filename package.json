@@ -14,7 +14,7 @@
 	"homepage": "https://github.com/MintyMods/MintySensorServer#readme",
 	"scripts": {
 		"build": "cross-env NODE_ENV=production webpack -p",
-		"dev": "webpack-dev-server --https --port 8081 --color true --mode development --content-base src/main/resources/templates/public --content-base src/main/resources/public --content-base src/main/resources/static"
+		"dev": "webpack-dev-server --https --port 8081 --color true --mode development --content-base src/main/resources/templates/public --content-base src/main/resources/public --content-base src/main/resources/static --history-api-fallback"
 	},
 	"browserslist": [
 		">1%",
@@ -48,7 +48,6 @@
 		"svelte-grid": "^1.10.5",
 		"svelte-loader": "^2.13.6",
 		"svelte-material-ui": "^1.0.0-beta.18",
-		"svelte-spa-router": "^2.0.0",
 		"svelte-watch-resize": "^1.0.3",
 		"webpack": "^4.41.2",
 		"webpack-cli": "^3.3.10",
@@ -70,6 +69,7 @@
 		"panzoom": "^8.7.0",
 		"pnotify": "^4.0.0",
 		"rough-viz": "^1.0.5",
-		"sockjs": "^0.3.19"
+		"sockjs": "^0.3.19",
+		"svelte-routing": "^1.4.0"
 	}
 }

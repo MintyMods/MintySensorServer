@@ -19,7 +19,8 @@
   } from "./_stores/main-state.js";
   import { fade } from "svelte/transition";
   import { onMount, onDestroy, beforeUpdate } from "svelte";
-  import Router, { link, location } from "svelte-spa-router";
+  import { Router, Link, Route, navigate } from "svelte-routing";
+  import { ROUTES } from "./_components/sitemap.js";
   import About from "./_routes/Index.svelte";
   import Views from "./_routes/Views.svelte";
   import Settings from "./_routes/Settings.svelte";
@@ -32,21 +33,7 @@
   import NotFound from "./_errors/NotFound.svelte";
   import Error from "./_routes/_error.svelte";
 
-  const routes = {
-    "/settings": Settings,
-    "/sensors": Sensors,
-    "/readings": Readings,
-    "/providers": Providers,
-    "/notifications": Notifications,
-    "/views": Views,
-    "/hosts": Hosts,
-    "/devices": Devices,
-    "/about": About,
-    "/index": About,
-    "/404": NotFound,
-    "/": About,
-    "*": Error
-  };
+  export let url = "";
 
   let sideNavOpen;
   let sideNav;
@@ -221,7 +208,17 @@
   function closeNavigation() {
     $storeIsNavigationOpen = false;
   }
+  function test() {
+    navigate("/views", { replace: false });
+  }
 </script>
+
+<style>
+  .test {
+    position: relative;
+    top: 100px;
+  }
+</style>
 
 <div id="minty-sensor-server" />
 
@@ -242,7 +239,32 @@
         bind:this={mainContent}
         class:open={sideNavOpen}
         class:close={!sideNavOpen}>
-        <Router {routes} />
+
+        <Router {url}>
+          {#each ROUTES as route}
+            <Route path={route.path} component={route.component} />
+          {/each}
+        </Router>
+
+        <!-- <Router {url} basepath="/">
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/views">Views</Link>
+            <Link to="/note">Notifications</Link>
+            <span on:click={() => test()}>Spna</span>
+          </nav>
+          <div class="test">
+            <Route path="/views" component={Views} />
+            <Route path="/note" component={Notifications} />
+            <Route path="/about" component={About} />
+            <Route path="/">
+              <Notifications />
+            </Route>
+          </div>
+
+        </Router> -->
+
       </main>
     </AppContent>
   </div>
