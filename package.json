@@ -69,6 +69,7 @@
 		"panzoom": "^8.7.0",
 		"pnotify": "^4.0.0",
 		"rough-viz": "^1.0.5",
+		"serialize-javascript": "^2.1.2",
 		"sockjs": "^0.3.19",
 		"svelte-routing": "^1.4.0"
 	}
