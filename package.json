@@ -43,7 +43,7 @@
 		"sass-loader": "^7.3.1",
 		"serve": "^11.2.0",
 		"style-loader": "^0.23.1",
-		"svelte": "^3.16.0",
+		"svelte": "^3.49.0",
 		"svelte-click-outside": "^1.0.0",
 		"svelte-grid": "^1.10.5",
 		"svelte-loader": "^2.13.6",
